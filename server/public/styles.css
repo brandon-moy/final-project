@@ -1,0 +1,16 @@
+.page-title {
+  background-color: #2c0b03;
+  color: white;
+  font-family: "Fuzzy Bubbles", sans-serif;
+  font-weight: 800;
+  font-size: 40px;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.new-deck {
+  color: white;
+  font-family: "Gloria Hallelujah", sans-serif;
+  font-size: 30px;
+  padding-left: 1rem;
+}
