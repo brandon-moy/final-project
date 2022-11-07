@@ -16,6 +16,9 @@ export default class App extends React.Component {
   }
 
   closeModal(event) {
+    fetch('/api/decks')
+      .then(res => res.json())
+      .then(data => this.setState({ decks: data }));
     this.setState({ show: false });
   }
 
