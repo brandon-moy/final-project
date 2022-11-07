@@ -49,7 +49,9 @@ export default class Modal extends React.Component {
               </svg>
               <div className="sticky-content">
                 <form className="new-deck-form" onSubmit={this.handleSubmit}>
-                  <i className="fa-solid fa-xmark" onClick={this.props.closeModal} />
+                  <a className="xmark-close" onClick={this.props.closeModal}>
+                    <i className="fa-solid fa-xmark" />
+                  </a>
                   <h1 className="sticky-header">Create New Deck</h1>
                   <input className="sticky-input" onChange={this.handleChange} type="text" placeholder="e.g. HTML, CSS, JavaScript"/>
                   <button className="sticky-submit">Continue</button>
