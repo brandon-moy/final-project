@@ -21,7 +21,7 @@ CREATE TABLE "public"."flashcards" (
 	"question" TEXT NOT NULL,
 	"answer" TEXT NOT NULL,
 	"userId" int NOT NULL,
-	"confidence" int NOT NULL,
+	"confidence" int NOT NULL DEFAULT '0',
 	"deckId" int NOT NULL
 ) WITH (
   OIDS=FALSE
@@ -33,7 +33,7 @@ CREATE TABLE "public"."decks" (
 	"deckId" serial NOT NULL,
 	"deckName" TEXT NOT NULL,
 	"userId" int NOT NULL,
-	"deckConfidence" int NOT NULL,
+	"deckConfidence" int NOT NULL DEFAULT '0',
 	CONSTRAINT "decks_pk" PRIMARY KEY ("deckId")
 ) WITH (
   OIDS=FALSE

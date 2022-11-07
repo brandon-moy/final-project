@@ -17,6 +17,23 @@ const app = express();
 app.use(staticMiddleware);
 app.use(express.json());
 
+app.get('/api/decks', (req, res, next) => {
+  const sql = `
+    select *
+    from "decks"
+    where "userId" = $1
+  `;
+
+  const params = [1];
+
+  db.query(sql, params)
+    .then(result => {
+      const decks = result.rows;
+      res.status(200).json(decks);
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/create-deck', (req, res, next) => {
   const { deckName } = req.body;
   if (!deckName) {
@@ -24,12 +41,12 @@ app.post('/api/create-deck', (req, res, next) => {
   }
 
   const sql = `
-  insert into "decks" ("deckName", "userId", "deckConfidence")
-  values ($1, $2, $3)
+  insert into "decks" ("deckName", "userId")
+  values ($1, $2)
   returning *
   `;
 
-  const params = [deckName, 1, 0];
+  const params = [deckName, 1];
 
   db.query(sql, params)
     .then(result => {
