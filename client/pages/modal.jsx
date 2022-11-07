@@ -4,6 +4,8 @@ export default class Modal extends React.Component {
   constructor(props) {
     super(props);
     this.state = ({ deckName: null });
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -22,7 +24,7 @@ export default class Modal extends React.Component {
     };
     fetch('/api/create-deck', req)
       .then(res => res.json())
-
+      .catch(err => console.error(err))
     ;
   }
 
@@ -42,10 +44,10 @@ export default class Modal extends React.Component {
                 </defs>
               </svg>
               <div className="sticky-content">
-                <form className="new-deck-form">
+                <form className="new-deck-form" onSubmit={this.handleSubmit}>
                   <h1 className="sticky-header">Create New Deck</h1>
-                  <input className="sticky-input" type="text" placeholder="e.g. HTML, CSS, JavaScript"/>
-                  <button type="button" className="sticky-submit" onClick={this.props.closeModal}>Continue</button>
+                  <input className="sticky-input" onChange={this.handleChange} type="text" placeholder="e.g. HTML, CSS, JavaScript"/>
+                  <button className="sticky-submit">Continue</button>
                 </form>
               </div>
             </div>
