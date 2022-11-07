@@ -24,12 +24,10 @@ export default class Modal extends React.Component {
     };
     fetch('/api/create-deck', req)
       .then(res => {
-        this.props.closeModal();
-        window.alert('Added deck successfully!');
         res.json();
+        this.props.closeModal();
       })
-      .catch(err => console.error(err))
-    ;
+      .catch(err => console.error(err));
   }
 
   render() {
@@ -43,7 +41,7 @@ export default class Modal extends React.Component {
                 <defs>
                   <clipPath id="stickyClip" clipPathUnits="objectBoundingBox">
                     <path d="M 0 0 Q 0 0.69, 0.03 0.96 0.03 0.96, 1 0.96 Q 0.96 0.69, 0.96 0 0.96 0, 0 0"
-                      strokeLinejoin="round" strokeLinecap="square" />
+                      />
                   </clipPath>
                 </defs>
               </svg>
