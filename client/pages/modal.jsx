@@ -3,7 +3,7 @@ import React from 'react';
 export default class Modal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = ({ deckName: null });
+    this.state = ({ deckName: '' });
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -51,7 +51,7 @@ export default class Modal extends React.Component {
                     <i className="fa-solid fa-xmark" />
                   </a>
                   <h1 className="sticky-header">Create New Deck</h1>
-                  <input className="sticky-input" onChange={this.handleChange} type="text" placeholder="e.g. HTML, CSS, JavaScript"/>
+                  <input value={this.state.deckName} className="sticky-input" onChange={this.handleChange} type="text" placeholder="e.g. HTML, CSS, JavaScript"/>
                   <button className="sticky-submit">Continue</button>
                 </form>
               </div>
