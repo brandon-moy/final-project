@@ -1,6 +1,31 @@
 import React from 'react';
 
 export default class Modal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = ({ deckName: null });
+  }
+
+  handleChange(event) {
+    const { value } = event.target;
+    this.setState({ deckName: value });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    };
+    fetch('/api/create-deck', req)
+      .then(res => res.json())
+
+    ;
+  }
+
   render() {
     if (!this.props.show) return null;
     return (
