@@ -27,6 +27,7 @@
   background-color: rgba(0 0 0 / 50%);
   display: flex;
   justify-content: center;
+  z-index: 5;
 }
 
 .sticky-container {
@@ -114,6 +115,9 @@
 
 .scene {
   position: relative;
+  height: 10rem;
+  padding: 2rem 0;
+  margin-bottom: 2rem;
 }
 
 .folder-center {
@@ -124,7 +128,7 @@
 .folder-front {
   position: absolute;
   width: 95%;
-  height: 10rem;
+  height: 100%;
   text-align: center;
   background-color: #fff3cd;
   border-radius: 0.5rem 0.5rem 0 0;
@@ -136,7 +140,7 @@
 .folder-back {
   position: absolute;
   width: 95%;
-  height: 10rem;
+  height: 100%;
   background-color: #fff3cd;
   border-radius: 0 0.5rem 0 0;
   z-index: -2;
@@ -147,15 +151,15 @@
   transform: translateX(0.5rem) translateY(-0.25rem);
   background-color: white;
   width: 95%;
-  height: 10rem;
+  height: 100%;
 }
 
 .folder-tab {
   position: absolute;
   width: 30%;
   height: 10px;
-  bottom: 0;
-  transform: translateX(0.5rem);
+  top: 0;
+  transform: translateX(0.5rem) translateY(1.5rem);
   background-color: #fff3cd;
   border-radius: 0.5rem 0.5rem 0 0;
   z-index: -2;
@@ -204,7 +208,21 @@
 }
 
 @media only screen and (min-width: 738px) {
+  .folder-front,
+  .folder-back,
+  .option-paper {
+    width: 80%;
+  }
+
+  .option-paper {
+    transform: translateX(3rem) translateY(-0.25rem);
+  }
+
+  .folder-tab {
+    transform: translateX(3rem) translateY(1.5rem);
+  }
+
   .folder-front:hover {
-    transform: translateY(7px) rotateX(-20deg);
+    transform: rotateX(-20deg) translateX(-50%) translateY(0.3rem);
   }
 }
