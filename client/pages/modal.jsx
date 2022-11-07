@@ -23,7 +23,10 @@ export default class Modal extends React.Component {
       body: JSON.stringify(this.state)
     };
     fetch('/api/create-deck', req)
-      .then(res => res.json())
+      .then(res => {
+        this.props.closeModal();
+        res.json();
+      })
       .catch(err => console.error(err))
     ;
   }
