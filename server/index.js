@@ -17,10 +17,6 @@ const app = express();
 app.use(staticMiddleware);
 app.use(express.json());
 
-app.get('/api/hello', (req, res) => {
-  res.json({ hello: 'world' });
-});
-
 app.post('/api/create-deck', (req, res, next) => {
   const { deckName } = req.body;
   if (!deckName) {
