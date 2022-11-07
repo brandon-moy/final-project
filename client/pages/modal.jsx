@@ -25,6 +25,7 @@ export default class Modal extends React.Component {
     fetch('/api/create-deck', req)
       .then(res => {
         this.props.closeModal();
+        window.alert('Added deck successfully!');
         res.json();
       })
       .catch(err => console.error(err))
@@ -48,6 +49,7 @@ export default class Modal extends React.Component {
               </svg>
               <div className="sticky-content">
                 <form className="new-deck-form" onSubmit={this.handleSubmit}>
+                  <i className="fa-solid fa-xmark" onClick={this.props.closeModal} />
                   <h1 className="sticky-header">Create New Deck</h1>
                   <input className="sticky-input" onChange={this.handleChange} type="text" placeholder="e.g. HTML, CSS, JavaScript"/>
                   <button className="sticky-submit">Continue</button>

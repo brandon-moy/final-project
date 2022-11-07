@@ -16,7 +16,6 @@ export default class App extends React.Component {
 
   closeModal(event) {
     this.setState({ show: false });
-    window.alert('Added deck successfully!');
   }
 
   render() {
