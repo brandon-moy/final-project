@@ -24,31 +24,27 @@ export default class App extends React.Component {
       .then(res => res.json())
       .then(data => this.setState({ decks: data }))
       .catch(err => console.error(err));
-
-    window.addEventListener('click', event => {
-      // eslint-disable-next-line no-console
-      console.log(this.state);
-    });
   }
 
   renderDecks() {
     if (!this.state.decks) return;
-    this.state.decks.map(deck => {
+    const decks = this.state.decks.map(deck => {
       return (
-        <div key={deck.deckId} className='deck'>
-          <div className='scene'>
-            <div className='folder'>
-              <div className='folder-front'>
-                <h1 className='deck-text'>{deck.deckName}</h1>
-              </div>
-              <div className='option-paper' />
+        <div key={deck.deckId} className='scene column-third'>
+          <div className='folder'>
+            <div className='folder-front folder-center'>
+              <h1 className='deck-text'>{deck.deckName}</h1>
             </div>
+            <div className='option-paper' />
             <div className='folder-tab' />
-            <div className='folder-back' />
+            <div className='folder-back folder-center' />
           </div>
         </div>
       );
     });
+    return (
+      <div className='flex justify-center'>{decks}</div>
+    );
   }
 
   render() {

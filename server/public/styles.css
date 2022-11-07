@@ -111,3 +111,100 @@
 .sticky-submit:hover {
   cursor: pointer;
 }
+
+.scene {
+  position: relative;
+}
+
+.folder-center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.folder-front {
+  position: absolute;
+  width: 95%;
+  height: 10rem;
+  text-align: center;
+  background-color: #fff3cd;
+  border-radius: 0.5rem 0.5rem 0 0;
+  border: 2px solid brown;
+  z-index: 2;
+  transition: transform 0.25s;
+}
+
+.folder-back {
+  position: absolute;
+  width: 95%;
+  height: 10rem;
+  background-color: #fff3cd;
+  border-radius: 0 0.5rem 0 0;
+  z-index: -2;
+}
+
+.option-paper {
+  position: absolute;
+  transform: translateX(0.5rem) translateY(-0.25rem);
+  background-color: white;
+  width: 95%;
+  height: 10rem;
+}
+
+.folder-tab {
+  position: absolute;
+  width: 30%;
+  height: 10px;
+  bottom: 0;
+  transform: translateX(0.5rem);
+  background-color: #fff3cd;
+  border-radius: 0.5rem 0.5rem 0 0;
+  z-index: -2;
+}
+
+.option-paper.is-showing {
+  animation: show-paper 1s linear 1;
+  transform: translateX(-4px) translateY(8px);
+}
+
+.option-paper.in-front {
+  z-index: 3;
+}
+
+.option-paper.hiding {
+  animation: hide-paper 1s linear 1;
+}
+
+@keyframes show-paper {
+  0% {
+    transform: 0;
+  }
+
+  40% {
+    transform: translateY(-20rem);
+  }
+
+  100% {
+    transform: 0;
+    z-index: 3;
+  }
+}
+
+@keyframes hide-paper {
+  0% {
+    transform: 0;
+  }
+
+  60% {
+    transform: translateY(-20rem);
+  }
+
+  100% {
+    transform: 0;
+  }
+}
+
+@media only screen and (min-width: 738px) {
+  .folder-front:hover {
+    transform: translateY(7px) rotateX(-20deg);
+  }
+}
