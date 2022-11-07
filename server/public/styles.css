@@ -111,3 +111,9 @@
   margin-top: 3rem;
   font-size: 1.25rem;
 }
+
+.new-deck:hover,
+.xmark-close:hover,
+.sticky-submit:hover {
+  cursor: pointer;
+}
