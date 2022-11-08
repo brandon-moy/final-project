@@ -6,9 +6,9 @@ export default class Decks extends React.Component {
     const renderedDecks = this.props.decks.map(deck => {
       const showPaper = Number(this.props.showing) === deck.deckId ? 'is-showing' : '';
       return (
-        <div key={deck.deckId} className='scene column-third'>
+        <div key={deck.deckId} className='scene c-3'>
           <div className='folder'>
-            <div className='folder-front folder-center' id={deck.deckId} onClick={this.props.showOptions}>
+            <div className='folder-front t-center' id={deck.deckId} onClick={this.props.showOptions}>
               <h1 className='deck-text'>{deck.deckName}</h1>
             </div>
             <div className={`option-paper ${showPaper}`} onClick={this.props.hideOptions}>
@@ -23,7 +23,7 @@ export default class Decks extends React.Component {
               </div>
             </div>
             <div className='folder-tab' />
-            <div className='folder-back folder-center' />
+            <div className='folder-back t-center' />
           </div>
         </div>
       );
@@ -31,7 +31,7 @@ export default class Decks extends React.Component {
     return (
       <div className="decks-view">
         <a className="new-deck" onClick={this.props.showModal}>New Deck</a>
-        <div className='flex wrap justify-center'>{renderedDecks}</div>
+        <div className='flex wrap jc'>{renderedDecks}</div>
       </div>
     );
   }

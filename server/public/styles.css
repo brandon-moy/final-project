@@ -121,11 +121,6 @@
   margin-bottom: 2rem;
 }
 
-.folder-center {
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 .folder-front {
   position: absolute;
   font-family: "Fuzzy Bubbles", sans-serif;
@@ -217,23 +212,42 @@
   transform: translateX(0.25rem) translateY(0.25rem);
 }
 
-.new-card-front,
-.new-card-back {
+.new-card-front {
   background-color: rgb(253 246 166);
   height: 10rem;
   margin: 2rem auto;
 }
 
-.flash-card-single-red {
-  height: 100%;
+.new-card-back {
   background:
     linear-gradient(
-      transparent,
-      transparent 20%,
+      rgb(253 246 166),
+      rgb(253 246 166) 20%,
       red 20%,
       red 21.5%,
-      transparent 20.5%
+      rgb(253 246 166) 21.5%
     );
+  height: 10rem;
+  margin: 2rem auto;
+}
+
+.new-card-question,
+.new-card-answer {
+  width: 80%;
+  height: 80%;
+  font-size: 1.5rem;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.new-card-question {
+  font-family: "Fuzzy Bubbles", sans-serif;
+  font-weight: 800;
+}
+
+.new-card-answer {
+  font-family: Delius, sans-serif;
 }
 
 .flash-card-repeating-blue {
