@@ -97,6 +97,7 @@
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   border: 0.5px solid grey;
+  font-family: Delius, sans-serif;
 }
 
 .sticky-submit {
@@ -127,6 +128,7 @@
 
 .folder-front {
   position: absolute;
+  font-family: "Fuzzy Bubbles", sans-serif;
   width: 95%;
   height: 100%;
   text-align: center;
@@ -148,10 +150,54 @@
 
 .option-paper {
   position: absolute;
+  font-family: "Fuzzy Bubbles", sans-serif;
   transform: translateX(0.5rem) translateY(-0.25rem);
-  background-color: white;
+  background:
+    repeating-linear-gradient(
+      #fff,
+      #fff 5%,
+      #9198e5 5%,
+      #9198e5 5.2%
+    );
   width: 95%;
   height: 100%;
+}
+
+.options-container {
+  padding-top: 2rem;
+  padding-left: 3rem;
+  width: 90%;
+}
+
+.add-card {
+  text-decoration: none;
+  color: black;
+}
+
+.stripes {
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(
+      to right,
+      transparent,
+      transparent 10%,
+      rgba(255, 0, 0, 0.75) 10%,
+      rgba(255, 0, 0, 0.75) 10.5%,
+      transparent 10.5%,
+      transparent 12%,
+      rgba(255, 0, 0, 0.75) 12%,
+      rgba(255, 0, 0, 0.75) 12.5%,
+      transparent 12.5%
+    );
+}
+
+.deck-title {
+  width: 80%;
+  text-align: center;
+  padding-top: 0.75rem;
+  font-size: 1.5rem;
+  margin: 0 auto;
 }
 
 .folder-tab {
@@ -167,15 +213,8 @@
 
 .option-paper.is-showing {
   animation: show-paper 1s linear 1;
-  transform: translateX(-4px) translateY(8px);
-}
-
-.option-paper.in-front {
-  z-index: 3;
-}
-
-.option-paper.hiding {
-  animation: hide-paper 1s linear 1;
+  animation-fill-mode: forwards;
+  transform: translateX(0.25rem) translateY(0.25rem);
 }
 
 @keyframes show-paper {
@@ -183,27 +222,18 @@
     transform: 0;
   }
 
+  20% {
+    z-index: 3;
+  }
+
   40% {
     transform: translateY(-20rem);
+    z-index: 3;
   }
 
   100% {
     transform: 0;
     z-index: 3;
-  }
-}
-
-@keyframes hide-paper {
-  0% {
-    transform: 0;
-  }
-
-  60% {
-    transform: translateY(-20rem);
-  }
-
-  100% {
-    transform: 0;
   }
 }
 
@@ -216,6 +246,10 @@
 
   .option-paper {
     transform: translateX(3rem) translateY(-0.25rem);
+  }
+
+  .option-paper.is-showing {
+    transform: translateX(3rem) translateY(0.25rem);
   }
 
   .folder-tab {
