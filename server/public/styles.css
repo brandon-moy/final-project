@@ -275,8 +275,8 @@
   color: white;
   font-family: "Gloria Hallelujah", sans-serif;
   font-size: 2rem;
+  float: right;
   padding-right: 2rem;
-  text-align: right;
 }
 
 .not-found-text {
@@ -297,7 +297,8 @@
 .new-deck:hover,
 .xmark-close:hover,
 .sticky-submit:hover,
-.option-paper:hover {
+.option-paper:hover,
+.add-card-button:hover {
   cursor: pointer;
 }
 

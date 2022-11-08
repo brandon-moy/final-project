@@ -56,7 +56,9 @@ export default class AddCard extends React.Component {
             onChange={this.handleChange} />
           </div>
         </label>
-        <button className='c-100 add-card-button'>Save</button>
+        <div className='c-100'>
+          <button className='jfe add-card-button'>Save</button>
+        </div>
       </form>
     );
   }
