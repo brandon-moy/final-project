@@ -134,6 +134,11 @@
   transition: transform 0.25s;
 }
 
+.folder-front:hover {
+  cursor: pointer;
+  transform: rotateX(-20deg) translateX(-50%) translateY(0.3rem);
+}
+
 .folder-back {
   position: absolute;
   width: 95%;
@@ -156,6 +161,10 @@
     );
   width: 95%;
   height: 100%;
+}
+
+.option-paper:hover {
+  cursor: pointer;
 }
 
 .options-container {
@@ -346,10 +355,6 @@
 
   .folder-tab {
     transform: translateX(3rem) translateY(1.5rem);
-  }
-
-  .folder-front:hover {
-    transform: rotateX(-20deg) translateX(-50%) translateY(0.3rem);
   }
 
   .new-card-front,
