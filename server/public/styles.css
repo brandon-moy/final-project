@@ -108,12 +108,6 @@
   font-size: 1.25rem;
 }
 
-.new-deck:hover,
-.xmark-close:hover,
-.sticky-submit:hover {
-  cursor: pointer;
-}
-
 .scene {
   position: relative;
   height: 10rem;
@@ -129,7 +123,7 @@
   text-align: center;
   background-color: #fff3cd;
   border-radius: 0.5rem 0.5rem 0 0;
-  border: 2px solid brown;
+  border: 2px solid #ffdf76;
   z-index: 2;
   transition: transform 0.25s;
 }
@@ -145,7 +139,21 @@
   height: 100%;
   background-color: #fff3cd;
   border-radius: 0 0.5rem 0 0;
+  border: 2px solid #ffdf76;
   z-index: -2;
+}
+
+.folder-tab {
+  position: absolute;
+  width: 30%;
+  height: 20%;
+  top: 0;
+  transform: translateX(0.6rem) translateY(1.5rem);
+  background-color: #fff3cd;
+  border-radius: 0.5rem 0.5rem 0 0;
+  border-top: 2px solid #ffdf76;
+  border-left: 2px solid #ffdf76;
+  z-index: -1;
 }
 
 .option-paper {
@@ -163,10 +171,6 @@
   height: 100%;
 }
 
-.option-paper:hover {
-  cursor: pointer;
-}
-
 .options-container {
   padding-top: 2rem;
   padding-left: 3rem;
@@ -179,7 +183,6 @@
 }
 
 .stripes {
-  width: 100%;
   height: 100%;
   background:
     linear-gradient(
@@ -202,17 +205,6 @@
   padding-top: 0.75rem;
   font-size: 1.5rem;
   margin: 0 auto;
-}
-
-.folder-tab {
-  position: absolute;
-  width: 30%;
-  height: 10px;
-  top: 0;
-  transform: translateX(0.5rem) translateY(1.5rem);
-  background-color: #fff3cd;
-  border-radius: 0.5rem 0.5rem 0 0;
-  z-index: -2;
 }
 
 .option-paper.is-showing {
@@ -302,6 +294,13 @@
   font-size: 1.5rem;
 }
 
+.new-deck:hover,
+.xmark-close:hover,
+.sticky-submit:hover,
+.option-paper:hover {
+  cursor: pointer;
+}
+
 @keyframes show-paper {
   0% {
     transform: 0;
@@ -354,7 +353,7 @@
   }
 
   .folder-tab {
-    transform: translateX(3rem) translateY(1.5rem);
+    transform: translateX(3.25rem) translateY(1.5rem);
   }
 
   .new-card-front,
