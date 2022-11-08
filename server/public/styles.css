@@ -212,6 +212,11 @@
   transform: translateX(0.25rem) translateY(0.25rem);
 }
 
+.option-paper.hiding {
+  animation: hide-paper 1s linear 1;
+  animation-fill-mode: forwards;
+}
+
 .new-card-front {
   background-color: rgb(253 246 166);
   height: 10rem;
@@ -298,13 +303,29 @@
   }
 
   40% {
-    transform: translateY(-20rem);
+    transform: translateY(-15rem);
     z-index: 3;
   }
 
   100% {
     transform: 0;
     z-index: 3;
+  }
+}
+
+@keyframes hide-paper {
+  0% {
+    transform: 0;
+    z-index: 3;
+  }
+
+  60% {
+    transform: translateY(-15rem);
+    z-index: 3;
+  }
+
+  100% {
+    transform: 0;
   }
 }
 

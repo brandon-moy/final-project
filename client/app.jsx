@@ -13,14 +13,11 @@ export default class App extends React.Component {
       user: 1,
       route: parseRoute(window.location.hash),
       show: false,
-      decks: null,
-      deckShowing: null
+      decks: null
     });
     this.showModal = this.showModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.renderContent = this.renderContent.bind(this);
-    this.showOptions = this.showOptions.bind(this);
-    this.hideOptions = this.hideOptions.bind(this);
   }
 
   showModal(event) {
@@ -32,14 +29,6 @@ export default class App extends React.Component {
       .then(res => res.json())
       .then(data => this.setState({ decks: data }));
     this.setState({ show: false });
-  }
-
-  showOptions(event) {
-    this.setState({ deckShowing: event.target.id });
-  }
-
-  hideOptions(event) {
-    this.setState({ deckShowing: null });
   }
 
   componentDidMount() {
@@ -59,7 +48,6 @@ export default class App extends React.Component {
     if (path === '') {
       return <Decks
       decks={this.state.decks}
-      showing={this.state.deckShowing}
       showModal={this.showModal}
       showOptions={this.showOptions}
       hideOptions={this.hideOptions} />;
