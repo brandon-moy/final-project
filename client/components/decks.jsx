@@ -4,7 +4,7 @@ export default class Decks extends React.Component {
   render() {
     if (!this.props.decks) return;
     const renderedDecks = this.props.decks.map(deck => {
-      const showPaper = Number(this.props.deckShowing) === deck.deckId ? 'is-showing' : '';
+      const showPaper = Number(this.props.showing) === deck.deckId ? 'is-showing' : '';
       return (
         <div key={deck.deckId} className='scene column-third'>
           <div className='folder'>
@@ -29,7 +29,10 @@ export default class Decks extends React.Component {
       );
     });
     return (
-      <div className='flex justify-center'>{renderedDecks}</div>
+      <div className="decks-view">
+        <a className="new-deck" onClick={this.props.showModal}>New Deck</a>
+        <div className='flex justify-center'>{renderedDecks}</div>
+      </div>
     );
   }
 }

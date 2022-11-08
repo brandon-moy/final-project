@@ -1,8 +1,9 @@
 import React from 'react';
-import Home from './pages/home';
+import Header from './components/header';
 import Modal from './components/modal';
 import parseRoute from './lib/parse-route';
 import Decks from './components/decks';
+import AddCard from './pages/addcard';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -55,14 +56,21 @@ export default class App extends React.Component {
   renderContent() {
     const { path } = this.state.route;
     if (path === '' || path === '#') {
-      return <Decks decks={this.state.decks} showing={this.state.deckShowing} showOptions={this.showOptions} hideOptions={this.hideOptions} />;
+      return <Decks
+      decks={this.state.decks}
+      showing={this.state.deckShowing}
+      showModal={this.showModal}
+      showOptions={this.showOptions}
+      hideOptions={this.hideOptions} />;
+    } else if (path === '#add-card') {
+      return <AddCard />;
     }
   }
 
   render() {
     return (
       <div>
-        <Home showModal={this.showModal} />
+        <Header showModal={this.showModal} />
         { this.renderContent() }
         <Modal show={this.state.show} closeModal={this.closeModal} />
       </div>
