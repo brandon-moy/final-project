@@ -217,6 +217,48 @@
   transform: translateX(0.25rem) translateY(0.25rem);
 }
 
+.new-card-front,
+.new-card-back {
+  background-color: rgb(253 246 166);
+  height: 10rem;
+  margin: 2rem auto;
+}
+
+.flash-card-single-red {
+  height: 100%;
+  background:
+    linear-gradient(
+      transparent,
+      transparent 20%,
+      red 20%,
+      red 21.5%,
+      transparent 20.5%
+    );
+}
+
+.flash-card-repeating-blue {
+  transform: translateY(30%);
+  height: 80%;
+  background:
+    repeating-linear-gradient(
+      transparent,
+      transparent 15%,
+      blue 15%,
+      blue 16%,
+      transparent 16%
+    );
+}
+
+.add-card-button {
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-family: "Gloria Hallelujah", sans-serif;
+  font-size: 2rem;
+  padding-right: 2rem;
+  text-align: right;
+}
+
 @keyframes show-paper {
   0% {
     transform: 0;
@@ -258,5 +300,23 @@
 
   .folder-front:hover {
     transform: rotateX(-20deg) translateX(-50%) translateY(0.3rem);
+  }
+
+  .new-card-front,
+  .new-card-back {
+    height: 20rem;
+  }
+
+  .flash-card-repeating-blue {
+    transform: translateY(30%);
+    height: 80%;
+    background:
+      repeating-linear-gradient(
+        transparent,
+        transparent 15%,
+        blue 15%,
+        blue 15.5%,
+        transparent 15.5%
+      );
   }
 }

@@ -15,7 +15,7 @@ export default class Decks extends React.Component {
               <div className='stripes'>
                 <h1 className='deck-title'>{deck.deckName}</h1>
                 <section className='options-container'>
-                  <a href='/#add-card' className='add-card'>
+                  <a href={`/#add-card?deckId=${deck.deckId}`} className='add-card'>
                     <i className="fa-solid fa-circle-plus" />
                     Add Cards
                   </a>
@@ -31,7 +31,7 @@ export default class Decks extends React.Component {
     return (
       <div className="decks-view">
         <a className="new-deck" onClick={this.props.showModal}>New Deck</a>
-        <div className='flex justify-center'>{renderedDecks}</div>
+        <div className='flex wrap justify-center'>{renderedDecks}</div>
       </div>
     );
   }
