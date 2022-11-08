@@ -28,6 +28,7 @@ export default class Modal extends React.Component {
         this.props.closeModal();
       })
       .catch(err => console.error(err));
+    this.setState({ deckName: '' });
   }
 
   render() {

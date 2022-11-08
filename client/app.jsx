@@ -1,13 +1,23 @@
 import React from 'react';
-import Home from './pages/home';
-import Modal from './pages/modal';
+import Header from './components/header';
+import Modal from './components/modal';
+import parseRoute from './lib/parse-route';
+import Decks from './components/decks';
+import AddCard from './pages/addcard';
+import NotFound from './pages/notfound';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = ({ show: false });
+    this.state = ({
+      user: 1,
+      route: parseRoute(window.location.hash),
+      show: false,
+      decks: null
+    });
     this.showModal = this.showModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.renderContent = this.renderContent.bind(this);
   }
 
   showModal(event) {
@@ -15,13 +25,40 @@ export default class App extends React.Component {
   }
 
   closeModal(event) {
+    fetch('/api/decks')
+      .then(res => res.json())
+      .then(data => this.setState({ decks: data }));
     this.setState({ show: false });
+  }
+
+  componentDidMount() {
+    window.addEventListener('hashchange', () => {
+      this.setState({
+        route: parseRoute(window.location.hash)
+      });
+    });
+    fetch('/api/decks')
+      .then(res => res.json())
+      .then(data => this.setState({ decks: data }))
+      .catch(err => console.error(err));
+  }
+
+  renderContent() {
+    const { path } = this.state.route;
+    if (path === '') {
+      return <Decks decks={this.state.decks} showModal={this.showModal} />;
+    } else if (path === 'add-card') {
+      const deck = this.state.route.params.get('deckId');
+      return <AddCard deckId={deck} />;
+    }
+    return <NotFound />;
   }
 
   render() {
     return (
       <div>
-        <Home showModal={this.showModal} />
+        <Header showModal={this.showModal} />
+        { this.renderContent() }
         <Modal show={this.state.show} closeModal={this.closeModal} />
       </div>
     );
