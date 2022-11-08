@@ -273,6 +273,21 @@
   text-align: right;
 }
 
+.not-found-text {
+  color: white;
+  font-family: "Gloria Hallelujah", sans-serif;
+  font-size: 2rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.return-home {
+  color: white;
+  font-family: "Gloria Hallelujah", sans-serif;
+  margin: auto;
+  font-size: 1.5rem;
+}
+
 @keyframes show-paper {
   0% {
     transform: 0;

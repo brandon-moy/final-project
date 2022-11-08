@@ -4,6 +4,7 @@ import Modal from './components/modal';
 import parseRoute from './lib/parse-route';
 import Decks from './components/decks';
 import AddCard from './pages/addcard';
+import NotFound from './pages/notfound';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -66,6 +67,7 @@ export default class App extends React.Component {
       const deck = this.state.route.params.get('deckId');
       return <AddCard deckId={deck} />;
     }
+    return <NotFound />;
   }
 
   render() {
