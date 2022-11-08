@@ -34,6 +34,29 @@ app.get('/api/decks', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/cards/:deckId', (req, res, next) => {
+  const deckId = Number(req.params.deckId);
+  if (!deckId) {
+    throw new ClientError(400, 'deckId must be a positive integer');
+  }
+
+  const sql = `
+  select *
+  from "flashcards"
+  where "deckId" = $1
+    and "userId" = $2
+  `;
+
+  const params = [deckId, 1];
+
+  db.query(sql, params)
+    .then(result => {
+      const cards = result.rows;
+      res.status(200).json(cards);
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/create-deck', (req, res, next) => {
   const { deckName } = req.body;
   if (!deckName) {
