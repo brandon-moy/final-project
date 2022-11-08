@@ -56,6 +56,32 @@ app.post('/api/create-deck', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.post('/api/add-card/:deckId', (req, res, next) => {
+  const deckId = Number(req.params.deckId);
+  if (!deckId) {
+    throw new ClientError(400, 'deckId must be a positive integer');
+  }
+  const { question, answer } = req.body;
+  if (!question || !answer) {
+    throw new ClientError(400, 'question and answer are required fields');
+  }
+
+  const sql = `
+  insert into "flashcards" ("question", "answer", "userId", "deckId")
+  values ($1, $2, $3, $4)
+  returning *
+  `;
+
+  const params = [question, answer, 1, deckId];
+
+  db.query(sql, params)
+    .then(result => {
+      const [cards] = result.rows;
+      res.status(201).json(cards);
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
