@@ -132,6 +132,38 @@ app.post('/api/add-card/:deckId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.patch('/api/card/:cardId', (req, res, next) => {
+  const cardId = Number(req.params.cardId);
+  if (!cardId || cardId < 1) {
+    throw new ClientError(400, 'cardId must be a positive integer');
+  }
+  const { question, answer } = req.body;
+  if (!question || !answer) {
+    throw new ClientError(400, 'question and answer are required fields');
+  }
+
+  const sql = `
+  update "flashcards"
+    set "question" = $1,
+        "answer" = $2
+    where "cardId" = $3
+    and "userId" = $4
+    returning *
+  `;
+
+  const params = [question, answer, cardId, 1];
+
+  db.query(sql, params)
+    .then(result => {
+      const [updatedCard] = result.rows;
+      if (!updatedCard) {
+        throw new ClientError(404, `cannot find card with cardId ${cardId}`);
+      } else {
+        res.json(updatedCard);
+      }
+    });
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
