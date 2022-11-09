@@ -13,7 +13,6 @@ export default class ViewCards extends React.Component {
         this.setState({ cards: data });
       })
       .catch(err => console.error(err));
-    if (!this.state.cards.length) return;
     const cards = this.state.cards.map(card => {
       return (
         <div key={card.question} className='card-set flex wrap'>
@@ -33,7 +32,10 @@ export default class ViewCards extends React.Component {
         <div className='flex jsb ac wrap'>
           <h1 className='deck-view-name c-2'>{this.props.deckName}</h1>
           <div className='spacer c-4' />
-          <a href={`/#add-card?deckName=${this.props.deckName}?deckId=${this.props.deckId}`} className='new-card-deck c-4'>
+          <a
+          href={`/#add-card?deckName=${this.props.deckName}?deckId=${this.props.deckId}`}
+          className='new-card-deck c-4'
+          >
             <i className="fa-solid fa-circle-plus" />
             Add Card
           </a>

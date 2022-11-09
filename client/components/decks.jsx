@@ -36,12 +36,18 @@ export default class Decks extends React.Component {
               <div className='stripes'>
                 <h1 className='deck-title'>{deck.deckName}</h1>
                 <section className='options-container'>
-                  <a href={`/#add-card?deckName=${deck.deckName}?deckId=${deck.deckId}`} className='card-option'>
+                  <a
+                  href={`/#add-card?deckName=${deck.deckName}?deckId=${deck.deckId}`}
+                  className='card-option'
+                  >
                     <i className="fa-solid fa-circle-plus" />
                     Add Cards
                   </a>
                   <br />
-                  <a href={`/#view-cards?deckName=${deck.deckName}?deckId=${deck.deckId}`} className='card-option'>
+                  <a
+                  href={`/#view-cards?deckName=${deck.deckName}?deckId=${deck.deckId}`}
+                  className='card-option'
+                  >
                     <i className="fa-solid fa-glasses" />
                     View Cards
                   </a>
