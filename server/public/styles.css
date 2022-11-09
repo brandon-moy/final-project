@@ -320,7 +320,8 @@
 .xmark-close:hover,
 .sticky-submit:hover,
 .option-paper:hover,
-.add-card-button:hover {
+.add-card-button:hover,
+label:hover {
   cursor: pointer;
 }
 
