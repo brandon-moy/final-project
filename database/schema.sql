@@ -18,11 +18,13 @@ CREATE TABLE "public"."accounts" (
 
 
 CREATE TABLE "public"."flashcards" (
+  "cardId" serial NOT NULL UNIQUE,
 	"question" TEXT NOT NULL,
 	"answer" TEXT NOT NULL,
-	"userId" int NOT NULL,
 	"confidence" int NOT NULL DEFAULT '0',
-	"deckId" int NOT NULL
+	"userId" int NOT NULL,
+	"deckId" int NOT NULL,
+  CONSTRAINT "flashcards_pk" PRIMARY KEY ("cardId")
 ) WITH (
   OIDS=FALSE
 );
