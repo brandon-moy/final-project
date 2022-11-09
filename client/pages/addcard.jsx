@@ -39,7 +39,7 @@ export default class AddCard extends React.Component {
   render() {
     return (
       <form className='new-card flex wrap' onSubmit={this.handleSubmit}>
-        <label className='card-front c-45 flex jc ac'>
+        <label className='card-front col-45 flex jc ac'>
           <textarea
           name='question'
           type='text'
@@ -47,7 +47,7 @@ export default class AddCard extends React.Component {
           className='card-question'
           onChange={this.handleChange} />
         </label>
-        <label className='card-back c-45'>
+        <label className='card-back col-45'>
           <div className='flash-card-repeating-blue flex jc afs'>
             <textarea
             name='answer'
@@ -57,7 +57,7 @@ export default class AddCard extends React.Component {
             onChange={this.handleChange} />
           </div>
         </label>
-        <div className='c-100'>
+        <div className='col-100'>
           <button className='jfe add-card-button'>Save</button>
         </div>
       </form>

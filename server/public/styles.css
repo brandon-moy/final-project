@@ -1,3 +1,7 @@
+i {
+  padding-right: 0.25rem;
+}
+
 .page-header {
   background-color: #2c0b03;
   padding: 1rem 0;
@@ -163,9 +167,9 @@
   background:
     repeating-linear-gradient(
       #fff,
-      #fff 5%,
-      #9198e5 5%,
-      #9198e5 5.2%
+      #fff 6%,
+      #9198e5 6%,
+      #9198e5 6.33%
     );
   width: 95%;
   height: 100%;
@@ -180,6 +184,7 @@
 .card-option {
   text-decoration: none;
   color: black;
+  padding-left: 1rem;
 }
 
 .stripes {
@@ -268,10 +273,10 @@
   background:
     repeating-linear-gradient(
       transparent,
-      transparent 15%,
-      blue 15%,
+      transparent 15.5%,
       blue 16%,
-      transparent 16%
+      blue 16.5%,
+      transparent 16.5%
     );
 }
 
@@ -327,13 +332,27 @@
 }
 
 .new-card-deck {
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
   color: white;
   font-family: Delius, sans-serif;
   text-decoration: none;
   font-size: 1.25rem;
   text-align: right;
   padding-right: 2rem;
+}
+
+.fa-pencil {
+  color: white;
+}
+
+.deck-edit-card {
+  color: white;
+  font-family: Delius, sans-serif;
+  text-decoration: none;
+  font-size: 1.25rem;
+  text-align: right;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
 }
 
 .new-deck:hover,
@@ -390,6 +409,13 @@ label:hover {
 
   .option-paper {
     transform: translateX(3rem) translateY(-0.25rem);
+    background:
+      repeating-linear-gradient(
+        #fff,
+        #fff 10%,
+        #9198e5 10%,
+        #9198e5 10.5%
+      );
   }
 
   .option-paper.is-showing {
@@ -420,6 +446,7 @@ label:hover {
 
   .new-card-deck {
     font-size: 1.75rem;
+    padding-bottom: 0;
   }
 
   .deck-view-name {
@@ -427,6 +454,11 @@ label:hover {
     padding-left: 2rem;
     font-size: 3rem;
     margin: 2rem auto;
+  }
+
+  .new-card-deck,
+  .deck-edit-card {
+    padding-right: 2.5rem;
   }
 
   .card-question,
