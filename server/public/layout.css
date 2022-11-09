@@ -15,6 +15,10 @@
   justify-content: center;
 }
 
+.jsb {
+  justify-content: space-between;
+}
+
 .jfe {
   justify-content: flex-end;
 }
@@ -27,12 +31,24 @@
   align-items: flex-start;
 }
 
+.va {
+  vertical-align: middle;
+}
+
 .c-45 {
   flex-basis: 90%;
 }
 
 .c-3 {
   flex-basis: 100%;
+}
+
+.c-2 {
+  flex-basis: 100%;
+}
+
+.c-4 {
+  flex-basis: 50%;
 }
 
 .c-100 {
@@ -51,5 +67,13 @@
 
   .c-3 {
     flex-basis: calc(100% / 3);
+  }
+
+  .c-4 {
+    flex-basis: 25%;
+  }
+
+  .c-2 {
+    flex-basis: 50%;
   }
 }

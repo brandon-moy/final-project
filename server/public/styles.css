@@ -177,7 +177,7 @@
   width: 90%;
 }
 
-.add-card {
+.card-option {
   text-decoration: none;
   color: black;
 }
@@ -218,13 +218,13 @@
   animation-fill-mode: forwards;
 }
 
-.new-card-front {
+.card-front {
   background-color: rgb(253 246 166);
   height: 10rem;
-  margin: 2rem auto;
+  margin: 0 auto 2rem;
 }
 
-.new-card-back {
+.card-back {
   background:
     linear-gradient(
       rgb(253 246 166),
@@ -234,25 +234,31 @@
       rgb(253 246 166) 21.5%
     );
   height: 10rem;
-  margin: 2rem auto;
+  margin: 0 auto 2rem;
 }
 
-.new-card-question,
-.new-card-answer {
-  width: 80%;
-  height: 80%;
+.new-card > label {
+  margin-top: 2rem;
+}
+
+.card-question,
+.card-answer {
+  width: 100%;
+  height: 100%;
   font-size: 1.5rem;
   border: none;
   outline: none;
   background: transparent;
+  text-align: center;
 }
 
-.new-card-question {
+.card-question {
   font-family: "Fuzzy Bubbles", sans-serif;
   font-weight: 800;
+  padding-top: 10%;
 }
 
-.new-card-answer {
+.card-answer {
   font-family: Delius, sans-serif;
 }
 
@@ -294,11 +300,48 @@
   font-size: 1.5rem;
 }
 
+.view-card-question,
+.view-card-answer {
+  font-size: 1.5rem;
+  border: none;
+  outline: none;
+  background: transparent;
+  text-align: center;
+}
+
+.view-card-question {
+  font-family: "Fuzzy Bubbles", sans-serif;
+  font-weight: 800;
+}
+
+.view-card-answer {
+  font-family: Delius, sans-serif;
+}
+
+.deck-view-name {
+  color: white;
+  font-family: "Gloria Hallelujah", sans-serif;
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.new-card-deck {
+  padding-bottom: 1rem;
+  color: white;
+  font-family: Delius, sans-serif;
+  text-decoration: none;
+  font-size: 1.25rem;
+  text-align: right;
+  padding-right: 2rem;
+}
+
 .new-deck:hover,
 .xmark-close:hover,
 .sticky-submit:hover,
 .option-paper:hover,
-.add-card-button:hover {
+.add-card-button:hover,
+label:hover {
   cursor: pointer;
 }
 
@@ -357,8 +400,8 @@
     transform: translateX(3.25rem) translateY(1.5rem);
   }
 
-  .new-card-front,
-  .new-card-back {
+  .card-front,
+  .card-back {
     height: 20rem;
   }
 
@@ -373,5 +416,23 @@
         blue 15.5%,
         transparent 15.5%
       );
+  }
+
+  .new-card-deck {
+    font-size: 1.75rem;
+  }
+
+  .deck-view-name {
+    text-align: left;
+    padding-left: 2rem;
+    font-size: 3rem;
+    margin: 2rem auto;
+  }
+
+  .card-question,
+  .card-answer,
+  .view-card-question,
+  .view-card-answer {
+    font-size: 2.25rem;
   }
 }

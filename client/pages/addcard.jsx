@@ -31,6 +31,7 @@ export default class AddCard extends React.Component {
       .then(res => {
         res.json();
         this.setState({ question: '', answer: '' });
+        location.href = `/#view-cards?deckName=${this.props.deckName}&deckId=${deckId}`;
       })
       .catch(err => console.error(err));
   }
@@ -38,21 +39,21 @@ export default class AddCard extends React.Component {
   render() {
     return (
       <form className='new-card flex wrap' onSubmit={this.handleSubmit}>
-        <label className='new-card-front c-45 flex jc ac'>
+        <label className='card-front c-45 flex jc ac'>
           <textarea
           name='question'
           type='text'
           value={this.state.question}
-          className='new-card-question'
+          className='card-question'
           onChange={this.handleChange} />
         </label>
-        <label className='new-card-back c-45'>
+        <label className='card-back c-45'>
           <div className='flash-card-repeating-blue flex jc afs'>
             <textarea
             name='answer'
             type='text'
             value={this.state.answer}
-            className='new-card-answer'
+            className='card-answer'
             onChange={this.handleChange} />
           </div>
         </label>

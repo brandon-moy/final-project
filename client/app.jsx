@@ -5,6 +5,7 @@ import parseRoute from './lib/parse-route';
 import Decks from './components/decks';
 import AddCard from './pages/addcard';
 import NotFound from './pages/notfound';
+import ViewCards from './pages/viewcards';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -13,7 +14,8 @@ export default class App extends React.Component {
       user: 1,
       route: parseRoute(window.location.hash),
       show: false,
-      decks: null
+      decks: null,
+      cards: []
     });
     this.showModal = this.showModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -37,6 +39,7 @@ export default class App extends React.Component {
         route: parseRoute(window.location.hash)
       });
     });
+
     fetch('/api/decks')
       .then(res => res.json())
       .then(data => this.setState({ decks: data }))
@@ -45,13 +48,17 @@ export default class App extends React.Component {
 
   renderContent() {
     const { path } = this.state.route;
+    const deck = this.state.route.params.get('deckId');
+    const name = this.state.route.params.get('deckName');
     if (path === '') {
       return <Decks decks={this.state.decks} showModal={this.showModal} />;
     } else if (path === 'add-card') {
-      const deck = this.state.route.params.get('deckId');
-      return <AddCard deckId={deck} />;
+      return <AddCard deckId={deck} deckName={name} />;
+    } else if (path === 'view-cards') {
+      return <ViewCards deckId={deck} deckName={name} cards={this.state.cards} />;
+    } else {
+      return <NotFound />;
     }
-    return <NotFound />;
   }
 
   render() {
