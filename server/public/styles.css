@@ -331,7 +331,7 @@ i {
 }
 
 .new-card-deck {
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
   color: white;
   font-family: Delius, sans-serif;
   text-decoration: none;
@@ -438,6 +438,7 @@ label:hover {
 
   .new-card-deck {
     font-size: 1.75rem;
+    padding-bottom: 0;
   }
 
   .deck-view-name {
