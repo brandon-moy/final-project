@@ -58,7 +58,8 @@ export default class App extends React.Component {
     } else if (path === 'view-cards') {
       return <ViewCards deckId={deck} deckName={name} cards={this.state.cards} />;
     } else if (path === 'edit-card') {
-      return <EditCard />;
+      const card = this.state.route.params.get('cardId');
+      return <EditCard cardId={card} />;
     } else {
       return <NotFound />;
     }
