@@ -36,7 +36,7 @@ app.get('/api/decks', (req, res, next) => {
 
 app.get('/api/cards/:deckId', (req, res, next) => {
   const deckId = Number(req.params.deckId);
-  if (!deckId) {
+  if (!deckId || deckId < 1) {
     throw new ClientError(400, 'deckId must be a positive integer');
   }
 
@@ -53,6 +53,33 @@ app.get('/api/cards/:deckId', (req, res, next) => {
     .then(result => {
       const cards = result.rows;
       res.status(200).json(cards);
+    })
+    .catch(err => next(err));
+});
+
+app.get('/api/card/:cardId', (req, res, next) => {
+  const cardId = Number(req.params.cardId);
+  if (!cardId || cardId < 1) {
+    throw new ClientError(400, 'cardId must be a positive integer');
+  }
+
+  const sql = `
+    select *
+      from "flashcards"
+    where "cardId" = $1
+    and "userId" = $2
+  `;
+
+  const params = [cardId, 1];
+
+  db.query(sql, params)
+    .then(result => {
+      const [card] = result.rows;
+      if (!card) {
+        throw new ClientError(404, `cannot find card with cardId ${cardId}`);
+      } else {
+        res.json(card);
+      }
     })
     .catch(err => next(err));
 });
@@ -81,7 +108,7 @@ app.post('/api/create-deck', (req, res, next) => {
 
 app.post('/api/add-card/:deckId', (req, res, next) => {
   const deckId = Number(req.params.deckId);
-  if (!deckId) {
+  if (!deckId || deckId < 1) {
     throw new ClientError(400, 'deckId must be a positive integer');
   }
   const { question, answer } = req.body;
