@@ -6,6 +6,7 @@ import Decks from './components/decks';
 import AddCard from './pages/addcard';
 import NotFound from './pages/notfound';
 import ViewCards from './pages/viewcards';
+import EditCard from './pages/editcard';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -56,6 +57,8 @@ export default class App extends React.Component {
       return <AddCard deckId={deck} deckName={name} />;
     } else if (path === 'view-cards') {
       return <ViewCards deckId={deck} deckName={name} cards={this.state.cards} />;
+    } else if (path === 'edit-card') {
+      return <EditCard />;
     } else {
       return <NotFound />;
     }
