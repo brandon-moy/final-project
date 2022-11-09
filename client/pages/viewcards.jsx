@@ -30,6 +30,10 @@ export default class ViewCards extends React.Component {
               <h2 className='view-card-answer'>{card.answer}</h2>
             </div>
           </div>
+          <a href='#edit-card'className='deck-edit-card'>
+            <i className="fa-solid fa-pencil" />
+            Edit Card
+          </a>
         </div>
       );
     });
