@@ -50,10 +50,12 @@ export default class App extends React.Component {
       return <Decks decks={this.state.decks} showModal={this.showModal} />;
     } else if (path === 'add-card') {
       const deck = this.state.route.params.get('deckId');
-      return <AddCard deckId={deck} />;
+      const name = this.state.route.param.get('deckName');
+      return <AddCard deckId={deck} deckName={name} />;
     } else if (path === 'view-cards') {
       const deck = this.state.route.params.get('deckId');
-      return <ViewCards deckId={deck} />;
+      const name = this.state.route.param.get('deckName');
+      return <ViewCards deckId={deck} deckName={name} />;
     } else {
       return <NotFound />;
     }
