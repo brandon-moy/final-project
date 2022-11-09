@@ -243,17 +243,19 @@
 
 .card-question,
 .card-answer {
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   font-size: 1.5rem;
   border: none;
   outline: none;
   background: transparent;
+  text-align: center;
 }
 
 .card-question {
   font-family: "Fuzzy Bubbles", sans-serif;
   font-weight: 800;
+  padding-top: 10%;
 }
 
 .card-answer {
@@ -296,6 +298,24 @@
   font-family: "Gloria Hallelujah", sans-serif;
   margin: auto;
   font-size: 1.5rem;
+}
+
+.view-card-question,
+.view-card-answer {
+  font-size: 1.5rem;
+  border: none;
+  outline: none;
+  background: transparent;
+  text-align: center;
+}
+
+.view-card-question {
+  font-family: "Fuzzy Bubbles", sans-serif;
+  font-weight: 800;
+}
+
+.view-card-answer {
+  font-family: Delius, sans-serif;
 }
 
 .deck-view-name {
@@ -407,5 +427,12 @@ label:hover {
     padding-left: 2rem;
     font-size: 3rem;
     margin: 2rem auto;
+  }
+
+  .card-question,
+  .card-answer,
+  .view-card-question,
+  .view-card-answer {
+    font-size: 2.25rem;
   }
 }

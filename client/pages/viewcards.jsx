@@ -16,12 +16,14 @@ export default class ViewCards extends React.Component {
     const cards = this.state.cards.map(card => {
       return (
         <div key={card.question} className='card-set flex wrap'>
-          <div className='card-front c-45 flex jc'>
-            <h1 className='card-question'>{card.question}</h1>
+          <div className='card-front c-45 flex jc ac'>
+            <h1 className='view-card-question'>
+              {card.question}
+            </h1>
           </div>
           <div className='card-back c-45'>
             <div className='flash-card-repeating-blue flex jc'>
-              <h2 className='card-answer'>{card.answer}</h2>
+              <h2 className='view-card-answer'>{card.answer}</h2>
             </div>
           </div>
         </div>

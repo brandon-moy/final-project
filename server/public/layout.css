@@ -31,6 +31,10 @@
   align-items: flex-start;
 }
 
+.va {
+  vertical-align: middle;
+}
+
 .c-45 {
   flex-basis: 90%;
 }
