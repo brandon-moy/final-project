@@ -10,6 +10,7 @@ export default class ViewCards extends React.Component {
     fetch(`/api/cards/${this.props.deckId}`)
       .then(res => res.json())
       .then(data => {
+        data.sort((a, b) => a.cardId - b.cardId);
         this.setState({ cards: data });
       })
       .catch(err => console.error(err));
@@ -18,7 +19,7 @@ export default class ViewCards extends React.Component {
   render() {
     const cards = this.state.cards.map(card => {
       return (
-        <div key={card.question} className='card-set flex wrap'>
+        <div key={card.cardId} id={card.cardId} className='card-set flex wrap'>
           <div className='card-front c-45 flex jc ac'>
             <h1 className='view-card-question'>
               {card.question}
