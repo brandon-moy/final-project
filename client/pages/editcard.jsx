@@ -28,9 +28,9 @@ export default class EditCard extends React.Component {
       body: JSON.stringify(this.state)
     };
     fetch(`/api/card/${cardId}`, req)
-      .then(
-        location.href = `/#view-cards?deckName=${this.props.deckName}&deckId=${this.props.deckId}`
-      )
+      .then(res => {
+        location.href = `/#view-cards?deckName=${this.props.deckName}&deckId=${this.props.deckId}`;
+      })
       .catch(err => console.error(err));
   }
 
