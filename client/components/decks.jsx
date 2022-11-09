@@ -27,7 +27,7 @@ export default class Decks extends React.Component {
             ? 'hiding'
             : '';
       return (
-        <div key={deck.deckId} className='scene c-3'>
+        <div key={deck.deckId} className='scene col-3'>
           <div className='folder'>
             <div className='folder-front t-center' id={deck.deckId} onClick={this.showOptions}>
               <h1 className='deck-text'>{deck.deckName}</h1>

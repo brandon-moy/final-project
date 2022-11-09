@@ -64,7 +64,8 @@ app.get('/api/card/:cardId', (req, res, next) => {
   }
 
   const sql = `
-    select *
+    select "question",
+           "answer"
       from "flashcards"
     where "cardId" = $1
     and "userId" = $2

@@ -35,23 +35,23 @@
   vertical-align: middle;
 }
 
-.c-45 {
+.col-45 {
   flex-basis: 90%;
 }
 
-.c-3 {
+.col-3 {
   flex-basis: 100%;
 }
 
-.c-2 {
+.col-2 {
   flex-basis: 100%;
 }
 
-.c-4 {
+.col-4 {
   flex-basis: 50%;
 }
 
-.c-100 {
+.col-100 {
   flex-basis: 100%;
 }
 
@@ -61,19 +61,19 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .c-45 {
+  .col-45 {
     flex-basis: 45%;
   }
 
-  .c-3 {
+  .col-3 {
     flex-basis: calc(100% / 3);
   }
 
-  .c-4 {
+  .col-4 {
     flex-basis: 25%;
   }
 
-  .c-2 {
+  .col-2 {
     flex-basis: 50%;
   }
 }
