@@ -14,7 +14,8 @@ export default class App extends React.Component {
       user: 1,
       route: parseRoute(window.location.hash),
       show: false,
-      decks: null
+      decks: null,
+      cards: []
     });
     this.showModal = this.showModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -34,9 +35,21 @@ export default class App extends React.Component {
 
   componentDidMount() {
     window.addEventListener('hashchange', () => {
-      this.setState({
-        route: parseRoute(window.location.hash)
-      });
+      const route = parseRoute(window.location.hash);
+      const { path } = route;
+      if (path === 'view-cards') {
+        const deck = route.params.get('deckId');
+        fetch(`/api/cards/${deck}`)
+          .then(res => res.json())
+          .then(data => {
+            this.setState({ route, cards: data });
+          })
+          .catch(err => console.error(err));
+      } else {
+        this.setState({
+          route: parseRoute(window.location.hash)
+        });
+      }
     });
     fetch('/api/decks')
       .then(res => res.json())
@@ -53,7 +66,7 @@ export default class App extends React.Component {
     } else if (path === 'add-card') {
       return <AddCard deckId={deck} deckName={name} />;
     } else if (path === 'view-cards') {
-      return <ViewCards deckId={deck} deckName={name} />;
+      return <ViewCards deckId={deck} deckName={name} cards={this.state.cards} />;
     } else {
       return <NotFound />;
     }

@@ -1,19 +1,9 @@
 import React from 'react';
 
 export default class ViewCards extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = ({ cards: [] });
-  }
 
   render() {
-    fetch(`/api/cards/${this.props.deckId}`)
-      .then(res => res.json())
-      .then(data => {
-        this.setState({ cards: data });
-      })
-      .catch(err => console.error(err));
-    const cards = this.state.cards.map(card => {
+    const cards = this.props.cards.map(card => {
       return (
         <div key={card.question} className='card-set flex wrap'>
           <div className='card-front c-45 flex jc ac'>
