@@ -336,6 +336,20 @@
   padding-right: 2rem;
 }
 
+.fa-pencil {
+  color: white;
+}
+
+.deck-edit-card {
+  color: white;
+  font-family: Delius, sans-serif;
+  text-decoration: none;
+  font-size: 1.25rem;
+  text-align: right;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
+}
+
 .new-deck:hover,
 .xmark-close:hover,
 .sticky-submit:hover,
@@ -427,6 +441,11 @@ label:hover {
     padding-left: 2rem;
     font-size: 3rem;
     margin: 2rem auto;
+  }
+
+  .new-card-deck,
+  .deck-edit-card {
+    padding-right: 2.5rem;
   }
 
   .card-question,
