@@ -167,9 +167,9 @@ i {
   background:
     repeating-linear-gradient(
       #fff,
-      #fff 5%,
-      #9198e5 5%,
-      #9198e5 5.2%
+      #fff 6%,
+      #9198e5 6%,
+      #9198e5 6.33%
     );
   width: 95%;
   height: 100%;
@@ -184,6 +184,7 @@ i {
 .card-option {
   text-decoration: none;
   color: black;
+  padding-left: 1rem;
 }
 
 .stripes {
@@ -408,6 +409,13 @@ label:hover {
 
   .option-paper {
     transform: translateX(3rem) translateY(-0.25rem);
+    background:
+      repeating-linear-gradient(
+        #fff,
+        #fff 10%,
+        #9198e5 10%,
+        #9198e5 10.5%
+      );
   }
 
   .option-paper.is-showing {
