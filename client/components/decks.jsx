@@ -37,7 +37,7 @@ export default class Decks extends React.Component {
                 <h1 className='deck-title'>{deck.deckName}</h1>
                 <section className='options-container'>
                   <a
-                  href={`/#add-card?deckName=${deck.deckName}?deckId=${deck.deckId}`}
+                  href={`/#add-card?deckName=${deck.deckName}&deckId=${deck.deckId}`}
                   className='card-option'
                   >
                     <i className="fa-solid fa-circle-plus" />
@@ -45,7 +45,7 @@ export default class Decks extends React.Component {
                   </a>
                   <br />
                   <a
-                  href={`/#view-cards?deckName=${deck.deckName}?deckId=${deck.deckId}`}
+                  href={`/#view-cards?deckName=${deck.deckName}&deckId=${deck.deckId}`}
                   className='card-option'
                   >
                     <i className="fa-solid fa-glasses" />

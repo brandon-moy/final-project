@@ -35,7 +35,7 @@ export default class ViewCards extends React.Component {
           <h1 className='deck-view-name c-2'>{this.props.deckName}</h1>
           <div className='spacer c-4' />
           <a
-          href={`/#add-card?deckName=${this.props.deckName}?deckId=${this.props.deckId}`}
+          href={`/#add-card?deckName=${this.props.deckName}&deckId=${this.props.deckId}`}
           className='new-card-deck c-4'
           >
             <i className="fa-solid fa-circle-plus" />
