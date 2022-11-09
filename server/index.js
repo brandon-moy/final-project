@@ -41,10 +41,12 @@ app.get('/api/cards/:deckId', (req, res, next) => {
   }
 
   const sql = `
-  select *
-  from "flashcards"
+  select "f".*,
+         "d"."deckName"
+    from "flashcards" as "f"
+    join "decks" as "d" using ("deckId")
   where "deckId" = $1
-    and "userId" = $2
+  and "f"."userId" = $2
   `;
 
   const params = [deckId, 1];

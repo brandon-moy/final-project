@@ -5,6 +5,7 @@ import parseRoute from './lib/parse-route';
 import Decks from './components/decks';
 import AddCard from './pages/addcard';
 import NotFound from './pages/notfound';
+import ViewCards from './pages/viewcards';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -50,8 +51,12 @@ export default class App extends React.Component {
     } else if (path === 'add-card') {
       const deck = this.state.route.params.get('deckId');
       return <AddCard deckId={deck} />;
+    } else if (path === 'view-cards') {
+      const deck = this.state.route.params.get('deckId');
+      return <ViewCards deckId={deck} />;
+    } else {
+      return <NotFound />;
     }
-    return <NotFound />;
   }
 
   render() {
