@@ -35,22 +35,11 @@ export default class App extends React.Component {
 
   componentDidMount() {
     window.addEventListener('hashchange', () => {
-      const route = parseRoute(window.location.hash);
-      const { path } = route;
-      if (path === 'view-cards') {
-        const deck = route.params.get('deckId');
-        fetch(`/api/cards/${deck}`)
-          .then(res => res.json())
-          .then(data => {
-            this.setState({ route, cards: data });
-          })
-          .catch(err => console.error(err));
-      } else {
-        this.setState({
-          route: parseRoute(window.location.hash)
-        });
-      }
+      this.setState({
+        route: parseRoute(window.location.hash)
+      });
     });
+
     fetch('/api/decks')
       .then(res => res.json())
       .then(data => this.setState({ decks: data }))
