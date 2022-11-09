@@ -10,7 +10,6 @@ export default class ViewCards extends React.Component {
     fetch(`/api/cards/${this.props.deckId}`)
       .then(res => res.json())
       .then(data => {
-        data.sort((a, b) => a.cardId - b.cardId);
         this.setState({ cards: data });
       })
       .catch(err => console.error(err));

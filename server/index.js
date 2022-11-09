@@ -45,6 +45,7 @@ app.get('/api/cards/:deckId', (req, res, next) => {
     from "flashcards"
   where "deckId" = $1
   and "userId" = $2
+  order by "cardId"
   `;
 
   const params = [deckId, 1];

@@ -3,7 +3,7 @@ import React from 'react';
 export default class EditCard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { };
+    this.state = { question: '', answer: '' };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -28,10 +28,9 @@ export default class EditCard extends React.Component {
       body: JSON.stringify(this.state)
     };
     fetch(`/api/card/${cardId}`, req)
-      .then(res => {
-        res.json();
-        location.href = `/#view-cards?deckName=${this.props.deckName}&deckId=${this.props.deckId}`;
-      })
+      .then(
+        location.href = `/#view-cards?deckName=${this.props.deckName}&deckId=${this.props.deckId}`
+      )
       .catch(err => console.error(err));
   }
 
