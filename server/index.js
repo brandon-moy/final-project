@@ -20,7 +20,7 @@ app.use(express.json());
 app.get('/api/decks', (req, res, next) => {
   const sql = `
     select *
-    from "decks"
+      from "decks"
     where "userId" = $1
   `;
 
@@ -44,7 +44,7 @@ app.get('/api/cards/:deckId', (req, res, next) => {
   select *
     from "flashcards"
   where "deckId" = $1
-  and "userId" = $2
+    and "userId" = $2
   order by "cardId"
   `;
 
@@ -65,10 +65,10 @@ app.get('/api/card/:cardId', (req, res, next) => {
   }
 
   const sql = `
-    select "question",
-           "answer"
-      from "flashcards"
-    where "cardId" = $1
+  select "question",
+         "answer"
+    from "flashcards"
+  where "cardId" = $1
     and "userId" = $2
   `;
 
@@ -146,11 +146,11 @@ app.patch('/api/card/:cardId', (req, res, next) => {
 
   const sql = `
   update "flashcards"
-    set "question" = $1,
-        "answer" = $2
-    where "cardId" = $3
+  set "question" = $1,
+      "answer" = $2
+  where "cardId" = $3
     and "userId" = $4
-    returning *
+  returning *
   `;
 
   const params = [question, answer, cardId, 1];
@@ -174,8 +174,8 @@ app.delete('/api/deletecard/:cardId', (req, res, next) => {
 
   const sql = `
   delete from "flashcards"
-  where "cardId" = $1
-  and "userId" = $2
+    where "cardId" = $1
+      and "userId" = $2
   returning *
   `;
 
@@ -186,6 +186,37 @@ app.delete('/api/deletecard/:cardId', (req, res, next) => {
       const [deleted] = result.rows;
       if (!deleted) {
         throw new ClientError(404, `cannot find card with cardId ${cardId}`);
+      } else {
+        res.status(204).send();
+      }
+    })
+    .catch(err => next(err));
+});
+
+app.delete('/api/deletedeck/:deckId', (req, res, next) => {
+  const deckId = Number(req.params.deckId);
+  if (!deckId) {
+    throw new ClientError(400, 'deckId must be a positive integer');
+  }
+
+  const sql = `
+  WITH deletedCards as (
+    delete from "flashcards"
+      where "deckId" = $1
+        and "userId" = $2
+    )
+    delete from "decks"
+      where "deckId" = $1
+
+  `;
+
+  const params = [deckId, 1];
+
+  db.query(sql, params)
+    .then(result => {
+      const deleted = result.rows;
+      if (!deleted) {
+        throw new ClientError(404, `cannot find deck with deckId ${deckId}`);
       } else {
         res.status(204).send();
       }
