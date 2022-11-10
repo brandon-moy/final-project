@@ -7,7 +7,6 @@ export default class DeleteForm extends React.Component {
   }
 
   confirmDelete(event) {
-    event.preventDefault();
     const cardId = this.props.cardId;
     const req = {
       method: 'DELETE'
