@@ -25,10 +25,10 @@ export default class NewDeck extends React.Component {
     fetch('/api/create-deck', req)
       .then(res => {
         res.json();
+        this.setState({ deckName: '' });
         this.props.closeModal();
       })
       .catch(err => console.error(err));
-    this.setState({ deckName: '' });
   }
 
   render() {

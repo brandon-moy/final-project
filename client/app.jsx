@@ -19,10 +19,7 @@ export default class App extends React.Component {
       show: false,
       decks: null,
       form: null,
-      cards: [],
-      deckName: null,
-      deckId: null,
-      cardId: null
+      cards: []
     });
     this.showModal = this.showModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -46,16 +43,7 @@ export default class App extends React.Component {
 
   componentDidMount() {
     window.addEventListener('hashchange', () => {
-      const route = parseRoute(window.location.hash);
-      const deckName = route.params.get('deckName');
-      const deckId = route.params.get('deckId');
-      const cardId = route.params.get('cardId');
-      this.setState({
-        route,
-        deckName,
-        deckId,
-        cardId
-      });
+      this.setState({ route: parseRoute(window.location.hash) });
     });
 
     fetch('/api/decks')
@@ -66,31 +54,39 @@ export default class App extends React.Component {
 
   renderContent() {
     const { path } = this.state.route;
-    const { deckId, deckName, cardId, cards } = this.state;
+    const deckId = this.state.route.params.get('deckId');
+    const deckName = this.state.route.params.get('deckName');
     if (path === '') {
       return <Decks decks={this.state.decks} showModal={this.showModal} />;
     } else if (path === 'add-card') {
       return <AddCard deckId={deckId} deckName={deckName} />;
     } else if (path === 'view-cards') {
-      return <ViewCards deckId={deckId} deckName={deckName} cards={cards} />;
+      return <ViewCards
+        deckId={deckId}
+        deckName={deckName}
+        cards={this.state.cards}
+      />;
     } else if (path === 'edit-card') {
-      return (
-        <EditCard
+      const cardId = this.state.route.get('cardId');
+      return <EditCard
         deckId={deckId}
         deckName={deckName}
         cardId={cardId}
         showModal={this.showModal}
-      />);
+      />;
     } else {
       return <NotFound />;
     }
   }
 
   renderModalForm() {
-    const { form, deckId, deckName, cardId } = this.state;
+    const { form } = this.state;
+    const deckId = this.state.route.params.get('deckId');
+    const deckName = this.state.route.params.get('deckName');
     if (form === 'newdeck') {
       return <NewDeck closeModal={this.closeModal} />;
     } else if (form === 'deletecard') {
+      const cardId = this.state.route.get('cardId');
       return <DeleteForm
         closeModal={this.closeModal}
         cardId={cardId}
