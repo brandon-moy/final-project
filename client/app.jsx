@@ -31,7 +31,7 @@ export default class App extends React.Component {
   }
 
   closeModal(event) {
-    if (this.state.form === 'newdeck') {
+    if (this.state.form === 'newdeck' || this.state.form === 'deletedeck') {
       fetch('/api/decks')
         .then(res => res.json())
         .then(data => this.setState({ decks: data }));

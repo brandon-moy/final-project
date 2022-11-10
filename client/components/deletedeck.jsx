@@ -1,6 +1,15 @@
 import React from 'react';
 
 export default class DeleteDeck extends React.Component {
+  constructor(props) {
+    super(props);
+    this.deleteDeck = this.deleteDeck.bind(this);
+  }
+
+  deleteDeck(event) {
+    this.props.closeModal();
+  }
+
   render() {
     return (
       <section className='delete-confirm'>
@@ -15,7 +24,7 @@ export default class DeleteDeck extends React.Component {
         </p>
         <div className='flex jsb'>
           <a href='#' className='cancel-delete' onClick={this.props.closeModal}>Cancel</a>
-          <a className='confirm-delete'>Confirm</a>
+          <a href='#' className='confirm-delete' onClick={this.deleteDeck}>Confirm</a>
         </div>
       </section>
     );
