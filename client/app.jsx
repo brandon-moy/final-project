@@ -19,7 +19,10 @@ export default class App extends React.Component {
       show: false,
       decks: null,
       form: null,
-      cards: []
+      cards: [],
+      deckName: null,
+      deckId: null,
+      cardId: null
     });
     this.showModal = this.showModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -43,8 +46,15 @@ export default class App extends React.Component {
 
   componentDidMount() {
     window.addEventListener('hashchange', () => {
+      const route = parseRoute(window.location.hash);
+      const deckName = route.params.get('deckName');
+      const deckId = route.params.get('deckId');
+      const cardId = route.params.get('cardId');
       this.setState({
-        route: parseRoute(window.location.hash)
+        route,
+        deckName,
+        deckId,
+        cardId
       });
     });
 
@@ -56,21 +66,19 @@ export default class App extends React.Component {
 
   renderContent() {
     const { path } = this.state.route;
-    const deck = this.state.route.params.get('deckId');
-    const name = this.state.route.params.get('deckName');
+    const { deckId, deckName, cardId, cards } = this.state;
     if (path === '') {
       return <Decks decks={this.state.decks} showModal={this.showModal} />;
     } else if (path === 'add-card') {
-      return <AddCard deckId={deck} deckName={name} />;
+      return <AddCard deckId={deckId} deckName={deckName} />;
     } else if (path === 'view-cards') {
-      return <ViewCards deckId={deck} deckName={name} cards={this.state.cards} />;
+      return <ViewCards deckId={deckId} deckName={deckName} cards={cards} />;
     } else if (path === 'edit-card') {
-      const card = this.state.route.params.get('cardId');
       return (
         <EditCard
-        deckId={deck}
-        deckName={name}
-        cardId={card}
+        deckId={deckId}
+        deckName={deckName}
+        cardId={cardId}
         showModal={this.showModal}
       />);
     } else {
@@ -79,11 +87,16 @@ export default class App extends React.Component {
   }
 
   renderModalForm() {
-    const form = this.state.form;
+    const { form, deckId, deckName, cardId } = this.state;
     if (form === 'newdeck') {
       return <NewDeck closeModal={this.closeModal} />;
     } else if (form === 'deletecard') {
-      return <DeleteForm closeModal={this.closeModal} />;
+      return <DeleteForm
+        closeModal={this.closeModal}
+        cardId={cardId}
+        deckName={deckName}
+        deckId={deckId}
+      />;
     }
   }
 

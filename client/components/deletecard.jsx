@@ -4,6 +4,21 @@ export default class DeleteForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = ({ anything: null });
+    this.confirmDelete = this.confirmDelete.bind(this);
+  }
+
+  confirmDelete(event) {
+    event.preventDefault();
+    const cardId = this.props.cardId;
+    const req = {
+      method: 'DELETE'
+    };
+    fetch(`/api/deletecard/${cardId}`, req)
+      .then(res => {
+        this.props.closeModal();
+        location.href = `/#view-cards?deckName=${this.props.deckName}&deckId=${this.props.deckId}`;
+      })
+      .catch(err => console.error(err));
   }
 
   render() {
@@ -14,7 +29,7 @@ export default class DeleteForm extends React.Component {
         </h2>
         <div className="flex jsb">
           <a className='cancel-delete' onClick={this.props.closeModal}>Cancel</a>
-          <a className='confirm-delete'>Continue</a>
+          <a className='confirm-delete' onClick={this.confirmDelete}>Continue</a>
         </div>
       </section>
     );
