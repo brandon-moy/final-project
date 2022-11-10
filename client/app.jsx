@@ -7,6 +7,7 @@ import AddCard from './pages/addcard';
 import NotFound from './pages/notfound';
 import ViewCards from './pages/viewcards';
 import EditCard from './pages/editcard';
+import NewDeck from './components/newdeck';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ export default class App extends React.Component {
       route: parseRoute(window.location.hash),
       show: false,
       decks: null,
+      form: null,
       cards: []
     });
     this.showModal = this.showModal.bind(this);
@@ -24,14 +26,14 @@ export default class App extends React.Component {
   }
 
   showModal(event) {
-    this.setState({ show: true });
+    this.setState({ show: true, form: event.target.id });
   }
 
   closeModal(event) {
     fetch('/api/decks')
       .then(res => res.json())
       .then(data => this.setState({ decks: data }));
-    this.setState({ show: false });
+    this.setState({ show: false, form: null });
   }
 
   componentDidMount() {
@@ -65,12 +67,21 @@ export default class App extends React.Component {
     }
   }
 
+  renderModalForm() {
+    const form = this.state.form;
+    if (form === 'newdeck') {
+      return <NewDeck closeModal={this.closeModal} />;
+    }
+  }
+
   render() {
     return (
       <div>
         <Header showModal={this.showModal} />
         { this.renderContent() }
-        <Modal show={this.state.show} closeModal={this.closeModal} />
+        <Modal show={this.state.show}>
+          <NewDeck closeModal={this.closeModal} />
+        </Modal>
       </div>
     );
   }
