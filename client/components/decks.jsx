@@ -35,7 +35,7 @@ export default class Decks extends React.Component {
             <div className={`option-paper ${showPaper}`} onClick={this.hideOptions}>
               <div className='stripes'>
                 <h1 className='deck-title'>{deck.deckName}</h1>
-                <section className='options-container'>
+                <section className='options-container flex wrap jsb'>
                   <a
                   href={`/#add-card?deckName=${deck.deckName}&deckId=${deck.deckId}`}
                   className='card-option'
@@ -43,7 +43,12 @@ export default class Decks extends React.Component {
                     <i className="fa-solid fa-circle-plus" />
                     Add Cards
                   </a>
-                  <br />
+                  <a
+                  id='delete-deck'
+                  className='card-option'>
+                    <i className="fa-solid fa-trash-can" />
+                    Delete Deck
+                  </a>
                   <a
                   href={`/#view-cards?deckName=${deck.deckName}&deckId=${deck.deckId}`}
                   className='card-option'
