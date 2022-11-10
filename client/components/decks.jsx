@@ -42,7 +42,7 @@ export default class Decks extends React.Component {
                 <h1 className='deck-title'>{deck.deckName}</h1>
                 <section className='options-container flex wrap jsb'>
                   <a
-                  href={`/#add-card?deckName=${deck.deckName}&deckId=${deck.deckId}`}
+                  href={`/#add-card?deckName=${encodeURIComponent(deck.deckName)}&deckId=${deck.deckId}`}
                   className='card-option'
                   >
                     <i className="fa-solid fa-circle-plus" />
@@ -50,14 +50,14 @@ export default class Decks extends React.Component {
                   </a>
                   <a
                   id='deletedeck'
-                  href={`/#delete-deck?deckName=${deck.deckName}&deckId=${deck.deckId}`}
+                  href={`/#delete-deck?deckName=${encodeURIComponent(deck.deckName)}&deckId=${deck.deckId}`}
                   onClick={this.props.showModal}
                   className='card-option'>
                     <i className="fa-solid fa-trash-can" />
                     Delete Deck
                   </a>
                   <a
-                  href={`/#view-cards?deckName=${deck.deckName}&deckId=${deck.deckId}`}
+                  href={`/#view-cards?deckName=${encodeURIComponent(deck.deckName)}&deckId=${deck.deckId}`}
                   className='card-option'
                   >
                     <i className="fa-solid fa-glasses" />

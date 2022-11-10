@@ -21,11 +21,6 @@ export default class NewDeck extends React.Component {
         error: true,
         errorMessage: 'Sorry, that deck name is too long!'
       });
-    } else if (deckName.includes('?')) {
-      this.setState({
-        error: true,
-        errorMessage: "Sorry, deck names cannot contain ?'s"
-      });
     } else {
       const req = {
         method: 'POST',

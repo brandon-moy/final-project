@@ -31,7 +31,7 @@ export default class ViewCards extends React.Component {
           </div>
           <div className='spacer col-2' />
           <a
-          href={`/#edit-card?deckName=${this.props.deckName}&deckId=${this.props.deckId}&cardId=${card.cardId}`}
+          href={`/#edit-card?deckName=${encodeURIComponent(this.props.deckName)}&deckId=${this.props.deckId}&cardId=${card.cardId}`}
           className='deck-edit-card col-2'>
             <i className="fa-solid fa-pencil" />
             Edit Card
