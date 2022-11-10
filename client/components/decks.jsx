@@ -44,7 +44,9 @@ export default class Decks extends React.Component {
                     Add Cards
                   </a>
                   <a
-                  id='delete-deck'
+                  id='deletedeck'
+                  href={`/#delete-deck?deckName=${deck.deckName}&deckId=${deck.deckId}`}
+                  onClick={this.props.showModal}
                   className='card-option'>
                     <i className="fa-solid fa-trash-can" />
                     Delete Deck

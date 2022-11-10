@@ -213,7 +213,7 @@ i {
 }
 
 .option-paper.is-showing {
-  animation: show-paper 1s 0.25s linear 1;
+  animation: show-paper 1.25s linear 1;
   animation-fill-mode: forwards;
   transform: translateX(0.25rem) translateY(0.25rem);
 }
@@ -380,6 +380,8 @@ i {
 .cancel-delete,
 .confirm-delete {
   font-size: 1.25rem;
+  text-decoration: none;
+  color: black;
 }
 
 .cancel-delete {
@@ -388,6 +390,23 @@ i {
 
 .confirm-delete {
   padding-right: 1.5rem;
+}
+
+.delete-deck-message {
+  text-align: center;
+}
+
+.delete-deck-name {
+  text-align: center;
+  font-size: 1.75rem;
+}
+
+.delete-warning {
+  color: red;
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding-left: 1.25rem;
+  padding-bottom: 1rem;
 }
 
 .new-deck:hover,
@@ -408,10 +427,15 @@ label:hover,
   }
 
   20% {
+    transform: translateY(-2.5rem);
+    z-index: 2;
+  }
+
+  50% {
     z-index: 3;
   }
 
-  40% {
+  60% {
     transform: translateY(-15rem);
     z-index: 3;
   }

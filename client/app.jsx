@@ -9,6 +9,7 @@ import ViewCards from './pages/viewcards';
 import EditCard from './pages/editcard';
 import NewDeck from './components/newdeck';
 import DeleteForm from './components/deletecard';
+import DeleteDeck from './components/deletedeck';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -18,8 +19,7 @@ export default class App extends React.Component {
       route: parseRoute(window.location.hash),
       show: false,
       decks: null,
-      form: null,
-      cards: []
+      form: null
     });
     this.showModal = this.showModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -56,7 +56,7 @@ export default class App extends React.Component {
     const { path } = this.state.route;
     const deckId = this.state.route.params.get('deckId');
     const deckName = this.state.route.params.get('deckName');
-    if (path === '') {
+    if (path === '' || path === 'delete-deck') {
       return <Decks decks={this.state.decks} showModal={this.showModal} />;
     } else if (path === 'add-card') {
       return <AddCard deckId={deckId} deckName={deckName} />;
@@ -64,7 +64,6 @@ export default class App extends React.Component {
       return <ViewCards
         deckId={deckId}
         deckName={deckName}
-        cards={this.state.cards}
       />;
     } else if (path === 'edit-card') {
       const cardId = this.state.route.get('cardId');
@@ -85,6 +84,13 @@ export default class App extends React.Component {
     const deckName = this.state.route.params.get('deckName');
     if (form === 'newdeck') {
       return <NewDeck closeModal={this.closeModal} />;
+    } else if (form === 'deletedeck') {
+      return <DeleteDeck
+        showModal={this.showModal}
+        closeModal={this.closeModal}
+        deckId={deckId}
+        deckName={deckName}
+      />;
     } else if (form === 'deletecard') {
       const cardId = this.state.route.get('cardId');
       return <DeleteForm
