@@ -166,6 +166,33 @@ app.patch('/api/card/:cardId', (req, res, next) => {
     });
 });
 
+app.delete('/api/deletecard/:cardId', (req, res, next) => {
+  const cardId = Number(req.params.cardId);
+  if (!cardId) {
+    throw new ClientError(400, 'cardId must be a positive integer');
+  }
+
+  const sql = `
+  delete from "flashcards"
+  where "cardId" = $1
+  and "userId" = $2
+  returning *
+  `;
+
+  const params = [cardId, 1];
+
+  db.query(sql, params)
+    .then(result => {
+      const [deleted] = result.rows;
+      if (!deleted) {
+        throw new ClientError(404, `cannot find card with cardId ${cardId}`);
+      } else {
+        res.status(204).send();
+      }
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
