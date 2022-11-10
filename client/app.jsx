@@ -66,7 +66,7 @@ export default class App extends React.Component {
         deckName={deckName}
       />;
     } else if (path === 'edit-card') {
-      const cardId = this.state.route.get('cardId');
+      const cardId = this.state.route.params.get('cardId');
       return <EditCard
         deckId={deckId}
         deckName={deckName}
@@ -92,7 +92,7 @@ export default class App extends React.Component {
         deckName={deckName}
       />;
     } else if (form === 'deletecard') {
-      const cardId = this.state.route.get('cardId');
+      const cardId = this.state.route.params.get('cardId');
       return <DeleteForm
         closeModal={this.closeModal}
         cardId={cardId}
