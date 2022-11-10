@@ -224,9 +224,10 @@ i {
 }
 
 .option-paper.is-showing {
-  animation: show-paper 1.25s linear 1;
+  animation: show-paper 1s linear 1;
   animation-fill-mode: forwards;
-  transform: translateX(0.25rem) translateY(0.25rem);
+
+  /* transform: translateX(0.25rem) translateY(0.25rem); */
 }
 
 .option-paper.hiding {
@@ -439,10 +440,10 @@ label:hover,
 
   20% {
     transform: translateY(-2.5rem);
-    z-index: 2;
   }
 
   50% {
+    transform: translateY(-10rem);
     z-index: 3;
   }
 

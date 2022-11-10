@@ -24,7 +24,7 @@ export default class NewDeck extends React.Component {
     } else if (deckName.includes('?')) {
       this.setState({
         error: true,
-        errorMessage: "Sorry, deck name's cannot contain ?'s"
+        errorMessage: "Sorry, deck names cannot contain ?'s"
       });
     } else {
       const req = {
