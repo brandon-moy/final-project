@@ -49,7 +49,9 @@ export default class EditCard extends React.Component {
     return (
       <div className='edit-card-page'>
         <div className='flex jsb ac wrap'>
-          <h1 className='deck-view-name col-2'>{this.props.deckName}</h1>
+          <h1 className='deck-view-name col-2'>
+            {this.props.deckName}
+          </h1>
           <div className='spacer col-4' />
           <a
             href={`/#add-card?deckName=${this.props.deckName}&deckId=${this.props.deckId}`}

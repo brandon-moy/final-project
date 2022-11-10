@@ -32,8 +32,17 @@ export default class DeleteDeck extends React.Component {
           Deleting this deck will delete all flashcards associated with this deck!
         </p>
         <div className='flex jsb'>
-          <a href='#' className='cancel-delete' onClick={this.props.closeModal}>Cancel</a>
-          <a className='confirm-delete' onClick={this.deleteDeck}>Confirm</a>
+          <a
+          href='#'
+          className='cancel-delete'
+          onClick={this.props.closeModal}>
+            Cancel
+          </a>
+          <a
+          className='confirm-delete'
+          onClick={this.deleteDeck}>
+            Confirm
+          </a>
         </div>
       </section>
     );

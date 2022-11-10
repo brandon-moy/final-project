@@ -26,8 +26,16 @@ export default class DeleteForm extends React.Component {
           Are you sure you want to delete this card?
         </h2>
         <div className="flex jsb">
-          <a className='cancel-delete' onClick={this.props.closeModal}>Cancel</a>
-          <a className='confirm-delete' onClick={this.confirmDelete}>Continue</a>
+          <a
+          className='cancel-delete'
+          onClick={this.props.closeModal}>
+            Cancel
+          </a>
+          <a
+          className='confirm-delete'
+          onClick={this.confirmDelete}>
+            Continue
+          </a>
         </div>
       </section>
     );

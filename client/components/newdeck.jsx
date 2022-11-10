@@ -51,7 +51,12 @@ export default class NewDeck extends React.Component {
           <i className="fa-solid fa-xmark" />
         </a>
         <h1 className="sticky-header">Create New Deck</h1>
-        <input value={this.state.deckName} className="sticky-input" onChange={this.handleChange} type="text" placeholder="e.g. HTML, CSS, JavaScript" />
+        <input
+        value={this.state.deckName}
+        className="sticky-input"
+        onChange={this.handleChange}
+        type="text"
+        placeholder="e.g. HTML, CSS, JavaScript" />
         <p className={errorClass}>{this.state.errorMessage}</p>
         <button className="sticky-submit">Continue</button>
       </form>
