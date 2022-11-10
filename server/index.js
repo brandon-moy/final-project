@@ -207,7 +207,6 @@ app.delete('/api/deletedeck/:deckId', (req, res, next) => {
     )
     delete from "decks"
       where "deckId" = $1
-
   `;
 
   const params = [deckId, 1];
