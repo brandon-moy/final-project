@@ -3,7 +3,6 @@ import React from 'react';
 export default class DeleteForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = ({ anything: null });
     this.confirmDelete = this.confirmDelete.bind(this);
   }
 

@@ -103,7 +103,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <Header showModal={this.showModal} />
+        <Header />
         { this.renderContent() }
         <Modal show={this.state.show}>
           {this.renderModalForm()}
