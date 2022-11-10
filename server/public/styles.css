@@ -285,7 +285,7 @@ i {
   background-color: transparent;
   color: white;
   font-family: "Gloria Hallelujah", sans-serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   float: right;
   padding-right: 2rem;
 }
@@ -353,6 +353,41 @@ i {
   text-align: right;
   padding-right: 2rem;
   padding-bottom: 2rem;
+}
+
+.delete-show-modal {
+  background: transparent;
+  border: none;
+  color: #ff9292;
+  font-family: "Gloria Hallelujah", sans-serif;
+  font-size: 1.5rem;
+  padding-left: 2rem;
+}
+
+.delete-confirm {
+  font-family: "Fuzzy Bubbles", sans-serif;
+}
+
+.delete-card-message {
+  text-align: center;
+  width: 90%;
+  padding-left: 1.5rem;
+  font-size: 1.25rem;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+.cancel-delete,
+.confirm-delete {
+  font-size: 1.25rem;
+}
+
+.cancel-delete {
+  padding-left: 1.5rem;
+}
+
+.confirm-delete {
+  padding-right: 1.5rem;
 }
 
 .new-deck:hover,
@@ -466,5 +501,10 @@ label:hover {
   .view-card-question,
   .view-card-answer {
     font-size: 2.25rem;
+  }
+
+  .add-card-button,
+  .delete-show-modal {
+    font-size: 2rem;
   }
 }
