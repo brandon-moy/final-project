@@ -8,6 +8,7 @@ import NotFound from './pages/notfound';
 import ViewCards from './pages/viewcards';
 import EditCard from './pages/editcard';
 import NewDeck from './components/newdeck';
+import DeleteForm from './components/deletecard';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -30,10 +31,14 @@ export default class App extends React.Component {
   }
 
   closeModal(event) {
-    fetch('/api/decks')
-      .then(res => res.json())
-      .then(data => this.setState({ decks: data }));
-    this.setState({ show: false, form: null });
+    if (this.state.form === 'newdeck') {
+      fetch('/api/decks')
+        .then(res => res.json())
+        .then(data => this.setState({ decks: data }));
+      this.setState({ show: false, form: null });
+    } else {
+      this.setState({ show: false, form: null });
+    }
   }
 
   componentDidMount() {
@@ -61,7 +66,13 @@ export default class App extends React.Component {
       return <ViewCards deckId={deck} deckName={name} cards={this.state.cards} />;
     } else if (path === 'edit-card') {
       const card = this.state.route.params.get('cardId');
-      return <EditCard deckId={deck} deckName={name} cardId={card} />;
+      return (
+        <EditCard
+        deckId={deck}
+        deckName={name}
+        cardId={card}
+        showModal={this.showModal}
+      />);
     } else {
       return <NotFound />;
     }
@@ -71,6 +82,8 @@ export default class App extends React.Component {
     const form = this.state.form;
     if (form === 'newdeck') {
       return <NewDeck closeModal={this.closeModal} />;
+    } else if (form === 'deletecard') {
+      return <DeleteForm closeModal={this.closeModal} />;
     }
   }
 
@@ -80,7 +93,7 @@ export default class App extends React.Component {
         <Header showModal={this.showModal} />
         { this.renderContent() }
         <Modal show={this.state.show}>
-          <NewDeck closeModal={this.closeModal} />
+          {this.renderModalForm()}
         </Modal>
       </div>
     );

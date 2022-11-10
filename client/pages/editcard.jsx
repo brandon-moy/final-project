@@ -79,7 +79,14 @@ export default class EditCard extends React.Component {
             </div>
           </label>
           <div className='col-100'>
-            <button className='jfe add-card-button'>Save</button>
+            <button
+              id='deletecard'
+              className='delete-show-modal'
+              type='button'
+              onClick={this.props.showModal}>
+              Delete Card
+            </button>
+            <button className='add-card-button'>Save</button>
           </div>
         </form>
       </div>
