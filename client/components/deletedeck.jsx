@@ -7,7 +7,16 @@ export default class DeleteDeck extends React.Component {
   }
 
   deleteDeck(event) {
-    this.props.closeModal();
+    const deckId = this.props.deckId;
+    const req = {
+      method: 'DELETE'
+    };
+    fetch(`/api/deletedeck/${deckId}`, req)
+      .then(res => {
+        this.props.closeModal();
+        location.href = '#';
+      })
+      .catch(err => console.error(err));
   }
 
   render() {
@@ -24,7 +33,7 @@ export default class DeleteDeck extends React.Component {
         </p>
         <div className='flex jsb'>
           <a href='#' className='cancel-delete' onClick={this.props.closeModal}>Cancel</a>
-          <a href='#' className='confirm-delete' onClick={this.deleteDeck}>Confirm</a>
+          <a className='confirm-delete' onClick={this.deleteDeck}>Confirm</a>
         </div>
       </section>
     );
