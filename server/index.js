@@ -214,7 +214,7 @@ app.delete('/api/deletedeck/:deckId', (req, res, next) => {
   db.query(sql, params)
     .then(result => {
       const deleted = result.rows;
-      if (!deleted) {
+      if (!deleted || deleted === []) {
         throw new ClientError(404, `cannot find deck with deckId ${deckId}`);
       } else {
         res.status(204).send();
