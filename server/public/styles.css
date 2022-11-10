@@ -213,13 +213,13 @@ i {
 }
 
 .option-paper.is-showing {
-  animation: show-paper 1s linear 1;
+  animation: show-paper 1s 0.25s linear 1;
   animation-fill-mode: forwards;
   transform: translateX(0.25rem) translateY(0.25rem);
 }
 
 .option-paper.hiding {
-  animation: hide-paper 1s linear 1;
+  animation: hide-paper 0.5s linear 1;
   animation-fill-mode: forwards;
 }
 
@@ -285,7 +285,7 @@ i {
   background-color: transparent;
   color: white;
   font-family: "Gloria Hallelujah", sans-serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   float: right;
   padding-right: 2rem;
 }
@@ -355,12 +355,50 @@ i {
   padding-bottom: 2rem;
 }
 
+.delete-show-modal {
+  background: transparent;
+  border: none;
+  color: #ff9292;
+  font-family: "Gloria Hallelujah", sans-serif;
+  font-size: 1.5rem;
+  padding-left: 2rem;
+}
+
+.delete-confirm {
+  font-family: "Fuzzy Bubbles", sans-serif;
+}
+
+.delete-card-message {
+  text-align: center;
+  width: 90%;
+  padding-left: 1.5rem;
+  font-size: 1.25rem;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+.cancel-delete,
+.confirm-delete {
+  font-size: 1.25rem;
+}
+
+.cancel-delete {
+  padding-left: 1.5rem;
+}
+
+.confirm-delete {
+  padding-right: 1.5rem;
+}
+
 .new-deck:hover,
 .xmark-close:hover,
 .sticky-submit:hover,
 .option-paper:hover,
 .add-card-button:hover,
-label:hover {
+label:hover,
+.delete-show-modal,
+.cancel-delete,
+.confirm-delete {
   cursor: pointer;
 }
 
@@ -390,7 +428,7 @@ label:hover {
     z-index: 3;
   }
 
-  60% {
+  50% {
     transform: translateY(-15rem);
     z-index: 3;
   }
@@ -466,5 +504,10 @@ label:hover {
   .view-card-question,
   .view-card-answer {
     font-size: 2.25rem;
+  }
+
+  .add-card-button,
+  .delete-show-modal {
+    font-size: 2rem;
   }
 }

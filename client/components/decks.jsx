@@ -62,7 +62,7 @@ export default class Decks extends React.Component {
     });
     return (
       <div className="decks-view">
-        <a className="new-deck" onClick={this.props.showModal}>New Deck</a>
+        <a id="newdeck" className="new-deck" onClick={this.props.showModal}>New Deck</a>
         <div className='flex wrap jc'>{renderedDecks}</div>
       </div>
     );
