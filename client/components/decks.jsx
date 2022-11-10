@@ -29,23 +29,35 @@ export default class Decks extends React.Component {
       return (
         <div key={deck.deckId} className='scene col-3'>
           <div className='folder'>
-            <div className='folder-front t-center' id={deck.deckId} onClick={this.showOptions}>
+            <div
+            className='folder-front t-center'
+            id={deck.deckId}
+            onClick={this.showOptions}>
               <h1 className='deck-text'>{deck.deckName}</h1>
             </div>
-            <div className={`option-paper ${showPaper}`} onClick={this.hideOptions}>
+            <div
+            className={`option-paper ${showPaper}`}
+            onClick={this.hideOptions}>
               <div className='stripes'>
                 <h1 className='deck-title'>{deck.deckName}</h1>
-                <section className='options-container'>
+                <section className='options-container flex wrap jsb'>
                   <a
-                  href={`/#add-card?deckName=${deck.deckName}&deckId=${deck.deckId}`}
+                  href={`/#add-card?deckName=${encodeURIComponent(deck.deckName)}&deckId=${deck.deckId}`}
                   className='card-option'
                   >
                     <i className="fa-solid fa-circle-plus" />
                     Add Cards
                   </a>
-                  <br />
                   <a
-                  href={`/#view-cards?deckName=${deck.deckName}&deckId=${deck.deckId}`}
+                  id='deletedeck'
+                  href={`/#delete-deck?deckName=${encodeURIComponent(deck.deckName)}&deckId=${deck.deckId}`}
+                  onClick={this.props.showModal}
+                  className='card-option'>
+                    <i className="fa-solid fa-trash-can" />
+                    Delete Deck
+                  </a>
+                  <a
+                  href={`/#view-cards?deckName=${encodeURIComponent(deck.deckName)}&deckId=${deck.deckId}`}
                   className='card-option'
                   >
                     <i className="fa-solid fa-glasses" />
@@ -62,7 +74,12 @@ export default class Decks extends React.Component {
     });
     return (
       <div className="decks-view">
-        <a id="newdeck" className="new-deck" onClick={this.props.showModal}>New Deck</a>
+        <a
+        id="newdeck"
+        className="new-deck"
+        onClick={this.props.showModal}>
+          New Deck
+        </a>
         <div className='flex wrap jc'>{renderedDecks}</div>
       </div>
     );

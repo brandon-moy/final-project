@@ -31,7 +31,7 @@ export default class AddCard extends React.Component {
       .then(res => {
         res.json();
         this.setState({ question: '', answer: '' });
-        location.href = `/#view-cards?deckName=${this.props.deckName}&deckId=${deckId}`;
+        location.href = `/#view-cards?deckName=${encodeURIComponent(this.props.deckName)}&deckId=${deckId}`;
       })
       .catch(err => console.error(err));
   }
