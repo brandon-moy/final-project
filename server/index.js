@@ -44,7 +44,7 @@ app.get('/api/cards/:deckId', (req, res, next) => {
   select  "decks"."deckName",
           "flashcards".*
      from "decks"
-  join "flashcards" using ("deckId")
+  left join "flashcards" using ("deckId")
   where "deckId" = $1
     and "decks"."userId" = $2
     order by "cardId"
@@ -55,23 +55,7 @@ app.get('/api/cards/:deckId', (req, res, next) => {
   db.query(sql, params)
     .then(result => {
       const cards = result.rows;
-      if (!cards.length) {
-        const sql = `
-        select "deckName"
-          from "decks"
-        where "deckId" = $1
-          and "userId" = $2
-        `;
-
-        db.query(sql, params)
-          .then(result => {
-            const deckName = result.rows;
-            res.status(200).json(deckName);
-          })
-          .catch(err => next(err));
-      } else {
-        res.status(200).json(cards);
-      }
+      res.status(200).json(cards);
     })
     .catch(err => next(err));
 });

@@ -9,27 +9,6 @@ export default class StudyCards extends React.Component {
       deckName: '',
       cards: null
     });
-    this.startFlip = this.startFlip.bind(this);
-    this.finishFlip = this.finishFlip.bind(this);
-  }
-
-  startFlip(event) {
-    const reveal = this.state.reveal === 'question' ? 'half-a' : 'half-q';
-    this.setState({ reveal });
-  }
-
-  finishFlip(event) {
-    if (this.state.reveal === 'half-a') {
-      this.setState({ reveal: 'answer' });
-    } else if (this.state.reveal === 'half-q') {
-      const length = this.state.cards.length;
-      const position = this.state.position + 1;
-      if (position === length) {
-        location.href = `/#view-cards?deckId=${this.props.deckId}`;
-      } else {
-        this.setState({ reveal: 'question', position });
-      }
-    }
   }
 
   componentDidMount() {
@@ -46,7 +25,7 @@ export default class StudyCards extends React.Component {
   }
 
   renderContent() {
-    if (!this.state.cards.length) {
+    if (!this.state.cards.length || !this.state.cards[0].question) {
       return <NoCards deckId={this.props.deckId} />;
     } else {
       return (
