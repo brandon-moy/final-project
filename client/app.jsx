@@ -10,6 +10,7 @@ import EditCard from './pages/editcard';
 import NewDeck from './components/newdeck';
 import DeleteForm from './components/deletecard';
 import DeleteDeck from './components/deletedeck';
+import StudyCards from './pages/studycards';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -73,6 +74,8 @@ export default class App extends React.Component {
         cardId={cardId}
         showModal={this.showModal}
       />;
+    } else if (path === 'study-cards') {
+      return <StudyCards />;
     } else {
       return <NotFound />;
     }

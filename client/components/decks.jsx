@@ -49,10 +49,11 @@ export default class Decks extends React.Component {
                     Add Cards
                   </a>
                   <a
+                  href={`/#study-cards?deckId=${deck.deckId}`}
                   className='card-option'
                   >
                     <i className="fa-solid fa-graduation-cap" />
-                    Edit Cards
+                    Study Cards
                   </a>
                   <a
                   href={`/#view-cards?deckName=${encodeURIComponent(deck.deckName)}&deckId=${deck.deckId}`}
