@@ -419,6 +419,43 @@ i {
   padding-bottom: 1rem;
 }
 
+.study-card-set {
+  position: relative;
+  margin-top: 2rem;
+  height: 10rem;
+  transition: transform 1s linear;
+  transform-origin: center;
+  transform-style: preserve-3d;
+}
+
+.study-card-front,
+.study-card-back {
+  backface-visibility: hidden;
+  position: absolute;
+  height: 100%;
+  width: 90%;
+}
+
+.study-card-front {
+  background-color: rgb(253 246 166);
+}
+
+.study-card-back {
+  transform: rotateY(180deg);
+  background:
+    linear-gradient(
+      rgb(253 246 166),
+      rgb(253 246 166) 20%,
+      red 20%,
+      red 21.5%,
+      rgb(253 246 166) 21.5%
+    );
+}
+
+.reveal-answer {
+  transform: rotateY(-180deg);
+}
+
 .new-deck:hover,
 .xmark-close:hover,
 .sticky-submit:hover,
@@ -472,7 +509,7 @@ label:hover,
   }
 }
 
-@media only screen and (min-width: 738px) {
+@media only screen and (min-width: 1280px) {
   .folder-front,
   .folder-back,
   .option-paper {
@@ -501,6 +538,12 @@ label:hover,
   .card-front,
   .card-back {
     height: 20rem;
+  }
+
+  .study-card-front,
+  .study-card-back {
+    height: 20rem;
+    width: 50%;
   }
 
   .flash-card-repeating-blue {

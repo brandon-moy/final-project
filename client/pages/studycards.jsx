@@ -3,12 +3,18 @@ import React from 'react';
 export default class StudyCards extends React.Component {
   constructor(props) {
     super(props);
-    this.state = ({ cards: [], deckName: '', position: 0, reveal: false });
-    this.consoleState = this.consoleState.bind(this);
+    this.state = ({ cards: null, deckName: '', position: 0, reveal: false });
+    this.revealAnswer = this.revealAnswer.bind(this);
+    this.nextQuestion = this.nextQuestion.bind(this);
   }
 
-  consoleState(event) {
-    // console.log(this.state.cards[this.state.position].question);
+  revealAnswer(event) {
+    this.setState({ reveal: true });
+  }
+
+  nextQuestion(event) {
+    const position = this.state.position + 1;
+    this.setState({ position, reveal: false });
   }
 
   componentDidMount() {
@@ -22,20 +28,23 @@ export default class StudyCards extends React.Component {
   }
 
   render() {
-    // issue is that guard clause is not working? it looks like it is going through on first run
-    // const card = this.state.cards[this.state.position];
-    // console.log(card);
-    if (this.state.cards === []) return;
+    if (!this.state.cards) return;
+    const face = this.state.reveal ? 'reveal-answer' : '';
+    const card = this.state.cards[this.state.position];
     return (
-      <section className='study-cards' onClick={this.consoleState}>
+      <section className='study-cards' onClick={this.revealAnswer}>
         <h1 className='deck-view-name col-2'>{this.state.deckName}</h1>
-        <div className='card-set flex wrap'>
-          <div className='card-front col-45 flex jc ac'>
-            <h1 className='view-card-question' />
+        <div className={`study-card-set flex wrap jc ${face}`}>
+          <div className='study-card-front flex jc ac'>
+            <h1 className='view-card-question'>
+              {card.question}
+            </h1>
           </div>
-          <div className='card-back col-45'>
+          <div className='study-card-back' onClick={this.nextQuestion}>
             <div className='flash-card-repeating-blue flex jc'>
-              {/* <h2 className='view-card-answer'>{answer}</h2> */}
+              <h2 className='view-card-answer'>
+                {card.answer}
+              </h2>
             </div>
           </div>
         </div>
