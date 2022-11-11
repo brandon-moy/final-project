@@ -49,12 +49,10 @@ export default class Decks extends React.Component {
                     Add Cards
                   </a>
                   <a
-                  id='deletedeck'
-                  href={`/#delete-deck?deckName=${encodeURIComponent(deck.deckName)}&deckId=${deck.deckId}`}
-                  onClick={this.props.showModal}
-                  className='card-option'>
-                    <i className="fa-solid fa-trash-can" />
-                    Delete Deck
+                  className='card-option'
+                  >
+                    <i className="fa-solid fa-graduation-cap" />
+                    Edit Cards
                   </a>
                   <a
                   href={`/#view-cards?deckName=${encodeURIComponent(deck.deckName)}&deckId=${deck.deckId}`}
@@ -62,6 +60,14 @@ export default class Decks extends React.Component {
                   >
                     <i className="fa-solid fa-glasses" />
                     View Cards
+                  </a>
+                  <a
+                  id='deletedeck'
+                  href={`/#delete-deck?deckName=${encodeURIComponent(deck.deckName)}&deckId=${deck.deckId}`}
+                  onClick={this.props.showModal}
+                  className='card-option'>
+                    <i className="fa-solid fa-trash-can" />
+                    Delete Deck
                   </a>
                 </section>
               </div>
