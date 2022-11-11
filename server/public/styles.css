@@ -423,7 +423,7 @@ i {
   position: relative;
   margin-top: 2rem;
   height: 10rem;
-  transition: transform 1s linear;
+  transition: transform 0.5s linear;
   transform-origin: center;
   transform-style: preserve-3d;
 }
@@ -452,7 +452,15 @@ i {
     );
 }
 
-.reveal-answer {
+.half-a {
+  transform: rotateY(-90deg);
+}
+
+.half-q {
+  transform: rotateY(-90deg);
+}
+
+.answer {
   transform: rotateY(-180deg);
 }
 
