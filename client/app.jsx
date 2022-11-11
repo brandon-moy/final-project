@@ -56,21 +56,18 @@ export default class App extends React.Component {
   renderContent() {
     const { path } = this.state.route;
     const deckId = this.state.route.params.get('deckId');
-    const deckName = this.state.route.params.get('deckName');
     if (path === '' || path === 'delete-deck') {
       return <Decks decks={this.state.decks} showModal={this.showModal} />;
     } else if (path === 'add-card') {
-      return <AddCard deckId={deckId} deckName={deckName} />;
+      return <AddCard deckId={deckId} />;
     } else if (path === 'view-cards') {
       return <ViewCards
         deckId={deckId}
-        deckName={deckName}
       />;
     } else if (path === 'edit-card') {
       const cardId = this.state.route.params.get('cardId');
       return <EditCard
         deckId={deckId}
-        deckName={deckName}
         cardId={cardId}
         showModal={this.showModal}
       />;
@@ -99,7 +96,6 @@ export default class App extends React.Component {
       return <DeleteForm
         closeModal={this.closeModal}
         cardId={cardId}
-        deckName={deckName}
         deckId={deckId}
       />;
     }

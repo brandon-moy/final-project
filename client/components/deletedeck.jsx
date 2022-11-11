@@ -3,6 +3,7 @@ import React from 'react';
 export default class DeleteDeck extends React.Component {
   constructor(props) {
     super(props);
+    this.state = ({ deckName: null });
     this.deleteDeck = this.deleteDeck.bind(this);
   }
 

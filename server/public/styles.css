@@ -464,6 +464,20 @@ i {
   transform: rotateY(-180deg);
 }
 
+.finish-header,
+.finish-option {
+  font-family: "Gloria Hallelujah", sans-serif;
+  color: white;
+  padding-top: 5rem;
+  text-align: center;
+}
+
+.finish-links {
+  font-family: "Fuzzy Bubbles", sans-serif;
+  color: white;
+  text-decoration: none;
+}
+
 .new-deck:hover,
 .xmark-close:hover,
 .sticky-submit:hover,

@@ -14,7 +14,7 @@ export default class DeleteForm extends React.Component {
     fetch(`/api/deletecard/${cardId}`, req)
       .then(res => {
         this.props.closeModal();
-        location.href = `/#view-cards?deckName=${encodeURIComponent(this.props.deckName)}&deckId=${this.props.deckId}`;
+        location.href = `/#view-cards?deckId=${this.props.deckId}`;
       })
       .catch(err => console.error(err));
   }

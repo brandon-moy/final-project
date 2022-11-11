@@ -10,7 +10,8 @@ export default class ViewCards extends React.Component {
     fetch(`/api/cards/${this.props.deckId}`)
       .then(res => res.json())
       .then(data => {
-        this.setState({ cards: data });
+        const { deckName } = data[0];
+        this.setState({ cards: data, deckName });
       })
       .catch(err => console.error(err));
   }
@@ -31,7 +32,7 @@ export default class ViewCards extends React.Component {
           </div>
           <div className='spacer col-2' />
           <a
-          href={`/#edit-card?deckName=${encodeURIComponent(this.props.deckName)}&deckId=${this.props.deckId}&cardId=${card.cardId}`}
+          href={`/#edit-card?deckId=${this.props.deckId}&cardId=${card.cardId}`}
           className='deck-edit-card col-2'>
             <i className="fa-solid fa-pencil" />
             Edit Card
@@ -42,10 +43,10 @@ export default class ViewCards extends React.Component {
     return (
       <section className='card-deck'>
         <div className='flex jsb ac wrap'>
-          <h1 className='deck-view-name col-2'>{this.props.deckName}</h1>
+          <h1 className='deck-view-name col-2'>{this.state.deckName}</h1>
           <div className='spacer col-4' />
           <a
-          href={`/#add-card?deckName=${this.props.deckName}&deckId=${this.props.deckId}`}
+          href={`/#add-card?deckId=${this.props.deckId}`}
           className='new-card-deck col-4'
           >
             <i className="fa-solid fa-circle-plus" />

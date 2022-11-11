@@ -29,7 +29,7 @@ export default class EditCard extends React.Component {
     };
     fetch(`/api/card/${cardId}`, req)
       .then(res => {
-        location.href = `/#view-cards?deckName=${encodeURIComponent(this.props.deckName)}&deckId=${this.props.deckId}`;
+        location.href = `/#view-cards?deckId=${this.props.deckId}`;
       })
       .catch(err => console.error(err));
   }
@@ -40,7 +40,8 @@ export default class EditCard extends React.Component {
       .then(data => this.setState(
         {
           question: data.question,
-          answer: data.answer
+          answer: data.answer,
+          deckName: data.deckName
         }
       ));
   }
@@ -50,11 +51,11 @@ export default class EditCard extends React.Component {
       <div className='edit-card-page'>
         <div className='flex jsb ac wrap'>
           <h1 className='deck-view-name col-2'>
-            {this.props.deckName}
+            {this.state.deckName}
           </h1>
           <div className='spacer col-4' />
           <a
-            href={`/#add-card?deckName=${encodeURIComponent(this.props.deckName)}&deckId=${this.props.deckId}`}
+            href={`/#add-card?deckId=${this.props.deckId}`}
             className='new-card-deck col-4'
           >
             <i className="fa-solid fa-circle-plus" />

@@ -42,7 +42,7 @@ export default class Decks extends React.Component {
                 <h1 className='deck-title'>{deck.deckName}</h1>
                 <section className='options-container flex wrap jsb'>
                   <a
-                  href={`/#add-card?deckName=${encodeURIComponent(deck.deckName)}&deckId=${deck.deckId}`}
+                  href={`/#add-card?deckId=${deck.deckId}`}
                   className='card-option'
                   >
                     <i className="fa-solid fa-circle-plus" />
@@ -56,7 +56,7 @@ export default class Decks extends React.Component {
                     Study Cards
                   </a>
                   <a
-                  href={`/#view-cards?deckName=${encodeURIComponent(deck.deckName)}&deckId=${deck.deckId}`}
+                  href={`/#view-cards?&deckId=${deck.deckId}`}
                   className='card-option'
                   >
                     <i className="fa-solid fa-glasses" />
