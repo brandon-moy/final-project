@@ -472,6 +472,12 @@ i {
   text-align: center;
 }
 
+.question-number {
+  color: white;
+  font-family: "Fuzzy Bubbles", sans-serif;
+  padding-left: 1rem;
+}
+
 .finish-links {
   font-family: "Fuzzy Bubbles", sans-serif;
   color: white;
@@ -603,6 +609,10 @@ label:hover,
   .view-card-question,
   .view-card-answer {
     font-size: 2.25rem;
+  }
+
+  .question-number {
+    padding-left: 3rem;
   }
 
   .add-card-button,

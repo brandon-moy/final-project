@@ -46,9 +46,11 @@ export default class StudyCards extends React.Component {
     if (!this.state.cards) return;
     const face = this.state.reveal;
     const card = this.state.cards[this.state.position];
+    const questionPlace = `${this.state.position + 1} / ${this.state.cards.length}`;
     return (
       <section className='study-cards'>
         <h1 className='deck-view-name col-2'>{this.state.deckName}</h1>
+        <h2 className='question-number'>Q : {questionPlace}</h2>
         <div
         className={`study-card-set flex wrap jc ${face}`}
         onTransitionEnd={this.finishFlip}>
