@@ -75,7 +75,7 @@ export default class App extends React.Component {
         showModal={this.showModal}
       />;
     } else if (path === 'study-cards') {
-      return <StudyCards />;
+      return <StudyCards deckId={deckId} />;
     } else {
       return <NotFound />;
     }
