@@ -484,6 +484,29 @@ i {
   text-decoration: none;
 }
 
+.no-cards-head {
+  padding-left: 1rem;
+  font-size: 2rem;
+  font-family: "Gloria Hallelujah", sans-serif;
+  color: white;
+}
+
+.no-cards-message {
+  font-family: "Fuzzy Bubbles", sans-serif;
+  color: white;
+  text-align: center;
+}
+
+.no-card-add {
+  font-family: "Gloria Hallelujah", sans-serif;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  border: 1px yellow solid;
+  border-radius: 0.25rem;
+  background-color: rgb(253 246 166);
+  text-decoration: none;
+}
+
 .new-deck:hover,
 .xmark-close:hover,
 .sticky-submit:hover,
@@ -618,5 +641,10 @@ label:hover,
   .add-card-button,
   .delete-show-modal {
     font-size: 2rem;
+  }
+
+  .no-cards-head {
+    padding-left: 0;
+    text-align: center;
   }
 }

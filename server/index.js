@@ -41,12 +41,12 @@ app.get('/api/cards/:deckId', (req, res, next) => {
   }
 
   const sql = `
-  select "flashcards".*,
-        "decks"."deckName"
-    from "flashcards"
-  join "decks" using ("deckId")
+  select  "decks"."deckName",
+          "flashcards".*
+     from "decks"
+  join "flashcards" using ("deckId")
   where "deckId" = $1
-    and "flashcards"."userId" = $2
+    and "decks"."userId" = $2
     order by "cardId"
   `;
 
@@ -55,7 +55,23 @@ app.get('/api/cards/:deckId', (req, res, next) => {
   db.query(sql, params)
     .then(result => {
       const cards = result.rows;
-      res.status(200).json(cards);
+      if (!cards.length) {
+        const sql = `
+        select "deckName"
+          from "decks"
+        where "deckId" = $1
+          and "userId" = $2
+        `;
+
+        db.query(sql, params)
+          .then(result => {
+            const deckName = result.rows;
+            res.status(200).json(deckName);
+          })
+          .catch(err => next(err));
+      } else {
+        res.status(200).json(cards);
+      }
     })
     .catch(err => next(err));
 });

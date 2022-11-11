@@ -1,13 +1,13 @@
 import React from 'react';
+import NoCards from '../components/nocards';
+import CardStudy from '../components/cardstudy';
 
 export default class StudyCards extends React.Component {
   constructor(props) {
     super(props);
     this.state = ({
-      cards: null,
       deckName: '',
-      position: 0,
-      reveal: 'question'
+      cards: null
     });
     this.startFlip = this.startFlip.bind(this);
     this.finishFlip = this.finishFlip.bind(this);
@@ -36,37 +36,35 @@ export default class StudyCards extends React.Component {
     fetch(`/api/cards/${this.props.deckId}`)
       .then(res => res.json())
       .then(data => {
-        const { deckName } = data[0];
+        let deckName = '';
+        if (data.length) {
+          deckName = data[0].deckName;
+        }
         this.setState({ cards: data, deckName });
       })
       .catch(err => console.error(err));
   }
 
+  renderContent() {
+    if (!this.state.cards.length) {
+      return <NoCards deckId={this.props.deckId} />;
+    } else {
+      return (
+        <CardStudy
+        deckId={this.props.deckId}
+        cards={this.state.cards}
+      />
+      );
+
+    }
+  }
+
   render() {
     if (!this.state.cards) return;
-    const face = this.state.reveal;
-    const card = this.state.cards[this.state.position];
-    const questionPlace = `${this.state.position + 1} / ${this.state.cards.length}`;
     return (
       <section className='study-cards'>
         <h1 className='deck-view-name col-2'>{this.state.deckName}</h1>
-        <h2 className='question-number'>Q : {questionPlace}</h2>
-        <div
-        className={`study-card-set flex wrap jc ${face}`}
-        onTransitionEnd={this.finishFlip}>
-          <div className='study-card-front flex jc ac' onClick={this.startFlip}>
-            <h1 className='view-card-question'>
-              {card.question}
-            </h1>
-          </div>
-          <div className='study-card-back' onClick={this.startFlip}>
-            <div className='flash-card-repeating-blue flex jc'>
-              <h2 className='view-card-answer'>
-                {card.answer}
-              </h2>
-            </div>
-          </div>
-        </div>
+        { this.renderContent() };
       </section>
     );
   }

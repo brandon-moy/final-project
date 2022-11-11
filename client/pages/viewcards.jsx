@@ -3,7 +3,8 @@ import React from 'react';
 export default class ViewCards extends React.Component {
   constructor(props) {
     super(props);
-    this.state = ({ cards: [] });
+    this.state = ({ cards: null });
+    this.renderCards = this.renderCards.bind(this);
   }
 
   componentDidMount() {
@@ -16,7 +17,8 @@ export default class ViewCards extends React.Component {
       .catch(err => console.error(err));
   }
 
-  render() {
+  renderCards() {
+    if (!this.state.cards[0].question) return;
     const cards = this.state.cards.map(card => {
       return (
         <div key={card.cardId} id={card.cardId} className='card-set flex wrap'>
@@ -32,14 +34,19 @@ export default class ViewCards extends React.Component {
           </div>
           <div className='spacer col-2' />
           <a
-          href={`/#edit-card?deckId=${this.props.deckId}&cardId=${card.cardId}`}
-          className='deck-edit-card col-2'>
+              href={`/#edit-card?deckId=${this.props.deckId}&cardId=${card.cardId}`}
+              className='deck-edit-card col-2'>
             <i className="fa-solid fa-pencil" />
             Edit Card
           </a>
         </div>
       );
     });
+    return cards;
+  }
+
+  render() {
+    if (!this.state.cards) return;
     return (
       <section className='card-deck'>
         <div className='flex jsb ac wrap'>
@@ -53,7 +60,7 @@ export default class ViewCards extends React.Component {
             Add Card
           </a>
         </div>
-        {cards}
+        { this.renderCards() }
       </section>
     );
   }
