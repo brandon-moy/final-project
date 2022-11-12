@@ -31,11 +31,11 @@ export default class DeleteForm extends React.Component {
           onClick={this.props.closeModal}>
             Cancel
           </a>
-          <a
+          <button
           className='confirm-delete'
           onClick={this.confirmDelete}>
             Continue
-          </a>
+          </button>
         </div>
       </section>
     );

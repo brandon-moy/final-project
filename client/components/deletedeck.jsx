@@ -20,6 +20,16 @@ export default class DeleteDeck extends React.Component {
       .catch(err => console.error(err));
   }
 
+  componentDidMount() {
+    fetch(`/api/cards/${this.props.deckId}`)
+      .then(res => res.json())
+      .then(data => {
+        const { deckName } = data[0];
+        this.setState({ deckName });
+      })
+      .catch(err => console.error(err));
+  }
+
   render() {
     return (
       <section className='delete-confirm'>
@@ -27,7 +37,7 @@ export default class DeleteDeck extends React.Component {
           Are you sure you want to delete this deck?
         </h3>
         <h1 className='delete-deck-name'>
-          {this.props.deckName}
+          {this.state.deckName}
         </h1>
         <p className='delete-warning'>
           Deleting this deck will delete all flashcards associated with this deck!

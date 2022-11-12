@@ -32,7 +32,9 @@ export default class App extends React.Component {
   }
 
   closeModal(event) {
-    if (this.state.form === 'newdeck' || this.state.form === 'deletedeck') {
+    const { form } = this.state;
+    const splitForm = form.split(' ');
+    if (form === 'newdeck' || splitForm[0] === 'deletedeck') {
       fetch('/api/decks')
         .then(res => res.json())
         .then(data => this.setState({ decks: data }));
@@ -56,7 +58,7 @@ export default class App extends React.Component {
   renderContent() {
     const { path } = this.state.route;
     const deckId = this.state.route.params.get('deckId');
-    if (path === '' || path === 'delete-deck') {
+    if (path === '') {
       return <Decks decks={this.state.decks} showModal={this.showModal} />;
     } else if (path === 'add-card') {
       return <AddCard deckId={deckId} />;
@@ -80,18 +82,18 @@ export default class App extends React.Component {
 
   renderModalForm() {
     const { form } = this.state;
+    if (!form) return;
+    const splitForm = form.split(' ');
     const deckId = this.state.route.params.get('deckId');
-    const deckName = this.state.route.params.get('deckName');
-    if (form === 'newdeck') {
+    if (splitForm[0] === 'newdeck') {
       return <NewDeck closeModal={this.closeModal} />;
-    } else if (form === 'deletedeck') {
+    } else if (splitForm[0] === 'deletedeck') {
       return <DeleteDeck
         showModal={this.showModal}
         closeModal={this.closeModal}
-        deckId={deckId}
-        deckName={deckName}
+        deckId={splitForm[1]}
       />;
-    } else if (form === 'deletecard') {
+    } else if (splitForm[0] === 'deletecard') {
       const cardId = this.state.route.params.get('cardId');
       return <DeleteForm
         closeModal={this.closeModal}

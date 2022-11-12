@@ -400,6 +400,9 @@ i {
 
 .confirm-delete {
   padding-right: 1.5rem;
+  font-family: "Fuzzy Bubbles", sans-serif;
+  background: transparent;
+  border: none;
 }
 
 .delete-deck-message {
@@ -417,6 +420,13 @@ i {
   font-size: 0.75rem;
   padding-left: 1.25rem;
   padding-bottom: 1rem;
+}
+
+.delete-deck-button {
+  font-family: "Fuzzy Bubbles", sans-serif;
+  font-size: 1rem;
+  background: transparent;
+  border: none;
 }
 
 .study-card-set {

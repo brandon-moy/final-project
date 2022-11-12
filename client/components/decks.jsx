@@ -62,14 +62,13 @@ export default class Decks extends React.Component {
                     <i className="fa-solid fa-glasses" />
                     View Cards
                   </a>
-                  <a
-                  id='deletedeck'
-                  href={`/#delete-deck?deckName=${encodeURIComponent(deck.deckName)}&deckId=${deck.deckId}`}
+                  <button
+                  id={`deletedeck ${deck.deckId}`}
                   onClick={this.props.showModal}
-                  className='card-option'>
+                  className='card-option delete-deck-button'>
                     <i className="fa-solid fa-trash-can" />
                     Delete Deck
-                  </a>
+                  </button>
                 </section>
               </div>
             </div>
