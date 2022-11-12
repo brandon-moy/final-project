@@ -4,7 +4,6 @@ export default class ViewCards extends React.Component {
   constructor(props) {
     super(props);
     this.state = ({ cards: null });
-    this.renderCards = this.renderCards.bind(this);
   }
 
   componentDidMount() {

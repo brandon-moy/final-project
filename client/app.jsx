@@ -24,7 +24,6 @@ export default class App extends React.Component {
     });
     this.showModal = this.showModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.renderContent = this.renderContent.bind(this);
   }
 
   showModal(event) {

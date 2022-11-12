@@ -523,9 +523,12 @@ i {
 .option-paper:hover,
 .add-card-button:hover,
 label:hover,
-.delete-show-modal,
-.cancel-delete,
-.confirm-delete {
+.delete-show-modal:hover,
+.cancel-delete:hover,
+.confirm-delete:hover,
+.delete-deck-button:hover,
+.study-card-front:hover,
+.study-card-back:hover {
   cursor: pointer;
 }
 
