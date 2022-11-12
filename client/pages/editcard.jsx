@@ -1,4 +1,6 @@
 import React from 'react';
+import Modal from '../components/modal';
+import DeleteForm from '../components/deletecard';
 
 export default class EditCard extends React.Component {
   constructor(props) {
@@ -6,6 +8,8 @@ export default class EditCard extends React.Component {
     this.state = { question: '', answer: '' };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   handleChange(event) {
@@ -32,6 +36,15 @@ export default class EditCard extends React.Component {
         location.href = `/#view-cards?deckId=${this.props.deckId}`;
       })
       .catch(err => console.error(err));
+  }
+
+  showModal(event) {
+    this.setState({ show: true });
+  }
+
+  closeModal(event) {
+    this.setState({ show: false });
+
   }
 
   componentDidMount() {
@@ -86,12 +99,19 @@ export default class EditCard extends React.Component {
               id='deletecard'
               className='delete-show-modal'
               type='button'
-              onClick={this.props.showModal}>
+              onClick={this.showModal}>
               Delete Card
             </button>
             <button className='add-card-button'>Save</button>
           </div>
         </form>
+        <Modal show={this.state.show} >
+          <DeleteForm
+          closeModal={this.closeModal}
+          cardId={this.props.cardId}
+          deckId={this.props.deckId}
+          />
+        </Modal>
       </div>
     );
   }

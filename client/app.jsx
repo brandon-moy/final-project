@@ -1,15 +1,11 @@
 import React from 'react';
 import Header from './components/header';
-import Modal from './components/modal';
 import parseRoute from './lib/parse-route';
 import Decks from './components/decks';
 import AddCard from './pages/addcard';
 import NotFound from './pages/notfound';
 import ViewCards from './pages/viewcards';
 import EditCard from './pages/editcard';
-import NewDeck from './components/newdeck';
-import DeleteForm from './components/deletecard';
-import DeleteDeck from './components/deletedeck';
 import StudyCards from './pages/studycards';
 
 export default class App extends React.Component {
@@ -18,29 +14,8 @@ export default class App extends React.Component {
     this.state = ({
       user: 1,
       route: parseRoute(window.location.hash),
-      show: false,
-      decks: null,
-      form: null
+      decks: null
     });
-    this.showModal = this.showModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-  }
-
-  showModal(event) {
-    this.setState({ show: true, form: event.target.id });
-  }
-
-  closeModal(event) {
-    const { form } = this.state;
-    const splitForm = form.split(' ');
-    if (form === 'newdeck' || splitForm[0] === 'deletedeck') {
-      fetch('/api/decks')
-        .then(res => res.json())
-        .then(data => this.setState({ decks: data }));
-      this.setState({ show: false, form: null });
-    } else {
-      this.setState({ show: false, form: null });
-    }
   }
 
   componentDidMount() {
@@ -79,37 +54,11 @@ export default class App extends React.Component {
     }
   }
 
-  renderModalForm() {
-    const { form } = this.state;
-    if (!form) return;
-    const splitForm = form.split(' ');
-    const deckId = this.state.route.params.get('deckId');
-    if (splitForm[0] === 'newdeck') {
-      return <NewDeck closeModal={this.closeModal} />;
-    } else if (splitForm[0] === 'deletedeck') {
-      return <DeleteDeck
-        showModal={this.showModal}
-        closeModal={this.closeModal}
-        deckId={splitForm[1]}
-      />;
-    } else if (splitForm[0] === 'deletecard') {
-      const cardId = this.state.route.params.get('cardId');
-      return <DeleteForm
-        closeModal={this.closeModal}
-        cardId={cardId}
-        deckId={deckId}
-      />;
-    }
-  }
-
   render() {
     return (
       <div>
         <Header />
         { this.renderContent() }
-        <Modal show={this.state.show}>
-          {this.renderModalForm()}
-        </Modal>
       </div>
     );
   }

@@ -1,11 +1,21 @@
 import React from 'react';
+import Modal from './modal';
+import NewDeck from './newdeck';
+import DeleteDeck from './deletedeck';
 
 export default class Decks extends React.Component {
   constructor(props) {
     super(props);
-    this.state = ({ currentShowing: null, lastShowing: null });
+    this.state = ({
+      currentShowing: null,
+      lastShowing: null,
+      show: false,
+      form: null
+    });
     this.showOptions = this.showOptions.bind(this);
     this.hideOptions = this.hideOptions.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   showOptions(event) {
@@ -16,6 +26,26 @@ export default class Decks extends React.Component {
   hideOptions(event) {
     const lastShowing = this.state.currentShowing;
     this.setState({ currentShowing: null, lastShowing });
+  }
+
+  showModal(event) {
+    this.setState({ show: true, form: event.target.id });
+  }
+
+  closeModal(event) {
+    fetch('/api/decks')
+      .then(res => res.json())
+      .then(data => this.setState({ decks: data }));
+    this.setState({ show: false, form: null });
+  }
+
+  renderModalForm() {
+    const { form } = this.state;
+    if (form === 'newdeck') {
+      return <NewDeck closeModal={this.closeModal} />;
+    } else if (form === 'deletedeck') {
+      return <DeleteDeck closeModal={this.closeModal} />;
+    }
   }
 
   render() {
@@ -63,8 +93,8 @@ export default class Decks extends React.Component {
                     View Cards
                   </a>
                   <button
-                  id={`deletedeck ${deck.deckId}`}
-                  onClick={this.props.showModal}
+                  id='deletedeck'
+                  onClick={this.showModal}
                   className='card-option delete-deck-button'>
                     <i className="fa-solid fa-trash-can" />
                     Delete Deck
@@ -83,10 +113,13 @@ export default class Decks extends React.Component {
         <a
         id="newdeck"
         className="new-deck"
-        onClick={this.props.showModal}>
+        onClick={this.showModal}>
           New Deck
         </a>
         <div className='flex wrap jc'>{renderedDecks}</div>
+        <Modal show={this.state.show}>
+          {this.renderModalForm()}
+        </Modal>
       </div>
     );
   }
