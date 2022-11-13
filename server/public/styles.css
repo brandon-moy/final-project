@@ -25,6 +25,8 @@ i {
   font-family: "Gloria Hallelujah", sans-serif;
   font-size: 2rem;
   padding-left: 1rem;
+  border: none;
+  background: transparent;
 }
 
 .modal-background {
@@ -183,7 +185,7 @@ i {
       #fff,
       #fff 6%,
       #9198e5 6%,
-      #9198e5 6.33%
+      #9198e5 6.75%
     );
   width: 95%;
   height: 100%;
@@ -286,10 +288,10 @@ i {
   background:
     repeating-linear-gradient(
       transparent,
-      transparent 15.5%,
-      blue 16%,
-      blue 16.5%,
-      transparent 16.5%
+      transparent 14.5%,
+      #9198e5 14.5%,
+      #9198e5 15.25%,
+      transparent 15.25%
     );
 }
 

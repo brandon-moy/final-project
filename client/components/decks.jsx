@@ -33,9 +33,16 @@ export default class Decks extends React.Component {
     const form = event.target.id;
     if (form === 'deletedeck') {
       const deleteDeckId = (event.target.closest('.scene').getAttribute('id'));
-      this.setState({ show: true, form: event.target.id, deleteDeckId });
+      this.setState({
+        show: true,
+        form: event.target.id,
+        deleteDeckId
+      });
     } else {
-      this.setState({ show: true, form });
+      this.setState({
+        show: true,
+        form
+      });
     }
 
   }
@@ -54,7 +61,10 @@ export default class Decks extends React.Component {
     if (form === 'newdeck') {
       return <NewDeck closeModal={this.closeModal} />;
     } else if (form === 'deletedeck') {
-      return <DeleteDeck deckId={this.state.deleteDeckId} closeModal={this.closeModal} />;
+      return <DeleteDeck
+      deckId={this.state.deleteDeckId}
+      closeModal={this.closeModal}
+      />;
     }
   }
 
@@ -120,12 +130,13 @@ export default class Decks extends React.Component {
     });
     return (
       <div className="decks-view">
-        <a
+        <button
+        type="button"
         id="newdeck"
         className="new-deck"
         onClick={this.showModal}>
           New Deck
-        </a>
+        </button>
         <div className='flex wrap jc'>{renderedDecks}</div>
         <Modal show={this.state.show}>
           {this.renderModalForm()}
