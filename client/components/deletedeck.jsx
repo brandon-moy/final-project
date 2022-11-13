@@ -1,8 +1,5 @@
 import React from 'react';
 
-// this needs to be fixed - need to check how deckId is being passed to be
-// able to get the deck name and also to make sure the delete goes through
-
 export default class DeleteDeck extends React.Component {
   constructor(props) {
     super(props);
@@ -18,7 +15,6 @@ export default class DeleteDeck extends React.Component {
     fetch(`/api/deletedeck/${deckId}`, req)
       .then(res => {
         this.props.closeModal();
-        location.href = '#';
       })
       .catch(err => console.error(err));
   }
@@ -46,17 +42,18 @@ export default class DeleteDeck extends React.Component {
           Deleting this deck will delete all flashcards associated with this deck!
         </p>
         <div className='flex jsb'>
-          <a
-          href='#'
+          <button
+          type='button'
           className='cancel-delete'
           onClick={this.props.closeModal}>
             Cancel
-          </a>
-          <a
+          </button>
+          <button
+          type='button'
           className='confirm-delete'
           onClick={this.deleteDeck}>
             Confirm
-          </a>
+          </button>
         </div>
       </section>
     );

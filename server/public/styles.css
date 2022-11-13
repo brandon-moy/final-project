@@ -397,6 +397,9 @@ i {
   font-size: 1.25rem;
   text-decoration: none;
   color: black;
+  background: transparent;
+  border: none;
+  font-family: "Fuzzy Bubbles", sans-serif;
 }
 
 .cancel-delete {
@@ -405,9 +408,6 @@ i {
 
 .confirm-delete {
   padding-right: 1.5rem;
-  font-family: "Fuzzy Bubbles", sans-serif;
-  background: transparent;
-  border: none;
 }
 
 .delete-deck-message {

@@ -3,7 +3,7 @@ import React from 'react';
 export default class NewDeck extends React.Component {
   constructor(props) {
     super(props);
-    this.state = ({ deckName: '', error: false, errorMessage: '' });
+    this.state = ({ deckName: '', error: false });
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -17,10 +17,7 @@ export default class NewDeck extends React.Component {
     event.preventDefault();
     const deckName = this.state.deckName;
     if (deckName.length > 20) {
-      this.setState({
-        error: true,
-        errorMessage: 'Sorry, that deck name is too long!'
-      });
+      this.setState({ error: true });
     } else {
       const req = {
         method: 'POST',
@@ -52,7 +49,9 @@ export default class NewDeck extends React.Component {
         onChange={this.handleChange}
         type="text"
         placeholder="e.g. HTML, CSS, JavaScript" />
-        <p className={errorClass}>{this.state.errorMessage}</p>
+        <p className={errorClass}>
+          Sorry, that deck name is too long!
+        </p>
         <button className="sticky-submit">Continue</button>
       </form>
     );
