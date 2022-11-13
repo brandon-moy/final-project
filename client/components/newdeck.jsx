@@ -13,6 +13,8 @@ export default class NewDeck extends React.Component {
     this.setState({ deckName: value });
   }
 
+  // need to fix this why is it not sending another fetch request with the closing
+  // of the modal??
   handleSubmit(event) {
     event.preventDefault();
     const deckName = this.state.deckName;

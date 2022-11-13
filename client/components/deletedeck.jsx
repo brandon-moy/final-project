@@ -1,5 +1,8 @@
 import React from 'react';
 
+// this needs to be fixed - need to check how deckId is being passed to be
+// able to get the deck name and also to make sure the delete goes through
+
 export default class DeleteDeck extends React.Component {
   constructor(props) {
     super(props);

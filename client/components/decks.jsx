@@ -10,7 +10,8 @@ export default class Decks extends React.Component {
       currentShowing: null,
       lastShowing: null,
       show: false,
-      form: null
+      form: null,
+      deleteDeckId: null
     });
     this.showOptions = this.showOptions.bind(this);
     this.hideOptions = this.hideOptions.bind(this);
@@ -29,7 +30,8 @@ export default class Decks extends React.Component {
   }
 
   showModal(event) {
-    this.setState({ show: true, form: event.target.id });
+    const deleteDeckId = (event.target.closest('.scene').getAttribute('id'));
+    this.setState({ show: true, form: event.target.id, deleteDeckId });
   }
 
   closeModal(event) {
@@ -39,12 +41,13 @@ export default class Decks extends React.Component {
     this.setState({ show: false, form: null });
   }
 
+  // is the issue here with the close modal not sending another request for decks?
   renderModalForm() {
     const { form } = this.state;
     if (form === 'newdeck') {
       return <NewDeck closeModal={this.closeModal} />;
     } else if (form === 'deletedeck') {
-      return <DeleteDeck closeModal={this.closeModal} />;
+      return <DeleteDeck deckId={this.state.deleteDeckId} closeModal={this.closeModal} />;
     }
   }
 
@@ -57,7 +60,7 @@ export default class Decks extends React.Component {
             ? 'hiding'
             : '';
       return (
-        <div key={deck.deckId} className='scene col-3'>
+        <div key={deck.deckId} id={deck.deckId} className='scene col-3'>
           <div className='folder'>
             <div
             className='folder-front t-center'
