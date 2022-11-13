@@ -27,7 +27,10 @@ export default class CardStudy extends React.Component {
       if (position === length) {
         location.href = `/#view-cards?deckId=${this.props.deckId}`;
       } else {
-        this.setState({ reveal: 'question', position });
+        this.setState({
+          reveal: 'question',
+          position
+        });
       }
     }
   }
@@ -38,7 +41,9 @@ export default class CardStudy extends React.Component {
     const questionPlace = `${this.state.position + 1} / ${this.state.cards.length}`;
     return (
       <section className='study-cards'>
-        <h2 className='question-number'>Q : {questionPlace}</h2>
+        <h2 className='question-number'>
+          Q : {questionPlace}
+        </h2>
         <div
           className={`study-card-set flex wrap jc ${face}`}
           onTransitionEnd={this.finishFlip}>

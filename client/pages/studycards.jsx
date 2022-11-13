@@ -19,7 +19,10 @@ export default class StudyCards extends React.Component {
         if (data.length) {
           deckName = data[0].deckName;
         }
-        this.setState({ cards: data, deckName });
+        this.setState({
+          cards: data,
+          deckName
+        });
       })
       .catch(err => console.error(err));
   }
@@ -42,7 +45,9 @@ export default class StudyCards extends React.Component {
     if (!this.state.cards) return;
     return (
       <section className='study-cards'>
-        <h1 className='deck-view-name col-2'>{this.state.deckName}</h1>
+        <h1 className='deck-view-name col-2'>
+          {this.state.deckName}
+        </h1>
         { this.renderContent() };
       </section>
     );

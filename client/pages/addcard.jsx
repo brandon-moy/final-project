@@ -3,7 +3,10 @@ import React from 'react';
 export default class AddCard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = ({ question: '', answer: '' });
+    this.state = ({
+      question: '',
+      answer: ''
+    });
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -30,7 +33,10 @@ export default class AddCard extends React.Component {
     fetch(`/api/add-card/${deckId}`, req)
       .then(res => {
         res.json();
-        this.setState({ question: '', answer: '' });
+        this.setState({
+          question: '',
+          answer: ''
+        });
         location.href = `/#view-cards?deckId=${deckId}`;
       })
       .catch(err => console.error(err));
@@ -72,7 +78,9 @@ export default class AddCard extends React.Component {
             </div>
           </label>
           <div className='col-100'>
-            <button className='jfe add-card-button'>Save</button>
+            <button className='jfe add-card-button'>
+              Save
+            </button>
           </div>
         </form>
       </div>

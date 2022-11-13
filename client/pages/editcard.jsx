@@ -5,7 +5,10 @@ import DeleteForm from '../components/deletecard';
 export default class EditCard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { question: '', answer: '' };
+    this.state = {
+      question: '',
+      answer: ''
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.showModal = this.showModal.bind(this);
@@ -71,7 +74,7 @@ export default class EditCard extends React.Component {
             href={`/#add-card?deckId=${this.props.deckId}`}
             className='new-card-deck col-4'
           >
-            <i className="fa-solid fa-circle-plus" />
+            <i className='fa-solid fa-circle-plus' />
             Add Card
           </a>
         </div>
@@ -102,7 +105,9 @@ export default class EditCard extends React.Component {
               onClick={this.showModal}>
               Delete Card
             </button>
-            <button className='add-card-button'>Save</button>
+            <button className='add-card-button'>
+              Save
+            </button>
           </div>
         </form>
         <Modal show={this.state.show} >

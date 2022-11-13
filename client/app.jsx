@@ -42,8 +42,9 @@ export default class App extends React.Component {
     const deckId = this.state.route.params.get('deckId');
     if (path === '') {
       return <Decks
-      decks={this.state.decks}
-      updateDecks={this.updateDecks} />;
+        decks={this.state.decks}
+        updateDecks={this.updateDecks}
+      />;
     } else if (path === 'add-card') {
       return <AddCard deckId={deckId} />;
     } else if (path === 'view-cards') {

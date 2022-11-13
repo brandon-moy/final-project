@@ -21,17 +21,18 @@ export default class DeleteForm extends React.Component {
 
   render() {
     return (
-      <section className="delete-confirm">
+      <section className='delete-confirm'>
         <h2 className='delete-card-message'>
           Are you sure you want to delete this card?
         </h2>
-        <div className="flex jsb">
+        <div className='flex jsb'>
           <a
           className='cancel-delete'
           onClick={this.props.closeModal}>
             Cancel
           </a>
           <button
+          type='button'
           className='confirm-delete'
           onClick={this.confirmDelete}>
             Continue

@@ -21,12 +21,18 @@ export default class Decks extends React.Component {
 
   showOptions(event) {
     const lastShowing = this.state.currentShowing;
-    this.setState({ currentShowing: event.target.id, lastShowing });
+    this.setState({
+      currentShowing: event.target.id,
+      lastShowing
+    });
   }
 
   hideOptions(event) {
     const lastShowing = this.state.currentShowing;
-    this.setState({ currentShowing: null, lastShowing });
+    this.setState({
+      currentShowing: null,
+      lastShowing
+    });
   }
 
   showModal(event) {
@@ -62,8 +68,8 @@ export default class Decks extends React.Component {
       return <NewDeck closeModal={this.closeModal} />;
     } else if (form === 'deletedeck') {
       return <DeleteDeck
-      deckId={this.state.deleteDeckId}
-      closeModal={this.closeModal}
+        deckId={this.state.deleteDeckId}
+        closeModal={this.closeModal}
       />;
     }
   }
@@ -83,40 +89,44 @@ export default class Decks extends React.Component {
             className='folder-front t-center'
             id={deck.deckId}
             onClick={this.showOptions}>
-              <h1 className='deck-text'>{deck.deckName}</h1>
+              <h1 className='deck-text'>
+                {deck.deckName}
+              </h1>
             </div>
             <div
             className={`option-paper ${showPaper}`}
             onClick={this.hideOptions}>
               <div className='stripes'>
-                <h1 className='deck-title'>{deck.deckName}</h1>
+                <h1 className='deck-title'>
+                  {deck.deckName}
+                </h1>
                 <section className='options-container flex wrap jsb'>
                   <a
                   href={`/#add-card?deckId=${deck.deckId}`}
                   className='card-option'
                   >
-                    <i className="fa-solid fa-circle-plus" />
+                    <i className='fa-solid fa-circle-plus' />
                     Add Cards
                   </a>
                   <a
                   href={`/#study-cards?deckId=${deck.deckId}`}
                   className='card-option'
                   >
-                    <i className="fa-solid fa-graduation-cap" />
+                    <i className='fa-solid fa-graduation-cap' />
                     Study Cards
                   </a>
                   <a
                   href={`/#view-cards?&deckId=${deck.deckId}`}
                   className='card-option'
                   >
-                    <i className="fa-solid fa-glasses" />
+                    <i className='fa-solid fa-glasses' />
                     View Cards
                   </a>
                   <button
                   id='deletedeck'
                   onClick={this.showModal}
                   className='card-option delete-deck-button'>
-                    <i className="fa-solid fa-trash-can" />
+                    <i className='fa-solid fa-trash-can' />
                     Delete Deck
                   </button>
                 </section>
@@ -129,15 +139,17 @@ export default class Decks extends React.Component {
       );
     });
     return (
-      <div className="decks-view">
+      <div className='decks-view'>
         <button
-        type="button"
-        id="newdeck"
-        className="new-deck"
+        type='button'
+        id='newdeck'
+        className='new-deck'
         onClick={this.showModal}>
           New Deck
         </button>
-        <div className='flex wrap jc'>{renderedDecks}</div>
+        <div className='flex wrap jc'>
+          {renderedDecks}
+        </div>
         <Modal show={this.state.show}>
           {this.renderModalForm()}
         </Modal>

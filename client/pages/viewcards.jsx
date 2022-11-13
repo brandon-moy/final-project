@@ -11,7 +11,10 @@ export default class ViewCards extends React.Component {
       .then(res => res.json())
       .then(data => {
         const { deckName } = data[0];
-        this.setState({ cards: data, deckName });
+        this.setState({
+          cards: data,
+          deckName
+        });
       })
       .catch(err => console.error(err));
   }
@@ -28,14 +31,16 @@ export default class ViewCards extends React.Component {
           </div>
           <div className='card-back col-45'>
             <div className='flash-card-repeating-blue flex jc'>
-              <h2 className='view-card-answer'>{card.answer}</h2>
+              <h2 className='view-card-answer'>
+                {card.answer}
+              </h2>
             </div>
           </div>
           <div className='spacer col-2' />
           <a
               href={`/#edit-card?deckId=${this.props.deckId}&cardId=${card.cardId}`}
               className='deck-edit-card col-2'>
-            <i className="fa-solid fa-pencil" />
+            <i className='fa-solid fa-pencil' />
             Edit Card
           </a>
         </div>
@@ -49,13 +54,15 @@ export default class ViewCards extends React.Component {
     return (
       <section className='card-deck'>
         <div className='flex jsb ac wrap'>
-          <h1 className='deck-view-name col-2'>{this.state.deckName}</h1>
+          <h1 className='deck-view-name col-2'>
+            {this.state.deckName}
+          </h1>
           <div className='spacer col-4' />
           <a
           href={`/#add-card?deckId=${this.props.deckId}`}
           className='new-card-deck col-4'
           >
-            <i className="fa-solid fa-circle-plus" />
+            <i className='fa-solid fa-circle-plus' />
             Add Card
           </a>
         </div>
