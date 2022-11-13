@@ -16,6 +16,7 @@ export default class App extends React.Component {
       route: parseRoute(window.location.hash),
       decks: null
     });
+    this.updateDecks = this.updateDecks.bind(this);
   }
 
   componentDidMount() {
@@ -29,11 +30,20 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
+  updateDecks() {
+    fetch('/api/decks')
+      .then(res => res.json())
+      .then(data => this.setState({ decks: data }))
+      .catch(err => console.error(err));
+  }
+
   renderContent() {
     const { path } = this.state.route;
     const deckId = this.state.route.params.get('deckId');
     if (path === '') {
-      return <Decks decks={this.state.decks} showModal={this.showModal} />;
+      return <Decks
+      decks={this.state.decks}
+      updateDecks={this.updateDecks} />;
     } else if (path === 'add-card') {
       return <AddCard deckId={deckId} />;
     } else if (path === 'view-cards') {
@@ -45,7 +55,6 @@ export default class App extends React.Component {
       return <EditCard
         deckId={deckId}
         cardId={cardId}
-        showModal={this.showModal}
       />;
     } else if (path === 'study-cards') {
       return <StudyCards deckId={deckId} />;

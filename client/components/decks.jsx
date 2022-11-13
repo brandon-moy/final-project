@@ -30,18 +30,25 @@ export default class Decks extends React.Component {
   }
 
   showModal(event) {
-    const deleteDeckId = (event.target.closest('.scene').getAttribute('id'));
-    this.setState({ show: true, form: event.target.id, deleteDeckId });
+    const form = event.target.id;
+    if (form === 'deletedeck') {
+      const deleteDeckId = (event.target.closest('.scene').getAttribute('id'));
+      this.setState({ show: true, form: event.target.id, deleteDeckId });
+    } else {
+      this.setState({ show: true, form });
+    }
+
   }
 
   closeModal(event) {
-    fetch('/api/decks')
-      .then(res => res.json())
-      .then(data => this.setState({ decks: data }));
-    this.setState({ show: false, form: null });
+    this.props.updateDecks();
+    this.setState({
+      show: false,
+      form: null,
+      deleteDeckId: null
+    });
   }
 
-  // is the issue here with the close modal not sending another request for decks?
   renderModalForm() {
     const { form } = this.state;
     if (form === 'newdeck') {
