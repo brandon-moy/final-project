@@ -25,6 +25,7 @@ export default class ViewCards extends React.Component {
       return (
         <div key={card.cardId} id={card.cardId} className='card-set flex wrap'>
           <div className='card-front col-45 flex jc ac'>
+            <div className={`highlight confidence-${card.confidence}`} />
             <h1 className='view-card-question'>
               {card.question}
             </h1>

@@ -239,6 +239,7 @@ i {
 }
 
 .card-front {
+  position: relative;
   background-color: rgb(253 246 166);
   height: 10rem;
   margin: 0 auto 2rem;
@@ -540,6 +541,65 @@ i {
 
 .confidence:nth-child(5) {
   background-color: #3c9b46;
+}
+
+.highlight {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  width: 45%;
+  height: 15%;
+  border-radius: 1em 0;
+}
+
+.confidence-1 {
+  background:
+    linear-gradient(
+      -100deg,
+      rgba(255, 20, 0, 0.2),
+      rgba(255, 20, 0, 0.7) 95%,
+      rgba(255, 20, 0, 0.1)
+    );
+}
+
+.confidence-2 {
+  background:
+    linear-gradient(
+      -100deg,
+      rgba(230, 114, 5, 0.2),
+      rgba(230, 114, 5, 0.7) 95%,
+      rgba(230, 114, 5, 0.1)
+    );
+}
+
+.confidence-3 {
+  background:
+    linear-gradient(
+      -100deg,
+      rgba(255, 251, 0, 0.2),
+      rgba(255, 251, 0, 0.7) 95%,
+      rgba(255, 251, 0, 0.1)
+    );
+}
+
+.confidence-4 {
+  background:
+    linear-gradient(
+      -100deg,
+      rgba(112, 173, 73, 0.2),
+      rgba(112, 173, 73, 0.7) 95%,
+      rgba(112, 173, 73, 0.1)
+    );
+}
+
+.confidence-5 {
+  background:
+    linear-gradient(
+      -100deg,
+      rgba(38, 194, 53, 0.2),
+      rgba(38, 194, 53, 0.7) 95%,
+      rgba(38, 194, 53, 0.1)
+    );
 }
 
 .new-deck:hover,
