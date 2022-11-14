@@ -11,12 +11,14 @@ export default class Decks extends React.Component {
       lastShowing: null,
       show: false,
       form: null,
-      deleteDeckId: null
+      deleteDeckId: null,
+      deleteDeckName: null
     });
     this.showOptions = this.showOptions.bind(this);
     this.hideOptions = this.hideOptions.bind(this);
     this.showModal = this.showModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.submitModal = this.submitModal.bind(this);
   }
 
   showOptions(event) {
@@ -38,11 +40,13 @@ export default class Decks extends React.Component {
   showModal(event) {
     const form = event.target.id;
     if (form === 'deletedeck') {
-      const deleteDeckId = (event.target.closest('.scene').getAttribute('id'));
+      const deleteDeckId = event.target.closest('.scene').getAttribute('id');
+      const deleteDeckName = event.target.closest('.options-container').getAttribute('id');
       this.setState({
         show: true,
         form: event.target.id,
-        deleteDeckId
+        deleteDeckId,
+        deleteDeckName
       });
     } else {
       this.setState({
@@ -53,8 +57,16 @@ export default class Decks extends React.Component {
 
   }
 
-  closeModal(event) {
+  submitModal(event) {
     this.props.updateDecks();
+    this.setState({
+      show: false,
+      form: null,
+      deleteDeckId: null
+    });
+  }
+
+  closeModal(event) {
     this.setState({
       show: false,
       form: null,
@@ -65,11 +77,16 @@ export default class Decks extends React.Component {
   renderModalForm() {
     const { form } = this.state;
     if (form === 'newdeck') {
-      return <NewDeck closeModal={this.closeModal} />;
+      return <NewDeck
+        closeModal={this.closeModal}
+        submitModal={this.submitModal}
+      />;
     } else if (form === 'deletedeck') {
       return <DeleteDeck
         deckId={this.state.deleteDeckId}
+        deckName={this.state.deleteDeckName}
         closeModal={this.closeModal}
+        submitModal={this.submitModal}
       />;
     }
   }
@@ -100,7 +117,10 @@ export default class Decks extends React.Component {
                 <h1 className='deck-title'>
                   {deck.deckName}
                 </h1>
-                <section className='options-container flex wrap jsb'>
+                <section
+                className='options-container flex wrap jsb'
+                id={deck.deckName}
+                >
                   <a
                   href={`/#add-card?deckId=${deck.deckId}`}
                   className='card-option'

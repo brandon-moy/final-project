@@ -7,7 +7,8 @@ export default class EditCard extends React.Component {
     super(props);
     this.state = {
       question: '',
-      answer: ''
+      answer: '',
+      show: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

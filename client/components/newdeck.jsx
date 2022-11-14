@@ -32,7 +32,7 @@ export default class NewDeck extends React.Component {
       fetch('/api/create-deck', req)
         .then(res => {
           res.json();
-          this.props.closeModal();
+          this.props.submitModal();
         })
         .catch(err => console.error(err));
     }

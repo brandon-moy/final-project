@@ -3,7 +3,6 @@ import React from 'react';
 export default class DeleteDeck extends React.Component {
   constructor(props) {
     super(props);
-    this.state = ({ deckName: null });
     this.deleteDeck = this.deleteDeck.bind(this);
   }
 
@@ -14,17 +13,7 @@ export default class DeleteDeck extends React.Component {
     };
     fetch(`/api/deletedeck/${deckId}`, req)
       .then(res => {
-        this.props.closeModal();
-      })
-      .catch(err => console.error(err));
-  }
-
-  componentDidMount() {
-    fetch(`/api/cards/${this.props.deckId}`)
-      .then(res => res.json())
-      .then(data => {
-        const { deckName } = data[0];
-        this.setState({ deckName });
+        this.props.submitModal();
       })
       .catch(err => console.error(err));
   }
@@ -36,7 +25,7 @@ export default class DeleteDeck extends React.Component {
           Are you sure you want to delete this deck?
         </h3>
         <h1 className='delete-deck-name'>
-          {this.state.deckName}
+          {this.props.deckName}
         </h1>
         <p className='delete-warning'>
           Deleting this deck will delete all flashcards associated with this deck!
