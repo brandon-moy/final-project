@@ -544,6 +544,14 @@ i {
 }
 
 .highlight {
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  width: 45%;
+  height: 15%;
+  border-radius: 1em 0;
+}
+
+.view-highlight {
   position: absolute;
   top: 0.5rem;
   left: 0.5rem;

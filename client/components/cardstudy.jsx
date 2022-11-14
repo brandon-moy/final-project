@@ -65,7 +65,9 @@ export default class CardStudy extends React.Component {
         <div
         className={`study-card-set flex wrap just-center col-100 ${face}`}
         onTransitionEnd={this.finishFlip}>
-          <div className='study-card-front flex just-center align-center' onClick={this.startFlip}>
+          <div
+          className='study-card-front flex-column'
+          onClick={this.startFlip}>
             <div className={`highlight confidence-${card.confidence}`} />
             <h1 className='view-card-question'>
               {card.question}
