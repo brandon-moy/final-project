@@ -271,6 +271,9 @@ i {
   outline: none;
   background: transparent;
   text-align: center;
+  inline-size: 20rem;
+  overflow: scroll;
+  overflow-wrap: break-word;
 }
 
 .card-question {
@@ -328,6 +331,9 @@ i {
   outline: none;
   background: transparent;
   text-align: center;
+  inline-size: 20rem;
+  overflow: scroll;
+  overflow-wrap: break-word;
 }
 
 .view-card-question {
@@ -739,6 +745,8 @@ button:hover,
   .view-card-question,
   .view-card-answer {
     font-size: 2.25rem;
+    inline-size: 35rem;
+    overflow: auto;
   }
 
   .question-number {
