@@ -99,6 +99,8 @@ export default class Decks extends React.Component {
         : (Number(this.state.lastShowing) === deck.deckId)
             ? 'hiding'
             : '';
+      const maxConfidence = deck.cardCount * 5;
+      const confidencePercent = Math.floor((deck.totalConfidence / maxConfidence) * 100);
       return (
         <div key={deck.deckId} id={deck.deckId} className='scene col-3'>
           <div className='folder'>
@@ -145,6 +147,16 @@ export default class Decks extends React.Component {
                     <i className='fa-solid fa-trash-can' />
                     Delete Deck
                   </button>
+                  <div className='conf-meter-container col-100 flex align-center'>
+                    <meter
+                    className='confidence-meter'
+                    max='100'
+                    low='57'
+                    high='78'
+                    optimum='100'
+                    value={confidencePercent} />
+                    <p className='confidence-percent'>{confidencePercent}%</p>
+                  </div>
                 </section>
               </div>
             </div>

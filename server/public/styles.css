@@ -616,6 +616,16 @@ i {
     );
 }
 
+.confidence-meter {
+  padding-left: 1rem;
+  width: 75%;
+  height: 2.5vh;
+}
+
+.confidence-percent {
+  padding-left: 0.5rem;
+}
+
 a:hover,
 button:hover,
 .folder-front:hover,
