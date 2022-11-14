@@ -12,8 +12,8 @@ export default class NoCards extends React.Component {
         </h2>
         <div className='flex just-center'>
           <a
-            className='no-card-add'
-            href={`/#add-card?deckId=${this.props.deckId}`}>
+          className='no-card-add'
+          href={`/#add-card?deckId=${this.props.deckId}`}>
             Here
           </a>
         </div>

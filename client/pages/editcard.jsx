@@ -72,9 +72,8 @@ export default class EditCard extends React.Component {
           </h1>
           <div className='spacer col-4' />
           <a
-            href={`/#add-card?deckId=${this.props.deckId}`}
-            className='new-card-deck col-4'
-          >
+          href={`/#add-card?deckId=${this.props.deckId}`}
+          className='new-card-deck col-4'>
             <i className='fa-solid fa-circle-plus' />
             Add Card
           </a>
@@ -100,10 +99,10 @@ export default class EditCard extends React.Component {
           </label>
           <div className='col-100'>
             <button
-              id='deletecard'
-              className='delete-show-modal'
-              type='button'
-              onClick={this.showModal}>
+            id='deletecard'
+            className='delete-show-modal'
+            type='button'
+            onClick={this.showModal}>
               Delete Card
             </button>
             <button className='add-card-button'>

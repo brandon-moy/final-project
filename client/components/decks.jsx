@@ -119,26 +119,22 @@ export default class Decks extends React.Component {
                 </h1>
                 <section
                 className='options-container flex wrap just-between'
-                id={deck.deckName}
-                >
+                id={deck.deckName}>
                   <a
                   href={`/#add-card?deckId=${deck.deckId}`}
-                  className='card-option'
-                  >
+                  className='card-option'>
                     <i className='fa-solid fa-circle-plus' />
                     Add Cards
                   </a>
                   <a
                   href={`/#study-cards?deckId=${deck.deckId}`}
-                  className='card-option'
-                  >
+                  className='card-option'>
                     <i className='fa-solid fa-graduation-cap' />
                     Study Cards
                   </a>
                   <a
                   href={`/#view-cards?&deckId=${deck.deckId}`}
-                  className='card-option'
-                  >
+                  className='card-option'>
                     <i className='fa-solid fa-glasses' />
                     View Cards
                   </a>

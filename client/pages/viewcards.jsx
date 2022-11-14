@@ -39,8 +39,8 @@ export default class ViewCards extends React.Component {
           </div>
           <div className='spacer col-2' />
           <a
-              href={`/#edit-card?deckId=${this.props.deckId}&cardId=${card.cardId}`}
-              className='deck-edit-card col-2'>
+          href={`/#edit-card?deckId=${this.props.deckId}&cardId=${card.cardId}`}
+          className='deck-edit-card col-2'>
             <i className='fa-solid fa-pencil' />
             Edit Card
           </a>
@@ -61,8 +61,7 @@ export default class ViewCards extends React.Component {
           <div className='spacer col-4' />
           <a
           href={`/#add-card?deckId=${this.props.deckId}`}
-          className='new-card-deck col-4'
-          >
+          className='new-card-deck col-4'>
             <i className='fa-solid fa-circle-plus' />
             Add Card
           </a>
