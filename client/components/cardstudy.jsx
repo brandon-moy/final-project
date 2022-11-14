@@ -63,21 +63,21 @@ export default class CardStudy extends React.Component {
           Q : {questionPlace}
         </h2>
         <div
-        className={`study-card-set flex wrap jc col-100 ${face}`}
+        className={`study-card-set flex wrap just-center col-100 ${face}`}
         onTransitionEnd={this.finishFlip}>
-          <div className='study-card-front flex jc ac' onClick={this.startFlip}>
+          <div className='study-card-front flex just-center align-center' onClick={this.startFlip}>
             <div className={`highlight confidence-${card.confidence}`} />
             <h1 className='view-card-question'>
               {card.question}
             </h1>
           </div>
           <div className='study-card-back'>
-            <div className='flash-card-repeating-blue flex jc'>
+            <div className='flash-card-repeating-blue flex just-center'>
               <h2 className='view-card-answer'>
                 {card.answer}
               </h2>
             </div>
-            <div className='button-container flex jse col-100'>
+            <div className='button-container flex just-even col-100'>
               <button
               id='1'
               type='button'

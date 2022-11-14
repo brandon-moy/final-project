@@ -66,7 +66,7 @@ export default class EditCard extends React.Component {
   render() {
     return (
       <div className='edit-card-page'>
-        <div className='flex jsb ac wrap'>
+        <div className='flex just-between align-center wrap'>
           <h1 className='deck-view-name col-2'>
             {this.state.deckName}
           </h1>
@@ -80,7 +80,7 @@ export default class EditCard extends React.Component {
           </a>
         </div>
         <form className='new-card flex wrap' onSubmit={this.handleSubmit}>
-          <label className='card-front col-45 flex jc ac'>
+          <label className='card-front col-45 flex just-center align-center'>
             <textarea
             name='question'
             type='text'
@@ -89,7 +89,7 @@ export default class EditCard extends React.Component {
             onChange={this.handleChange} />
           </label>
           <label className='card-back col-45'>
-            <div className='flash-card-repeating-blue flex jc afs'>
+            <div className='flash-card-repeating-blue flex just-center align-f-start'>
               <textarea
               name='answer'
               type='text'

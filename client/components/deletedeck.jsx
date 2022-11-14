@@ -30,7 +30,7 @@ export default class DeleteDeck extends React.Component {
         <p className='delete-warning'>
           Deleting this deck will delete all flashcards associated with this deck!
         </p>
-        <div className='flex jsb'>
+        <div className='flex just-between'>
           <button
           type='button'
           className='cancel-delete'

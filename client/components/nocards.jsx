@@ -10,7 +10,7 @@ export default class NoCards extends React.Component {
         <h2 className='no-cards-message'>
           Let&apos;s add some cards!
         </h2>
-        <div className='flex jc'>
+        <div className='flex just-center'>
           <a
             className='no-card-add'
             href={`/#add-card?deckId=${this.props.deckId}`}>

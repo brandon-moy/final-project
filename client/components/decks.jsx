@@ -118,7 +118,7 @@ export default class Decks extends React.Component {
                   {deck.deckName}
                 </h1>
                 <section
-                className='options-container flex wrap jsb'
+                className='options-container flex wrap just-between'
                 id={deck.deckName}
                 >
                   <a
@@ -167,7 +167,7 @@ export default class Decks extends React.Component {
         onClick={this.showModal}>
           New Deck
         </button>
-        <div className='flex wrap jc'>
+        <div className='flex wrap just-center'>
           {renderedDecks}
         </div>
         <Modal show={this.state.show}>

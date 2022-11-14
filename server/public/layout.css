@@ -11,27 +11,27 @@
   flex-direction: column;
 }
 
-.jc {
+.just-center {
   justify-content: center;
 }
 
-.jsb {
+.just-between {
   justify-content: space-between;
 }
 
-.jse {
+.just-even {
   justify-content: space-evenly;
 }
 
-.jfe {
+.just-f-end {
   justify-content: flex-end;
 }
 
-.ac {
+.align-center {
   align-items: center;
 }
 
-.afs {
+.align-f-start {
   align-items: flex-start;
 }
 
