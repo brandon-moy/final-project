@@ -35,7 +35,6 @@ CREATE TABLE "public"."decks" (
 	"deckId" serial NOT NULL,
 	"deckName" TEXT NOT NULL,
 	"userId" int NOT NULL,
-	"deckConfidence" int NOT NULL DEFAULT '0',
 	CONSTRAINT "decks_pk" PRIMARY KEY ("deckId")
 ) WITH (
   OIDS=FALSE

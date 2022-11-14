@@ -19,9 +19,13 @@ app.use(express.json());
 
 app.get('/api/decks', (req, res, next) => {
   const sql = `
-    select *
+    select "decks".*,
+           count("flashcards".*) as "cardCount",
+           sum("flashcards"."confidence") as "totalConfidence"
       from "decks"
-    where "userId" = $1
+    left join "flashcards" using ("deckId")
+    where "decks"."userId" = $1
+    group by "decks"."deckId"
   `;
 
   const params = [1];
