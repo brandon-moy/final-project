@@ -519,7 +519,7 @@ i {
   font-weight: 800;
   font-size: 1.25rem;
   padding: 0.75rem 1.25rem;
-  opacity: 1;
+  border: none;
 }
 
 .confidence:nth-child(1) {
@@ -531,11 +531,11 @@ i {
 }
 
 .confidence:nth-child(3) {
-  background-color: #dbed6a;
+  background-color: #dbd82c;
 }
 
 .confidence:nth-child(4) {
-  background-color: #90ed57;
+  background-color: #70ad49;
 }
 
 .confidence:nth-child(5) {

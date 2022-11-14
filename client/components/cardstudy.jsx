@@ -11,6 +11,7 @@ export default class CardStudy extends React.Component {
     });
     this.startFlip = this.startFlip.bind(this);
     this.finishFlip = this.finishFlip.bind(this);
+    this.updateConfidence = this.updateConfidence.bind(this);
   }
 
   startFlip(event) {
@@ -35,6 +36,23 @@ export default class CardStudy extends React.Component {
     }
   }
 
+  updateConfidence(event) {
+    const confidence = { confidence: event.target.getAttribute('id') };
+    const { cardId } = this.state.cards[this.state.position];
+    const req = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(confidence)
+    };
+    fetch(`/api/card/confidence/${cardId}`, req)
+      .then(res => {
+        this.startFlip();
+      })
+      .catch(err => console.error(err));
+  }
+
   render() {
     const face = this.state.reveal;
     const card = this.state.cards[this.state.position];
@@ -45,25 +63,60 @@ export default class CardStudy extends React.Component {
           Q : {questionPlace}
         </h2>
         <div
-            className={`study-card-set flex wrap jc col-100 ${face}`}
-            onTransitionEnd={this.finishFlip}>
+        className={`study-card-set flex wrap jc col-100 ${face}`}
+        onTransitionEnd={this.finishFlip}>
           <div className='study-card-front flex jc ac' onClick={this.startFlip}>
             <h1 className='view-card-question'>
               {card.question}
             </h1>
           </div>
-          <div className='study-card-back' onClick={this.startFlip}>
+          <div className='study-card-back'>
             <div className='flash-card-repeating-blue flex jc'>
               <h2 className='view-card-answer'>
                 {card.answer}
               </h2>
             </div>
-            <div className="button-container flex jse col-100">
-              <div className='confidence' id='1'>1</div>
-              <div className='confidence' id='2'>2</div>
-              <div className='confidence' id='3'>3</div>
-              <div className='confidence' id='4'>4</div>
-              <div className='confidence' id='5'>5</div>
+            <div className='button-container flex jse col-100'>
+              <button
+              type='button'
+              className='confidence'
+              id='1'
+              onClick={this.updateConfidence}
+              >
+                1
+              </button>
+              <button
+                type='button'
+                className='confidence'
+                id='2'
+                onClick={this.updateConfidence}
+              >
+                2
+              </button>
+              <button
+                type='button'
+                className='confidence'
+                id='3'
+                onClick={this.updateConfidence}
+              >
+                3
+              </button>
+              <button
+                type='button'
+                className='confidence'
+                id='4'
+                onClick={this.updateConfidence}
+              >
+                4
+              </button>
+              <button
+                type='button'
+                className='confidence'
+                id='5'
+                onClick={this.updateConfidence}
+              >
+                5
+              </button>
             </div>
           </div>
         </div>
