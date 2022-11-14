@@ -17,8 +17,7 @@ i {
   font-family: "Fuzzy Bubbles", sans-serif;
   font-weight: 800;
   font-size: 2.5rem;
-  border: none;
-  background: transparent;
+  text-decoration: none;
 }
 
 .new-deck {
