@@ -508,6 +508,40 @@ i {
   text-decoration: none;
 }
 
+.button-container {
+  padding-top: 4rem;
+}
+
+.confidence {
+  color: white;
+  font-family: Delius, sans-serif;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 1.25rem;
+  padding: 0.75rem 1.25rem;
+  opacity: 1;
+}
+
+.confidence:nth-child(1) {
+  background-color: #a52424;
+}
+
+.confidence:nth-child(2) {
+  background-color: #dc9554;
+}
+
+.confidence:nth-child(3) {
+  background-color: #dbed6a;
+}
+
+.confidence:nth-child(4) {
+  background-color: #90ed57;
+}
+
+.confidence:nth-child(5) {
+  background-color: #3c9b46;
+}
+
 .new-deck:hover,
 .xmark-close:hover,
 .sticky-submit:hover,
@@ -519,7 +553,8 @@ label:hover,
 .confirm-delete:hover,
 .delete-deck-button:hover,
 .study-card-front:hover,
-.study-card-back:hover {
+.study-card-back:hover,
+.confidence:hover {
   cursor: pointer;
 }
 
@@ -595,10 +630,19 @@ label:hover,
     height: 20rem;
   }
 
+  .study-card-set {
+    height: 15rem;
+  }
+
+  .button-container {
+    flex-basis: 60%;
+    margin: auto;
+  }
+
   .study-card-front,
   .study-card-back {
-    height: 20rem;
-    width: 50%;
+    height: 15rem;
+    width: 40%;
   }
 
   .flash-card-repeating-blue {

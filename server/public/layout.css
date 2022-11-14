@@ -19,6 +19,10 @@
   justify-content: space-between;
 }
 
+.jse {
+  justify-content: space-evenly;
+}
+
 .jfe {
   justify-content: flex-end;
 }

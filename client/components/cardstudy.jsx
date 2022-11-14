@@ -45,8 +45,8 @@ export default class CardStudy extends React.Component {
           Q : {questionPlace}
         </h2>
         <div
-          className={`study-card-set flex wrap jc ${face}`}
-          onTransitionEnd={this.finishFlip}>
+            className={`study-card-set flex wrap jc col-100 ${face}`}
+            onTransitionEnd={this.finishFlip}>
           <div className='study-card-front flex jc ac' onClick={this.startFlip}>
             <h1 className='view-card-question'>
               {card.question}
@@ -57,6 +57,13 @@ export default class CardStudy extends React.Component {
               <h2 className='view-card-answer'>
                 {card.answer}
               </h2>
+            </div>
+            <div className="button-container flex jse col-100">
+              <div className='confidence' id='1'>1</div>
+              <div className='confidence' id='2'>2</div>
+              <div className='confidence' id='3'>3</div>
+              <div className='confidence' id='4'>4</div>
+              <div className='confidence' id='5'>5</div>
             </div>
           </div>
         </div>
