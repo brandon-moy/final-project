@@ -3,7 +3,10 @@ import React from 'react';
 export default class AddCard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = ({ question: '', answer: '' });
+    this.state = ({
+      question: '',
+      answer: ''
+    });
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -30,37 +33,57 @@ export default class AddCard extends React.Component {
     fetch(`/api/add-card/${deckId}`, req)
       .then(res => {
         res.json();
-        this.setState({ question: '', answer: '' });
-        location.href = `/#view-cards?deckName=${encodeURIComponent(this.props.deckName)}&deckId=${deckId}`;
+        this.setState({
+          question: '',
+          answer: ''
+        });
+        location.href = `/#view-cards?deckId=${deckId}`;
+      })
+      .catch(err => console.error(err));
+  }
+
+  componentDidMount() {
+    fetch(`/api/cards/${this.props.deckId}`)
+      .then(res => res.json())
+      .then(data => {
+        const { deckName } = data[0];
+        this.setState({ deckName });
       })
       .catch(err => console.error(err));
   }
 
   render() {
     return (
-      <form className='new-card flex wrap' onSubmit={this.handleSubmit}>
-        <label className='card-front col-45 flex jc ac'>
-          <textarea
+      <div className='edit-card-page'>
+        <h1 className='deck-view-name'>
+          {this.state.deckName}
+        </h1>
+        <form className='new-card flex wrap' onSubmit={this.handleSubmit}>
+          <label className='card-front col-45 flex jc ac'>
+            <textarea
           name='question'
           type='text'
           value={this.state.question}
           className='card-question'
           onChange={this.handleChange} />
-        </label>
-        <label className='card-back col-45'>
-          <div className='flash-card-repeating-blue flex jc afs'>
-            <textarea
+          </label>
+          <label className='card-back col-45'>
+            <div className='flash-card-repeating-blue flex jc afs'>
+              <textarea
             name='answer'
             type='text'
             value={this.state.answer}
             className='card-answer'
             onChange={this.handleChange} />
+            </div>
+          </label>
+          <div className='col-100'>
+            <button className='jfe add-card-button'>
+              Save
+            </button>
           </div>
-        </label>
-        <div className='col-100'>
-          <button className='jfe add-card-button'>Save</button>
-        </div>
-      </form>
+        </form>
+      </div>
     );
   }
 }

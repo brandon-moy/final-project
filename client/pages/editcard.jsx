@@ -1,11 +1,19 @@
 import React from 'react';
+import Modal from '../components/modal';
+import DeleteForm from '../components/deletecard';
 
 export default class EditCard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { question: '', answer: '' };
+    this.state = {
+      question: '',
+      answer: '',
+      show: false
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   handleChange(event) {
@@ -29,9 +37,18 @@ export default class EditCard extends React.Component {
     };
     fetch(`/api/card/${cardId}`, req)
       .then(res => {
-        location.href = `/#view-cards?deckName=${encodeURIComponent(this.props.deckName)}&deckId=${this.props.deckId}`;
+        location.href = `/#view-cards?deckId=${this.props.deckId}`;
       })
       .catch(err => console.error(err));
+  }
+
+  showModal(event) {
+    this.setState({ show: true });
+  }
+
+  closeModal(event) {
+    this.setState({ show: false });
+
   }
 
   componentDidMount() {
@@ -40,7 +57,8 @@ export default class EditCard extends React.Component {
       .then(data => this.setState(
         {
           question: data.question,
-          answer: data.answer
+          answer: data.answer,
+          deckName: data.deckName
         }
       ));
   }
@@ -50,14 +68,14 @@ export default class EditCard extends React.Component {
       <div className='edit-card-page'>
         <div className='flex jsb ac wrap'>
           <h1 className='deck-view-name col-2'>
-            {this.props.deckName}
+            {this.state.deckName}
           </h1>
           <div className='spacer col-4' />
           <a
-            href={`/#add-card?deckName=${encodeURIComponent(this.props.deckName)}&deckId=${this.props.deckId}`}
+            href={`/#add-card?deckId=${this.props.deckId}`}
             className='new-card-deck col-4'
           >
-            <i className="fa-solid fa-circle-plus" />
+            <i className='fa-solid fa-circle-plus' />
             Add Card
           </a>
         </div>
@@ -85,12 +103,21 @@ export default class EditCard extends React.Component {
               id='deletecard'
               className='delete-show-modal'
               type='button'
-              onClick={this.props.showModal}>
+              onClick={this.showModal}>
               Delete Card
             </button>
-            <button className='add-card-button'>Save</button>
+            <button className='add-card-button'>
+              Save
+            </button>
           </div>
         </form>
+        <Modal show={this.state.show} >
+          <DeleteForm
+          closeModal={this.closeModal}
+          cardId={this.props.cardId}
+          deckId={this.props.deckId}
+          />
+        </Modal>
       </div>
     );
   }

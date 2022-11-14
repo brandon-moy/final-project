@@ -3,7 +3,10 @@ import React from 'react';
 export default class NewDeck extends React.Component {
   constructor(props) {
     super(props);
-    this.state = ({ deckName: '', error: false, errorMessage: '' });
+    this.state = ({
+      deckName: '',
+      error: false
+    });
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -17,10 +20,7 @@ export default class NewDeck extends React.Component {
     event.preventDefault();
     const deckName = this.state.deckName;
     if (deckName.length > 20) {
-      this.setState({
-        error: true,
-        errorMessage: 'Sorry, that deck name is too long!'
-      });
+      this.setState({ error: true });
     } else {
       const req = {
         method: 'POST',
@@ -32,7 +32,7 @@ export default class NewDeck extends React.Component {
       fetch('/api/create-deck', req)
         .then(res => {
           res.json();
-          this.props.closeModal();
+          this.props.submitModal();
         })
         .catch(err => console.error(err));
     }
@@ -41,19 +41,25 @@ export default class NewDeck extends React.Component {
   render() {
     const errorClass = this.state.error ? 'new-deck-error' : 'hidden';
     return (
-      <form className="new-deck-form" onSubmit={this.handleSubmit}>
-        <a className="xmark-close" onClick={this.props.closeModal}>
-          <i className="fa-solid fa-xmark" />
+      <form className='new-deck-form' onSubmit={this.handleSubmit}>
+        <a className='xmark-close' onClick={this.props.closeModal}>
+          <i className='fa-solid fa-xmark' />
         </a>
-        <h1 className="sticky-header">Create New Deck</h1>
+        <h1 className='sticky-header'>
+          Create New Deck
+        </h1>
         <input
         value={this.state.deckName}
-        className="sticky-input"
+        className='sticky-input'
         onChange={this.handleChange}
-        type="text"
-        placeholder="e.g. HTML, CSS, JavaScript" />
-        <p className={errorClass}>{this.state.errorMessage}</p>
-        <button className="sticky-submit">Continue</button>
+        type='text'
+        placeholder='e.g. HTML, CSS, JavaScript' />
+        <p className={errorClass}>
+          Sorry, that deck name is too long!
+        </p>
+        <button className='sticky-submit'>
+          Continue
+        </button>
       </form>
     );
   }

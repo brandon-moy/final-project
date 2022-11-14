@@ -41,11 +41,13 @@ app.get('/api/cards/:deckId', (req, res, next) => {
   }
 
   const sql = `
-  select *
-    from "flashcards"
+  select  "decks"."deckName",
+          "flashcards".*
+     from "decks"
+  left join "flashcards" using ("deckId")
   where "deckId" = $1
-    and "userId" = $2
-  order by "cardId"
+    and "decks"."userId" = $2
+    order by "cardId"
   `;
 
   const params = [deckId, 1];
@@ -65,11 +67,13 @@ app.get('/api/card/:cardId', (req, res, next) => {
   }
 
   const sql = `
-  select "question",
-         "answer"
+  select "flashcards"."question",
+         "flashcards"."answer",
+         "decks"."deckName"
     from "flashcards"
+    join "decks" using ("deckId")
   where "cardId" = $1
-    and "userId" = $2
+    and "flashcards"."userId" = $2
   `;
 
   const params = [cardId, 1];

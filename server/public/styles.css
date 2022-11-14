@@ -25,6 +25,8 @@ i {
   font-family: "Gloria Hallelujah", sans-serif;
   font-size: 2rem;
   padding-left: 1rem;
+  border: none;
+  background: transparent;
 }
 
 .modal-background {
@@ -111,8 +113,11 @@ i {
 .sticky-input {
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
-  border: 0.5px solid grey;
+  border: none;
+  border-bottom: 1px solid black;
+  background: transparent;
   font-family: Delius, sans-serif;
+  outline: none;
 }
 
 .sticky-submit {
@@ -180,7 +185,7 @@ i {
       #fff,
       #fff 6%,
       #9198e5 6%,
-      #9198e5 6.33%
+      #9198e5 6.75%
     );
   width: 95%;
   height: 100%;
@@ -283,10 +288,10 @@ i {
   background:
     repeating-linear-gradient(
       transparent,
-      transparent 15.5%,
-      blue 16%,
-      blue 16.5%,
-      transparent 16.5%
+      transparent 14.5%,
+      #9198e5 14.5%,
+      #9198e5 15.25%,
+      transparent 15.25%
     );
 }
 
@@ -392,6 +397,9 @@ i {
   font-size: 1.25rem;
   text-decoration: none;
   color: black;
+  background: transparent;
+  border: none;
+  font-family: "Fuzzy Bubbles", sans-serif;
 }
 
 .cancel-delete {
@@ -419,15 +427,99 @@ i {
   padding-bottom: 1rem;
 }
 
+.delete-deck-button {
+  font-family: "Fuzzy Bubbles", sans-serif;
+  font-size: 1rem;
+  background: transparent;
+  border: none;
+}
+
+.study-card-set {
+  position: relative;
+  margin-top: 2rem;
+  height: 10rem;
+  transition: transform 0.5s linear;
+  transform-origin: center;
+  transform-style: preserve-3d;
+}
+
+.study-card-front,
+.study-card-back {
+  backface-visibility: hidden;
+  position: absolute;
+  height: 100%;
+  width: 90%;
+}
+
+.study-card-front {
+  background-color: rgb(253 246 166);
+}
+
+.study-card-back {
+  transform: rotateY(180deg);
+  background:
+    linear-gradient(
+      rgb(253 246 166),
+      rgb(253 246 166) 20%,
+      red 20%,
+      red 21.5%,
+      rgb(253 246 166) 21.5%
+    );
+}
+
+.half-a {
+  transform: rotateY(-90deg);
+}
+
+.half-q {
+  transform: rotateY(-90deg);
+}
+
+.answer {
+  transform: rotateY(-180deg);
+}
+
+.question-number {
+  color: white;
+  font-family: "Fuzzy Bubbles", sans-serif;
+  padding-left: 1rem;
+}
+
+.no-cards-head {
+  padding-left: 1rem;
+  font-size: 2rem;
+  font-family: "Gloria Hallelujah", sans-serif;
+  color: white;
+}
+
+.no-cards-message {
+  font-family: "Fuzzy Bubbles", sans-serif;
+  color: white;
+  text-align: center;
+}
+
+.no-card-add {
+  font-family: "Gloria Hallelujah", sans-serif;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  border: 1px yellow solid;
+  border-radius: 0.25rem;
+  background-color: rgb(253 246 166);
+  text-decoration: none;
+}
+
 .new-deck:hover,
 .xmark-close:hover,
 .sticky-submit:hover,
 .option-paper:hover,
 .add-card-button:hover,
 label:hover,
-.delete-show-modal,
-.cancel-delete,
-.confirm-delete {
+.delete-show-modal:hover,
+.cancel-delete:hover,
+.confirm-delete:hover,
+.delete-deck-button:hover,
+.study-card-front:hover,
+.study-card-back:hover {
   cursor: pointer;
 }
 
@@ -472,7 +564,7 @@ label:hover,
   }
 }
 
-@media only screen and (min-width: 738px) {
+@media only screen and (min-width: 1280px) {
   .folder-front,
   .folder-back,
   .option-paper {
@@ -503,6 +595,12 @@ label:hover,
     height: 20rem;
   }
 
+  .study-card-front,
+  .study-card-back {
+    height: 20rem;
+    width: 50%;
+  }
+
   .flash-card-repeating-blue {
     transform: translateY(30%);
     height: 80%;
@@ -525,7 +623,6 @@ label:hover,
     text-align: left;
     padding-left: 2rem;
     font-size: 3rem;
-    margin: 2rem auto;
   }
 
   .new-card-deck,
@@ -540,8 +637,17 @@ label:hover,
     font-size: 2.25rem;
   }
 
+  .question-number {
+    padding-left: 3rem;
+  }
+
   .add-card-button,
   .delete-show-modal {
     font-size: 2rem;
+  }
+
+  .no-cards-head {
+    padding-left: 0;
+    text-align: center;
   }
 }

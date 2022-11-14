@@ -14,28 +14,29 @@ export default class DeleteForm extends React.Component {
     fetch(`/api/deletecard/${cardId}`, req)
       .then(res => {
         this.props.closeModal();
-        location.href = `/#view-cards?deckName=${encodeURIComponent(this.props.deckName)}&deckId=${this.props.deckId}`;
+        location.href = `/#view-cards?deckId=${this.props.deckId}`;
       })
       .catch(err => console.error(err));
   }
 
   render() {
     return (
-      <section className="delete-confirm">
+      <section className='delete-confirm'>
         <h2 className='delete-card-message'>
           Are you sure you want to delete this card?
         </h2>
-        <div className="flex jsb">
+        <div className='flex jsb'>
           <a
           className='cancel-delete'
           onClick={this.props.closeModal}>
             Cancel
           </a>
-          <a
+          <button
+          type='button'
           className='confirm-delete'
           onClick={this.confirmDelete}>
             Continue
-          </a>
+          </button>
         </div>
       </section>
     );

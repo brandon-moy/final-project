@@ -13,8 +13,7 @@ export default class DeleteDeck extends React.Component {
     };
     fetch(`/api/deletedeck/${deckId}`, req)
       .then(res => {
-        this.props.closeModal();
-        location.href = '#';
+        this.props.submitModal();
       })
       .catch(err => console.error(err));
   }
@@ -32,17 +31,18 @@ export default class DeleteDeck extends React.Component {
           Deleting this deck will delete all flashcards associated with this deck!
         </p>
         <div className='flex jsb'>
-          <a
-          href='#'
+          <button
+          type='button'
           className='cancel-delete'
           onClick={this.props.closeModal}>
             Cancel
-          </a>
-          <a
+          </button>
+          <button
+          type='button'
           className='confirm-delete'
           onClick={this.deleteDeck}>
             Confirm
-          </a>
+          </button>
         </div>
       </section>
     );
