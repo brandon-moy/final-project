@@ -292,7 +292,7 @@ i {
       transparent 14.5%,
       #9198e5 14.5%,
       #9198e5 15.25%,
-      transparent 15.25%
+      transparent 15.5%
     );
 }
 
@@ -602,19 +602,11 @@ i {
     );
 }
 
-.new-deck:hover,
-.xmark-close:hover,
-.sticky-submit:hover,
+a:hover,
+button:hover,
+.folder-front:hover,
 .option-paper:hover,
-.add-card-button:hover,
-label:hover,
-.delete-show-modal:hover,
-.cancel-delete:hover,
-.confirm-delete:hover,
-.delete-deck-button:hover,
-.study-card-front:hover,
-.study-card-back:hover,
-.confidence:hover {
+.study-card-front {
   cursor: pointer;
 }
 

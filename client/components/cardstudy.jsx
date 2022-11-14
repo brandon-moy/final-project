@@ -79,43 +79,38 @@ export default class CardStudy extends React.Component {
             </div>
             <div className='button-container flex jse col-100'>
               <button
+              id='1'
               type='button'
               className='confidence'
-              id='1'
-              onClick={this.updateConfidence}
-              >
+              onClick={this.updateConfidence}>
                 1
               </button>
               <button
+                id='2'
                 type='button'
                 className='confidence'
-                id='2'
-                onClick={this.updateConfidence}
-              >
+                onClick={this.updateConfidence}>
                 2
               </button>
               <button
+                id='3'
                 type='button'
                 className='confidence'
-                id='3'
-                onClick={this.updateConfidence}
-              >
+                onClick={this.updateConfidence}>
                 3
               </button>
               <button
+                id='4'
                 type='button'
                 className='confidence'
-                id='4'
-                onClick={this.updateConfidence}
-              >
+                onClick={this.updateConfidence}>
                 4
               </button>
               <button
+                id='5'
                 type='button'
                 className='confidence'
-                id='5'
-                onClick={this.updateConfidence}
-              >
+                onClick={this.updateConfidence}>
                 5
               </button>
             </div>
