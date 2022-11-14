@@ -17,7 +17,8 @@ i {
   font-family: "Fuzzy Bubbles", sans-serif;
   font-weight: 800;
   font-size: 2.5rem;
-  text-decoration: none;
+  border: none;
+  background: transparent;
 }
 
 .new-deck {
@@ -619,7 +620,7 @@ i {
 .confidence-meter {
   padding-left: 1rem;
   width: 75%;
-  height: 2.5vh;
+  height: 4vh;
 }
 
 .confidence-percent {
