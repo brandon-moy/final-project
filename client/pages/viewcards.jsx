@@ -24,13 +24,14 @@ export default class ViewCards extends React.Component {
     const cards = this.state.cards.map(card => {
       return (
         <div key={card.cardId} id={card.cardId} className='card-set flex wrap'>
-          <div className='card-front col-45 flex jc ac'>
+          <div className='card-front col-45 flex just-center align-center'>
+            <div className={`view-highlight confidence-${card.confidence}`} />
             <h1 className='view-card-question'>
               {card.question}
             </h1>
           </div>
           <div className='card-back col-45'>
-            <div className='flash-card-repeating-blue flex jc'>
+            <div className='flash-card-repeating-blue flex just-center'>
               <h2 className='view-card-answer'>
                 {card.answer}
               </h2>
@@ -38,8 +39,8 @@ export default class ViewCards extends React.Component {
           </div>
           <div className='spacer col-2' />
           <a
-              href={`/#edit-card?deckId=${this.props.deckId}&cardId=${card.cardId}`}
-              className='deck-edit-card col-2'>
+          href={`/#edit-card?deckId=${this.props.deckId}&cardId=${card.cardId}`}
+          className='deck-edit-card col-2'>
             <i className='fa-solid fa-pencil' />
             Edit Card
           </a>
@@ -53,15 +54,14 @@ export default class ViewCards extends React.Component {
     if (!this.state.cards) return;
     return (
       <section className='card-deck'>
-        <div className='flex jsb ac wrap'>
+        <div className='flex just-between align-center wrap'>
           <h1 className='deck-view-name col-2'>
             {this.state.deckName}
           </h1>
           <div className='spacer col-4' />
           <a
           href={`/#add-card?deckId=${this.props.deckId}`}
-          className='new-card-deck col-4'
-          >
+          className='new-card-deck col-4'>
             <i className='fa-solid fa-circle-plus' />
             Add Card
           </a>

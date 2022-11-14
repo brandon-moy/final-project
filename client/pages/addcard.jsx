@@ -59,26 +59,27 @@ export default class AddCard extends React.Component {
           {this.state.deckName}
         </h1>
         <form className='new-card flex wrap' onSubmit={this.handleSubmit}>
-          <label className='card-front col-45 flex jc ac'>
+          <label className='card-front col-45 flex just-center align-center'>
             <textarea
-          name='question'
-          type='text'
-          value={this.state.question}
-          className='card-question'
-          onChange={this.handleChange} />
+            name='question'
+            type='text'
+            value={this.state.question}
+            className='card-question'
+            onChange={this.handleChange} />
           </label>
           <label className='card-back col-45'>
-            <div className='flash-card-repeating-blue flex jc afs'>
+            <div
+            className='flash-card-repeating-blue flex just-center align-f-start'>
               <textarea
-            name='answer'
-            type='text'
-            value={this.state.answer}
-            className='card-answer'
-            onChange={this.handleChange} />
+              name='answer'
+              type='text'
+              value={this.state.answer}
+              className='card-answer'
+              onChange={this.handleChange} />
             </div>
           </label>
           <div className='col-100'>
-            <button className='jfe add-card-button'>
+            <button className='just-f-end add-card-button'>
               Save
             </button>
           </div>

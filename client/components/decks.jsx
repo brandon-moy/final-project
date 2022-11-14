@@ -118,27 +118,23 @@ export default class Decks extends React.Component {
                   {deck.deckName}
                 </h1>
                 <section
-                className='options-container flex wrap jsb'
-                id={deck.deckName}
-                >
+                className='options-container flex wrap just-between'
+                id={deck.deckName}>
                   <a
                   href={`/#add-card?deckId=${deck.deckId}`}
-                  className='card-option'
-                  >
+                  className='card-option'>
                     <i className='fa-solid fa-circle-plus' />
                     Add Cards
                   </a>
                   <a
                   href={`/#study-cards?deckId=${deck.deckId}`}
-                  className='card-option'
-                  >
+                  className='card-option'>
                     <i className='fa-solid fa-graduation-cap' />
                     Study Cards
                   </a>
                   <a
                   href={`/#view-cards?&deckId=${deck.deckId}`}
-                  className='card-option'
-                  >
+                  className='card-option'>
                     <i className='fa-solid fa-glasses' />
                     View Cards
                   </a>
@@ -167,7 +163,7 @@ export default class Decks extends React.Component {
         onClick={this.showModal}>
           New Deck
         </button>
-        <div className='flex wrap jc'>
+        <div className='flex wrap just-center'>
           {renderedDecks}
         </div>
         <Modal show={this.state.show}>

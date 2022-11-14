@@ -239,6 +239,7 @@ i {
 }
 
 .card-front {
+  position: relative;
   background-color: rgb(253 246 166);
   height: 10rem;
   margin: 0 auto 2rem;
@@ -270,6 +271,9 @@ i {
   outline: none;
   background: transparent;
   text-align: center;
+  inline-size: 20rem;
+  overflow: scroll;
+  overflow-wrap: break-word;
 }
 
 .card-question {
@@ -291,7 +295,7 @@ i {
       transparent 14.5%,
       #9198e5 14.5%,
       #9198e5 15.25%,
-      transparent 15.25%
+      transparent 15.5%
     );
 }
 
@@ -327,6 +331,9 @@ i {
   outline: none;
   background: transparent;
   text-align: center;
+  inline-size: 20rem;
+  overflow: scroll;
+  overflow-wrap: break-word;
 }
 
 .view-card-question {
@@ -508,18 +515,112 @@ i {
   text-decoration: none;
 }
 
-.new-deck:hover,
-.xmark-close:hover,
-.sticky-submit:hover,
+.button-container {
+  padding-top: 4rem;
+}
+
+.confidence {
+  color: white;
+  font-family: Delius, sans-serif;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 1.25rem;
+  padding: 0.75rem 1.25rem;
+  border: none;
+}
+
+.confidence:nth-child(1) {
+  background-color: #a52424;
+}
+
+.confidence:nth-child(2) {
+  background-color: #dc9554;
+}
+
+.confidence:nth-child(3) {
+  background-color: #dbd82c;
+}
+
+.confidence:nth-child(4) {
+  background-color: #70ad49;
+}
+
+.confidence:nth-child(5) {
+  background-color: #3c9b46;
+}
+
+.highlight {
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  width: 45%;
+  height: 15%;
+  border-radius: 1em 0;
+}
+
+.view-highlight {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  width: 45%;
+  height: 15%;
+  border-radius: 1em 0;
+}
+
+.confidence-1 {
+  background:
+    linear-gradient(
+      -100deg,
+      rgba(255, 20, 0, 0.2),
+      rgba(255, 20, 0, 0.7) 95%,
+      rgba(255, 20, 0, 0.1)
+    );
+}
+
+.confidence-2 {
+  background:
+    linear-gradient(
+      -100deg,
+      rgba(230, 114, 5, 0.2),
+      rgba(230, 114, 5, 0.7) 95%,
+      rgba(230, 114, 5, 0.1)
+    );
+}
+
+.confidence-3 {
+  background:
+    linear-gradient(
+      -100deg,
+      rgba(255, 251, 0, 0.2),
+      rgba(255, 251, 0, 0.7) 95%,
+      rgba(255, 251, 0, 0.1)
+    );
+}
+
+.confidence-4 {
+  background:
+    linear-gradient(
+      -100deg,
+      rgba(112, 173, 73, 0.2),
+      rgba(112, 173, 73, 0.7) 95%,
+      rgba(112, 173, 73, 0.1)
+    );
+}
+
+.confidence-5 {
+  background:
+    linear-gradient(
+      -100deg,
+      rgba(38, 194, 53, 0.2),
+      rgba(38, 194, 53, 0.7) 95%,
+      rgba(38, 194, 53, 0.1)
+    );
+}
+
+a:hover,
+button:hover,
+.folder-front:hover,
 .option-paper:hover,
-.add-card-button:hover,
-label:hover,
-.delete-show-modal:hover,
-.cancel-delete:hover,
-.confirm-delete:hover,
-.delete-deck-button:hover,
-.study-card-front:hover,
-.study-card-back:hover {
+.study-card-front {
   cursor: pointer;
 }
 
@@ -595,10 +696,19 @@ label:hover,
     height: 20rem;
   }
 
+  .study-card-set {
+    height: 15rem;
+  }
+
+  .button-container {
+    flex-basis: 60%;
+    margin: auto;
+  }
+
   .study-card-front,
   .study-card-back {
-    height: 20rem;
-    width: 50%;
+    height: 15rem;
+    width: 40%;
   }
 
   .flash-card-repeating-blue {
@@ -635,6 +745,8 @@ label:hover,
   .view-card-question,
   .view-card-answer {
     font-size: 2.25rem;
+    inline-size: 35rem;
+    overflow: auto;
   }
 
   .question-number {

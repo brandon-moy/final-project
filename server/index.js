@@ -167,7 +167,40 @@ app.patch('/api/card/:cardId', (req, res, next) => {
       } else {
         res.json(updatedCard);
       }
-    });
+    })
+    .catch(err => next(err));
+});
+
+app.patch('/api/card/confidence/:cardId', (req, res, next) => {
+  const cardId = Number(req.params.cardId);
+  const confidence = Number(req.body.confidence);
+  if (!cardId || cardId < 1) {
+    throw new ClientError(400, 'cardId must be a positive integer');
+  }
+  if (!confidence || confidence < 0 > 5) {
+    throw new ClientError(400, 'confidence must be a positive integer between 1 and 5');
+  }
+
+  const sql = `
+  update "flashcards"
+  set "confidence" = $1
+  where "cardId" = $2
+    and "userId" = $3
+  returning *
+  `;
+
+  const params = [confidence, cardId, 1];
+
+  db.query(sql, params)
+    .then(result => {
+      const [updatedCard] = result.rows;
+      if (!updatedCard) {
+        throw new ClientError(404, `cannot find card with cardId ${cardId}`);
+      } else {
+        res.json(updatedCard);
+      }
+    })
+    .catch(err => next(err));
 });
 
 app.delete('/api/deletecard/:cardId', (req, res, next) => {

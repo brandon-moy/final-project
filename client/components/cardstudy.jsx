@@ -11,6 +11,7 @@ export default class CardStudy extends React.Component {
     });
     this.startFlip = this.startFlip.bind(this);
     this.finishFlip = this.finishFlip.bind(this);
+    this.updateConfidence = this.updateConfidence.bind(this);
   }
 
   startFlip(event) {
@@ -35,6 +36,23 @@ export default class CardStudy extends React.Component {
     }
   }
 
+  updateConfidence(event) {
+    const confidence = { confidence: event.target.getAttribute('id') };
+    const { cardId } = this.state.cards[this.state.position];
+    const req = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(confidence)
+    };
+    fetch(`/api/card/confidence/${cardId}`, req)
+      .then(res => {
+        this.startFlip();
+      })
+      .catch(err => console.error(err));
+  }
+
   render() {
     const face = this.state.reveal;
     const card = this.state.cards[this.state.position];
@@ -45,18 +63,58 @@ export default class CardStudy extends React.Component {
           Q : {questionPlace}
         </h2>
         <div
-          className={`study-card-set flex wrap jc ${face}`}
-          onTransitionEnd={this.finishFlip}>
-          <div className='study-card-front flex jc ac' onClick={this.startFlip}>
+        className={`study-card-set flex wrap just-center col-100 ${face}`}
+        onTransitionEnd={this.finishFlip}>
+          <div
+          className='study-card-front flex-column'
+          onClick={this.startFlip}>
+            <div className={`highlight confidence-${card.confidence}`} />
             <h1 className='view-card-question'>
               {card.question}
             </h1>
           </div>
-          <div className='study-card-back' onClick={this.startFlip}>
-            <div className='flash-card-repeating-blue flex jc'>
+          <div className='study-card-back'>
+            <div className='flash-card-repeating-blue flex just-center'>
               <h2 className='view-card-answer'>
                 {card.answer}
               </h2>
+            </div>
+            <div className='button-container flex just-even col-100'>
+              <button
+              id='1'
+              type='button'
+              className='confidence'
+              onClick={this.updateConfidence}>
+                1
+              </button>
+              <button
+                id='2'
+                type='button'
+                className='confidence'
+                onClick={this.updateConfidence}>
+                2
+              </button>
+              <button
+                id='3'
+                type='button'
+                className='confidence'
+                onClick={this.updateConfidence}>
+                3
+              </button>
+              <button
+                id='4'
+                type='button'
+                className='confidence'
+                onClick={this.updateConfidence}>
+                4
+              </button>
+              <button
+                id='5'
+                type='button'
+                className='confidence'
+                onClick={this.updateConfidence}>
+                5
+              </button>
             </div>
           </div>
         </div>

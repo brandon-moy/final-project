@@ -25,7 +25,7 @@ export default class DeleteForm extends React.Component {
         <h2 className='delete-card-message'>
           Are you sure you want to delete this card?
         </h2>
-        <div className='flex jsb'>
+        <div className='flex just-between'>
           <a
           className='cancel-delete'
           onClick={this.props.closeModal}>
