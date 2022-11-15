@@ -476,11 +476,11 @@ i {
 }
 
 .half-a {
-  transform: translateX(-25%) rotateY(-90deg);
+  transform: translateX(-50%) rotateY(-90deg);
 }
 
 .half-q {
-  transform: translateX(-25%) rotateY(-90deg);
+  transform: translateX(-50%) rotateY(-90deg);
 }
 
 .answer {
@@ -720,6 +720,18 @@ button:hover,
   .study-card-back {
     height: 15rem;
     width: 35%;
+  }
+
+  .half-a {
+    transform: translateX(-35%) rotateY(-90deg);
+  }
+
+  .half-q {
+    transform: translateX(-35%) rotateY(-90deg);
+  }
+
+  .answer {
+    transform: translateX(-100%) rotateY(-180deg);
   }
 
   .flash-card-repeating-blue {
