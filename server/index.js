@@ -207,6 +207,34 @@ app.patch('/api/card/confidence/:cardId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.patch('/api/deck/confidence/:deckId', (req, res, next) => {
+  const deckId = Number(req.params.deckId);
+  if (!deckId) {
+    throw new ClientError(400, 'deckId must be a positive integer');
+  }
+
+  const sql = `
+  update "flashcards"
+  set "confidence" = 0
+  where "deckId" = $1
+    and "userId" = $2
+  returning *
+  `;
+
+  const params = [deckId, 1];
+
+  db.query(sql, params)
+    .then(result => {
+      const updatedCards = result.rows;
+      if (!updatedCards || !updatedCards.length) {
+        throw new ClientError(404, `cannot find cards with deckId ${deckId}`);
+      } else {
+        res.json(updatedCards);
+      }
+    })
+    .catch(err => next(err));
+});
+
 app.delete('/api/deletecard/:cardId', (req, res, next) => {
   const cardId = Number(req.params.cardId);
   if (!cardId) {

@@ -386,7 +386,8 @@ i {
   padding-left: 2rem;
 }
 
-.delete-confirm {
+.delete-confirm,
+.reset-confirm {
   font-family: "Fuzzy Bubbles", sans-serif;
 }
 
@@ -400,7 +401,9 @@ i {
 }
 
 .cancel-delete,
-.confirm-delete {
+.confirm-delete,
+.cancel-reset,
+.confirm-reset {
   font-size: 1.25rem;
   text-decoration: none;
   color: black;
@@ -409,24 +412,29 @@ i {
   font-family: "Fuzzy Bubbles", sans-serif;
 }
 
-.cancel-delete {
+.cancel-delete,
+.cancel-reset {
   padding-left: 1.5rem;
 }
 
-.confirm-delete {
+.confirm-delete,
+.confirm-reset {
   padding-right: 1.5rem;
 }
 
-.delete-deck-message {
+.delete-deck-message,
+.reset-knowledge-message {
   text-align: center;
 }
 
-.delete-deck-name {
+.delete-deck-name,
+.reset-deck-name {
   text-align: center;
   font-size: 1.75rem;
 }
 
-.delete-warning {
+.delete-warning,
+.reset-warning {
   color: red;
   font-weight: 800;
   font-size: 0.75rem;
@@ -434,7 +442,8 @@ i {
   padding-bottom: 1rem;
 }
 
-.delete-deck-button {
+.delete-deck-button,
+.reset-knowledge-button {
   font-family: "Fuzzy Bubbles", sans-serif;
   font-size: 1rem;
   background: transparent;
@@ -446,7 +455,8 @@ i {
   margin-top: 2rem;
   height: 10rem;
   transition: transform 0.5s linear;
-  transform-origin: center;
+  transform: perspective(600px);
+  transform-origin: center right;
   transform-style: preserve-3d;
 }
 
@@ -475,15 +485,15 @@ i {
 }
 
 .half-a {
-  transform: rotateY(-90deg);
+  transform: translateX(-50%) rotateY(-90deg);
 }
 
 .half-q {
-  transform: rotateY(-90deg);
+  transform: translateX(-50%) rotateY(-90deg);
 }
 
 .answer {
-  transform: rotateY(-180deg);
+  transform: translateX(-100%) rotateY(-180deg);
 }
 
 .question-number {
@@ -618,12 +628,9 @@ i {
 
 .confidence-meter {
   padding-left: 1rem;
-  width: 75%;
+  margin-top: 0.5rem;
+  width: 70%;
   height: 4vh;
-}
-
-.confidence-percent {
-  padding-left: 0.5rem;
 }
 
 a:hover,
@@ -718,7 +725,19 @@ button:hover,
   .study-card-front,
   .study-card-back {
     height: 15rem;
-    width: 40%;
+    width: 35%;
+  }
+
+  .half-a {
+    transform: translateX(-40%) translateZ(800px) rotateY(-90deg);
+  }
+
+  .half-q {
+    transform: translateX(-45%) translateZ(800px) rotateY(-90deg);
+  }
+
+  .answer {
+    transform: translateX(-100%) rotateY(-180deg);
   }
 
   .flash-card-repeating-blue {
@@ -771,5 +790,28 @@ button:hover,
   .no-cards-head {
     padding-left: 0;
     text-align: center;
+  }
+
+  .confidence-meter {
+    width: 75%;
+    height: 5vh;
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .study-card-set {
+    transform-origin: center;
+  }
+
+  .half-a {
+    transform: rotateY(-90deg);
+  }
+
+  .half-q {
+    transform: rotateY(-90deg);
+  }
+
+  .answer {
+    transform: rotateY(-180deg);
   }
 }
