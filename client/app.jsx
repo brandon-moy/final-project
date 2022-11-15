@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './components/header';
 import parseRoute from './lib/parse-route';
-import Decks from './components/decks';
+import Home from './pages/home';
 import AddCard from './pages/addcard';
 import NotFound from './pages/notfound';
 import ViewCards from './pages/viewcards';
@@ -27,7 +27,7 @@ export default class App extends React.Component {
     const { path } = this.state.route;
     const deckId = this.state.route.params.get('deckId');
     if (path === '') {
-      return <Decks />;
+      return <Home />;
     } else if (path === 'add-card') {
       return <AddCard deckId={deckId} />;
     } else if (path === 'view-cards') {

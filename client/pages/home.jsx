@@ -1,10 +1,10 @@
 import React from 'react';
-import Modal from './modal';
-import NewDeck from './newdeck';
-import DeleteDeck from './deletedeck';
-import ResetKnowledge from './resetknowledge';
+import Modal from '../components/modal';
+import NewDeck from '../components/newdeck';
+import DeleteDeck from '../components/deletedeck';
+import ResetKnowledge from '../components/resetknowledge';
 
-export default class Decks extends React.Component {
+export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = ({
