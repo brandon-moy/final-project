@@ -729,11 +729,11 @@ button:hover,
   }
 
   .half-a {
-    transform: translateX(-35%) rotateY(-90deg);
+    transform: translateX(-35%) scale(-50%) rotateY(-90deg);
   }
 
   .half-q {
-    transform: translateX(-35%) rotateY(-90deg);
+    transform: translateX(-35%) scale(-50%) rotateY(-90deg);
   }
 
   .answer {
@@ -795,5 +795,23 @@ button:hover,
   .confidence-meter {
     width: 75%;
     height: 5vh;
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .study-card-set {
+    transform-origin: center;
+  }
+
+  .half-a {
+    transform: rotateY(-90deg);
+  }
+
+  .half-q {
+    transform: rotateY(-90deg);
+  }
+
+  .answer {
+    transform: rotateY(-180deg);
   }
 }

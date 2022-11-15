@@ -106,10 +106,10 @@ export default class Decks extends React.Component {
       />;
     } else if (form === 'resetknowledge') {
       return <ResetKnowledge
-        deckId={this.state.deckId}
-        deckName={this.state.deckName}
-        closeModal={this.closeModal}
-        submitModal={this.submitModal}
+          deckId={this.state.deckId}
+          deckName={this.state.deckName}
+          closeModal={this.closeModal}
+          submitModal={this.submitModal}
       />;
     }
   }
@@ -174,18 +174,18 @@ export default class Decks extends React.Component {
                     Delete Deck
                   </button>
                   <meter
-                    className='confidence-meter'
-                    max='100'
-                    low='57'
-                    high='78'
-                    optimum='100'
-                    value={confidencePercent} />
+                  className='confidence-meter'
+                  max='100'
+                  low='57'
+                  high='78'
+                  optimum='100'
+                  value={confidencePercent} />
                   <p className='confidence-percent'>{confidencePercent}%</p>
                   <button
-                    type='button'
-                    id='resetknowledge'
-                    onClick={this.showModal}
-                    className='reset-knowledge-button' >
+                  type='button'
+                  id='resetknowledge'
+                  onClick={this.showModal}
+                  className='reset-knowledge-button' >
                     <i className='fa-solid fa-arrow-rotate-left' />
                   </button>
                 </section>
