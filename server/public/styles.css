@@ -391,8 +391,7 @@ i {
   font-family: "Fuzzy Bubbles", sans-serif;
 }
 
-.delete-card-message,
-.reset-knowledge-message {
+.delete-card-message {
   text-align: center;
   width: 90%;
   padding-left: 1.5rem;

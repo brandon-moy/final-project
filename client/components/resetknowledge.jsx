@@ -1,6 +1,22 @@
 import React from 'react';
 
 export default class ResetKnowledge extends React.Component {
+  constructor(props) {
+    super(props);
+    this.resetDeck = this.resetDeck.bind(this);
+  }
+
+  resetDeck() {
+    const req = {
+      method: 'PATCH'
+    };
+    fetch(`/api/deck/confidence/${this.props.deckId}`, req)
+      .then(res => {
+        this.props.submitModal();
+      })
+      .catch(err => console.error(err));
+  }
+
   render() {
     return (
       <section className='reset-confirm'>
@@ -11,17 +27,20 @@ export default class ResetKnowledge extends React.Component {
           {this.props.deckName}
         </h1>
         <p className='reset-warning'>
-          Resetting this deck will set all falshcards associated with this deck to 0!
+          Resetting this deck will set the confidence for
+          all flashcards associated with this deck to 0!
         </p>
         <div className='flex just-between'>
           <button
           type='button'
-          className='cancel-reset'>
+          className='cancel-reset'
+          onClick={this.props.closeModal}>
             Cancel
           </button>
           <button
           type='button'
-          className='confirm-reset'>
+          className='confirm-reset'
+          onClick={this.resetDeck}>
             Confirm
           </button>
         </div>
