@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from './modal';
 import NewDeck from './newdeck';
 import DeleteDeck from './deletedeck';
+import ResetKnowledge from './resetknowledge';
 
 export default class Decks extends React.Component {
   constructor(props) {
@@ -39,13 +40,13 @@ export default class Decks extends React.Component {
   }
 
   showModal(event) {
-    const form = event.target.id;
+    const form = event.currentTarget.id;
     if (form === 'deletedeck' || form === 'resetknowledge') {
-      const deckId = event.target.closest('.scene').getAttribute('id');
-      const deckName = event.target.closest('.options-container').getAttribute('id');
+      const deckId = event.currentTarget.closest('.scene').getAttribute('id');
+      const deckName = event.currentTarget.closest('.options-container').getAttribute('id');
       this.setState({
         show: true,
-        form: event.target.id,
+        form,
         deckId,
         deckName
       });
@@ -102,6 +103,13 @@ export default class Decks extends React.Component {
           deckName={this.state.deckName}
           closeModal={this.closeModal}
           submitModal={this.submitModal}
+      />;
+    } else if (form === 'resetknowledge') {
+      return <ResetKnowledge
+        deckId={this.state.deckId}
+        deckName={this.state.deckName}
+        closeModal={this.closeModal}
+        submitModal={this.submitModal}
       />;
     }
   }
@@ -165,23 +173,21 @@ export default class Decks extends React.Component {
                     <i className='fa-solid fa-trash-can' />
                     Delete Deck
                   </button>
-                  <div className='conf-meter-container col-100 flex align-center'>
-                    <meter
+                  <meter
                     className='confidence-meter'
                     max='100'
                     low='57'
                     high='78'
                     optimum='100'
                     value={confidencePercent} />
-                    <p className='confidence-percent'>{confidencePercent}%</p>
-                    <button
+                  <p className='confidence-percent'>{confidencePercent}%</p>
+                  <button
                     type='button'
                     id='resetknowledge'
                     onClick={this.showModal}
                     className='reset-knowledge-button' >
-                      <i className='fa-solid fa-arrow-rotate-left' />
-                    </button>
-                  </div>
+                    <i className='fa-solid fa-arrow-rotate-left' />
+                  </button>
                 </section>
               </div>
             </div>

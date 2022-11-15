@@ -629,12 +629,9 @@ i {
 
 .confidence-meter {
   padding-left: 1rem;
-  width: 75%;
+  margin-top: 0.5rem;
+  width: 70%;
   height: 4vh;
-}
-
-.confidence-percent {
-  padding-left: 0.5rem;
 }
 
 a:hover,
@@ -794,5 +791,10 @@ button:hover,
   .no-cards-head {
     padding-left: 0;
     text-align: center;
+  }
+
+  .confidence-meter {
+    width: 75%;
+    height: 5vh;
   }
 }
