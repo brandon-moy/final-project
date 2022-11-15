@@ -7,6 +7,7 @@ export default class Decks extends React.Component {
   constructor(props) {
     super(props);
     this.state = ({
+      decks: null,
       currentShowing: null,
       lastShowing: null,
       show: false,
@@ -57,15 +58,6 @@ export default class Decks extends React.Component {
 
   }
 
-  submitModal(event) {
-    this.props.updateDecks();
-    this.setState({
-      show: false,
-      form: null,
-      deleteDeckId: null
-    });
-  }
-
   closeModal(event) {
     this.setState({
       show: false,
@@ -74,31 +66,56 @@ export default class Decks extends React.Component {
     });
   }
 
+  submitModal(event) {
+    fetch('/api/decks')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          show: false,
+          form: null,
+          deleteDeckId: null,
+          decks: data
+        });
+      })
+      .catch(err => console.error(err));
+  }
+
+  componentDidMount() {
+    fetch('/api/decks')
+      .then(res => res.json())
+      .then(data => this.setState({ decks: data }))
+      .catch(err => console.error(err));
+  }
+
   renderModalForm() {
     const { form } = this.state;
     if (form === 'newdeck') {
       return <NewDeck
-        closeModal={this.closeModal}
-        submitModal={this.submitModal}
+          closeModal={this.closeModal}
+          submitModal={this.submitModal}
       />;
     } else if (form === 'deletedeck') {
       return <DeleteDeck
-        deckId={this.state.deleteDeckId}
-        deckName={this.state.deleteDeckName}
-        closeModal={this.closeModal}
-        submitModal={this.submitModal}
+          deckId={this.state.deleteDeckId}
+          deckName={this.state.deleteDeckName}
+          closeModal={this.closeModal}
+          submitModal={this.submitModal}
       />;
     }
   }
 
   render() {
-    if (!this.props.decks) return;
-    const renderedDecks = this.props.decks.map(deck => {
+    if (!this.state.decks) return;
+    const renderedDecks = this.state.decks.map(deck => {
       const showPaper = (Number(this.state.currentShowing) === deck.deckId)
         ? 'is-showing'
         : (Number(this.state.lastShowing) === deck.deckId)
             ? 'hiding'
             : '';
+      const maxConfidence = deck.cardCount * 5;
+      const confidencePercent = !maxConfidence
+        ? 0
+        : Math.floor((deck.totalConfidence / maxConfidence) * 100);
       return (
         <div key={deck.deckId} id={deck.deckId} className='scene col-3'>
           <div className='folder'>
@@ -145,6 +162,16 @@ export default class Decks extends React.Component {
                     <i className='fa-solid fa-trash-can' />
                     Delete Deck
                   </button>
+                  <div className='conf-meter-container col-100 flex align-center'>
+                    <meter
+                    className='confidence-meter'
+                    max='100'
+                    low='57'
+                    high='78'
+                    optimum='100'
+                    value={confidencePercent} />
+                    <p className='confidence-percent'>{confidencePercent}%</p>
+                  </div>
                 </section>
               </div>
             </div>

@@ -13,38 +13,21 @@ export default class App extends React.Component {
     super(props);
     this.state = ({
       user: 1,
-      route: parseRoute(window.location.hash),
-      decks: null
+      route: parseRoute(window.location.hash)
     });
-    this.updateDecks = this.updateDecks.bind(this);
   }
 
   componentDidMount() {
     window.addEventListener('hashchange', () => {
       this.setState({ route: parseRoute(window.location.hash) });
     });
-
-    fetch('/api/decks')
-      .then(res => res.json())
-      .then(data => this.setState({ decks: data }))
-      .catch(err => console.error(err));
-  }
-
-  updateDecks() {
-    fetch('/api/decks')
-      .then(res => res.json())
-      .then(data => this.setState({ decks: data }))
-      .catch(err => console.error(err));
   }
 
   renderContent() {
     const { path } = this.state.route;
     const deckId = this.state.route.params.get('deckId');
     if (path === '') {
-      return <Decks
-        decks={this.state.decks}
-        updateDecks={this.updateDecks}
-      />;
+      return <Decks />;
     } else if (path === 'add-card') {
       return <AddCard deckId={deckId} />;
     } else if (path === 'view-cards') {
