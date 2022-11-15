@@ -40,14 +40,14 @@ export default class Decks extends React.Component {
 
   showModal(event) {
     const form = event.target.id;
-    if (form === 'deletedeck') {
-      const deleteDeckId = event.target.closest('.scene').getAttribute('id');
-      const deleteDeckName = event.target.closest('.options-container').getAttribute('id');
+    if (form === 'deletedeck' || form === 'resetknowledge') {
+      const deckId = event.target.closest('.scene').getAttribute('id');
+      const deckName = event.target.closest('.options-container').getAttribute('id');
       this.setState({
         show: true,
         form: event.target.id,
-        deleteDeckId,
-        deleteDeckName
+        deckId,
+        deckName
       });
     } else {
       this.setState({
@@ -96,8 +96,8 @@ export default class Decks extends React.Component {
       />;
     } else if (form === 'deletedeck') {
       return <DeleteDeck
-          deckId={this.state.deleteDeckId}
-          deckName={this.state.deleteDeckName}
+          deckId={this.state.deckId}
+          deckName={this.state.deckName}
           closeModal={this.closeModal}
           submitModal={this.submitModal}
       />;
@@ -156,6 +156,7 @@ export default class Decks extends React.Component {
                     View Cards
                   </a>
                   <button
+                  type='button'
                   id='deletedeck'
                   onClick={this.showModal}
                   className='card-option delete-deck-button'>
@@ -171,6 +172,13 @@ export default class Decks extends React.Component {
                     optimum='100'
                     value={confidencePercent} />
                     <p className='confidence-percent'>{confidencePercent}%</p>
+                    <button
+                    type='button'
+                    id='resetknowledge'
+                    onClick={this.showModal}
+                    className='reset-knowledge-button' >
+                      <i className='fa-solid fa-arrow-rotate-left' />
+                    </button>
                   </div>
                 </section>
               </div>

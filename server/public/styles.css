@@ -434,7 +434,8 @@ i {
   padding-bottom: 1rem;
 }
 
-.delete-deck-button {
+.delete-deck-button,
+.reset-knowledge-button {
   font-family: "Fuzzy Bubbles", sans-serif;
   font-size: 1rem;
   background: transparent;
