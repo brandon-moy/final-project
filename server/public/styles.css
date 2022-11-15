@@ -729,11 +729,11 @@ button:hover,
   }
 
   .half-a {
-    transform: translateX(-35%) scale(-50%) rotateY(-90deg);
+    transform: translateX(-40%) translateZ(800px) rotateY(-90deg);
   }
 
   .half-q {
-    transform: translateX(-35%) scale(-50%) rotateY(-90deg);
+    transform: translateX(-45%) translateZ(800px) rotateY(-90deg);
   }
 
   .answer {
