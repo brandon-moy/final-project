@@ -62,7 +62,8 @@ export default class Decks extends React.Component {
     this.setState({
       show: false,
       form: null,
-      deleteDeckId: null
+      deckId: null,
+      deckName: null
     });
   }
 
@@ -73,7 +74,8 @@ export default class Decks extends React.Component {
         this.setState({
           show: false,
           form: null,
-          deleteDeckId: null,
+          deckId: null,
+          deckName: null,
           decks: data
         });
       })
