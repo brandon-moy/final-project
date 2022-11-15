@@ -386,11 +386,13 @@ i {
   padding-left: 2rem;
 }
 
-.delete-confirm {
+.delete-confirm,
+.reset-confirm {
   font-family: "Fuzzy Bubbles", sans-serif;
 }
 
-.delete-card-message {
+.delete-card-message,
+.reset-knowledge-message {
   text-align: center;
   width: 90%;
   padding-left: 1.5rem;
@@ -400,7 +402,9 @@ i {
 }
 
 .cancel-delete,
-.confirm-delete {
+.confirm-delete,
+.cancel-reset,
+.confirm-reset {
   font-size: 1.25rem;
   text-decoration: none;
   color: black;
@@ -409,24 +413,29 @@ i {
   font-family: "Fuzzy Bubbles", sans-serif;
 }
 
-.cancel-delete {
+.cancel-delete,
+.cancel-reset {
   padding-left: 1.5rem;
 }
 
-.confirm-delete {
+.confirm-delete,
+.confirm-reset {
   padding-right: 1.5rem;
 }
 
-.delete-deck-message {
+.delete-deck-message,
+.reset-knowledge-message {
   text-align: center;
 }
 
-.delete-deck-name {
+.delete-deck-name,
+.reset-deck-name {
   text-align: center;
   font-size: 1.75rem;
 }
 
-.delete-warning {
+.delete-warning,
+.reset-warning {
   color: red;
   font-weight: 800;
   font-size: 0.75rem;
