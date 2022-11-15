@@ -10,9 +10,9 @@ export default class ResetKnowledge extends React.Component {
     const req = {
       method: 'PATCH'
     };
-    fetch(`/api/deck/confidence/${this.props.deckId}`, req)
+    fetch(`/api/deck/confidence/${this.props.deck.deckId}`, req)
       .then(res => {
-        this.props.submitModal();
+        this.props.confirmReset();
       })
       .catch(err => console.error(err));
   }
@@ -24,7 +24,7 @@ export default class ResetKnowledge extends React.Component {
           Are you sure you want to reset this deck?
         </h3>
         <h1 className='reset-deck-name'>
-          {this.props.deckName}
+          {this.props.deck.deckName}
         </h1>
         <p className='reset-warning'>
           Resetting this deck will set the confidence for

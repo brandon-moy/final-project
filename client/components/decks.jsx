@@ -12,15 +12,24 @@ export default class Decks extends React.Component {
       currentShowing: null,
       lastShowing: null,
       show: false,
-      form: null,
-      deleteDeckId: null,
-      deleteDeckName: null
+      resettingDeck: null,
+      deletingDeck: null,
+      creatingDeck: false
     });
+
     this.showOptions = this.showOptions.bind(this);
     this.hideOptions = this.hideOptions.bind(this);
-    this.showModal = this.showModal.bind(this);
+
     this.closeModal = this.closeModal.bind(this);
-    this.submitModal = this.submitModal.bind(this);
+
+    this.createDeck = this.createDeck.bind(this);
+    this.submitDeck = this.submitDeck.bind(this);
+
+    this.deleteDeck = this.deleteDeck.bind(this);
+    this.confirmDelete = this.confirmDelete.bind(this);
+
+    this.resetDeck = this.resetDeck.bind(this);
+    this.confirmReset = this.confirmReset.bind(this);
   }
 
   showOptions(event) {
@@ -39,48 +48,73 @@ export default class Decks extends React.Component {
     });
   }
 
-  showModal(event) {
-    const form = event.currentTarget.id;
-    if (form === 'deletedeck' || form === 'resetknowledge') {
-      const deckId = event.currentTarget.closest('.scene').getAttribute('id');
-      const deckName = event.currentTarget.closest('.options-container').getAttribute('id');
-      this.setState({
-        show: true,
-        form,
-        deckId,
-        deckName
-      });
-    } else {
-      this.setState({
-        show: true,
-        form
-      });
-    }
-
-  }
-
-  closeModal(event) {
+  createDeck(event) {
     this.setState({
-      show: false,
-      form: null,
-      deckId: null,
-      deckName: null
+      show: true,
+      creatingDeck: true
     });
   }
 
-  submitModal(event) {
+  submitDeck() {
     fetch('/api/decks')
       .then(res => res.json())
       .then(data => {
         this.setState({
           show: false,
-          form: null,
-          deckId: null,
-          deckName: null,
+          creatingDeck: false,
           decks: data
         });
       })
       .catch(err => console.error(err));
+  }
+
+  deleteDeck(event) {
+    const deckId = Number(event.currentTarget.getAttribute('data-deck'));
+    const deck = this.state.decks.filter(deck => deck.deckId === deckId);
+    this.setState({
+      show: true,
+      deletingDeck: deck[0]
+    });
+  }
+
+  confirmDelete() {
+    const location = this.state.decks.indexOf(this.state.deletingDeck);
+    const decksCopy = [...this.state.decks];
+    decksCopy.splice(location, 1);
+    this.setState({
+      show: false,
+      decks: decksCopy,
+      deletingDeck: null
+    });
+  }
+
+  resetDeck(event) {
+    const deckId = Number(event.currentTarget.getAttribute('data-deck'));
+    const deck = this.state.decks.filter(deck => deck.deckId === deckId);
+    this.setState({
+      show: true,
+      resettingDeck: deck[0]
+    });
+  }
+
+  confirmReset() {
+    const location = this.state.decks.indexOf(this.state.resettingDeck);
+    const decksCopy = [...this.state.decks];
+    decksCopy[location].totalConfidence = '0';
+    this.setState({
+      show: false,
+      decks: decksCopy,
+      resettingDeck: null
+    });
+  }
+
+  closeModal(event) {
+    this.setState({
+      show: false,
+      creatingDeck: false,
+      resettingDeck: null,
+      deletingDeck: null
+    });
   }
 
   componentDidMount() {
@@ -91,27 +125,30 @@ export default class Decks extends React.Component {
   }
 
   renderModalForm() {
-    const { form } = this.state;
-    if (form === 'newdeck') {
-      return <NewDeck
+    return (
+      <>
+        { this.state.deletingDeck !== null &&
+        <DeleteDeck
+          deck={this.state.deletingDeck}
           closeModal={this.closeModal}
-          submitModal={this.submitModal}
-      />;
-    } else if (form === 'deletedeck') {
-      return <DeleteDeck
-          deckId={this.state.deckId}
-          deckName={this.state.deckName}
+          confirmDelete={this.confirmDelete}
+        />
+      },
+        { this.state.resettingDeck !== null &&
+        <ResetKnowledge
+          deck={this.state.resettingDeck}
           closeModal={this.closeModal}
-          submitModal={this.submitModal}
-      />;
-    } else if (form === 'resetknowledge') {
-      return <ResetKnowledge
-          deckId={this.state.deckId}
-          deckName={this.state.deckName}
+          confirmReset={this.confirmReset}
+        />
+      },
+        { this.state.creatingDeck !== false &&
+        <NewDeck
           closeModal={this.closeModal}
-          submitModal={this.submitModal}
-      />;
-    }
+          submitDeck={this.submitDeck}
+        />
+      }
+      </>
+    );
   }
 
   render() {
@@ -127,7 +164,7 @@ export default class Decks extends React.Component {
         ? 0
         : Math.floor((deck.totalConfidence / maxConfidence) * 100);
       return (
-        <div key={deck.deckId} id={deck.deckId} className='scene col-3'>
+        <div key={deck.deckId} className='scene col-3'>
           <div className='folder'>
             <div
             className='folder-front t-center'
@@ -168,7 +205,8 @@ export default class Decks extends React.Component {
                   <button
                   type='button'
                   id='deletedeck'
-                  onClick={this.showModal}
+                  data-deck={deck.deckId}
+                  onClick={this.deleteDeck}
                   className='card-option delete-deck-button'>
                     <i className='fa-solid fa-trash-can' />
                     Delete Deck
@@ -180,11 +218,14 @@ export default class Decks extends React.Component {
                   high='78'
                   optimum='100'
                   value={confidencePercent} />
-                  <p className='confidence-percent'>{confidencePercent}%</p>
+                  <p className='confidence-percent'>
+                    {confidencePercent}%
+                  </p>
                   <button
                   type='button'
                   id='resetknowledge'
-                  onClick={this.showModal}
+                  data-deck={deck.deckId}
+                  onClick={this.resetDeck}
                   className='reset-knowledge-button' >
                     <i className='fa-solid fa-arrow-rotate-left' />
                   </button>
@@ -203,7 +244,7 @@ export default class Decks extends React.Component {
         type='button'
         id='newdeck'
         className='new-deck'
-        onClick={this.showModal}>
+        onClick={this.createDeck}>
           New Deck
         </button>
         <div className='flex wrap just-center'>
