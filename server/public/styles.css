@@ -446,7 +446,8 @@ i {
   margin-top: 2rem;
   height: 10rem;
   transition: transform 0.5s linear;
-  transform-origin: center;
+  transform: perspective(600px);
+  transform-origin: center right;
   transform-style: preserve-3d;
 }
 
@@ -475,15 +476,15 @@ i {
 }
 
 .half-a {
-  transform: rotateY(-90deg);
+  transform: translateX(-25%) rotateY(-90deg);
 }
 
 .half-q {
-  transform: rotateY(-90deg);
+  transform: translateX(-25%) rotateY(-90deg);
 }
 
 .answer {
-  transform: rotateY(-180deg);
+  transform: translateX(-100%) rotateY(-180deg);
 }
 
 .question-number {
@@ -718,7 +719,7 @@ button:hover,
   .study-card-front,
   .study-card-back {
     height: 15rem;
-    width: 40%;
+    width: 35%;
   }
 
   .flash-card-repeating-blue {
