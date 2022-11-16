@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './components/header';
 import parseRoute from './lib/parse-route';
-import Home from './pages/home';
+import Decks from './components/decks';
 import AddCard from './pages/addcard';
 import NotFound from './pages/notfound';
 import ViewCards from './pages/viewcards';
@@ -10,6 +10,7 @@ import StudyCards from './pages/studycards';
 import AuthForm from './components/auth-form';
 import AppContext from './lib/app-context';
 import jwtDecode from 'jwt-decode';
+import Home from './pages/home';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -39,25 +40,11 @@ export default class App extends React.Component {
     this.setState({ user, isAuthorizing: false });
   }
 
-  renderContent() {
+  renderPage() {
     const { path } = this.state.route;
-    const deckId = this.state.route.params.get('deckId');
-    if (path === '') {
-      return <Home />;
-    } else if (path === 'add-card') {
-      return <AddCard deckId={deckId} />;
-    } else if (path === 'view-cards') {
-      return <ViewCards
-        deckId={deckId}
-      />;
-    } else if (path === 'edit-card') {
-      const cardId = this.state.route.params.get('cardId');
-      return <EditCard
-        deckId={deckId}
-        cardId={cardId}
-      />;
-    } else if (path === 'study-cards') {
-      return <StudyCards deckId={deckId} />;
+    const pages = ['', 'add-card', 'view-cards', 'edit-card', 'study-cards'];
+    if (pages.includes(path)) {
+      return <Home path={path} route={this.state.route} />;
     } else if (path === 'sign-in' || path === 'sign-up') {
       return <AuthForm action={path} handleSignIn={this.handleSignIn} />;
     } else {
@@ -73,7 +60,7 @@ export default class App extends React.Component {
       <AppContext.Provider value={contextValue}>
         <>
           <Header />
-          { this.renderContent() }
+          { this.renderPage() }
         </>
       </AppContext.Provider>
     );
@@ -81,8 +68,12 @@ export default class App extends React.Component {
 }
 
 App.contextType = AppContext;
-Home.contextType = AppContext;
+Decks.contextType = AppContext;
 AuthForm.contextType = AppContext;
 NotFound.contextType = AppContext;
 Header.contextType = AppContext;
 EditCard.contextType = AppContext;
+Home.contextType = AppContext;
+AddCard.contextType = AppContext;
+StudyCards.contextType = AppContext;
+ViewCards.contextType = AppContext;
