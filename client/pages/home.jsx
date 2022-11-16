@@ -152,6 +152,10 @@ export default class Home extends React.Component {
   }
 
   render() {
+    if (!this.context.user) {
+      location.href = '#sign-in';
+      return;
+    }
     if (!this.state.decks) return;
     const renderedDecks = this.state.decks.map(deck => {
       const showPaper = (Number(this.state.currentShowing) === deck.deckId)
@@ -239,7 +243,7 @@ export default class Home extends React.Component {
       );
     });
     return (
-      <div className='decks-view'>
+      <>
         <button
         type='button'
         id='newdeck'
@@ -253,7 +257,7 @@ export default class Home extends React.Component {
         <Modal show={this.state.show}>
           {this.renderModalForm()}
         </Modal>
-      </div>
+      </>
     );
   }
 }

@@ -710,12 +710,20 @@ i {
 }
 
 .auth-button {
-  float: right;
-  margin-right: 2rem;
   background: transparent;
   border: none;
   font-family: Delius, sans-serif;
   font-size: 1.25rem;
+}
+
+.switch-auth {
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.auth-type {
+  font-size: 1rem;
+  padding-left: 0.75rem;
 }
 
 a:hover,
