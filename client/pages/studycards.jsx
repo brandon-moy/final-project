@@ -44,12 +44,12 @@ export default class StudyCards extends React.Component {
   render() {
     if (!this.state.cards) return;
     return (
-      <section className='study-cards'>
+      <>
         <h1 className='deck-view-name col-2'>
           {this.state.deckName}
         </h1>
         { this.renderContent() };
-      </section>
+      </>
     );
   }
 }

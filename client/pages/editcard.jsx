@@ -61,7 +61,7 @@ export default class EditCard extends React.Component {
 
   render() {
     return (
-      <div className='edit-card-page'>
+      <>
         <div className='flex just-between align-center wrap'>
           <h1 className='deck-view-name col-2'>
             {this.state.deckName}
@@ -113,7 +113,7 @@ export default class EditCard extends React.Component {
           deckId={this.props.deckId}
           />
         </Modal>
-      </div>
+      </>
     );
   }
 }

@@ -54,7 +54,7 @@ export default class AddCard extends React.Component {
 
   render() {
     return (
-      <div className='edit-card-page'>
+      <>
         <h1 className='deck-view-name'>
           {this.state.deckName}
         </h1>
@@ -84,7 +84,7 @@ export default class AddCard extends React.Component {
             </button>
           </div>
         </form>
-      </div>
+      </>
     );
   }
 }

@@ -58,7 +58,7 @@ export default class CardStudy extends React.Component {
     const card = this.state.cards[this.state.position];
     const questionPlace = `${this.state.position + 1} / ${this.state.cards.length}`;
     return (
-      <section className='study-cards'>
+      <>
         <h2 className='question-number'>
           Q : {questionPlace}
         </h2>
@@ -118,7 +118,7 @@ export default class CardStudy extends React.Component {
             </div>
           </div>
         </div>
-      </section>
+      </>
     );
   }
 }
