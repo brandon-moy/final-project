@@ -1,12 +1,13 @@
 import React from 'react';
 import Header from './components/header';
 import parseRoute from './lib/parse-route';
-import Home from './pages/home';
+// import Home from './pages/home';
 import AddCard from './pages/addcard';
 import NotFound from './pages/notfound';
 import ViewCards from './pages/viewcards';
 import EditCard from './pages/editcard';
 import StudyCards from './pages/studycards';
+import AuthForm from './components/auth-form';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -27,7 +28,7 @@ export default class App extends React.Component {
     const { path } = this.state.route;
     const deckId = this.state.route.params.get('deckId');
     if (path === '') {
-      return <Home />;
+      return <AuthForm />;
     } else if (path === 'add-card') {
       return <AddCard deckId={deckId} />;
     } else if (path === 'view-cards') {
