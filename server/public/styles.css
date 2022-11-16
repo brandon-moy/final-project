@@ -633,6 +633,61 @@ i {
   height: 4vh;
 }
 
+.clipboard {
+  position: relative;
+  width: 80%;
+  height: 50vh;
+  background-color: #71655b;
+  border-radius: 0.25rem;
+  margin: 5rem auto;
+  padding-top: 1rem;
+}
+
+.clip {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  width: 75%;
+  height: 2rem;
+  background-color: #cecece;
+}
+
+.page {
+  position: absolute;
+  background-color: white;
+  width: 90%;
+  height: 90%;
+}
+
+.placeholder-image {
+  height: 20vh;
+}
+
+.auth {
+  padding-top: 1rem;
+  padding-left: 1rem;
+  font-family: Delius, sans-serif;
+}
+
+.username,
+.password {
+  width: 90%;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+}
+
+.auth-button {
+  float: right;
+  margin-right: 2rem;
+  background: transparent;
+  border: none;
+  font-family: Delius, sans-serif;
+  font-size: 1.25rem;
+}
+
 a:hover,
 button:hover,
 .folder-front:hover,
@@ -795,6 +850,21 @@ button:hover,
   .confidence-meter {
     width: 75%;
     height: 5vh;
+  }
+
+  .clipboard {
+    width: 50%;
+  }
+
+  .form-section {
+    padding-top: 4rem;
+  }
+
+  .username,
+  .password {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
   }
 }
 
