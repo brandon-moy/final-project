@@ -32,6 +32,7 @@ export default class Home extends React.Component {
   render() {
     if (!this.context.user) {
       location.href = '#sign-in';
+      return;
     }
 
     return this.renderContent();
