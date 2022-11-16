@@ -33,12 +33,12 @@ export default class AuthForm extends React.Component {
         <div className="clip t-center" />
         <div className="page t-center">
           <form
-          className="auth flex wrap just-center"
+          className="auth flex-column wrap just-center"
           onSubmit={this.handleSubmit}>
             <img
-            className='placeholder-image col-2'
-            src='/post-removebg-preview.png' />
-            <div className='form-section col-2'>
+            className='placeholder-image'
+            src='/place.png' />
+            <div className='form-section'>
               <label>Username
                 <input
                 type="text"

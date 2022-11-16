@@ -660,6 +660,7 @@ i {
 }
 
 .placeholder-image {
+  object-fit: contain;
   height: 20vh;
 }
 
@@ -855,17 +856,13 @@ label:hover,
   }
 
   .clipboard {
-    width: 50%;
+    margin-top: 2.5rem;
+    width: 25%;
+    height: 70vh;
   }
 
-  .form-section {
-    padding-top: 4rem;
-  }
-
-  .username,
-  .password {
-    margin-top: 1rem;
-    margin-bottom: 1.5rem;
+  .placeholder-image {
+    height: 30vh;
   }
 }
 
