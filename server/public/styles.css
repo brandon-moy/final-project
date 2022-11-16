@@ -1,3 +1,31 @@
+body {
+  height: 100vh;
+  width: 100%;
+  background:
+    linear-gradient(
+      217deg,
+      rgb(32, 63, 40),
+      rgba(255, 255, 255, 0) 60%,
+      rgb(32, 63, 40) 75%,
+      rgba(255, 255, 255, 0) 90%
+    ),
+    linear-gradient(
+      145deg,
+      rgb(32, 63, 40),
+      rgba(255, 255, 255, 0) 90%
+    ),
+    radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0),
+      rgb(32, 63, 40)
+    ),
+    linear-gradient(
+      45deg,
+      rgb(32, 63, 40),
+      rgba(255, 255, 255, 0) 95%
+    );
+}
+
 i {
   padding-right: 0.25rem;
 }
@@ -633,8 +661,66 @@ i {
   height: 4vh;
 }
 
+.clipboard {
+  position: relative;
+  width: 80%;
+  height: 50vh;
+  background-color: #71655b;
+  border-radius: 0.25rem;
+  margin: 5rem auto;
+  padding-top: 1rem;
+}
+
+.clip {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  width: 75%;
+  height: 2rem;
+  background-color: #cecece;
+}
+
+.page {
+  position: absolute;
+  background-color: white;
+  width: 90%;
+  height: 90%;
+}
+
+.placeholder-image {
+  object-fit: contain;
+  height: 20vh;
+}
+
+.auth {
+  padding-top: 1rem;
+  padding-left: 1rem;
+  font-family: Delius, sans-serif;
+}
+
+.username,
+.password {
+  width: 90%;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+  font-size: 1.25rem;
+}
+
+.auth-button {
+  float: right;
+  margin-right: 2rem;
+  background: transparent;
+  border: none;
+  font-family: Delius, sans-serif;
+  font-size: 1.25rem;
+}
+
 a:hover,
 button:hover,
+label:hover,
 .folder-front:hover,
 .option-paper:hover,
 .study-card-front {
@@ -795,6 +881,16 @@ button:hover,
   .confidence-meter {
     width: 75%;
     height: 5vh;
+  }
+
+  .clipboard {
+    margin-top: 2.5rem;
+    width: 25%;
+    height: 70vh;
+  }
+
+  .placeholder-image {
+    height: 30vh;
   }
 }
 

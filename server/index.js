@@ -1,6 +1,7 @@
 require('dotenv/config');
 const express = require('express');
 const ClientError = require('./client-error');
+const argon2 = require('argon2');
 const pg = require('pg');
 const staticMiddleware = require('./static-middleware');
 const errorMiddleware = require('./error-middleware');
@@ -90,6 +91,32 @@ app.get('/api/card/:cardId', (req, res, next) => {
       } else {
         res.json(card);
       }
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/auth/sign-up', (req, res, next) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    throw new ClientError(400, 'username and password are required fields');
+  }
+
+  argon2
+    .hash(password)
+    .then(hashedPassword => {
+      const sql = `
+      insert into "accounts" ("username", "hashedPassword")
+      values ($1, $2)
+      returning "userId", "username", "joinedAt"
+      `;
+
+      const params = [username, hashedPassword];
+
+      return db.query(sql, params);
+    })
+    .then(result => {
+      const [user] = result.rows;
+      res.status(201).json(user);
     })
     .catch(err => next(err));
 });
