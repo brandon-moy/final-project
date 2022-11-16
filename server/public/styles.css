@@ -1,3 +1,31 @@
+body {
+  height: 100vh;
+  width: 100%;
+  background:
+    linear-gradient(
+      217deg,
+      rgb(32, 63, 40),
+      rgba(255, 255, 255, 0) 60%,
+      rgb(32, 63, 40) 75%,
+      rgba(255, 255, 255, 0) 90%
+    ),
+    linear-gradient(
+      145deg,
+      rgb(32, 63, 40),
+      rgba(255, 255, 255, 0) 90%
+    ),
+    radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0),
+      rgb(32, 63, 40)
+    ),
+    linear-gradient(
+      45deg,
+      rgb(32, 63, 40),
+      rgba(255, 255, 255, 0) 95%
+    );
+}
+
 i {
   padding-right: 0.25rem;
 }
