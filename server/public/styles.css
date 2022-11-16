@@ -677,6 +677,7 @@ i {
   border: none;
   border-bottom: 1px solid black;
   outline: none;
+  font-size: 1.25rem;
 }
 
 .auth-button {
@@ -862,7 +863,6 @@ button:hover,
 
   .username,
   .password {
-    font-size: 1.25rem;
     margin-top: 1rem;
     margin-bottom: 1.5rem;
   }

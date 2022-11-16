@@ -17,12 +17,8 @@ export default class EditCard extends React.Component {
   }
 
   handleChange(event) {
-    const value = event.target.value;
-    if (event.target.name === 'question') {
-      this.setState({ question: value });
-    } else {
-      this.setState({ answer: value });
-    }
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
   }
 
   handleSubmit(event) {
