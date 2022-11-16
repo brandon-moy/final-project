@@ -1,20 +1,21 @@
 import React from 'react';
-import Header from './components/header';
-import parseRoute from './lib/parse-route';
-import Decks from './components/decks';
+import Home from './pages/home';
+import jwtDecode from 'jwt-decode';
 import AddCard from './pages/addcard';
-import NotFound from './pages/notfound';
-import ViewCards from './pages/viewcards';
+import Decks from './components/decks';
 import EditCard from './pages/editcard';
+import NotFound from './pages/notfound';
+import Header from './components/header';
+import ViewCards from './pages/viewcards';
+import parseRoute from './lib/parse-route';
+import AppContext from './lib/app-context';
+import NewDeck from './components/newdeck';
 import StudyCards from './pages/studycards';
 import AuthForm from './components/auth-form';
-import AppContext from './lib/app-context';
-import jwtDecode from 'jwt-decode';
-import Home from './pages/home';
-import NewDeck from './components/newdeck';
+import CardStudy from './components/cardstudy';
 import DeleteForm from './components/deletecard';
 import DeleteDeck from './components/deletedeck';
-import CardStudy from './components/cardstudy';
+import ResetKnowledge from './components/resetknowledge';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -84,3 +85,4 @@ NewDeck.contextType = AppContext;
 DeleteForm.contextType = AppContext;
 DeleteDeck.contextType = AppContext;
 CardStudy.contextType = AppContext;
+ResetKnowledge.contextType = AppContext;

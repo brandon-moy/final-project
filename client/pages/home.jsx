@@ -1,9 +1,9 @@
 import React from 'react';
-import Decks from '../components/decks';
 import AddCard from './addcard';
-import StudyCards from './studycards';
-import ViewCards from './viewcards';
 import EditCard from './editcard';
+import ViewCards from './viewcards';
+import StudyCards from './studycards';
+import Decks from '../components/decks';
 
 export default class Home extends React.Component {
 
