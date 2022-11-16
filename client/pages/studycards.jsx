@@ -12,7 +12,15 @@ export default class StudyCards extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`/api/cards/${this.props.deckId}`)
+    const userId = JSON.stringify(this.context.user.userId);
+    const req = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        userId
+      }
+    };
+    fetch(`/api/cards/${this.props.deckId}`, req)
       .then(res => res.json())
       .then(data => {
         let deckName = '';

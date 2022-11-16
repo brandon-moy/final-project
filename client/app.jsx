@@ -11,13 +11,16 @@ import AuthForm from './components/auth-form';
 import AppContext from './lib/app-context';
 import jwtDecode from 'jwt-decode';
 import Home from './pages/home';
+import NewDeck from './components/newdeck';
+import DeleteForm from './components/deletecard';
+import DeleteDeck from './components/deletedeck';
+import CardStudy from './components/cardstudy';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = ({
       user: null,
-      token: null,
       isAuthorizing: true,
       route: parseRoute(window.location.hash)
     });
@@ -54,8 +57,8 @@ export default class App extends React.Component {
 
   render() {
     if (this.state.isAuthorizing) return null;
-    const { user, route, token } = this.state;
-    const contextValue = { user, route, token };
+    const { user, route } = this.state;
+    const contextValue = { user, route };
     return (
       <AppContext.Provider value={contextValue}>
         <>
@@ -77,3 +80,7 @@ Home.contextType = AppContext;
 AddCard.contextType = AppContext;
 StudyCards.contextType = AppContext;
 ViewCards.contextType = AppContext;
+NewDeck.contextType = AppContext;
+DeleteForm.contextType = AppContext;
+DeleteDeck.contextType = AppContext;
+CardStudy.contextType = AppContext;

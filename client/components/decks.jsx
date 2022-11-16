@@ -56,7 +56,15 @@ export default class Home extends React.Component {
   }
 
   submitDeck() {
-    fetch('/api/decks')
+    const userId = JSON.stringify(this.context.user.userId);
+    const req = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        userId
+      }
+    };
+    fetch('/api/decks', req)
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -118,7 +126,15 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/decks')
+    const userId = JSON.stringify(this.context.user.userId);
+    const req = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        userId
+      }
+    };
+    fetch('/api/decks', req)
       .then(res => res.json())
       .then(data => this.setState({ decks: data }))
       .catch(err => console.error(err));

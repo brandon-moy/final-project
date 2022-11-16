@@ -7,9 +7,13 @@ export default class DeleteDeck extends React.Component {
   }
 
   deleteDeck(event) {
+    const userId = JSON.stringify(this.context.user.userId);
     const deckId = this.props.deck.deckId;
     const req = {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        userId
+      }
     };
     fetch(`/api/deletedeck/${deckId}`, req)
       .then(res => {
