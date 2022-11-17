@@ -122,12 +122,18 @@ i {
 }
 
 .xmark-close {
-  text-align: right;
+  width: 1.5rem;
+  position: absolute;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: black;
 }
 
 .sticky-header {
   font-family: "Fuzzy Bubbles", sans-serif;
   font-size: 1.75rem;
+  padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
 
@@ -154,6 +160,7 @@ i {
   border: none;
   margin-top: 3rem;
   font-size: 1.25rem;
+  color: black;
 }
 
 .scene {
@@ -176,11 +183,6 @@ i {
   transition: transform 0.25s;
 }
 
-.folder-front:hover {
-  cursor: pointer;
-  transform: rotateX(-20deg) translateX(-50%) translateY(0.3rem);
-}
-
 .folder-back {
   position: absolute;
   width: 95%;
@@ -189,6 +191,7 @@ i {
   border-radius: 0 0.5rem 0 0;
   border: 2px solid #ffdf76;
   z-index: -2;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.39);
 }
 
 .folder-tab {
@@ -270,7 +273,8 @@ i {
   position: relative;
   background-color: rgb(253 246 166);
   height: 10rem;
-  margin: 0 auto 2rem;
+  margin: 0 auto 0.75rem;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
 }
 
 .card-back {
@@ -283,7 +287,8 @@ i {
       rgb(253 246 166) 21.5%
     );
   height: 10rem;
-  margin: 0 auto 2rem;
+  margin: 0 auto 0.75rem;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
 }
 
 .edit-card-front {
@@ -299,7 +304,6 @@ i {
 
 .card-question,
 .card-answer {
-  width: 100%;
   height: 100%;
   font-size: 1.5rem;
   border: none;
@@ -315,10 +319,6 @@ i {
   font-family: "Fuzzy Bubbles", sans-serif;
   font-weight: 800;
   padding-top: 10%;
-}
-
-.card-answer {
-  font-family: Delius, sans-serif;
 }
 
 .flash-card-repeating-blue {
@@ -362,22 +362,10 @@ i {
 .view-card-question,
 .view-card-answer {
   font-size: 1.5rem;
-  border: none;
-  outline: none;
-  background: transparent;
   text-align: center;
   inline-size: 20rem;
   overflow: scroll;
   overflow-wrap: break-word;
-}
-
-.view-card-question {
-  font-family: "Fuzzy Bubbles", sans-serif;
-  font-weight: 800;
-}
-
-.view-card-answer {
-  font-family: Delius, sans-serif;
 }
 
 .deck-view-name {
@@ -389,16 +377,7 @@ i {
   margin: 0 auto;
 }
 
-.new-card-deck {
-  padding-bottom: 1rem;
-  color: white;
-  font-family: Delius, sans-serif;
-  text-decoration: none;
-  font-size: 1.25rem;
-  text-align: right;
-  padding-right: 2rem;
-}
-
+.new-card-deck,
 .edit-new-card-deck {
   color: white;
   font-family: Delius, sans-serif;
@@ -408,8 +387,8 @@ i {
   padding-right: 2rem;
 }
 
-.fa-pencil {
-  color: white;
+.new-card-deck {
+  padding-bottom: 1rem;
 }
 
 .deck-edit-card {
@@ -432,8 +411,14 @@ i {
 }
 
 .delete-confirm,
-.reset-confirm {
+.reset-confirm,
+.view-card-question {
   font-family: "Fuzzy Bubbles", sans-serif;
+}
+
+.view-card-answer,
+.card-answer {
+  font-family: Delius, sans-serif;
 }
 
 .delete-card-message {
@@ -450,7 +435,6 @@ i {
 .cancel-reset,
 .confirm-reset {
   font-size: 1.25rem;
-  text-decoration: none;
   color: black;
   background: transparent;
   border: none;
@@ -491,16 +475,24 @@ i {
 .reset-knowledge-button {
   font-family: "Fuzzy Bubbles", sans-serif;
   font-size: 1rem;
+  padding-right: 0;
+  color: black;
   background: transparent;
   border: none;
 }
 
+.study-scene {
+  transform: perspective(600px);
+  margin: auto;
+  width: 100%;
+}
+
 .study-card-set {
   position: relative;
+  width: 100%;
   margin-top: 2rem;
   height: 10rem;
   transition: transform 0.5s linear;
-  transform: perspective(600px);
   transform-origin: center right;
   transform-style: preserve-3d;
 }
@@ -672,20 +664,20 @@ i {
 }
 
 .confidence-meter {
-  padding-left: 1rem;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   width: 70%;
-  height: 4vh;
+  height: 2.5vh;
 }
 
 .clipboard {
   position: relative;
   width: 80%;
-  height: 50vh;
-  background-color: #71655b;
+  height: 60vh;
+  background: #7c6652;
   border-radius: 0.25rem;
-  margin: 5rem auto;
+  margin: 2.5rem auto;
   padding-top: 1rem;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
 }
 
 .clip {
@@ -694,14 +686,24 @@ i {
   top: 0;
   width: 75%;
   height: 2rem;
-  background-color: #cecece;
+  background:
+    linear-gradient(
+      to bottom,
+      #cecece 60%,
+      rgb(233, 233, 233) 75%,
+      #cecece 100%
+    );
+  border-radius: 0 0 0.25rem 0.25rem;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 
 .page {
   position: absolute;
+  border-radius: 0.1rem;
   background-color: white;
   width: 90%;
   height: 90%;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .placeholder-image {
@@ -710,20 +712,25 @@ i {
 }
 
 .auth {
-  padding-top: 1rem;
+  padding-top: 1.5rem;
   padding-left: 1rem;
   font-family: Delius, sans-serif;
+}
+
+.switch-container {
+  padding-top: 1rem;
 }
 
 .username,
 .password {
   width: 90%;
   margin-top: 0.25rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   border: none;
   border-bottom: 1px solid black;
   outline: none;
   font-size: 1.25rem;
+  font-family: Delius, sans-serif;
 }
 
 .auth-button {
@@ -731,6 +738,7 @@ i {
   border: none;
   font-family: Delius, sans-serif;
   font-size: 1.25rem;
+  color: black;
 }
 
 .switch-auth {
@@ -739,8 +747,8 @@ i {
 }
 
 .auth-type {
-  font-size: 1rem;
   padding-left: 0.75rem;
+  color: black;
 }
 
 .username-error {
@@ -758,15 +766,6 @@ i {
   color: white;
   font-size: 1.25rem;
   font-family: "Fuzzy Bubbles", sans-serif;
-}
-
-a:hover,
-button:hover,
-label:hover,
-.folder-front:hover,
-.option-paper:hover,
-.study-card-front {
-  cursor: pointer;
 }
 
 @keyframes show-paper {
@@ -789,7 +788,32 @@ label:hover,
   }
 
   100% {
+    transform: translateY(0) translateX(2.5%);
+    z-index: 3;
+  }
+}
+
+@keyframes show-paper-desktop {
+  0% {
     transform: 0;
+  }
+
+  20% {
+    transform: translateY(-2.5rem) translateX(3%);
+  }
+
+  50% {
+    transform: translateY(-10rem) translateX(6%);
+    z-index: 3;
+  }
+
+  60% {
+    transform: translateY(-15rem) translateX(9%);
+    z-index: 3;
+  }
+
+  100% {
+    transform: translateY(0) translateX(12%);
     z-index: 3;
   }
 }
@@ -829,7 +853,8 @@ label:hover,
   }
 
   .option-paper.is-showing {
-    transform: translateX(3rem) translateY(0.25rem);
+    animation: show-paper-desktop 1s linear 1;
+    animation-fill-mode: forwards;
   }
 
   .folder-tab {
@@ -840,6 +865,10 @@ label:hover,
   .card-back,
   .edit-card-front {
     height: 20rem;
+  }
+
+  .study-scene {
+    width: 50%;
   }
 
   .study-card-set {
@@ -854,15 +883,15 @@ label:hover,
   .study-card-front,
   .study-card-back {
     height: 15rem;
-    width: 35%;
+    width: 75%;
   }
 
   .half-a {
-    transform: translateX(-40%) translateZ(800px) rotateY(-90deg);
+    transform: translateX(-50%) rotateY(-90deg);
   }
 
   .half-q {
-    transform: translateX(-45%) translateZ(800px) rotateY(-90deg);
+    transform: translateX(-50%) rotateY(-90deg);
   }
 
   .answer {
@@ -909,6 +938,10 @@ label:hover,
     overflow: auto;
   }
 
+  .card-answer {
+    height: 15rem;
+  }
+
   .question-number {
     padding-left: 3rem;
   }
@@ -936,6 +969,22 @@ label:hover,
 
   .placeholder-image {
     height: 30vh;
+  }
+}
+
+@media (hover: hover) {
+  .folder-front:hover {
+    cursor: pointer;
+    transform: rotateX(-20deg) translateX(-50%) translateY(0.3rem);
+  }
+
+  a:hover,
+  button:hover,
+  label:hover,
+  .folder-front:hover,
+  .option-paper:hover,
+  .study-card-front {
+    cursor: pointer;
   }
 }
 

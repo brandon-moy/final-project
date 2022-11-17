@@ -65,59 +65,61 @@ export default class CardStudy extends React.Component {
         <h2 className='question-number'>
           Q : {questionPlace}
         </h2>
-        <div
+        <div className='study-scene'>
+          <div
         className={`study-card-set flex wrap just-center col-100 ${face}`}
         onTransitionEnd={this.finishFlip}>
-          <div
+            <div
           className='study-card-front flex-column'
           onClick={this.startFlip}>
-            <div className={`highlight confidence-${card.confidence}`} />
-            <h1 className='view-card-question'>
-              {card.question}
-            </h1>
-          </div>
-          <div className='study-card-back'>
-            <div className='flash-card-repeating-blue flex just-center'>
-              <h2 className='view-card-answer'>
-                {card.answer}
-              </h2>
+              <div className={`highlight confidence-${card.confidence}`} />
+              <h1 className='view-card-question'>
+                {card.question}
+              </h1>
             </div>
-            <div className='button-container flex just-even col-100'>
-              <button
+            <div className='study-card-back'>
+              <div className='flash-card-repeating-blue flex just-center'>
+                <h2 className='view-card-answer'>
+                  {card.answer}
+                </h2>
+              </div>
+              <div className='button-container flex just-even col-100'>
+                <button
               id='1'
               type='button'
               className='confidence'
               onClick={this.updateConfidence}>
-                1
-              </button>
-              <button
+                  1
+                </button>
+                <button
                 id='2'
                 type='button'
                 className='confidence'
                 onClick={this.updateConfidence}>
-                2
-              </button>
-              <button
+                  2
+                </button>
+                <button
                 id='3'
                 type='button'
                 className='confidence'
                 onClick={this.updateConfidence}>
-                3
-              </button>
-              <button
+                  3
+                </button>
+                <button
                 id='4'
                 type='button'
                 className='confidence'
                 onClick={this.updateConfidence}>
-                4
-              </button>
-              <button
+                  4
+                </button>
+                <button
                 id='5'
                 type='button'
                 className='confidence'
                 onClick={this.updateConfidence}>
-                5
-              </button>
+                  5
+                </button>
+              </div>
             </div>
           </div>
         </div>

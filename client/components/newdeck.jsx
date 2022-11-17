@@ -45,9 +45,12 @@ export default class NewDeck extends React.Component {
     const errorClass = this.state.error ? 'new-deck-error' : 'hidden';
     return (
       <form className='new-deck-form' onSubmit={this.handleSubmit}>
-        <a className='xmark-close' onClick={this.props.closeModal}>
+        <button
+        type='button'
+        className='xmark-close'
+        onClick={this.props.closeModal}>
           <i className='fa-solid fa-xmark' />
-        </a>
+        </button>
         <h1 className='sticky-header'>
           Create New Deck
         </h1>
