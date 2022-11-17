@@ -4,6 +4,7 @@ import NewDeck from './newdeck';
 import DeleteDeck from './deletedeck';
 import AppContext from '../lib/app-context';
 import ResetKnowledge from './resetknowledge';
+import StudyOptions from './studyoptions';
 
 export default class Decks extends React.Component {
   constructor(props) {
@@ -162,6 +163,10 @@ export default class Decks extends React.Component {
         <NewDeck
           closeModal={this.closeModal}
           submitDeck={this.submitDeck}
+        />
+      }
+        { this.state.studyOptions !== false &&
+        <StudyOptions
         />
       }
       </>
