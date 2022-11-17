@@ -286,6 +286,13 @@ i {
   margin: 0 auto 2rem;
 }
 
+.edit-card-front {
+  position: relative;
+  background-color: rgb(253 246 166);
+  height: 10rem;
+  margin: 0 auto;
+}
+
 .new-card > label {
   margin-top: 2rem;
 }
@@ -384,6 +391,15 @@ i {
 
 .new-card-deck {
   padding-bottom: 1rem;
+  color: white;
+  font-family: Delius, sans-serif;
+  text-decoration: none;
+  font-size: 1.25rem;
+  text-align: right;
+  padding-right: 2rem;
+}
+
+.edit-new-card-deck {
   color: white;
   font-family: Delius, sans-serif;
   text-decoration: none;
