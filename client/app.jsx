@@ -26,6 +26,7 @@ export default class App extends React.Component {
       route: parseRoute(window.location.hash)
     });
     this.handleSignIn = this.handleSignIn.bind(this);
+    this.handleSignOut = this.handleSignOut.bind(this);
   }
 
   handleSignIn(result) {
@@ -68,7 +69,7 @@ export default class App extends React.Component {
     return (
       <AppContext.Provider value={contextValue}>
         <>
-          <Header />
+          <Header signOut={this.handleSignOut} />
           { this.renderPage() }
         </>
       </AppContext.Provider>
@@ -77,17 +78,18 @@ export default class App extends React.Component {
 }
 
 App.contextType = AppContext;
+Home.contextType = AppContext;
 Decks.contextType = AppContext;
+Header.contextType = AppContext;
+Header.contextType = AppContext;
+AddCard.contextType = AppContext;
+NewDeck.contextType = AppContext;
 AuthForm.contextType = AppContext;
 NotFound.contextType = AppContext;
-Header.contextType = AppContext;
 EditCard.contextType = AppContext;
-Home.contextType = AppContext;
-AddCard.contextType = AppContext;
-StudyCards.contextType = AppContext;
 ViewCards.contextType = AppContext;
-NewDeck.contextType = AppContext;
+CardStudy.contextType = AppContext;
+StudyCards.contextType = AppContext;
 DeleteForm.contextType = AppContext;
 DeleteDeck.contextType = AppContext;
-CardStudy.contextType = AppContext;
 ResetKnowledge.contextType = AppContext;
