@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from '../components/modal';
+import AppContext from '../lib/app-context';
 import DeleteForm from '../components/deletecard';
 
 export default class EditCard extends React.Component {
@@ -79,13 +80,13 @@ export default class EditCard extends React.Component {
           <div className='spacer col-4' />
           <a
           href={`/#add-card?deckId=${this.props.deckId}`}
-          className='new-card-deck col-4'>
+          className='edit-new-card-deck col-4'>
             <i className='fa-solid fa-circle-plus' />
             Add Card
           </a>
         </div>
         <form className='new-card flex wrap' onSubmit={this.handleSubmit}>
-          <label className='card-front col-45 flex just-center align-center'>
+          <label className='edit-card-front col-45 flex just-center align-center'>
             <textarea
             name='question'
             type='text'
@@ -127,3 +128,5 @@ export default class EditCard extends React.Component {
     );
   }
 }
+
+EditCard.contextType = AppContext;

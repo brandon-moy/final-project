@@ -286,6 +286,13 @@ i {
   margin: 0 auto 2rem;
 }
 
+.edit-card-front {
+  position: relative;
+  background-color: rgb(253 246 166);
+  height: 10rem;
+  margin: 0 auto;
+}
+
 .new-card > label {
   margin-top: 2rem;
 }
@@ -378,11 +385,21 @@ i {
   font-family: "Gloria Hallelujah", sans-serif;
   font-size: 2.5rem;
   text-align: center;
+  padding-top: 2rem;
   margin: 0 auto;
 }
 
 .new-card-deck {
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
+  color: white;
+  font-family: Delius, sans-serif;
+  text-decoration: none;
+  font-size: 1.25rem;
+  text-align: right;
+  padding-right: 2rem;
+}
+
+.edit-new-card-deck {
   color: white;
   font-family: Delius, sans-serif;
   text-decoration: none;
@@ -732,6 +749,17 @@ i {
   margin: 0;
 }
 
+.sign-out-button {
+  position: absolute;
+  top: 6.25rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  font-family: "Fuzzy Bubbles", sans-serif;
+}
+
 a:hover,
 button:hover,
 label:hover,
@@ -809,7 +837,8 @@ label:hover,
   }
 
   .card-front,
-  .card-back {
+  .card-back,
+  .edit-card-front {
     height: 20rem;
   }
 
@@ -853,8 +882,10 @@ label:hover,
       );
   }
 
-  .new-card-deck {
+  .new-card-deck,
+  .edit-new-card-deck {
     font-size: 1.75rem;
+    padding-top: 2rem;
     padding-bottom: 0;
   }
 

@@ -4,6 +4,7 @@ import EditCard from './editcard';
 import ViewCards from './viewcards';
 import StudyCards from './studycards';
 import Decks from '../components/decks';
+import AppContext from '../lib/app-context';
 
 export default class Home extends React.Component {
 
@@ -38,3 +39,5 @@ export default class Home extends React.Component {
     return this.renderContent();
   }
 }
+
+Home.contextType = AppContext;
