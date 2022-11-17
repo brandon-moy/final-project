@@ -17,7 +17,7 @@ export default class Decks extends React.Component {
       resettingDeck: null,
       deletingDeck: null,
       creatingDeck: false,
-      studyingDeck: false
+      studyingDeck: null
     });
 
     this.showOptions = this.showOptions.bind(this);
@@ -134,7 +134,8 @@ export default class Decks extends React.Component {
       show: false,
       creatingDeck: false,
       resettingDeck: null,
-      deletingDeck: null
+      deletingDeck: null,
+      studyingDeck: null
     });
   }
 
@@ -176,7 +177,7 @@ export default class Decks extends React.Component {
           submitDeck={this.submitDeck}
         />
       }
-        { this.state.studyOptions !== false &&
+        { this.state.studyingDeck !== null &&
         <StudyOptions
           deck={this.state.studyingDeck}
           closeModal={this.closeModal}
@@ -188,6 +189,13 @@ export default class Decks extends React.Component {
 
   render() {
     if (!this.state.decks) return;
+    const sticky = this.state.resettingDeck !== null
+      ? 'orange'
+      : this.state.deletingDeck !== null
+        ? 'red'
+        : this.state.creatingDeck !== false
+          ? 'yellow'
+          : 'blue';
     const renderedDecks = this.state.decks.map(deck => {
       const showPaper = (Number(this.state.currentShowing) === deck.deckId)
         ? 'is-showing'
@@ -287,7 +295,7 @@ export default class Decks extends React.Component {
         <div className='flex wrap just-center'>
           {renderedDecks}
         </div>
-        <Modal show={this.state.show}>
+        <Modal show={this.state.show} color={sticky}>
           {this.renderModalForm()}
         </Modal>
       </>
