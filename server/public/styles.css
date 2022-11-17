@@ -122,12 +122,18 @@ i {
 }
 
 .xmark-close {
-  text-align: right;
+  width: 1.5rem;
+  position: absolute;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: black;
 }
 
 .sticky-header {
   font-family: "Fuzzy Bubbles", sans-serif;
   font-size: 1.75rem;
+  padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
 
@@ -154,6 +160,7 @@ i {
   border: none;
   margin-top: 3rem;
   font-size: 1.25rem;
+  color: black;
 }
 
 .scene {

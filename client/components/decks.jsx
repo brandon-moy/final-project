@@ -150,14 +150,14 @@ export default class Decks extends React.Component {
           closeModal={this.closeModal}
           confirmDelete={this.confirmDelete}
         />
-      },
+      }
         { this.state.resettingDeck !== null &&
         <ResetKnowledge
           deck={this.state.resettingDeck}
           closeModal={this.closeModal}
           confirmReset={this.confirmReset}
         />
-      },
+      }
         { this.state.creatingDeck !== false &&
         <NewDeck
           closeModal={this.closeModal}

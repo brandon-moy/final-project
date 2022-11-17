@@ -14,7 +14,7 @@ export default class Header extends React.Component {
         </a>
         <button className={show} onClick={this.props.signOut}>
           Sign Out
-          <i className="fa-solid fa-right-from-bracket" />
+          <i className='fa-solid fa-right-from-bracket' />
         </button>
       </header>
     );
