@@ -1,4 +1,5 @@
 import React from 'react';
+import Redirect from './redirect';
 import AppContext from '../lib/app-context';
 
 export default class AuthForm extends React.Component {
@@ -49,6 +50,8 @@ export default class AuthForm extends React.Component {
   }
 
   render() {
+    if (this.context.user) return <Redirect to='' />;
+
     const authButton = this.props.action === 'sign-in'
       ? 'Sign In'
       : 'Sign Up';
