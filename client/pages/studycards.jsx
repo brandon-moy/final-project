@@ -21,7 +21,7 @@ export default class StudyCards extends React.Component {
         userId
       }
     };
-    fetch(`/api/cards/${this.props.deckId}`, req)
+    fetch(`/api/cards/${this.props.deckId}?order=${this.props.order}`, req)
       .then(res => res.json())
       .then(data => {
         let deckName = '';

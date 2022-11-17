@@ -27,7 +27,8 @@ export default class Home extends React.Component {
         cardId={cardId}
       />;
     } else if (path === 'study-cards') {
-      return <StudyCards deckId={deckId} />;
+      const order = this.props.route.params.get('order');
+      return <StudyCards deckId={deckId} order={order} />;
     }
   }
 

@@ -55,6 +55,10 @@
   flex-basis: 50%;
 }
 
+.col-half {
+  flex-basis: 50%;
+}
+
 .col-100 {
   flex-basis: 100%;
 }

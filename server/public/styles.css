@@ -130,7 +130,8 @@ i {
   color: black;
 }
 
-.sticky-header {
+.sticky-header,
+.study-title {
   font-family: "Fuzzy Bubbles", sans-serif;
   font-size: 1.75rem;
   padding-top: 1.5rem;
@@ -472,7 +473,8 @@ i {
 }
 
 .delete-deck-button,
-.reset-knowledge-button {
+.reset-knowledge-button,
+.study-button {
   font-family: "Fuzzy Bubbles", sans-serif;
   font-size: 1rem;
   padding-right: 0;
@@ -664,7 +666,7 @@ i {
 }
 
 .confidence-meter {
-  margin-top: 1rem;
+  margin-top: 0.75rem;
   width: 70%;
   height: 2.5vh;
 }
@@ -766,6 +768,35 @@ i {
   color: white;
   font-size: 1.25rem;
   font-family: "Fuzzy Bubbles", sans-serif;
+}
+
+.study-title {
+  text-align: center;
+  width: 90%;
+}
+
+.study-link-container {
+  padding-left: 1.5rem;
+}
+
+.study-option {
+  text-decoration: none;
+  color: black;
+  font-family: Delius, sans-serif;
+  padding-bottom: 1rem;
+}
+
+.study-option > i {
+  padding-left: 0.25rem;
+}
+
+.close-study {
+  float: right;
+  padding-right: 1.25rem;
+  padding-top: 1rem;
+  background: transparent;
+  border: none;
+  color: black;
 }
 
 @keyframes show-paper {
@@ -957,6 +988,7 @@ i {
   }
 
   .confidence-meter {
+    margin-top: 0.5rem;
     width: 75%;
     height: 5vh;
   }

@@ -16,7 +16,8 @@ export default class Decks extends React.Component {
       show: false,
       resettingDeck: null,
       deletingDeck: null,
-      creatingDeck: false
+      creatingDeck: false,
+      studyingDeck: false
     });
 
     this.showOptions = this.showOptions.bind(this);
@@ -32,6 +33,8 @@ export default class Decks extends React.Component {
 
     this.resetDeck = this.resetDeck.bind(this);
     this.confirmReset = this.confirmReset.bind(this);
+
+    this.studyDeck = this.studyDeck.bind(this);
   }
 
   showOptions(event) {
@@ -118,6 +121,14 @@ export default class Decks extends React.Component {
     });
   }
 
+  studyDeck(event) {
+    const deckId = Number(event.currentTarget.getAttribute('data-deck'));
+    this.setState({
+      show: true,
+      studyingDeck: deckId
+    });
+  }
+
   closeModal(event) {
     this.setState({
       show: false,
@@ -167,6 +178,8 @@ export default class Decks extends React.Component {
       }
         { this.state.studyOptions !== false &&
         <StudyOptions
+          deck={this.state.studyingDeck}
+          closeModal={this.closeModal}
         />
       }
       </>
@@ -212,12 +225,14 @@ export default class Decks extends React.Component {
                     <i className='fa-solid fa-circle-plus' />
                     Add Cards
                   </a>
-                  <a
-                  href={`/#study-cards?deckId=${deck.deckId}`}
-                  className='card-option'>
+                  <button
+                  type='button'
+                  data-deck={deck.deckId}
+                  onClick={this.studyDeck}
+                  className='card-option study-button'>
                     <i className='fa-solid fa-graduation-cap' />
                     Study Cards
-                  </a>
+                  </button>
                   <a
                   href={`/#view-cards?&deckId=${deck.deckId}`}
                   className='card-option'>
