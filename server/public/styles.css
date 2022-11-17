@@ -701,7 +701,7 @@ i {
 .username,
 .password {
   width: 90%;
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
   margin-bottom: 1rem;
   border: none;
   border-bottom: 1px solid black;
@@ -724,6 +724,12 @@ i {
 .auth-type {
   font-size: 1rem;
   padding-left: 0.75rem;
+}
+
+.username-error {
+  color: red;
+  font-size: 0.75rem;
+  margin: 0;
 }
 
 a:hover,

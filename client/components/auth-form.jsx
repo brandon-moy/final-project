@@ -3,7 +3,12 @@ import React from 'react';
 export default class AuthForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: '', password: '' };
+    this.state = {
+      username: '',
+      password: '',
+      error: false,
+      errorMessage: ''
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -25,8 +30,18 @@ export default class AuthForm extends React.Component {
     fetch(`/api/auth/${this.props.action}`, req)
       .then(res => res.json())
       .then(result => {
-        if (this.props.action === 'sign-up') {
-          this.setState({ username: '', password: '' });
+        if (result.error) {
+          this.setState({
+            error: true,
+            errorMessage: result.error
+          });
+        } else if (this.props.action === 'sign-up') {
+          this.setState({
+            username: '',
+            password: '',
+            error: false,
+            errorMessage: ''
+          });
           window.location.hash = 'sign-in';
         } else if (result.user && result.token) {
           this.props.handleSignIn(result);
@@ -48,6 +63,9 @@ export default class AuthForm extends React.Component {
     const switchAuthLocation = this.props.action === 'sign-in'
       ? '#sign-up'
       : '#sign-in';
+    const error = this.state.error
+      ? 'username-error'
+      : 'hidden';
     return (
       <div className='clipboard'>
         <div className='clip t-center' />
@@ -59,6 +77,9 @@ export default class AuthForm extends React.Component {
             className='placeholder-image'
             src='/place.png' />
             <div className='form-section'>
+              <p className={`${error}`}>
+                {this.state.errorMessage}
+              </p>
               <label>Username
                 <input
                 type='text'
@@ -68,6 +89,7 @@ export default class AuthForm extends React.Component {
                 value={this.state.username}
                 onChange={this.handleChange} />
               </label>
+
               <label>Password
                 <input
                 id='password'

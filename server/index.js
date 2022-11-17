@@ -111,6 +111,8 @@ app.post('/api/auth/sign-up', (req, res, next) => {
       const sql = `
       insert into "accounts" ("username", "hashedPassword")
       values ($1, $2)
+      on conflict("username")
+      do nothing
       returning "userId", "username", "joinedAt"
       `;
 
@@ -120,7 +122,11 @@ app.post('/api/auth/sign-up', (req, res, next) => {
     })
     .then(result => {
       const [user] = result.rows;
-      res.status(201).json(user);
+      if (!user) {
+        throw new ClientError(409, 'username is already taken');
+      } else {
+        res.status(201).json(user);
+      }
     })
     .catch(err => next(err));
 });
