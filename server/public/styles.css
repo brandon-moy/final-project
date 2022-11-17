@@ -837,7 +837,8 @@ label:hover,
   }
 
   .card-front,
-  .card-back {
+  .card-back,
+  .edit-card-front {
     height: 20rem;
   }
 
@@ -881,7 +882,8 @@ label:hover,
       );
   }
 
-  .new-card-deck {
+  .new-card-deck,
+  .edit-new-card-deck {
     font-size: 1.75rem;
     padding-top: 2rem;
     padding-bottom: 0;
