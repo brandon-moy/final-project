@@ -7,7 +7,15 @@ export default class ViewCards extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`/api/cards/${this.props.deckId}`)
+    const userId = JSON.stringify(this.context.user.userId);
+    const req = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        userId
+      }
+    };
+    fetch(`/api/cards/${this.props.deckId}`, req)
       .then(res => res.json())
       .then(data => {
         const { deckName } = data[0];
@@ -53,7 +61,7 @@ export default class ViewCards extends React.Component {
   render() {
     if (!this.state.cards) return;
     return (
-      <section className='card-deck'>
+      <>
         <div className='flex just-between align-center wrap'>
           <h1 className='deck-view-name col-2'>
             {this.state.deckName}
@@ -67,7 +75,7 @@ export default class ViewCards extends React.Component {
           </a>
         </div>
         { this.renderCards() }
-      </section>
+      </>
     );
   }
 }

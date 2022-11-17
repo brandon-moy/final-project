@@ -23,11 +23,13 @@ export default class EditCard extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const userId = JSON.stringify(this.context.user.userId);
     const cardId = this.props.cardId;
     const req = {
       method: 'PATCH',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        userId
       },
       body: JSON.stringify(this.state)
     };
@@ -48,7 +50,15 @@ export default class EditCard extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`/api/card/${this.props.cardId}`)
+    const userId = JSON.stringify(this.context.user.userId);
+    const req = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        userId
+      }
+    };
+    fetch(`/api/card/${this.props.cardId}`, req)
       .then(res => res.json())
       .then(data => this.setState(
         {
@@ -61,7 +71,7 @@ export default class EditCard extends React.Component {
 
   render() {
     return (
-      <div className='edit-card-page'>
+      <>
         <div className='flex just-between align-center wrap'>
           <h1 className='deck-view-name col-2'>
             {this.state.deckName}
@@ -113,7 +123,7 @@ export default class EditCard extends React.Component {
           deckId={this.props.deckId}
           />
         </Modal>
-      </div>
+      </>
     );
   }
 }

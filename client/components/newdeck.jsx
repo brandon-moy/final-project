@@ -18,6 +18,7 @@ export default class NewDeck extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const userId = JSON.stringify(this.context.user.userId);
     const deckName = this.state.deckName;
     if (deckName.length > 20) {
       this.setState({ error: true });
@@ -25,7 +26,8 @@ export default class NewDeck extends React.Component {
       const req = {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          userId
         },
         body: JSON.stringify(this.state)
       };

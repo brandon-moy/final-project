@@ -37,12 +37,14 @@ export default class CardStudy extends React.Component {
   }
 
   updateConfidence(event) {
+    const userId = JSON.stringify(this.context.user.userId);
     const confidence = { confidence: event.target.getAttribute('id') };
     const { cardId } = this.state.cards[this.state.position];
     const req = {
       method: 'PATCH',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        userId
       },
       body: JSON.stringify(confidence)
     };
@@ -58,7 +60,7 @@ export default class CardStudy extends React.Component {
     const card = this.state.cards[this.state.position];
     const questionPlace = `${this.state.position + 1} / ${this.state.cards.length}`;
     return (
-      <section className='study-cards'>
+      <>
         <h2 className='question-number'>
           Q : {questionPlace}
         </h2>
@@ -118,7 +120,7 @@ export default class CardStudy extends React.Component {
             </div>
           </div>
         </div>
-      </section>
+      </>
     );
   }
 }

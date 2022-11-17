@@ -8,8 +8,12 @@ export default class DeleteForm extends React.Component {
 
   confirmDelete(event) {
     const cardId = this.props.cardId;
+    const userId = JSON.stringify(this.context.user.userId);
     const req = {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        userId
+      }
     };
     fetch(`/api/deletecard/${cardId}`, req)
       .then(res => {

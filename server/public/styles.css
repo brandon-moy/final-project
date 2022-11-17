@@ -4,24 +4,24 @@ body {
   background:
     linear-gradient(
       217deg,
-      rgb(32, 63, 40),
+      rgb(16, 64, 48),
       rgba(255, 255, 255, 0) 60%,
-      rgb(32, 63, 40) 75%,
+      rgb(16, 64, 48) 75%,
       rgba(255, 255, 255, 0) 90%
     ),
     linear-gradient(
       145deg,
-      rgb(32, 63, 40),
+      rgb(16, 64, 48),
       rgba(255, 255, 255, 0) 90%
     ),
     radial-gradient(
       circle at center,
       rgba(255, 255, 255, 0),
-      rgb(32, 63, 40)
+      rgb(16, 64, 48)
     ),
     linear-gradient(
       45deg,
-      rgb(32, 63, 40),
+      rgb(16, 64, 48),
       rgba(255, 255, 255, 0) 95%
     );
 }
@@ -701,7 +701,7 @@ i {
 .username,
 .password {
   width: 90%;
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
   margin-bottom: 1rem;
   border: none;
   border-bottom: 1px solid black;
@@ -710,12 +710,26 @@ i {
 }
 
 .auth-button {
-  float: right;
-  margin-right: 2rem;
   background: transparent;
   border: none;
   font-family: Delius, sans-serif;
   font-size: 1.25rem;
+}
+
+.switch-auth {
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.auth-type {
+  font-size: 1rem;
+  padding-left: 0.75rem;
+}
+
+.username-error {
+  color: red;
+  font-size: 0.75rem;
+  margin: 0;
 }
 
 a:hover,

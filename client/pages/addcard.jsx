@@ -22,11 +22,13 @@ export default class AddCard extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const userId = JSON.stringify(this.context.user.userId);
     const deckId = this.props.deckId;
     const req = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        userId
       },
       body: JSON.stringify(this.state)
     };
@@ -43,7 +45,15 @@ export default class AddCard extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`/api/cards/${this.props.deckId}`)
+    const userId = JSON.stringify(this.context.user.userId);
+    const req = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        userId
+      }
+    };
+    fetch(`/api/cards/${this.props.deckId}`, req)
       .then(res => res.json())
       .then(data => {
         const { deckName } = data[0];
@@ -54,7 +64,7 @@ export default class AddCard extends React.Component {
 
   render() {
     return (
-      <div className='edit-card-page'>
+      <>
         <h1 className='deck-view-name'>
           {this.state.deckName}
         </h1>
@@ -84,7 +94,7 @@ export default class AddCard extends React.Component {
             </button>
           </div>
         </form>
-      </div>
+      </>
     );
   }
 }
