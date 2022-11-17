@@ -6,8 +6,7 @@ export default class AuthForm extends React.Component {
     this.state = {
       username: '',
       password: '',
-      error: false,
-      errorMessage: ''
+      errorMessage: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,14 +31,12 @@ export default class AuthForm extends React.Component {
       .then(result => {
         if (result.error) {
           this.setState({
-            error: true,
             errorMessage: result.error
           });
         } else if (this.props.action === 'sign-up') {
           this.setState({
             username: '',
             password: '',
-            error: false,
             errorMessage: ''
           });
           window.location.hash = 'sign-in';
@@ -63,7 +60,7 @@ export default class AuthForm extends React.Component {
     const switchAuthLocation = this.props.action === 'sign-in'
       ? '#sign-up'
       : '#sign-in';
-    const error = this.state.error
+    const error = this.state.errorMessage
       ? 'username-error'
       : 'hidden';
     return (
