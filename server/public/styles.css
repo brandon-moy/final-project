@@ -781,15 +781,6 @@ i {
   font-family: "Fuzzy Bubbles", sans-serif;
 }
 
-a:hover,
-button:hover,
-label:hover,
-.folder-front:hover,
-.option-paper:hover,
-.study-card-front {
-  cursor: pointer;
-}
-
 @keyframes show-paper {
   0% {
     transform: 0;
@@ -836,11 +827,6 @@ label:hover,
   .folder-back,
   .option-paper {
     width: 80%;
-  }
-
-  .folder-front:hover {
-    cursor: pointer;
-    transform: rotateX(-20deg) translateX(-50%) translateY(0.3rem);
   }
 
   .option-paper {
@@ -962,6 +948,22 @@ label:hover,
 
   .placeholder-image {
     height: 30vh;
+  }
+}
+
+@media (hover: hover) {
+  .folder-front:hover {
+    cursor: pointer;
+    transform: rotateX(-20deg) translateX(-50%) translateY(0.3rem);
+  }
+
+  a:hover,
+  button:hover,
+  label:hover,
+  .folder-front:hover,
+  .option-paper:hover,
+  .study-card-front {
+    cursor: pointer;
   }
 }
 
