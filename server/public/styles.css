@@ -183,11 +183,6 @@ i {
   transition: transform 0.25s;
 }
 
-.folder-front:hover {
-  cursor: pointer;
-  transform: rotateX(-20deg) translateX(-50%) translateY(0.3rem);
-}
-
 .folder-back {
   position: absolute;
   width: 95%;
@@ -196,6 +191,7 @@ i {
   border-radius: 0 0.5rem 0 0;
   border: 2px solid #ffdf76;
   z-index: -2;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.39);
 }
 
 .folder-tab {
@@ -498,6 +494,8 @@ i {
 .reset-knowledge-button {
   font-family: "Fuzzy Bubbles", sans-serif;
   font-size: 1rem;
+  padding-right: 0;
+  color: black;
   background: transparent;
   border: none;
 }
@@ -679,10 +677,9 @@ i {
 }
 
 .confidence-meter {
-  padding-left: 1rem;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   width: 70%;
-  height: 4vh;
+  height: 2.5vh;
 }
 
 .clipboard {
@@ -839,6 +836,11 @@ label:hover,
   .folder-back,
   .option-paper {
     width: 80%;
+  }
+
+  .folder-front:hover {
+    cursor: pointer;
+    transform: rotateX(-20deg) translateX(-50%) translateY(0.3rem);
   }
 
   .option-paper {
