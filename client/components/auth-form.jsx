@@ -97,7 +97,7 @@ export default class AuthForm extends React.Component {
                 value={this.state.password}
                 onChange={this.handleChange} />
               </label>
-              <section className='flex'>
+              <section className='flex switch-container'>
                 <div className='col-2'>
                   <p className='switch-auth'>
                     {switchAuthMessage}

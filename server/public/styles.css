@@ -681,11 +681,12 @@ i {
 .clipboard {
   position: relative;
   width: 80%;
-  height: 50vh;
-  background-color: #71655b;
+  height: 60vh;
+  background: #7c6652;
   border-radius: 0.25rem;
-  margin: 5rem auto;
+  margin: 2.5rem auto;
   padding-top: 1rem;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
 }
 
 .clip {
@@ -694,14 +695,24 @@ i {
   top: 0;
   width: 75%;
   height: 2rem;
-  background-color: #cecece;
+  background:
+    linear-gradient(
+      to bottom,
+      #cecece 60%,
+      rgb(233, 233, 233) 75%,
+      #cecece 100%
+    );
+  border-radius: 0 0 0.25rem 0.25rem;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 
 .page {
   position: absolute;
+  border-radius: 0.1rem;
   background-color: white;
   width: 90%;
   height: 90%;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .placeholder-image {
@@ -710,20 +721,25 @@ i {
 }
 
 .auth {
-  padding-top: 1rem;
+  padding-top: 1.5rem;
   padding-left: 1rem;
   font-family: Delius, sans-serif;
+}
+
+.switch-container {
+  padding-top: 1rem;
 }
 
 .username,
 .password {
   width: 90%;
   margin-top: 0.25rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   border: none;
   border-bottom: 1px solid black;
   outline: none;
   font-size: 1.25rem;
+  font-family: Delius, sans-serif;
 }
 
 .auth-button {
@@ -731,6 +747,7 @@ i {
   border: none;
   font-family: Delius, sans-serif;
   font-size: 1.25rem;
+  color: black;
 }
 
 .switch-auth {
@@ -739,8 +756,8 @@ i {
 }
 
 .auth-type {
-  font-size: 1rem;
   padding-left: 0.75rem;
+  color: black;
 }
 
 .username-error {
