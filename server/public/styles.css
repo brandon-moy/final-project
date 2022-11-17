@@ -481,12 +481,18 @@ i {
   border: none;
 }
 
+.study-scene {
+  transform: perspective(600px);
+  margin: auto;
+  width: 100%;
+}
+
 .study-card-set {
   position: relative;
+  width: 100%;
   margin-top: 2rem;
   height: 10rem;
   transition: transform 0.5s linear;
-  transform: perspective(600px);
   transform-origin: center right;
   transform-style: preserve-3d;
 }
@@ -861,6 +867,10 @@ i {
     height: 20rem;
   }
 
+  .study-scene {
+    width: 50%;
+  }
+
   .study-card-set {
     height: 15rem;
   }
@@ -873,15 +883,15 @@ i {
   .study-card-front,
   .study-card-back {
     height: 15rem;
-    width: 35%;
+    width: 75%;
   }
 
   .half-a {
-    transform: translateX(-40%) translateZ(800px) rotateY(-90deg);
+    transform: translateX(-50%) rotateY(-90deg);
   }
 
   .half-q {
-    transform: translateX(-45%) translateZ(800px) rotateY(-90deg);
+    transform: translateX(-50%) rotateY(-90deg);
   }
 
   .answer {
