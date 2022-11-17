@@ -2,9 +2,10 @@ import React from 'react';
 import Modal from './modal';
 import NewDeck from './newdeck';
 import DeleteDeck from './deletedeck';
+import AppContext from '../lib/app-context';
 import ResetKnowledge from './resetknowledge';
 
-export default class Home extends React.Component {
+export default class Decks extends React.Component {
   constructor(props) {
     super(props);
     this.state = ({
@@ -273,3 +274,5 @@ export default class Home extends React.Component {
     );
   }
 }
+
+Decks.contextType = AppContext;

@@ -1,4 +1,5 @@
 import React from 'react';
+import AppContext from '../lib/app-context';
 import NoCards from '../components/nocards';
 import CardStudy from '../components/cardstudy';
 
@@ -61,3 +62,5 @@ export default class StudyCards extends React.Component {
     );
   }
 }
+
+StudyCards.contextType = AppContext;

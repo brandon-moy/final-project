@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from '../components/modal';
+import AppContext from '../lib/app-context';
 import DeleteForm from '../components/deletecard';
 
 export default class EditCard extends React.Component {
@@ -127,3 +128,5 @@ export default class EditCard extends React.Component {
     );
   }
 }
+
+EditCard.contextType = AppContext;

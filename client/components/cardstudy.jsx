@@ -1,4 +1,5 @@
 import React from 'react';
+import AppContext from '../lib/app-context';
 
 export default class CardStudy extends React.Component {
   constructor(props) {
@@ -124,3 +125,5 @@ export default class CardStudy extends React.Component {
     );
   }
 }
+
+CardStudy.contextType = AppContext;

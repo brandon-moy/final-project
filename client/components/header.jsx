@@ -1,6 +1,7 @@
 import React from 'react';
+import AppContext from '../lib/app-context';
 
-export default class Home extends React.Component {
+export default class Header extends React.Component {
 
   render() {
     const show = this.context.user
@@ -19,3 +20,5 @@ export default class Home extends React.Component {
     );
   }
 }
+
+Header.contextType = AppContext;

@@ -1,4 +1,5 @@
 import React from 'react';
+import AppContext from '../lib/app-context';
 
 export default class NewDeck extends React.Component {
   constructor(props) {
@@ -66,3 +67,5 @@ export default class NewDeck extends React.Component {
     );
   }
 }
+
+NewDeck.contextType = AppContext;

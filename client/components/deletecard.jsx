@@ -1,4 +1,5 @@
 import React from 'react';
+import AppContext from '../lib/app-context';
 
 export default class DeleteForm extends React.Component {
   constructor(props) {
@@ -46,3 +47,5 @@ export default class DeleteForm extends React.Component {
     );
   }
 }
+
+DeleteForm.contextType = AppContext;
