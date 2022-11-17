@@ -35,6 +35,11 @@ export default class App extends React.Component {
     location.href = '#';
   }
 
+  handleSignOut() {
+    window.localStorage.removeItem('user-token');
+    this.setState({ user: null });
+  }
+
   componentDidMount() {
     window.addEventListener('hashchange', () => {
       this.setState({ route: parseRoute(window.location.hash) });
