@@ -1163,11 +1163,16 @@ i {
     width: 100%;
   }
 
-  .text-box {
+  .text-box,
+  .text-box-2 {
     width: 25%;
     height: 25vh;
     margin-right: 4rem;
     float: right;
+  }
+
+  .text-box-2 {
+    margin-top: 6rem;
   }
 
   .tour-image {
