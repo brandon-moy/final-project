@@ -13,6 +13,7 @@ export default class EditCard extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
     this.showModal = this.showModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
