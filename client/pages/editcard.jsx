@@ -117,7 +117,7 @@ export default class EditCard extends React.Component {
             </button>
           </div>
         </form>
-        <Modal show={this.state.show} >
+        <Modal show={this.state.show} color='pink'>
           <DeleteForm
           closeModal={this.closeModal}
           cardId={this.props.cardId}

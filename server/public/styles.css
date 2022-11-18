@@ -100,18 +100,54 @@ i {
 }
 
 .sticky-content {
-  background:
-    linear-gradient(
-      180deg,
-      rgb(248, 255, 187) 0%,
-      rgb(248, 255, 187) 12%,
-      rgb(240, 241, 170) 75%,
-      rgb(255, 241, 159) 100%
-    );
   height: 100%;
   display: flex;
   justify-content: center;
   clip-path: url("#stickyClip");
+}
+
+.yellow {
+  background:
+    linear-gradient(
+      180deg,
+      rgb(249, 255, 198) 0%,
+      rgb(249, 255, 198) 12%,
+      rgb(231, 236, 187) 75%,
+      rgb(236, 240, 208) 100%
+    );
+}
+
+.blue {
+  background:
+    linear-gradient(
+      180deg,
+      rgb(187, 235, 255) 0%,
+      rgb(187, 235, 255) 12%,
+      rgb(170, 220, 241) 75%,
+      rgb(195, 229, 244) 100%
+    );
+}
+
+.orange {
+  background:
+    linear-gradient(
+      180deg,
+      rgb(255, 210, 171) 0%,
+      rgb(255, 210, 171) 12%,
+      rgb(236, 196, 160) 75%,
+      rgb(233, 205, 180) 100%
+    );
+}
+
+.pink {
+  background:
+    linear-gradient(
+      180deg,
+      rgb(255, 227, 244) 0%,
+      rgb(255, 227, 244) 12%,
+      rgb(230, 204, 219) 75%,
+      rgb(253, 236, 246) 100%
+    );
 }
 
 .new-deck-form {
@@ -132,7 +168,9 @@ i {
 
 .sticky-header,
 .study-title {
-  font-family: "Fuzzy Bubbles", sans-serif;
+  font-family:
+    "Fuzzy Bubbles",
+    sans-serif;
   font-size: 1.75rem;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
@@ -140,7 +178,9 @@ i {
 
 .new-deck-error {
   color: red;
-  font-family: Delius, sans-serif;
+  font-family:
+    Delius,
+    sans-serif;
   margin: 0;
   font-size: 0.75rem;
 }
@@ -151,12 +191,16 @@ i {
   border: none;
   border-bottom: 1px solid black;
   background: transparent;
-  font-family: Delius, sans-serif;
+  font-family:
+    Delius,
+    sans-serif;
   outline: none;
 }
 
 .sticky-submit {
-  font-family: "Fuzzy Bubbles", sans-serif;
+  font-family:
+    "Fuzzy Bubbles",
+    sans-serif;
   background-color: transparent;
   border: none;
   margin-top: 3rem;
@@ -173,7 +217,9 @@ i {
 
 .folder-front {
   position: absolute;
-  font-family: "Fuzzy Bubbles", sans-serif;
+  font-family:
+    "Fuzzy Bubbles",
+    sans-serif;
   width: 95%;
   height: 100%;
   text-align: center;
@@ -210,7 +256,9 @@ i {
 
 .option-paper {
   position: absolute;
-  font-family: "Fuzzy Bubbles", sans-serif;
+  font-family:
+    "Fuzzy Bubbles",
+    sans-serif;
   transform: translateX(0.5rem) translateY(-0.25rem);
   background:
     repeating-linear-gradient(
@@ -242,12 +290,12 @@ i {
       to right,
       transparent,
       transparent 10%,
-      rgba(255, 0, 0, 0.75) 10%,
-      rgba(255, 0, 0, 0.75) 10.5%,
+      rgba(255, 79, 79, 0.75) 10%,
+      rgba(255, 79, 79, 0.75) 10.5%,
       transparent 10.5%,
       transparent 12%,
-      rgba(255, 0, 0, 0.75) 12%,
-      rgba(255, 0, 0, 0.75) 12.5%,
+      rgba(255, 79, 79, 0.75) 12%,
+      rgba(255, 79, 79, 0.75) 12.5%,
       transparent 12.5%
     );
 }
@@ -272,7 +320,7 @@ i {
 
 .card-front {
   position: relative;
-  background-color: rgb(253 246 166);
+  background-color: #fffcde;
   height: 10rem;
   margin: 0 auto 0.75rem;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
@@ -281,11 +329,11 @@ i {
 .card-back {
   background:
     linear-gradient(
-      rgb(253 246 166),
-      rgb(253 246 166) 20%,
+      #fffcde,
+      #fffcde 20%,
       red 20%,
       red 21.5%,
-      rgb(253 246 166) 21.5%
+      #fffcde 21.5%
     );
   height: 10rem;
   margin: 0 auto 0.75rem;
@@ -294,7 +342,7 @@ i {
 
 .edit-card-front {
   position: relative;
-  background-color: rgb(253 246 166);
+  background-color: #fffcde;
   height: 10rem;
   margin: 0 auto;
 }
@@ -317,7 +365,9 @@ i {
 }
 
 .card-question {
-  font-family: "Fuzzy Bubbles", sans-serif;
+  font-family:
+    "Fuzzy Bubbles",
+    sans-serif;
   font-weight: 800;
   padding-top: 10%;
 }
@@ -339,7 +389,9 @@ i {
   border: none;
   background-color: transparent;
   color: white;
-  font-family: "Gloria Hallelujah", sans-serif;
+  font-family:
+    "Gloria Hallelujah",
+    sans-serif;
   font-size: 1.5rem;
   float: right;
   padding-right: 2rem;
@@ -347,7 +399,9 @@ i {
 
 .not-found-text {
   color: white;
-  font-family: "Gloria Hallelujah", sans-serif;
+  font-family:
+    "Gloria Hallelujah",
+    sans-serif;
   font-size: 2rem;
   text-align: center;
   padding: 1rem;
@@ -355,7 +409,9 @@ i {
 
 .return-home {
   color: white;
-  font-family: "Gloria Hallelujah", sans-serif;
+  font-family:
+    "Gloria Hallelujah",
+    sans-serif;
   margin: auto;
   font-size: 1.5rem;
 }
@@ -371,7 +427,9 @@ i {
 
 .deck-view-name {
   color: white;
-  font-family: "Gloria Hallelujah", sans-serif;
+  font-family:
+    "Gloria Hallelujah",
+    sans-serif;
   font-size: 2.5rem;
   text-align: center;
   padding-top: 2rem;
@@ -381,7 +439,9 @@ i {
 .new-card-deck,
 .edit-new-card-deck {
   color: white;
-  font-family: Delius, sans-serif;
+  font-family:
+    Delius,
+    sans-serif;
   text-decoration: none;
   font-size: 1.25rem;
   text-align: right;
@@ -394,7 +454,9 @@ i {
 
 .deck-edit-card {
   color: white;
-  font-family: Delius, sans-serif;
+  font-family:
+    Delius,
+    sans-serif;
   text-decoration: none;
   font-size: 1.25rem;
   text-align: right;
@@ -406,7 +468,9 @@ i {
   background: transparent;
   border: none;
   color: #ff9292;
-  font-family: "Gloria Hallelujah", sans-serif;
+  font-family:
+    "Gloria Hallelujah",
+    sans-serif;
   font-size: 1.5rem;
   padding-left: 2rem;
 }
@@ -414,12 +478,16 @@ i {
 .delete-confirm,
 .reset-confirm,
 .view-card-question {
-  font-family: "Fuzzy Bubbles", sans-serif;
+  font-family:
+    "Fuzzy Bubbles",
+    sans-serif;
 }
 
 .view-card-answer,
 .card-answer {
-  font-family: Delius, sans-serif;
+  font-family:
+    Delius,
+    sans-serif;
 }
 
 .delete-card-message {
@@ -439,7 +507,9 @@ i {
   color: black;
   background: transparent;
   border: none;
-  font-family: "Fuzzy Bubbles", sans-serif;
+  font-family:
+    "Fuzzy Bubbles",
+    sans-serif;
 }
 
 .cancel-delete,
@@ -475,7 +545,9 @@ i {
 .delete-deck-button,
 .reset-knowledge-button,
 .study-button {
-  font-family: "Fuzzy Bubbles", sans-serif;
+  font-family:
+    "Fuzzy Bubbles",
+    sans-serif;
   font-size: 1rem;
   padding-right: 0;
   color: black;
@@ -508,18 +580,18 @@ i {
 }
 
 .study-card-front {
-  background-color: rgb(253 246 166);
+  background-color: #fffcde;
 }
 
 .study-card-back {
   transform: rotateY(180deg);
   background:
     linear-gradient(
-      rgb(253 246 166),
-      rgb(253 246 166) 20%,
+      #fffcde,
+      #fffcde 20%,
       red 20%,
       red 21.5%,
-      rgb(253 246 166) 21.5%
+      #fffcde 21.5%
     );
 }
 
@@ -537,30 +609,38 @@ i {
 
 .question-number {
   color: white;
-  font-family: "Fuzzy Bubbles", sans-serif;
+  font-family:
+    "Fuzzy Bubbles",
+    sans-serif;
   padding-left: 1rem;
 }
 
 .no-cards-head {
   padding-left: 1rem;
   font-size: 2rem;
-  font-family: "Gloria Hallelujah", sans-serif;
+  font-family:
+    "Gloria Hallelujah",
+    sans-serif;
   color: white;
 }
 
 .no-cards-message {
-  font-family: "Fuzzy Bubbles", sans-serif;
+  font-family:
+    "Fuzzy Bubbles",
+    sans-serif;
   color: white;
   text-align: center;
 }
 
 .no-card-add {
-  font-family: "Gloria Hallelujah", sans-serif;
+  font-family:
+    "Gloria Hallelujah",
+    sans-serif;
   padding: 0.5rem 1rem;
   text-align: center;
   border: 1px yellow solid;
   border-radius: 0.25rem;
-  background-color: rgb(253 246 166);
+  background-color: #fffcde;
   text-decoration: none;
 }
 
@@ -570,7 +650,9 @@ i {
 
 .confidence {
   color: white;
-  font-family: Delius, sans-serif;
+  font-family:
+    Delius,
+    sans-serif;
   border-radius: 50%;
   font-weight: 800;
   font-size: 1.25rem;
@@ -716,7 +798,9 @@ i {
 .auth {
   padding-top: 1.5rem;
   padding-left: 1rem;
-  font-family: Delius, sans-serif;
+  font-family:
+    Delius,
+    sans-serif;
 }
 
 .switch-container {
@@ -732,13 +816,17 @@ i {
   border-bottom: 1px solid black;
   outline: none;
   font-size: 1.25rem;
-  font-family: Delius, sans-serif;
+  font-family:
+    Delius,
+    sans-serif;
 }
 
 .auth-button {
   background: transparent;
   border: none;
-  font-family: Delius, sans-serif;
+  font-family:
+    Delius,
+    sans-serif;
   font-size: 1.25rem;
   color: black;
 }
@@ -767,7 +855,9 @@ i {
   border: none;
   color: white;
   font-size: 1.25rem;
-  font-family: "Fuzzy Bubbles", sans-serif;
+  font-family:
+    "Fuzzy Bubbles",
+    sans-serif;
 }
 
 .study-title {
@@ -782,7 +872,9 @@ i {
 .study-option {
   text-decoration: none;
   color: black;
-  font-family: Delius, sans-serif;
+  font-family:
+    Delius,
+    sans-serif;
   padding-bottom: 1rem;
 }
 

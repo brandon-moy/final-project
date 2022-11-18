@@ -192,7 +192,7 @@ export default class Decks extends React.Component {
     const sticky = this.state.resettingDeck !== null
       ? 'orange'
       : this.state.deletingDeck !== null
-        ? 'red'
+        ? 'pink'
         : this.state.creatingDeck !== false
           ? 'yellow'
           : 'blue';
