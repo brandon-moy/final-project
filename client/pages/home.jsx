@@ -2,6 +2,7 @@ import React from 'react';
 import AddCard from './addcard';
 import EditCard from './editcard';
 import ViewCards from './viewcards';
+import Tour from '../components/tour';
 import StudyCards from './studycards';
 import Decks from '../components/decks';
 import AppContext from '../lib/app-context';
@@ -12,7 +13,9 @@ export default class Home extends React.Component {
   renderContent() {
     const { path } = this.props;
     const deckId = this.props.route.params.get('deckId');
-    if (path === '') {
+    if (path === '' && this.context.user.newUser) {
+      return <Tour />;
+    } else if (path === '' && !this.context.user.newUser) {
       return <Decks />;
     } else if (path === 'add-card') {
       return <AddCard deckId={deckId} />;

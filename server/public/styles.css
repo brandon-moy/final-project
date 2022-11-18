@@ -860,6 +860,48 @@ i {
   top: 0.75rem;
 }
 
+.new-deck-back {
+  font-family: "Gloria Hallelujah", sans-serif;
+  color: white;
+  font-weight: 500;
+  padding-left: 1rem;
+  margin: 0;
+}
+
+.page-one-container {
+  margin-top: 15rem;
+  width: 100%;
+}
+
+.text-box {
+  border-radius: 0.5rem;
+  font-family: "Gloria Hallelujah", sans-serif;
+  background-color: white;
+  width: 90%;
+  height: 20vh;
+  margin: auto;
+}
+
+.main-box-text {
+  width: 90%;
+  font-size: 1.25rem;
+  padding-left: 1.5rem;
+  padding-top: 1rem;
+}
+
+.tour-button {
+  background: transparent;
+  font-family: Delius, sans-serif;
+  border: none;
+  font-size: 1.25rem;
+}
+
+.tour-image {
+  width: 50%;
+  position: absolute;
+  right: 1rem;
+}
+
 @keyframes show-paper {
   0% {
     transform: 0;
@@ -1063,6 +1105,22 @@ i {
 
   .placeholder-image {
     height: 30vh;
+  }
+
+  .main-box-text {
+    width: 100%;
+  }
+
+  .text-box {
+    width: 25%;
+    height: 25vh;
+    margin-right: 4rem;
+    float: right;
+  }
+
+  .tour-image {
+    width: 20%;
+    bottom: 0;
   }
 }
 
