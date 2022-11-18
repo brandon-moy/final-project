@@ -4,6 +4,7 @@ import NewDeck from './newdeck';
 import DeleteDeck from './deletedeck';
 import AppContext from '../lib/app-context';
 import ResetKnowledge from './resetknowledge';
+import StudyOptions from './studyoptions';
 
 export default class Decks extends React.Component {
   constructor(props) {
@@ -15,7 +16,8 @@ export default class Decks extends React.Component {
       show: false,
       resettingDeck: null,
       deletingDeck: null,
-      creatingDeck: false
+      creatingDeck: false,
+      studyingDeck: null
     });
 
     this.showOptions = this.showOptions.bind(this);
@@ -31,6 +33,8 @@ export default class Decks extends React.Component {
 
     this.resetDeck = this.resetDeck.bind(this);
     this.confirmReset = this.confirmReset.bind(this);
+
+    this.studyDeck = this.studyDeck.bind(this);
   }
 
   showOptions(event) {
@@ -117,12 +121,21 @@ export default class Decks extends React.Component {
     });
   }
 
+  studyDeck(event) {
+    const deckId = Number(event.currentTarget.getAttribute('data-deck'));
+    this.setState({
+      show: true,
+      studyingDeck: deckId
+    });
+  }
+
   closeModal(event) {
     this.setState({
       show: false,
       creatingDeck: false,
       resettingDeck: null,
-      deletingDeck: null
+      deletingDeck: null,
+      studyingDeck: null
     });
   }
 
@@ -164,12 +177,25 @@ export default class Decks extends React.Component {
           submitDeck={this.submitDeck}
         />
       }
+        { this.state.studyingDeck !== null &&
+        <StudyOptions
+          deck={this.state.studyingDeck}
+          closeModal={this.closeModal}
+        />
+      }
       </>
     );
   }
 
   render() {
     if (!this.state.decks) return;
+    const sticky = this.state.resettingDeck !== null
+      ? 'orange'
+      : this.state.deletingDeck !== null
+        ? 'pink'
+        : this.state.creatingDeck !== false
+          ? 'yellow'
+          : 'blue';
     const renderedDecks = this.state.decks.map(deck => {
       const showPaper = (Number(this.state.currentShowing) === deck.deckId)
         ? 'is-showing'
@@ -207,12 +233,14 @@ export default class Decks extends React.Component {
                     <i className='fa-solid fa-circle-plus' />
                     Add Cards
                   </a>
-                  <a
-                  href={`/#study-cards?deckId=${deck.deckId}`}
-                  className='card-option'>
+                  <button
+                  type='button'
+                  data-deck={deck.deckId}
+                  onClick={this.studyDeck}
+                  className='card-option study-button'>
                     <i className='fa-solid fa-graduation-cap' />
                     Study Cards
-                  </a>
+                  </button>
                   <a
                   href={`/#view-cards?&deckId=${deck.deckId}`}
                   className='card-option'>
@@ -267,7 +295,7 @@ export default class Decks extends React.Component {
         <div className='flex wrap just-center'>
           {renderedDecks}
         </div>
-        <Modal show={this.state.show}>
+        <Modal show={this.state.show} color={sticky}>
           {this.renderModalForm()}
         </Modal>
       </>

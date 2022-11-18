@@ -5,6 +5,7 @@ import ViewCards from './viewcards';
 import StudyCards from './studycards';
 import Decks from '../components/decks';
 import AppContext from '../lib/app-context';
+import Redirect from '../components/redirect';
 
 export default class Home extends React.Component {
 
@@ -26,15 +27,13 @@ export default class Home extends React.Component {
         cardId={cardId}
       />;
     } else if (path === 'study-cards') {
-      return <StudyCards deckId={deckId} />;
+      const order = this.props.route.params.get('order');
+      return <StudyCards deckId={deckId} order={order} />;
     }
   }
 
   render() {
-    if (!this.context.user) {
-      location.href = '#sign-in';
-      return;
-    }
+    if (!this.context.user) return <Redirect to='sign-in' />;
 
     return this.renderContent();
   }

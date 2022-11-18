@@ -1,10 +1,29 @@
 import React from 'react';
 import AppContext from '../lib/app-context';
+import Modal from '../components/modal';
+import StudyOptions from '../components/studyoptions';
 
 export default class ViewCards extends React.Component {
   constructor(props) {
     super(props);
-    this.state = ({ cards: null });
+    this.state = ({
+      cards: null,
+      show: false
+    });
+    this.showModal = this.showModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  showModal(event) {
+    this.setState({
+      show: true
+    });
+  }
+
+  closeModal(event) {
+    this.setState({
+      show: false
+    });
   }
 
   componentDidMount() {
@@ -67,7 +86,13 @@ export default class ViewCards extends React.Component {
           <h1 className='deck-view-name col-2'>
             {this.state.deckName}
           </h1>
-          <div className='spacer col-4' />
+          <button
+            type='button'
+            onClick={this.showModal}
+            className='view-study-button'>
+            <i className='fa-solid fa-graduation-cap' />
+            Study Cards
+          </button>
           <a
           href={`/#add-card?deckId=${this.props.deckId}`}
           className='new-card-deck col-4'>
@@ -76,6 +101,12 @@ export default class ViewCards extends React.Component {
           </a>
         </div>
         { this.renderCards() }
+        <Modal show={this.state.show} color='blue'>
+          <StudyOptions
+            deck={this.props.deckId}
+            closeModal={this.closeModal}
+          />
+        </Modal>
       </>
     );
   }

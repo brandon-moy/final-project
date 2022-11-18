@@ -48,15 +48,47 @@ app.get('/api/cards/:deckId', (req, res, next) => {
     throw new ClientError(400, 'deckId must be a positive integer');
   }
 
-  const sql = `
+  let sql = `
   select  "decks"."deckName",
           "flashcards".*
-     from "decks"
+      from "decks"
   left join "flashcards" using ("deckId")
   where "deckId" = $1
     and "decks"."userId" = $2
     order by "cardId"
   `;
+
+  if (req.query.order === 'shuffle') {
+    sql = `
+    select  "decks"."deckName",
+            "flashcards".*
+      from "decks"
+    left join "flashcards" using ("deckId")
+    where "deckId" = $1
+     and "decks"."userId" = $2
+     order by random()
+  `;
+  } else if (req.query.order === 'asc') {
+    sql = `
+    select  "decks"."deckName",
+          "flashcards".*
+      from "decks"
+    left join "flashcards" using ("deckId")
+    where "deckId" = $1
+      and "decks"."userId" = $2
+      order by "confidence"
+  `;
+  } else if (req.query.order === 'desc') {
+    sql = `
+    select  "decks"."deckName",
+          "flashcards".*
+      from "decks"
+    left join "flashcards" using ("deckId")
+    where "deckId" = $1
+      and "decks"."userId" = $2
+      order by "confidence" desc
+  `;
+  }
 
   const params = [deckId, userId];
 

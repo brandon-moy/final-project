@@ -17,7 +17,7 @@ export default class Modal extends React.Component {
                   </clipPath>
                 </defs>
               </svg>
-              <div className='sticky-content'>
+              <div className={`sticky-content ${this.props.color}`}>
                 {this.props.children}
               </div>
             </div>

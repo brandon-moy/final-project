@@ -23,7 +23,6 @@ export default class App extends React.Component {
     const { user, token } = result;
     window.localStorage.setItem('user-token', token);
     this.setState({ user, token });
-    location.href = '#';
   }
 
   handleSignOut() {

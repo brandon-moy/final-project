@@ -35,7 +35,7 @@ i {
 }
 
 .page-header {
-  background-color: #2c0b03;
+  background-color: #2a0800;
   padding: 1rem 0;
   text-align: center;
 }
@@ -100,18 +100,54 @@ i {
 }
 
 .sticky-content {
-  background:
-    linear-gradient(
-      180deg,
-      rgb(248, 255, 187) 0%,
-      rgb(248, 255, 187) 12%,
-      rgb(240, 241, 170) 75%,
-      rgb(255, 241, 159) 100%
-    );
   height: 100%;
   display: flex;
   justify-content: center;
   clip-path: url("#stickyClip");
+}
+
+.yellow {
+  background:
+    linear-gradient(
+      180deg,
+      rgb(249, 255, 198) 0%,
+      rgb(249, 255, 198) 12%,
+      rgb(231, 236, 187) 75%,
+      rgb(236, 240, 208) 100%
+    );
+}
+
+.blue {
+  background:
+    linear-gradient(
+      180deg,
+      rgb(187, 235, 255) 0%,
+      rgb(187, 235, 255) 12%,
+      rgb(170, 220, 241) 75%,
+      rgb(195, 229, 244) 100%
+    );
+}
+
+.orange {
+  background:
+    linear-gradient(
+      180deg,
+      rgb(255, 210, 171) 0%,
+      rgb(255, 210, 171) 12%,
+      rgb(236, 196, 160) 75%,
+      rgb(233, 205, 180) 100%
+    );
+}
+
+.pink {
+  background:
+    linear-gradient(
+      180deg,
+      rgb(255, 227, 244) 0%,
+      rgb(255, 227, 244) 12%,
+      rgb(230, 204, 219) 75%,
+      rgb(253, 236, 246) 100%
+    );
 }
 
 .new-deck-form {
@@ -130,7 +166,8 @@ i {
   color: black;
 }
 
-.sticky-header {
+.sticky-header,
+.study-title {
   font-family: "Fuzzy Bubbles", sans-serif;
   font-size: 1.75rem;
   padding-top: 1.5rem;
@@ -139,7 +176,9 @@ i {
 
 .new-deck-error {
   color: red;
-  font-family: Delius, sans-serif;
+  font-family:
+    Delius,
+    sans-serif;
   margin: 0;
   font-size: 0.75rem;
 }
@@ -178,7 +217,7 @@ i {
   text-align: center;
   background-color: #fff3cd;
   border-radius: 0.5rem 0.5rem 0 0;
-  border: 2px solid #ffdf76;
+  border: 3px solid #ffde7038;
   z-index: 2;
   transition: transform 0.25s;
 }
@@ -189,7 +228,7 @@ i {
   height: 100%;
   background-color: #fff3cd;
   border-radius: 0 0.5rem 0 0;
-  border: 2px solid #ffdf76;
+  border: 2px solid #ffde7038;
   z-index: -2;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.39);
 }
@@ -202,8 +241,8 @@ i {
   transform: translateX(0.6rem) translateY(1.5rem);
   background-color: #fff3cd;
   border-radius: 0.5rem 0.5rem 0 0;
-  border-top: 2px solid #ffdf76;
-  border-left: 2px solid #ffdf76;
+  border-top: 1px solid #ffde7038;
+  border-left: 1px solid #ffde7038;
   z-index: -1;
 }
 
@@ -241,12 +280,12 @@ i {
       to right,
       transparent,
       transparent 10%,
-      rgba(255, 0, 0, 0.75) 10%,
-      rgba(255, 0, 0, 0.75) 10.5%,
+      rgba(255, 79, 79, 0.75) 10%,
+      rgba(255, 79, 79, 0.75) 10.5%,
       transparent 10.5%,
       transparent 12%,
-      rgba(255, 0, 0, 0.75) 12%,
-      rgba(255, 0, 0, 0.75) 12.5%,
+      rgba(255, 79, 79, 0.75) 12%,
+      rgba(255, 79, 79, 0.75) 12.5%,
       transparent 12.5%
     );
 }
@@ -271,7 +310,7 @@ i {
 
 .card-front {
   position: relative;
-  background-color: rgb(253 246 166);
+  background-color: #fffcde;
   height: 10rem;
   margin: 0 auto 0.75rem;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
@@ -280,11 +319,11 @@ i {
 .card-back {
   background:
     linear-gradient(
-      rgb(253 246 166),
-      rgb(253 246 166) 20%,
+      #fffcde,
+      #fffcde 20%,
       red 20%,
       red 21.5%,
-      rgb(253 246 166) 21.5%
+      #fffcde 21.5%
     );
   height: 10rem;
   margin: 0 auto 0.75rem;
@@ -293,7 +332,7 @@ i {
 
 .edit-card-front {
   position: relative;
-  background-color: rgb(253 246 166);
+  background-color: #fffcde;
   height: 10rem;
   margin: 0 auto;
 }
@@ -349,7 +388,9 @@ i {
   font-family: "Gloria Hallelujah", sans-serif;
   font-size: 2rem;
   text-align: center;
-  padding: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin: 0;
 }
 
 .return-home {
@@ -357,6 +398,7 @@ i {
   font-family: "Gloria Hallelujah", sans-serif;
   margin: auto;
   font-size: 1.5rem;
+  text-align: center;
 }
 
 .view-card-question,
@@ -385,6 +427,15 @@ i {
   font-size: 1.25rem;
   text-align: right;
   padding-right: 2rem;
+}
+
+.view-study-button {
+  font-family: Delius, sans-serif;
+  color: white;
+  background: transparent;
+  border: none;
+  padding-bottom: 1rem;
+  font-size: 1.25rem;
 }
 
 .new-card-deck {
@@ -472,7 +523,8 @@ i {
 }
 
 .delete-deck-button,
-.reset-knowledge-button {
+.reset-knowledge-button,
+.study-button {
   font-family: "Fuzzy Bubbles", sans-serif;
   font-size: 1rem;
   padding-right: 0;
@@ -506,18 +558,18 @@ i {
 }
 
 .study-card-front {
-  background-color: rgb(253 246 166);
+  background-color: #fffcde;
 }
 
 .study-card-back {
   transform: rotateY(180deg);
   background:
     linear-gradient(
-      rgb(253 246 166),
-      rgb(253 246 166) 20%,
+      #fffcde,
+      #fffcde 20%,
       red 20%,
       red 21.5%,
-      rgb(253 246 166) 21.5%
+      #fffcde 21.5%
     );
 }
 
@@ -558,7 +610,7 @@ i {
   text-align: center;
   border: 1px yellow solid;
   border-radius: 0.25rem;
-  background-color: rgb(253 246 166);
+  background-color: #fffcde;
   text-decoration: none;
 }
 
@@ -664,7 +716,7 @@ i {
 }
 
 .confidence-meter {
-  margin-top: 1rem;
+  margin-top: 0.75rem;
   width: 70%;
   height: 2.5vh;
 }
@@ -766,6 +818,46 @@ i {
   color: white;
   font-size: 1.25rem;
   font-family: "Fuzzy Bubbles", sans-serif;
+}
+
+.study-title {
+  text-align: center;
+  width: 90%;
+}
+
+.study-link-container {
+  padding-left: 1.5rem;
+}
+
+.study-option {
+  text-decoration: none;
+  color: black;
+  font-family: Delius, sans-serif;
+  padding-bottom: 1rem;
+}
+
+.study-option > i {
+  padding-left: 0.25rem;
+}
+
+.close-study {
+  float: right;
+  padding-right: 1.25rem;
+  padding-top: 1rem;
+  background: transparent;
+  border: none;
+  color: black;
+}
+
+.not-found-img {
+  width: 60%;
+}
+
+.idle-img {
+  position: absolute;
+  width: 20%;
+  left: 0;
+  top: 0.75rem;
 }
 
 @keyframes show-paper {
@@ -912,7 +1004,8 @@ i {
   }
 
   .new-card-deck,
-  .edit-new-card-deck {
+  .edit-new-card-deck,
+  .view-study-button {
     font-size: 1.75rem;
     padding-top: 2rem;
     padding-bottom: 0;
@@ -957,6 +1050,7 @@ i {
   }
 
   .confidence-meter {
+    margin-top: 0.5rem;
     width: 75%;
     height: 5vh;
   }

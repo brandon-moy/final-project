@@ -13,6 +13,7 @@ export default class EditCard extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
     this.showModal = this.showModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
@@ -117,7 +118,7 @@ export default class EditCard extends React.Component {
             </button>
           </div>
         </form>
-        <Modal show={this.state.show} >
+        <Modal show={this.state.show} color='pink'>
           <DeleteForm
           closeModal={this.closeModal}
           cardId={this.props.cardId}
