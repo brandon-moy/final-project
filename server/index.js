@@ -250,6 +250,30 @@ app.post('/api/add-card/:deckId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.patch('/update/newuser', (req, res, next) => {
+  const userId = req.header('userId');
+
+  const sql = `
+  update "accounts"
+  set "newUser" = false
+  where "userId" = $1
+  returning *
+  `;
+
+  const params = [userId];
+
+  db.query(sql, params)
+    .then(result => {
+      const [user] = result.rows;
+      if (!user) {
+        throw new ClientError(404, `cannot find user with userId ${userId}`);
+      } else {
+        res.send();
+      }
+    })
+    .catch(err => next(err));
+});
+
 app.patch('/api/card/:cardId', (req, res, next) => {
   const userId = req.header('userId');
   const cardId = Number(req.params.cardId);
