@@ -980,6 +980,15 @@ i {
   margin-top: 10rem;
 }
 
+.get-started-button {
+  width: 100%;
+  background: transparent;
+  border: none;
+  font-family: Delius, sans-serif;
+  font-size: 1.25rem;
+  text-decoration: underline;
+}
+
 @keyframes show-paper {
   0% {
     transform: 0;
