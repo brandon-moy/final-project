@@ -46,12 +46,15 @@ export default class Tour extends React.Component {
   }
 
   render() {
+    const z = this.state.page === 2
+      ? 'hidden'
+      : '';
     return (
       <>
-        <h1 className='new-deck-back' >
+        <h1 className={`new-deck-back ${z}`} >
           New Deck
         </h1>
-        <div className='modal-background'>
+        <div className='tour-background'>
           {this.renderPages()}
         </div>
       </>
