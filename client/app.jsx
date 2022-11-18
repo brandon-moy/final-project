@@ -17,6 +17,7 @@ export default class App extends React.Component {
     });
     this.handleSignIn = this.handleSignIn.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
+    this.endTour = this.endTour.bind(this);
   }
 
   handleSignIn(result) {
@@ -28,6 +29,23 @@ export default class App extends React.Component {
   handleSignOut() {
     window.localStorage.removeItem('user-token');
     this.setState({ user: null });
+  }
+
+  endTour() {
+    const { user } = this.state;
+    const req = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        userId: user.userId
+      }
+    };
+    fetch('/update/newuser', req)
+      .then(res => {
+        user.newUser = false;
+        this.setState({ user });
+      })
+      .catch(err => console.error(err));
   }
 
   componentDidMount() {
@@ -54,7 +72,7 @@ export default class App extends React.Component {
   render() {
     if (this.state.isAuthorizing) return null;
     const { user, route } = this.state;
-    const contextValue = { user, route };
+    const contextValue = { user, route, endTour: this.endTour };
     return (
       <AppContext.Provider value={contextValue}>
         <>
