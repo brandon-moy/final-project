@@ -877,18 +877,34 @@ i {
   margin: 0;
 }
 
+.click-instruction {
+  font-family: "Gloria Hallelujah", sans-serif;
+  color: white;
+  position: absolute;
+  bottom: 1rem;
+  left: 0.5rem;
+}
+
 .new-deck-back-2 {
   font-size: 2rem;
 }
 
-.page-one-container {
-  margin-top: 15rem;
+.page-one-container,
+.page-two-container,
+.page-three-container {
   width: 100%;
 }
 
+.page-one-container {
+  margin-top: 15rem;
+}
+
 .page-two-container {
-  width: 100%;
   padding-top: 5rem;
+}
+
+.page-three-container {
+  padding-top: 2rem;
 }
 
 .text-box,
@@ -901,11 +917,23 @@ i {
   margin: auto;
 }
 
+.fa-hand-pointer {
+  position: absolute;
+  font-size: 2rem;
+  color: rgb(211, 211, 211);
+  right: 2rem;
+  top: 2rem;
+  z-index: 2;
+}
+
 .fa-angles-up {
   color: white;
   font-size: 2rem;
-  padding-left: 4rem;
   animation: arrow-point 1s linear infinite;
+}
+
+.arrow-2 {
+  padding-left: 4rem;
 }
 
 .text-box-2 {
@@ -930,6 +958,10 @@ i {
   width: 50%;
   position: absolute;
   right: 1rem;
+}
+
+.tour-folder {
+  margin-top: 10rem;
 }
 
 @keyframes show-paper {
@@ -1017,6 +1049,60 @@ i {
 
   100% {
     transform: 0;
+  }
+}
+
+.lds-ripple {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.25rem;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid rgb(177, 177, 177);
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+
+  4.9% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+
+  5% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+
+  100% {
+    top: 0;
+    left: 0;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
   }
 }
 
@@ -1178,6 +1264,15 @@ i {
   .tour-image {
     width: 20%;
     bottom: 0;
+  }
+
+  .page-three-container {
+    padding-top: 0;
+  }
+
+  .tour-folder {
+    width: calc(100% / 3);
+    margin: 10rem auto 0;
   }
 }
 

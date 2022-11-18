@@ -49,6 +49,9 @@ export default class Tour extends React.Component {
     const z = this.state.page === 2
       ? 'hidden'
       : '';
+    const visible = this.state.page === 1 || this.state.page === 5
+      ? 'hidden'
+      : '';
     return (
       <>
         <h1 className={`new-deck-back ${z}`} >
@@ -56,6 +59,9 @@ export default class Tour extends React.Component {
         </h1>
         <div className='tour-background'>
           {this.renderPages()}
+          <p className={`click-instruction ${visible}`}>
+            *Click anywhere to continue
+          </p>
         </div>
       </>
     );

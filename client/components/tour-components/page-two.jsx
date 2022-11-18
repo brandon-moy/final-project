@@ -7,7 +7,7 @@ export default class PageTwo extends React.Component {
         <h1 className='new-deck-back-2' >
           New Deck
         </h1>
-        <i className="fa-solid fa-angles-up" />
+        <i className="fa-solid fa-angles-up arrow-2" />
         <section className='text-box-2'>
           <h3 className='main-box-text'>
             Great! First thing you &apos;ll need is a deck of cards.
