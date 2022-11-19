@@ -9,11 +9,11 @@ export default class DeleteForm extends React.Component {
 
   confirmDelete(event) {
     const cardId = this.props.cardId;
-    const userId = JSON.stringify(this.context.user.userId);
+    const { token } = this.context;
     const req = {
       method: 'DELETE',
       headers: {
-        userId
+        'X-Access-Token': token
       }
     };
     fetch(`/api/deletecard/${cardId}`, req)

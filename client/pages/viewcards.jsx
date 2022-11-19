@@ -27,12 +27,12 @@ export default class ViewCards extends React.Component {
   }
 
   componentDidMount() {
-    const userId = JSON.stringify(this.context.user.userId);
+    const { token } = this.context;
     const req = {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        userId
+        'X-Access-Token': token
       }
     };
     fetch(`/api/cards/${this.props.deckId}`, req)

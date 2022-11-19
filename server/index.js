@@ -1,11 +1,12 @@
 require('dotenv/config');
-const express = require('express');
-const ClientError = require('./client-error');
-const argon2 = require('argon2');
-const jwt = require('jsonwebtoken');
 const pg = require('pg');
-const staticMiddleware = require('./static-middleware');
+const argon2 = require('argon2');
+const express = require('express');
+const jwt = require('jsonwebtoken');
+const ClientError = require('./client-error');
 const errorMiddleware = require('./error-middleware');
+const staticMiddleware = require('./static-middleware');
+const authorizationMiddleware = require('./authorizatino-middleware');
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -18,118 +19,6 @@ const app = express();
 
 app.use(staticMiddleware);
 app.use(express.json());
-
-app.get('/api/decks', (req, res, next) => {
-  const userId = req.header('userId');
-  const sql = `
-    select "decks".*,
-           count("flashcards".*) as "cardCount",
-           sum("flashcards"."confidence") as "totalConfidence"
-      from "decks"
-    left join "flashcards" using ("deckId")
-    where "decks"."userId" = $1
-    group by "decks"."deckId"
-  `;
-
-  const params = [userId];
-
-  db.query(sql, params)
-    .then(result => {
-      const decks = result.rows;
-      res.status(200).json(decks);
-    })
-    .catch(err => next(err));
-});
-
-app.get('/api/cards/:deckId', (req, res, next) => {
-  const userId = req.header('userId');
-  const deckId = Number(req.params.deckId);
-  if (!deckId || deckId < 1) {
-    throw new ClientError(400, 'deckId must be a positive integer');
-  }
-
-  let sql = `
-  select  "decks"."deckName",
-          "flashcards".*
-      from "decks"
-  left join "flashcards" using ("deckId")
-  where "deckId" = $1
-    and "decks"."userId" = $2
-    order by "cardId"
-  `;
-
-  if (req.query.order === 'shuffle') {
-    sql = `
-    select  "decks"."deckName",
-            "flashcards".*
-      from "decks"
-    left join "flashcards" using ("deckId")
-    where "deckId" = $1
-     and "decks"."userId" = $2
-     order by random()
-  `;
-  } else if (req.query.order === 'asc') {
-    sql = `
-    select  "decks"."deckName",
-          "flashcards".*
-      from "decks"
-    left join "flashcards" using ("deckId")
-    where "deckId" = $1
-      and "decks"."userId" = $2
-      order by "confidence"
-  `;
-  } else if (req.query.order === 'desc') {
-    sql = `
-    select  "decks"."deckName",
-          "flashcards".*
-      from "decks"
-    left join "flashcards" using ("deckId")
-    where "deckId" = $1
-      and "decks"."userId" = $2
-      order by "confidence" desc
-  `;
-  }
-
-  const params = [deckId, userId];
-
-  db.query(sql, params)
-    .then(result => {
-      const cards = result.rows;
-      res.status(200).json(cards);
-    })
-    .catch(err => next(err));
-});
-
-app.get('/api/card/:cardId', (req, res, next) => {
-  const userId = req.header('userId');
-  const cardId = Number(req.params.cardId);
-  if (!cardId || cardId < 1) {
-    throw new ClientError(400, 'cardId must be a positive integer');
-  }
-
-  const sql = `
-  select "flashcards"."question",
-         "flashcards"."answer",
-         "decks"."deckName"
-    from "flashcards"
-    join "decks" using ("deckId")
-  where "cardId" = $1
-    and "flashcards"."userId" = $2
-  `;
-
-  const params = [cardId, userId];
-
-  db.query(sql, params)
-    .then(result => {
-      const [card] = result.rows;
-      if (!card) {
-        throw new ClientError(404, `cannot find card with cardId ${cardId}`);
-      } else {
-        res.json(card);
-      }
-    })
-    .catch(err => next(err));
-});
 
 app.post('/api/auth/sign-up', (req, res, next) => {
   const { username, password } = req.body;
@@ -200,8 +89,122 @@ app.post('/api/auth/sign-in', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.use(authorizationMiddleware);
+
+app.get('/api/decks', (req, res, next) => {
+  const { userId } = req.user;
+  const sql = `
+    select "decks".*,
+           count("flashcards".*) as "cardCount",
+           sum("flashcards"."confidence") as "totalConfidence"
+      from "decks"
+    left join "flashcards" using ("deckId")
+    where "decks"."userId" = $1
+    group by "decks"."deckId"
+  `;
+
+  const params = [userId];
+
+  db.query(sql, params)
+    .then(result => {
+      const decks = result.rows;
+      res.status(200).json(decks);
+    })
+    .catch(err => next(err));
+});
+
+app.get('/api/cards/:deckId', (req, res, next) => {
+  const { userId } = req.user;
+  const deckId = Number(req.params.deckId);
+  if (!deckId || deckId < 1) {
+    throw new ClientError(400, 'deckId must be a positive integer');
+  }
+
+  let sql = `
+  select  "decks"."deckName",
+          "flashcards".*
+      from "decks"
+  left join "flashcards" using ("deckId")
+  where "deckId" = $1
+    and "decks"."userId" = $2
+    order by "cardId"
+  `;
+
+  if (req.query.order === 'shuffle') {
+    sql = `
+    select  "decks"."deckName",
+            "flashcards".*
+      from "decks"
+    left join "flashcards" using ("deckId")
+    where "deckId" = $1
+     and "decks"."userId" = $2
+     order by random()
+  `;
+  } else if (req.query.order === 'asc') {
+    sql = `
+    select  "decks"."deckName",
+          "flashcards".*
+      from "decks"
+    left join "flashcards" using ("deckId")
+    where "deckId" = $1
+      and "decks"."userId" = $2
+      order by "confidence"
+  `;
+  } else if (req.query.order === 'desc') {
+    sql = `
+    select  "decks"."deckName",
+          "flashcards".*
+      from "decks"
+    left join "flashcards" using ("deckId")
+    where "deckId" = $1
+      and "decks"."userId" = $2
+      order by "confidence" desc
+  `;
+  }
+
+  const params = [deckId, userId];
+
+  db.query(sql, params)
+    .then(result => {
+      const cards = result.rows;
+      res.status(200).json(cards);
+    })
+    .catch(err => next(err));
+});
+
+app.get('/api/card/:cardId', (req, res, next) => {
+  const { userId } = req.user;
+  const cardId = Number(req.params.cardId);
+  if (!cardId || cardId < 1) {
+    throw new ClientError(400, 'cardId must be a positive integer');
+  }
+
+  const sql = `
+  select "flashcards"."question",
+         "flashcards"."answer",
+         "decks"."deckName"
+    from "flashcards"
+    join "decks" using ("deckId")
+  where "cardId" = $1
+    and "flashcards"."userId" = $2
+  `;
+
+  const params = [cardId, userId];
+
+  db.query(sql, params)
+    .then(result => {
+      const [card] = result.rows;
+      if (!card) {
+        throw new ClientError(404, `cannot find card with cardId ${cardId}`);
+      } else {
+        res.json(card);
+      }
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/create-deck', (req, res, next) => {
-  const userId = req.header('userId');
+  const { userId } = req.user;
   const { deckName } = req.body;
   if (!deckName) {
     throw new ClientError(400, 'deckName is a required field');
@@ -224,7 +227,7 @@ app.post('/api/create-deck', (req, res, next) => {
 });
 
 app.post('/api/add-card/:deckId', (req, res, next) => {
-  const userId = req.header('userId');
+  const { userId } = req.user;
   const deckId = Number(req.params.deckId);
   if (!deckId || deckId < 1) {
     throw new ClientError(400, 'deckId must be a positive integer');
@@ -251,7 +254,7 @@ app.post('/api/add-card/:deckId', (req, res, next) => {
 });
 
 app.patch('/update/newuser', (req, res, next) => {
-  const userId = req.header('userId');
+  const { userId } = req.user;
 
   const sql = `
   update "accounts"
@@ -275,7 +278,7 @@ app.patch('/update/newuser', (req, res, next) => {
 });
 
 app.patch('/api/card/:cardId', (req, res, next) => {
-  const userId = req.header('userId');
+  const { userId } = req.user;
   const cardId = Number(req.params.cardId);
   if (!cardId || cardId < 1) {
     throw new ClientError(400, 'cardId must be a positive integer');
@@ -309,7 +312,7 @@ app.patch('/api/card/:cardId', (req, res, next) => {
 });
 
 app.patch('/api/card/confidence/:cardId', (req, res, next) => {
-  const userId = req.header('userId');
+  const { userId } = req.user;
   const cardId = Number(req.params.cardId);
   const confidence = Number(req.body.confidence);
   if (!cardId || cardId < 1) {
@@ -342,7 +345,7 @@ app.patch('/api/card/confidence/:cardId', (req, res, next) => {
 });
 
 app.patch('/api/deck/confidence/:deckId', (req, res, next) => {
-  const userId = req.header('userId');
+  const { userId } = req.user;
   const deckId = Number(req.params.deckId);
   if (!deckId) {
     throw new ClientError(400, 'deckId must be a positive integer');
@@ -371,7 +374,7 @@ app.patch('/api/deck/confidence/:deckId', (req, res, next) => {
 });
 
 app.delete('/api/deletecard/:cardId', (req, res, next) => {
-  const userId = req.header('userId');
+  const { userId } = req.user;
   const cardId = Number(req.params.cardId);
   if (!cardId) {
     throw new ClientError(400, 'cardId must be a positive integer');
@@ -399,7 +402,7 @@ app.delete('/api/deletecard/:cardId', (req, res, next) => {
 });
 
 app.delete('/api/deletedeck/:deckId', (req, res, next) => {
-  const userId = req.header('userId');
+  const { userId } = req.user;
   const deckId = Number(req.params.deckId);
   if (!deckId) {
     throw new ClientError(400, 'deckId must be a positive integer');

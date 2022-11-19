@@ -12,6 +12,7 @@ export default class App extends React.Component {
     super(props);
     this.state = ({
       user: null,
+      token: null,
       newUser: false,
       isAuthorizing: true,
       route: parseRoute(window.location.hash)
@@ -35,11 +36,11 @@ export default class App extends React.Component {
   }
 
   endTour() {
-    const { user } = this.state;
+    const { token } = this.state;
     const req = {
       method: 'PATCH',
       headers: {
-        userId: user.userId
+        'X-Access-Token': token
       }
     };
     fetch('/update/newuser', req)
@@ -57,7 +58,7 @@ export default class App extends React.Component {
     const token = window.localStorage.getItem('user-token');
     const newUser = JSON.parse(window.localStorage.getItem('newUser'));
     const user = token ? jwtDecode(token) : null;
-    this.setState({ user, isAuthorizing: false, newUser });
+    this.setState({ user, isAuthorizing: false, newUser, token });
   }
 
   renderPage() {
@@ -74,8 +75,8 @@ export default class App extends React.Component {
 
   render() {
     if (this.state.isAuthorizing) return null;
-    const { user, route, newUser } = this.state;
-    const contextValue = { user, route, endTour: this.endTour, newUser };
+    const { user, route, token, newUser } = this.state;
+    const contextValue = { user, route, token, endTour: this.endTour, newUser };
     return (
       <AppContext.Provider value={contextValue}>
         <>

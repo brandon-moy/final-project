@@ -8,11 +8,11 @@ export default class ResetKnowledge extends React.Component {
   }
 
   resetDeck() {
-    const userId = JSON.stringify(this.context.user.userId);
+    const { token } = this.context;
     const req = {
       method: 'PATCH',
       headers: {
-        userId
+        'X-Access-Token': token
       }
     };
     fetch(`/api/deck/confidence/${this.props.deck.deckId}`, req)
