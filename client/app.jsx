@@ -39,7 +39,6 @@ export default class App extends React.Component {
     const req = {
       method: 'PATCH',
       headers: {
-        'Content-Type': 'application/json',
         userId: user.userId
       }
     };
