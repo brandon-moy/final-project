@@ -13,9 +13,9 @@ export default class Home extends React.Component {
   renderContent() {
     const { path } = this.props;
     const deckId = this.props.route.params.get('deckId');
-    if (path === '' && this.context.user.newUser) {
+    if (path === '' && this.context.newUser) {
       return <Tour />;
-    } else if (path === '' && !this.context.user.newUser) {
+    } else if (path === '' && !this.context.newUser) {
       return <Decks />;
     } else if (path === 'add-card') {
       return <AddCard deckId={deckId} />;

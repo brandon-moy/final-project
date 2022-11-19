@@ -12,6 +12,7 @@ export default class App extends React.Component {
     super(props);
     this.state = ({
       user: null,
+      newUser: false,
       isAuthorizing: true,
       route: parseRoute(window.location.hash)
     });
@@ -22,8 +23,10 @@ export default class App extends React.Component {
 
   handleSignIn(result) {
     const { user, token } = result;
+    const { newUser } = jwtDecode(token);
     window.localStorage.setItem('user-token', token);
-    this.setState({ user, token });
+    window.localStorage.setItem('newUser', newUser);
+    this.setState({ user, token, newUser });
   }
 
   handleSignOut() {
@@ -42,8 +45,8 @@ export default class App extends React.Component {
     };
     fetch('/update/newuser', req)
       .then(res => {
-        user.newUser = false;
-        this.setState({ user });
+        window.localStorage.setItem('newUser', false);
+        this.setState({ newUser: false });
       })
       .catch(err => console.error(err));
   }
@@ -53,8 +56,9 @@ export default class App extends React.Component {
       this.setState({ route: parseRoute(window.location.hash) });
     });
     const token = window.localStorage.getItem('user-token');
+    const newUser = JSON.parse(window.localStorage.getItem('newUser'));
     const user = token ? jwtDecode(token) : null;
-    this.setState({ user, isAuthorizing: false });
+    this.setState({ user, isAuthorizing: false, newUser });
   }
 
   renderPage() {
@@ -71,8 +75,8 @@ export default class App extends React.Component {
 
   render() {
     if (this.state.isAuthorizing) return null;
-    const { user, route } = this.state;
-    const contextValue = { user, route, endTour: this.endTour };
+    const { user, route, newUser } = this.state;
+    const contextValue = { user, route, endTour: this.endTour, newUser };
     return (
       <AppContext.Provider value={contextValue}>
         <>
