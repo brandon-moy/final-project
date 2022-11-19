@@ -105,7 +105,7 @@ export default class EditCard extends React.Component {
               onChange={this.handleChange} />
             </div>
           </label>
-          <div className='col-100'>
+          <div className='col-100 flex just-between'>
             <button
             id='deletecard'
             className='delete-show-modal'

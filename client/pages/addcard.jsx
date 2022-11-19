@@ -89,8 +89,8 @@ export default class AddCard extends React.Component {
               onChange={this.handleChange} />
             </div>
           </label>
-          <div className='col-100'>
-            <button className='just-f-end add-card-button'>
+          <div className='col-100 flex just-f-end'>
+            <button className='add-card-button'>
               Save
             </button>
           </div>

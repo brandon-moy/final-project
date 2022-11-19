@@ -6,7 +6,7 @@ export default class PageFive extends React.Component {
     return (
       <section className='page-one-container'>
         <section className='text-box'>
-          <h3 className='main-box-text'>
+          <h3 className='main-box-text-5'>
             Let&apos;s go and make our first deck!
           </h3>
           <button
