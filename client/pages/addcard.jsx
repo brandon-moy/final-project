@@ -23,13 +23,13 @@ export default class AddCard extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const userId = JSON.stringify(this.context.user.userId);
+    const { token } = this.context;
     const deckId = this.props.deckId;
     const req = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        userId
+        'X-Access-Token': token
       },
       body: JSON.stringify(this.state)
     };
@@ -46,12 +46,12 @@ export default class AddCard extends React.Component {
   }
 
   componentDidMount() {
-    const userId = JSON.stringify(this.context.user.userId);
+    const { token } = this.context;
     const req = {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        userId
+        'X-Access-Token': token
       }
     };
     fetch(`/api/cards/${this.props.deckId}`, req)
@@ -89,8 +89,8 @@ export default class AddCard extends React.Component {
               onChange={this.handleChange} />
             </div>
           </label>
-          <div className='col-100'>
-            <button className='just-f-end add-card-button'>
+          <div className='col-100 flex just-f-end'>
+            <button className='add-card-button'>
               Save
             </button>
           </div>

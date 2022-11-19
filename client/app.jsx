@@ -12,17 +12,22 @@ export default class App extends React.Component {
     super(props);
     this.state = ({
       user: null,
+      token: null,
+      newUser: false,
       isAuthorizing: true,
       route: parseRoute(window.location.hash)
     });
     this.handleSignIn = this.handleSignIn.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
+    this.endTour = this.endTour.bind(this);
   }
 
   handleSignIn(result) {
     const { user, token } = result;
+    const { newUser } = jwtDecode(token);
     window.localStorage.setItem('user-token', token);
-    this.setState({ user, token });
+    window.localStorage.setItem('newUser', newUser);
+    this.setState({ user, token, newUser });
   }
 
   handleSignOut() {
@@ -30,13 +35,30 @@ export default class App extends React.Component {
     this.setState({ user: null });
   }
 
+  endTour() {
+    const { token } = this.state;
+    const req = {
+      method: 'PATCH',
+      headers: {
+        'X-Access-Token': token
+      }
+    };
+    fetch('/update/newuser', req)
+      .then(res => {
+        window.localStorage.setItem('newUser', false);
+        this.setState({ newUser: false });
+      })
+      .catch(err => console.error(err));
+  }
+
   componentDidMount() {
     window.addEventListener('hashchange', () => {
       this.setState({ route: parseRoute(window.location.hash) });
     });
     const token = window.localStorage.getItem('user-token');
+    const newUser = JSON.parse(window.localStorage.getItem('newUser'));
     const user = token ? jwtDecode(token) : null;
-    this.setState({ user, isAuthorizing: false });
+    this.setState({ user, isAuthorizing: false, newUser, token });
   }
 
   renderPage() {
@@ -53,8 +75,8 @@ export default class App extends React.Component {
 
   render() {
     if (this.state.isAuthorizing) return null;
-    const { user, route } = this.state;
-    const contextValue = { user, route };
+    const { user, route, token, newUser } = this.state;
+    const contextValue = { user, route, token, endTour: this.endTour, newUser };
     return (
       <AppContext.Provider value={contextValue}>
         <>

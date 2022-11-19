@@ -4,12 +4,14 @@ export default class StudyOptions extends React.Component {
   render() {
     return (
       <div>
-        <button
+        <div className='flex just-f-end'>
+          <button
           type='button'
           className='close-study'
           onClick={this.props.closeModal}>
-          <i className='fa-solid fa-xmark' />
-        </button>
+            <i className='fa-solid fa-xmark' />
+          </button>
+        </div>
         <h1 className='study-title'>
           How would you like to study?
         </h1>

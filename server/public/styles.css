@@ -40,12 +40,18 @@ i {
   text-align: center;
 }
 
-.page-title {
+.page-title,
+.tour-page-title {
   color: white;
   font-family: "Fuzzy Bubbles", sans-serif;
   font-weight: 800;
   font-size: 2.5rem;
   text-decoration: none;
+}
+
+.tour-page-title {
+  text-align: center;
+  margin-top: 1rem;
 }
 
 .new-deck {
@@ -66,6 +72,14 @@ i {
   display: flex;
   justify-content: center;
   z-index: 5;
+}
+
+.tour-background {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0 0 0 / 50%);
 }
 
 .sticky-container {
@@ -207,6 +221,7 @@ i {
   height: 10rem;
   padding: 2rem 0;
   margin-bottom: 2rem;
+  width: 100%;
 }
 
 .folder-front {
@@ -379,7 +394,6 @@ i {
   color: white;
   font-family: "Gloria Hallelujah", sans-serif;
   font-size: 1.5rem;
-  float: right;
   padding-right: 2rem;
 }
 
@@ -841,7 +855,6 @@ i {
 }
 
 .close-study {
-  float: right;
   padding-right: 1.25rem;
   padding-top: 1rem;
   background: transparent;
@@ -858,6 +871,141 @@ i {
   width: 20%;
   left: 0;
   top: 0.75rem;
+}
+
+.new-deck-back,
+.new-deck-back-2 {
+  font-family: "Gloria Hallelujah", sans-serif;
+  color: white;
+  font-weight: 500;
+  padding-left: 1rem;
+  margin: 0;
+}
+
+.click-instruction {
+  font-family: "Gloria Hallelujah", sans-serif;
+  color: white;
+  position: absolute;
+  bottom: 1rem;
+  left: 0.5rem;
+}
+
+.new-deck-back-2 {
+  font-size: 2rem;
+}
+
+.page-one-container,
+.page-two-container,
+.page-three-container {
+  width: 100%;
+}
+
+.page-one-container {
+  margin-top: 15rem;
+}
+
+.page-two-container {
+  padding-top: 5rem;
+}
+
+.page-three-container {
+  padding-top: 2rem;
+}
+
+.text-box,
+.text-box-2,
+.text-box-3,
+.text-box-4 {
+  border-radius: 0.5rem;
+  font-family: "Gloria Hallelujah", sans-serif;
+  background-color: white;
+  width: 90%;
+  height: 20vh;
+  margin: auto;
+}
+
+.text-box-2 {
+  margin-top: 4rem;
+}
+
+.text-box-3 {
+  margin-top: 22rem;
+}
+
+.text-box-4 {
+  margin-top: 11rem;
+}
+
+.fa-hand-pointer {
+  position: absolute;
+  font-size: 2rem;
+  color: rgb(211, 211, 211);
+  right: 2rem;
+  top: 2rem;
+  z-index: 2;
+}
+
+.fa-angles-up {
+  color: white;
+  font-size: 2rem;
+  animation: arrow-point 1s linear infinite;
+}
+
+.arrow-2 {
+  padding-left: 4rem;
+}
+
+.arrow-4 {
+  position: absolute;
+  left: 50%;
+}
+
+.main-box-text,
+.main-box-text-4,
+.main-box-text-5 {
+  width: 90%;
+  font-size: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.main-box-text-4,
+.main-box-text-5 {
+  padding-top: 1rem;
+}
+
+.tour-button {
+  background: transparent;
+  font-family: Delius, sans-serif;
+  border: none;
+  font-size: 1.25rem;
+}
+
+.tour-image {
+  width: 50%;
+  position: absolute;
+  right: 1rem;
+  bottom: 30%;
+}
+
+.tour-image-3 {
+  width: 50%;
+  position: absolute;
+  right: 1rem;
+  bottom: 10%;
+}
+
+.tour-folder {
+  position: absolute;
+  margin: 10rem auto 0;
+}
+
+.get-started-button {
+  width: 100%;
+  background: transparent;
+  border: none;
+  font-family: Delius, sans-serif;
+  font-size: 1.25rem;
+  text-decoration: underline;
 }
 
 @keyframes show-paper {
@@ -882,6 +1030,28 @@ i {
   100% {
     transform: translateY(0) translateX(2.5%);
     z-index: 3;
+  }
+}
+
+@keyframes arrow-point {
+  0% {
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(-0.5rem);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  75% {
+    transform: translateY(0.5rem);
+  }
+
+  100% {
+    transform: translateY(0);
   }
 }
 
@@ -923,6 +1093,60 @@ i {
 
   100% {
     transform: 0;
+  }
+}
+
+.lds-ripple {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.25rem;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid rgb(177, 177, 177);
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+
+  4.9% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+
+  5% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+
+  100% {
+    top: 0;
+    left: 0;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
   }
 }
 
@@ -1063,6 +1287,46 @@ i {
 
   .placeholder-image {
     height: 30vh;
+  }
+
+  .main-box-text {
+    width: 100%;
+  }
+
+  .text-box,
+  .text-box-2,
+  .text-box-3,
+  .text-box-4 {
+    width: 25%;
+    height: 25vh;
+    margin-right: 4rem;
+  }
+
+  .text-box-2 {
+    margin-top: 4rem;
+  }
+
+  .text-box-3 {
+    margin-top: 13rem;
+  }
+
+  .text-box-4 {
+    margin-top: 11rem;
+  }
+
+  .tour-image {
+    width: 20%;
+    bottom: 0;
+  }
+
+  .tour-image-3 {
+    width: 20%;
+    bottom: 0;
+  }
+
+  .tour-folder {
+    width: calc(100% / 3);
+    margin: 10rem auto 0;
   }
 }
 

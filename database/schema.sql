@@ -10,6 +10,7 @@ CREATE TABLE "public"."accounts" (
 	"username" TEXT NOT NULL UNIQUE,
 	"hashedPassword" TEXT NOT NULL,
 	"joinedAt" timestamp with time zone NOT NULL default now(),
+  "newUser" BOOLEAN NOT NULL DEFAULT 'true',
 	CONSTRAINT "accounts_pk" PRIMARY KEY ("userId")
 ) WITH (
   OIDS=FALSE

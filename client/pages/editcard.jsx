@@ -25,13 +25,13 @@ export default class EditCard extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const userId = JSON.stringify(this.context.user.userId);
+    const { token } = this.context;
     const cardId = this.props.cardId;
     const req = {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        userId
+        'X-Access-Token': token
       },
       body: JSON.stringify(this.state)
     };
@@ -52,12 +52,12 @@ export default class EditCard extends React.Component {
   }
 
   componentDidMount() {
-    const userId = JSON.stringify(this.context.user.userId);
+    const { token } = this.context;
     const req = {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        userId
+        'X-Access-Token': token
       }
     };
     fetch(`/api/card/${this.props.cardId}`, req)
@@ -105,7 +105,7 @@ export default class EditCard extends React.Component {
               onChange={this.handleChange} />
             </div>
           </label>
-          <div className='col-100'>
+          <div className='col-100 flex just-between'>
             <button
             id='deletecard'
             className='delete-show-modal'
