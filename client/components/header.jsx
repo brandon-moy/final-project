@@ -11,7 +11,7 @@ export default class Header extends React.Component {
       <header className='page-header'>
         <img className={`idle-img ${show}`} src='sit.png' />
         <a href='#' className='page-title'>
-          Page Title
+          FlipFuze
         </a>
         <button className={`sign-out-button ${show}`} onClick={this.props.signOut}>
           Sign Out

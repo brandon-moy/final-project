@@ -8,7 +8,7 @@ export default class PageOne extends React.Component {
         <div className='flex just-f-end'>
           <section className='text-box'>
             <h3 className='main-box-text'>
-              Welcome to Page Title! You must be the new student. Would you like a tour?
+              Welcome to FlipFuze! You must be the new student. Would you like a tour?
             </h3>
             <div className='flex just-even'>
               <button
