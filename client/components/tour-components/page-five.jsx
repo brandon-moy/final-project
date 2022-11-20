@@ -9,12 +9,14 @@ export default class PageFive extends React.Component {
           <h3 className='main-box-text-5'>
             Let&apos;s go and make our first deck!
           </h3>
-          <button
+          <div className='flex just-center'>
+            <button
           type='button'
           className='get-started-button'
           onClick={this.context.endTour}>
-            Get Started!
-          </button>
+              Get Started!
+            </button>
+          </div>
         </section>
       </section>
     );

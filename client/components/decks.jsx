@@ -290,7 +290,7 @@ export default class Decks extends React.Component {
         id='newdeck'
         className='new-deck'
         onClick={this.createDeck}>
-          New Deck
+          New Folder
         </button>
         <div className='flex wrap just-center'>
           {renderedDecks}

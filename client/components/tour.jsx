@@ -55,7 +55,7 @@ export default class Tour extends React.Component {
     return (
       <>
         <h1 className={`new-deck-back ${z}`} >
-          New Deck
+          New Folder
         </h1>
         <div className='tour-background'>
           {this.renderPages()}
