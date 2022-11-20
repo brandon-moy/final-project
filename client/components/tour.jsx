@@ -59,6 +59,10 @@ export default class Tour extends React.Component {
         </h1>
         <div className='tour-background'>
           {this.renderPages()}
+          <img
+          className={`tour-stick stick-${this.state.page}`}
+          src='/stick.png' />
+          <img className='tour-image' src='/apollo.png' />
           <p className={`click-instruction ${visible}`}>
             *Click anywhere to continue
           </p>

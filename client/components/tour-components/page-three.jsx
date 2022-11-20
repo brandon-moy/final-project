@@ -25,7 +25,6 @@ export default class PageThree extends React.Component {
               and click on it to see the option.
             </h3>
           </section>
-          <img className='tour-image-3' src='/place.png' />
         </section>
       </>
     );

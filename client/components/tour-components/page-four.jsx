@@ -14,7 +14,6 @@ export default class PageFour extends React.Component {
             bring you back to this home screen
           </h3>
         </section>
-        <img className='tour-image' src='/place.png' />
       </section>
     );
   }

@@ -16,7 +16,6 @@ export default class PageTwo extends React.Component {
             </h3>
           </section>
         </div>
-        <img className='tour-image' src='/place.png' />
       </section>
     );
   }

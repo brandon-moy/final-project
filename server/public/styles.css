@@ -917,10 +917,12 @@ i {
 .text-box-3,
 .text-box-4 {
   border-radius: 0.5rem;
-  font-family: "Gloria Hallelujah", sans-serif;
+  font-family: "Berkshire Swash", sans-serif;
+  line-height: 2rem;
   background-color: white;
+  box-shadow: 5px 5px 5px black;
   width: 90%;
-  height: 20vh;
+  height: 25vh;
   margin: auto;
 }
 
@@ -963,9 +965,9 @@ i {
 .main-box-text,
 .main-box-text-4,
 .main-box-text-5 {
-  width: 90%;
+  width: 100%;
   font-size: 1.25rem;
-  padding-left: 1.5rem;
+  padding-left: 0.75rem;
 }
 
 .main-box-text-4,
@@ -976,22 +978,24 @@ i {
 .tour-button {
   background: transparent;
   font-family: Delius, sans-serif;
+  color: black;
   border: none;
   font-size: 1.25rem;
 }
 
 .tour-image {
-  width: 50%;
+  width: 45%;
   position: absolute;
   right: 1rem;
-  bottom: 30%;
+  bottom: 0;
 }
 
-.tour-image-3 {
-  width: 50%;
+.tour-stick {
+  width: 40%;
   position: absolute;
-  right: 1rem;
-  bottom: 10%;
+  right: 2rem;
+  z-index: 2;
+  bottom: 1.25rem;
 }
 
 .tour-folder {
@@ -1315,13 +1319,12 @@ i {
   }
 
   .tour-image {
-    width: 20%;
+    width: 15%;
     bottom: 0;
   }
 
-  .tour-image-3 {
-    width: 20%;
-    bottom: 0;
+  .tour-stick {
+    width: 14%;
   }
 
   .tour-folder {

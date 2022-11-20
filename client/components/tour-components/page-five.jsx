@@ -16,7 +16,6 @@ export default class PageFive extends React.Component {
             Get Started!
           </button>
         </section>
-        <img className='tour-image' src='/place.png' />
       </section>
     );
   }
