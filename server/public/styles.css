@@ -1387,6 +1387,11 @@ i {
   .not-found-img {
     width: 18%;
   }
+
+  .idle-img {
+    width: 5%;
+    margin-left: 2rem;
+  }
 }
 
 @media (hover: hover) {
