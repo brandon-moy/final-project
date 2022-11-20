@@ -404,7 +404,7 @@ i {
   text-align: center;
   padding-left: 1rem;
   padding-right: 1rem;
-  margin: 0;
+  margin: 1.75rem 0 0;
 }
 
 .return-home {
@@ -863,7 +863,7 @@ i {
 }
 
 .not-found-img {
-  width: 60%;
+  width: 50%;
 }
 
 .idle-img {
@@ -1382,6 +1382,10 @@ i {
 
   .get-started-button {
     margin-top: 2rem;
+  }
+
+  .not-found-img {
+    width: 18%;
   }
 }
 

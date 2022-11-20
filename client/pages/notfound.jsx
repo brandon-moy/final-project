@@ -6,7 +6,9 @@ export default function NotFound(props) {
       <h3 className='not-found-text c-100'>
         Sorry, we could not find the page you were looking for!
       </h3>
-      <img className='not-found-img' src='shocked.png' />
+      <div className='col-100 flex just-center'>
+        <img className='not-found-img' src='shocked.png' />
+      </div>
       <a className='return-home col-100' href='#'>
         Return Home
       </a>
