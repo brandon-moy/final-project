@@ -76,7 +76,7 @@ export default class AuthForm extends React.Component {
           onSubmit={this.handleSubmit}>
             <img
             className='placeholder-image'
-            src='/greet.png' />
+            src='/images/greet.webp' />
             <div className='form-section'>
               <p className={`${error}`}>
                 {this.state.errorMessage}

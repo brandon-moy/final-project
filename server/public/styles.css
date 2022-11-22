@@ -222,6 +222,7 @@ i {
   padding: 2rem 0;
   margin-bottom: 2rem;
   width: 100%;
+  max-width: 375px;
 }
 
 .folder-front {
@@ -1207,6 +1208,10 @@ i {
 }
 
 @media only screen and (min-width: 1280px) {
+  .scene {
+    max-width: 676px;
+  }
+
   .folder-front,
   .folder-back,
   .option-paper {
