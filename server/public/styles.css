@@ -1205,6 +1205,43 @@ i {
     width: 60%;
     max-width: 507px;
   }
+
+  .text-box,
+  .text-box-2,
+  .text-box-3,
+  .text-box-4 {
+    width: 60%;
+    height: 20vh;
+  }
+
+  .text-box-2 {
+    margin-top: 4rem;
+  }
+
+  .text-box-3 {
+    height: 16vh;
+  }
+
+  .text-box-4 {
+    height: 18vh;
+  }
+
+  .tour-stick {
+    right: 2.75rem;
+    bottom: 2.25rem;
+  }
+
+  .stick-2 {
+    transform: rotateZ(-25deg) translateY(-3rem) translateX(0.25rem);
+  }
+
+  .stick-3 {
+    transform: rotateZ(20deg) translateY(2rem) translateX(0.5rem);
+  }
+
+  .stick-4 {
+    transform: rotateZ(10deg) translateY(0.75rem) translateX(0.25rem);
+  }
 }
 
 @media only screen and (min-width: 1280px) {
