@@ -25,6 +25,7 @@ export default class EditCard extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    this.context.isLoading();
     const { token } = this.context;
     const cardId = this.props.cardId;
     const req = {
@@ -37,9 +38,13 @@ export default class EditCard extends React.Component {
     };
     fetch(`/api/card/${cardId}`, req)
       .then(res => {
+        this.context.completeLoading();
         location.href = `/#view-cards?deckId=${this.props.deckId}`;
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        this.context.isError();
+      });
   }
 
   showModal(event) {
@@ -52,6 +57,7 @@ export default class EditCard extends React.Component {
   }
 
   componentDidMount() {
+    this.context.isLoading();
     const { token } = this.context;
     const req = {
       method: 'GET',
@@ -62,13 +68,20 @@ export default class EditCard extends React.Component {
     };
     fetch(`/api/card/${this.props.cardId}`, req)
       .then(res => res.json())
-      .then(data => this.setState(
-        {
-          question: data.question,
-          answer: data.answer,
-          deckName: data.deckName
-        }
-      ));
+      .then(data => {
+        this.setState(
+          {
+            question: data.question,
+            answer: data.answer,
+            deckName: data.deckName
+          }
+        );
+        this.context.completeLoading();
+      }
+      ).catch(err => {
+        console.error(err);
+        this.context.isError();
+      });
   }
 
   render() {

@@ -21,6 +21,9 @@ export default class App extends React.Component {
     this.handleSignIn = this.handleSignIn.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
     this.endTour = this.endTour.bind(this);
+    this.isLoading = this.isLoading.bind(this);
+    this.isError = this.isError.bind(this);
+    this.completeLoading = this.completeLoading.bind(this);
   }
 
   handleSignIn(result) {
@@ -37,6 +40,7 @@ export default class App extends React.Component {
   }
 
   endTour() {
+    this.isLoading();
     const { token } = this.state;
     const req = {
       method: 'PATCH',
@@ -47,9 +51,21 @@ export default class App extends React.Component {
     fetch('/update/newuser', req)
       .then(res => {
         window.localStorage.setItem('newUser', false);
-        this.setState({ newUser: false });
+        this.setState({ newUser: false, loading: false });
       })
       .catch(err => console.error(err));
+  }
+
+  isLoading() {
+    this.setState({ loading: true });
+  }
+
+  completeLoading() {
+    this.setState({ loading: false });
+  }
+
+  isError() {
+    this.setState({ loading: 'error' });
   }
 
   componentDidMount() {
@@ -77,15 +93,33 @@ export default class App extends React.Component {
   render() {
     if (this.state.isAuthorizing) return null;
     const loading = this.state.loading ? '' : 'hidden';
+    const spinner = this.state.loading === 'error' ? 'hidden' : 'loading';
+    const error = this.state.loading === 'error' ? 'error' : 'hidden';
     const { user, route, token, newUser } = this.state;
-    const contextValue = { user, route, token, endTour: this.endTour, newUser };
+    const contextValue = {
+      user,
+      route,
+      token,
+      endTour: this.endTour,
+      newUser,
+      isLoading: this.isLoading,
+      completeLoading: this.completeLoading,
+      isError: this.isError
+    };
     return (
       <AppContext.Provider value={contextValue}>
         <>
           <Header signOut={this.handleSignOut} />
           { this.renderPage() }
           <div className={`modal-background flex align-center ${loading}`}>
-            <div className="lds-facebook"><div /><div /><div /></div>
+            <div className={spinner}>
+              <div className="lds-facebook"><div /><div /><div /></div>
+            </div>
+            <div className={error}>
+              <h1 className='error-message'>
+                Sorry, an unexpected error occured. Please try again later!
+              </h1>
+            </div>
           </div>
         </>
       </AppContext.Provider>

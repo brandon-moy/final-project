@@ -21,6 +21,7 @@ export default class AuthForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    this.context.isLoading();
     const req = {
       method: 'POST',
       headers: {
@@ -45,8 +46,12 @@ export default class AuthForm extends React.Component {
         } else if (result.user && result.token) {
           this.props.handleSignIn(result);
         }
+        this.context.completeLoading();
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        this.context.isError();
+      });
   }
 
   render() {

@@ -27,6 +27,7 @@ export default class ViewCards extends React.Component {
   }
 
   componentDidMount() {
+    this.context.isLoading();
     const { token } = this.context;
     const req = {
       method: 'GET',
@@ -43,8 +44,12 @@ export default class ViewCards extends React.Component {
           cards: data,
           deckName
         });
+        this.context.completeLoading();
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        this.context.isError();
+      });
   }
 
   renderCards() {

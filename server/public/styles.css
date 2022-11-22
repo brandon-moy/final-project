@@ -1044,6 +1044,11 @@ i {
   border: 2px solid #2a0800;
 }
 
+.error-message {
+  color: white;
+  font-family: "Gloria Hallelujah", sans-serif;
+}
+
 .lds-ripple {
   position: absolute;
   right: 0.5rem;

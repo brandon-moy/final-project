@@ -61,6 +61,7 @@ export default class Decks extends React.Component {
   }
 
   submitDeck() {
+    this.context.isLoading();
     const { token } = this.context;
     const req = {
       method: 'GET',
@@ -77,8 +78,12 @@ export default class Decks extends React.Component {
           creatingDeck: false,
           decks: data
         });
+        this.context.completeLoading();
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        this.context.isError();
+      });
   }
 
   deleteDeck(event) {
@@ -140,6 +145,7 @@ export default class Decks extends React.Component {
   }
 
   componentDidMount() {
+    this.context.isLoading();
     const { token } = this.context;
     const req = {
       method: 'GET',
@@ -150,8 +156,14 @@ export default class Decks extends React.Component {
     };
     fetch('/api/decks', req)
       .then(res => res.json())
-      .then(data => this.setState({ decks: data }))
-      .catch(err => console.error(err));
+      .then(data => {
+        this.setState({ decks: data });
+        this.context.completeLoading();
+      })
+      .catch(err => {
+        console.error(err);
+        this.context.isError();
+      });
   }
 
   renderModalForm() {
