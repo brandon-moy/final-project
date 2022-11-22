@@ -1405,7 +1405,8 @@ i {
   label:hover,
   .folder-front:hover,
   .option-paper:hover,
-  .study-card-front {
+  .study-card-front,
+  .cursor:hover {
     cursor: pointer;
   }
 }
