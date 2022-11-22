@@ -9,9 +9,9 @@ export default class Header extends React.Component {
       : 'hidden';
     return (
       <header className='page-header'>
-        <img className={`idle-img ${show} hidden`} src='place.png' />
+        <img className={`idle-img ${show}`} src='sit.png' />
         <a href='#' className='page-title'>
-          Page Title
+          StudyBuddy
         </a>
         <button className={`sign-out-button ${show}`} onClick={this.props.signOut}>
           Sign Out

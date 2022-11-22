@@ -8,7 +8,7 @@ export default class PageOne extends React.Component {
         <div className='flex just-f-end'>
           <section className='text-box'>
             <h3 className='main-box-text'>
-              Hey there, welcome to Page Title! Would you like a tour?
+              Welcome to StudyBuddy! You must be the new student. Would you like a tour?
             </h3>
             <div className='flex just-even'>
               <button
@@ -25,7 +25,6 @@ export default class PageOne extends React.Component {
               </button>
             </div>
           </section>
-          <img className='tour-image' src='/place.png'/>
         </div>
       </section>
     );

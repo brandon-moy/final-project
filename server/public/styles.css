@@ -404,7 +404,7 @@ i {
   text-align: center;
   padding-left: 1rem;
   padding-right: 1rem;
-  margin: 0;
+  margin: 1.75rem 0 0;
 }
 
 .return-home {
@@ -863,7 +863,7 @@ i {
 }
 
 .not-found-img {
-  width: 60%;
+  width: 50%;
 }
 
 .idle-img {
@@ -917,23 +917,31 @@ i {
 .text-box-3,
 .text-box-4 {
   border-radius: 0.5rem;
-  font-family: "Gloria Hallelujah", sans-serif;
+  font-family: "Fuzzy Bubbles", sans-serif;
+  line-height: 2rem;
   background-color: white;
+  box-shadow: 5px 5px 5px black;
   width: 90%;
-  height: 20vh;
+  height: 25vh;
   margin: auto;
+  border: 2px solid #2a0800;
 }
 
 .text-box-2 {
   margin-top: 4rem;
+  height: 23vh;
+  padding-right: 1rem;
 }
 
 .text-box-3 {
-  margin-top: 22rem;
+  margin-top: 15rem;
+  height: 22vh;
+  z-index: 5;
 }
 
 .text-box-4 {
   margin-top: 11rem;
+  height: 22vh;
 }
 
 .fa-hand-pointer {
@@ -963,9 +971,9 @@ i {
 .main-box-text,
 .main-box-text-4,
 .main-box-text-5 {
-  width: 90%;
+  width: 100%;
   font-size: 1.25rem;
-  padding-left: 1.5rem;
+  padding-left: 1.25rem;
 }
 
 .main-box-text-4,
@@ -976,22 +984,43 @@ i {
 .tour-button {
   background: transparent;
   font-family: Delius, sans-serif;
+  color: black;
   border: none;
   font-size: 1.25rem;
 }
 
 .tour-image {
-  width: 50%;
+  width: 45%;
   position: absolute;
   right: 1rem;
-  bottom: 30%;
+  bottom: 0;
 }
 
-.tour-image-3 {
-  width: 50%;
+.tour-stick {
+  width: 40%;
   position: absolute;
-  right: 1rem;
-  bottom: 10%;
+  right: 2rem;
+  z-index: 2;
+  bottom: 1.25rem;
+  transition: transform 0.5s linear;
+}
+
+.stick-2 {
+  transform: rotateZ(-10deg);
+}
+
+.stick-3 {
+  transform:
+    rotateZ(35deg)
+    translateY(2rem)
+    translateX(0.5rem);
+}
+
+.stick-4 {
+  transform:
+    rotateZ(10deg)
+    translateY(0.75rem)
+    translateX(0.25rem);
 }
 
 .tour-folder {
@@ -1000,12 +1029,14 @@ i {
 }
 
 .get-started-button {
-  width: 100%;
-  background: transparent;
-  border: none;
+  margin-top: 0.5rem;
+  color: white;
   font-family: Delius, sans-serif;
   font-size: 1.25rem;
-  text-decoration: underline;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background-color: rgb(16, 64, 48);
+  border: 2px solid #2a0800;
 }
 
 @keyframes show-paper {
@@ -1198,7 +1229,7 @@ i {
 
   .study-card-front,
   .study-card-back {
-    height: 15rem;
+    height: 18rem;
     width: 75%;
   }
 
@@ -1315,18 +1346,51 @@ i {
   }
 
   .tour-image {
-    width: 20%;
+    width: 15%;
     bottom: 0;
   }
 
-  .tour-image-3 {
-    width: 20%;
-    bottom: 0;
+  .tour-stick {
+    width: 14%;
+  }
+
+  .stick-2 {
+    transform:
+      rotateZ(-50deg)
+      translateY(-2.5rem)
+      translateX(1.5rem);
+  }
+
+  .stick-3 {
+    transform:
+      rotateZ(-35deg)
+      translateY(-1.75rem)
+      translateX(0.75rem);
+  }
+
+  .stick-4 {
+    transform:
+      rotateZ(-25deg)
+      translateY(-1.75rem)
+      translateX(0.5rem);
   }
 
   .tour-folder {
     width: calc(100% / 3);
     margin: 10rem auto 0;
+  }
+
+  .get-started-button {
+    margin-top: 2rem;
+  }
+
+  .not-found-img {
+    width: 18%;
+  }
+
+  .idle-img {
+    width: 5%;
+    margin-left: 2rem;
   }
 }
 
