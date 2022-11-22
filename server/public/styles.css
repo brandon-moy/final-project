@@ -1206,12 +1206,17 @@ i {
     max-width: 507px;
   }
 
+  .tour-image {
+    max-width: 308px;
+  }
+
   .text-box,
   .text-box-2,
   .text-box-3,
   .text-box-4 {
     width: 60%;
     height: 20vh;
+    max-width: 460px;
   }
 
   .text-box-2 {
@@ -1229,6 +1234,7 @@ i {
   .tour-stick {
     right: 2.75rem;
     bottom: 2.25rem;
+    max-width: 275px;
   }
 
   .stick-2 {
