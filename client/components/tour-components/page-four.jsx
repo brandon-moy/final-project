@@ -5,7 +5,7 @@ export default class PageFour extends React.Component {
     return (
       <section className='page-four-container'>
         <p className='tour-page-title'>
-          FlipFuze
+          StudyBuddy
         </p>
         <i className="fa-solid fa-angles-up arrow-4" />
         <section className='text-box-4'>
