@@ -1,10 +1,10 @@
 import React from 'react';
 import Modal from './modal';
-import NewDeck from './newdeck';
-import DeleteDeck from './deletedeck';
+import NewDeck from './modal-components/newdeck';
+import DeleteDeck from './modal-components/deletedeck';
 import AppContext from '../lib/app-context';
-import ResetKnowledge from './resetknowledge';
-import StudyOptions from './studyoptions';
+import ResetKnowledge from './modal-components/resetknowledge';
+import StudyOptions from './modal-components/studyoptions';
 
 export default class Decks extends React.Component {
   constructor(props) {

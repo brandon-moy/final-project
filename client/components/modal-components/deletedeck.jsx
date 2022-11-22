@@ -1,5 +1,5 @@
 import React from 'react';
-import AppContext from '../lib/app-context';
+import AppContext from '../../lib/app-context';
 
 export default class DeleteDeck extends React.Component {
   constructor(props) {

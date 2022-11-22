@@ -15,6 +15,7 @@ export default class App extends React.Component {
       token: null,
       newUser: false,
       isAuthorizing: true,
+      loading: false,
       route: parseRoute(window.location.hash)
     });
     this.handleSignIn = this.handleSignIn.bind(this);
@@ -75,6 +76,7 @@ export default class App extends React.Component {
 
   render() {
     if (this.state.isAuthorizing) return null;
+    const loading = this.state.loading ? '' : 'hidden';
     const { user, route, token, newUser } = this.state;
     const contextValue = { user, route, token, endTour: this.endTour, newUser };
     return (
@@ -82,6 +84,9 @@ export default class App extends React.Component {
         <>
           <Header signOut={this.handleSignOut} />
           { this.renderPage() }
+          <div className={`modal-background flex align-center ${loading}`}>
+            <div className="lds-facebook"><div /><div /><div /></div>
+          </div>
         </>
       </AppContext.Provider>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
 import AppContext from '../lib/app-context';
 import Modal from '../components/modal';
-import StudyOptions from '../components/studyoptions';
+import StudyOptions from '../components/modal-components/studyoptions';
 
 export default class ViewCards extends React.Component {
   constructor(props) {
