@@ -1,6 +1,5 @@
 body {
   height: 100vh;
-  width: 100%;
   background:
     linear-gradient(
       217deg,
@@ -172,9 +171,8 @@ i {
 }
 
 .xmark-close {
-  width: 1.5rem;
   position: absolute;
-  right: 0;
+  right: -1rem;
   background: transparent;
   border: none;
   color: black;
@@ -188,13 +186,18 @@ i {
   padding-bottom: 1.5rem;
 }
 
-.new-deck-error {
+.new-deck-error,
+.new-card-error {
   color: red;
   font-family:
     Delius,
     sans-serif;
   margin: 0;
   font-size: 0.75rem;
+}
+
+.new-card-error {
+  padding-left: 1.5rem;
 }
 
 .sticky-input {
@@ -221,7 +224,6 @@ i {
   height: 10rem;
   padding: 2rem 0;
   margin-bottom: 2rem;
-  width: 100%;
   max-width: 375px;
 }
 
@@ -307,7 +309,6 @@ i {
 }
 
 .deck-title {
-  width: 80%;
   text-align: center;
   padding-top: 0.75rem;
   font-size: 1.5rem;
@@ -349,7 +350,6 @@ i {
 }
 
 .edit-card-front {
-  position: relative;
   background-color: #fffcde;
   height: 10rem;
   margin: 0 auto;
@@ -891,7 +891,7 @@ i {
   font-family: "Gloria Hallelujah", sans-serif;
   color: white;
   position: absolute;
-  bottom: 1rem;
+  bottom: 0;
   left: 0.5rem;
 }
 
@@ -976,7 +976,6 @@ i {
 .main-box-text,
 .main-box-text-4,
 .main-box-text-5 {
-  width: 100%;
   font-size: 1.25rem;
   padding-left: 1.25rem;
 }
@@ -1051,7 +1050,7 @@ i {
 
 .trial-container {
   position: absolute;
-  bottom: 2rem;
+  bottom: -4rem;
 }
 
 .trial-header {
@@ -1067,7 +1066,6 @@ i {
   border-radius: 0.25rem;
   font-size: 1.5rem;
   padding: 0.25rem 0.5rem;
-  margin: auto;
   font-family: "Fuzzy Bubbles", sans-serif;
 }
 
@@ -1309,20 +1307,34 @@ i {
   }
 
   .stick-2 {
-    transform: rotateZ(-25deg) translateY(-3rem) translateX(0.25rem);
+    transform:
+      rotateZ(-25deg)
+      translateY(-2rem)
+      translateX(0.25rem);
   }
 
   .stick-3 {
-    transform: rotateZ(20deg) translateY(2rem) translateX(0.5rem);
+    transform:
+      rotateZ(20deg)
+      translateY(2rem)
+      translateX(0.5rem);
   }
 
   .stick-4 {
-    transform: rotateZ(10deg) translateY(0.75rem) translateX(0.25rem);
+    transform:
+      rotateZ(10deg)
+      translateY(0.75rem)
+      translateX(0.25rem);
   }
 
   .trial-container {
     left: 30%;
     right: 30%;
+    bottom: 2rem;
+  }
+
+  .new-card-error {
+    padding-left: 1.5rem;
   }
 }
 
@@ -1505,25 +1517,32 @@ i {
     width: 14%;
   }
 
+  .stick-1,
+  .stick-5 {
+    transform:
+      translateX(1rem)
+      translateY(1rem);
+  }
+
   .stick-2 {
     transform:
       rotateZ(-50deg)
-      translateY(-2.5rem)
-      translateX(1.5rem);
+      translateY(-1.75rem)
+      translateX(1rem);
   }
 
   .stick-3 {
     transform:
       rotateZ(-35deg)
-      translateY(-1.75rem)
+      translateY(-1rem)
       translateX(0.75rem);
   }
 
   .stick-4 {
     transform:
       rotateZ(-25deg)
-      translateY(-1.75rem)
-      translateX(0.5rem);
+      translateY(-0.25rem)
+      translateX(0.75rem);
   }
 
   .tour-folder {
@@ -1550,6 +1569,10 @@ i {
     right: 80%;
     top: 6rem;
     height: 10vh;
+  }
+
+  .new-card-error {
+    padding-left: 2.75rem;
   }
 }
 

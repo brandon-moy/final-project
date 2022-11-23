@@ -6,7 +6,7 @@ export default class NewDeck extends React.Component {
     super(props);
     this.state = ({
       deckName: '',
-      error: false
+      error: null
     });
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,8 +21,10 @@ export default class NewDeck extends React.Component {
     event.preventDefault();
     const { token } = this.context;
     const deckName = this.state.deckName;
-    if (deckName.length > 20) {
-      this.setState({ error: true });
+    if (!deckName.length) {
+      this.setState({ error: 'Deck name is a required field!' });
+    } else if (deckName.length > 20) {
+      this.setState({ error: 'Sorry, that deck name is too long!' });
     } else {
       const req = {
         method: 'POST',
@@ -43,6 +45,7 @@ export default class NewDeck extends React.Component {
 
   render() {
     const errorClass = this.state.error ? 'new-deck-error' : 'hidden';
+    const { error } = this.state;
     return (
       <form className='new-deck-form' onSubmit={this.handleSubmit}>
         <button
@@ -61,7 +64,7 @@ export default class NewDeck extends React.Component {
         type='text'
         placeholder='e.g. HTML, CSS, JavaScript' />
         <p className={errorClass}>
-          Sorry, that deck name is too long!
+          {error}
         </p>
         <button className='sticky-submit'>
           Continue
