@@ -45,6 +45,7 @@ export default class App extends React.Component {
 
   handleSignOut() {
     window.localStorage.removeItem('user-token');
+    window.localStorage.removeItem('newUser');
     this.setState({ user: null });
   }
 
