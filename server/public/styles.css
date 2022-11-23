@@ -188,13 +188,18 @@ i {
   padding-bottom: 1.5rem;
 }
 
-.new-deck-error {
+.new-deck-error,
+.new-card-error {
   color: red;
   font-family:
     Delius,
     sans-serif;
   margin: 0;
   font-size: 0.75rem;
+}
+
+.new-card-error {
+  padding-left: 1rem;
 }
 
 .sticky-input {
@@ -1333,6 +1338,10 @@ i {
     left: 30%;
     right: 30%;
   }
+
+  .new-card-error {
+    padding-left: 1.5rem;
+  }
 }
 
 @media only screen and (min-width: 1280px) {
@@ -1566,6 +1575,10 @@ i {
     right: 80%;
     top: 6rem;
     height: 10vh;
+  }
+
+  .new-card-error {
+    padding-left: 2.75rem;
   }
 }
 

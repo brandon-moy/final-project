@@ -6,7 +6,8 @@ export default class AddCard extends React.Component {
     super(props);
     this.state = ({
       question: '',
-      answer: ''
+      answer: '',
+      error: false
     });
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,31 +24,35 @@ export default class AddCard extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.context.isLoading();
-    const { token } = this.context;
-    const deckId = this.props.deckId;
-    const req = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Access-Token': token
-      },
-      body: JSON.stringify(this.state)
-    };
-    fetch(`/api/add-card/${deckId}`, req)
-      .then(res => {
-        res.json();
-        this.setState({
-          question: '',
-          answer: ''
+    if (this.state.question === '' || this.state.answer === '') {
+      this.setState({ error: true });
+    } else {
+      this.context.isLoading();
+      const { token } = this.context;
+      const deckId = this.props.deckId;
+      const req = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Access-Token': token
+        },
+        body: JSON.stringify(this.state)
+      };
+      fetch(`/api/add-card/${deckId}`, req)
+        .then(res => {
+          res.json();
+          this.setState({
+            question: '',
+            answer: ''
+          });
+          this.context.completeLoading();
+          location.href = `/#view-cards?deckId=${deckId}`;
+        })
+        .catch(err => {
+          console.error(err);
+          this.context.isError();
         });
-        this.context.completeLoading();
-        location.href = `/#view-cards?deckId=${deckId}`;
-      })
-      .catch(err => {
-        console.error(err);
-        this.context.isError();
-      });
+    }
   }
 
   componentDidMount() {
@@ -74,6 +79,7 @@ export default class AddCard extends React.Component {
   }
 
   render() {
+    const error = this.state.error ? 'new-card-error' : 'hidden';
     return (
       <>
         <h1 className='deck-view-name'>
@@ -99,6 +105,7 @@ export default class AddCard extends React.Component {
               onChange={this.handleChange} />
             </div>
           </label>
+          <p className={`${error}`}>Question and answer are required fields!</p>
           <div className='col-100 flex just-f-end'>
             <button className='add-card-button'>
               Save

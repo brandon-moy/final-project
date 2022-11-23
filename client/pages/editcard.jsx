@@ -9,7 +9,8 @@ export default class EditCard extends React.Component {
     this.state = {
       question: '',
       answer: '',
-      show: false
+      show: false,
+      error: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,26 +26,30 @@ export default class EditCard extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.context.isLoading();
-    const { token } = this.context;
-    const cardId = this.props.cardId;
-    const req = {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Access-Token': token
-      },
-      body: JSON.stringify(this.state)
-    };
-    fetch(`/api/card/${cardId}`, req)
-      .then(res => {
-        this.context.completeLoading();
-        location.href = `/#view-cards?deckId=${this.props.deckId}`;
-      })
-      .catch(err => {
-        console.error(err);
-        this.context.isError();
-      });
+    if (this.state.question === '' || this.state.answer === '') {
+      this.setState({ error: true });
+    } else {
+      this.context.isLoading();
+      const { token } = this.context;
+      const cardId = this.props.cardId;
+      const req = {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Access-Token': token
+        },
+        body: JSON.stringify(this.state)
+      };
+      fetch(`/api/card/${cardId}`, req)
+        .then(res => {
+          this.context.completeLoading();
+          location.href = `/#view-cards?deckId=${this.props.deckId}`;
+        })
+        .catch(err => {
+          console.error(err);
+          this.context.isError();
+        });
+    }
   }
 
   showModal(event) {
@@ -85,6 +90,7 @@ export default class EditCard extends React.Component {
   }
 
   render() {
+    const error = this.state.error ? 'new-card-error' : 'hidden';
     return (
       <>
         <div className='flex just-between align-center wrap'>
@@ -118,6 +124,7 @@ export default class EditCard extends React.Component {
               onChange={this.handleChange} />
             </div>
           </label>
+          <p className={`${error}`}>Question and answer are required fields!</p>
           <div className='col-100 flex just-between'>
             <button
             id='deletecard'
