@@ -32,7 +32,7 @@ export default class Tour extends React.Component {
     return (
       <>
         { this.state.page === 1 &&
-        <PageOne startTour={this.startTour} /> }
+          <PageOne startTour={this.startTour} />}
         {this.state.page === 2 &&
           <PageTwo />}
         {this.state.page === 3 &&
@@ -46,7 +46,7 @@ export default class Tour extends React.Component {
   }
 
   render() {
-    const z = this.state.page === 2
+    const displayTitle = this.state.page === 2
       ? 'hidden'
       : '';
     const visible = this.state.page === 1 || this.state.page === 5
@@ -57,7 +57,7 @@ export default class Tour extends React.Component {
       : '';
     return (
       <>
-        <h1 className={`new-deck-back ${z}`} >
+        <h1 className={`new-deck-back ${displayTitle}`} >
           New Folder
         </h1>
         <div className={`tour-background ${cursor}`}>
