@@ -1309,15 +1309,24 @@ i {
   }
 
   .stick-2 {
-    transform: rotateZ(-25deg) translateY(-3rem) translateX(0.25rem);
+    transform:
+      rotateZ(-25deg)
+      translateY(-2rem)
+      translateX(0.25rem);
   }
 
   .stick-3 {
-    transform: rotateZ(20deg) translateY(2rem) translateX(0.5rem);
+    transform:
+      rotateZ(20deg)
+      translateY(2rem)
+      translateX(0.5rem);
   }
 
   .stick-4 {
-    transform: rotateZ(10deg) translateY(0.75rem) translateX(0.25rem);
+    transform:
+      rotateZ(10deg)
+      translateY(0.75rem)
+      translateX(0.25rem);
   }
 
   .trial-container {
@@ -1505,25 +1514,32 @@ i {
     width: 14%;
   }
 
+  .stick-1,
+  .stick-5 {
+    transform:
+      translateX(1rem)
+      translateY(1rem);
+  }
+
   .stick-2 {
     transform:
       rotateZ(-50deg)
-      translateY(-2.5rem)
-      translateX(1.5rem);
+      translateY(-1.75rem)
+      translateX(1rem);
   }
 
   .stick-3 {
     transform:
       rotateZ(-35deg)
-      translateY(-1.75rem)
+      translateY(-1rem)
       translateX(0.75rem);
   }
 
   .stick-4 {
     transform:
       rotateZ(-25deg)
-      translateY(-1.75rem)
-      translateX(0.5rem);
+      translateY(-0.25rem)
+      translateX(0.75rem);
   }
 
   .tour-folder {
