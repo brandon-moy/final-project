@@ -1,7 +1,7 @@
 import React from 'react';
 import AppContext from '../lib/app-context';
 import Modal from '../components/modal';
-import StudyOptions from '../components/studyoptions';
+import StudyOptions from '../components/modal-components/studyoptions';
 
 export default class ViewCards extends React.Component {
   constructor(props) {
@@ -27,6 +27,7 @@ export default class ViewCards extends React.Component {
   }
 
   componentDidMount() {
+    this.context.isLoading();
     const { token } = this.context;
     const req = {
       method: 'GET',
@@ -43,8 +44,12 @@ export default class ViewCards extends React.Component {
           cards: data,
           deckName
         });
+        this.context.completeLoading();
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        this.context.isError();
+      });
   }
 
   renderCards() {

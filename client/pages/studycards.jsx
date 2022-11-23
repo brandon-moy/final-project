@@ -13,6 +13,7 @@ export default class StudyCards extends React.Component {
   }
 
   componentDidMount() {
+    this.context.isLoading();
     const { token } = this.context;
     const req = {
       method: 'GET',
@@ -32,8 +33,12 @@ export default class StudyCards extends React.Component {
           cards: data,
           deckName
         });
+        this.context.completeLoading();
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        this.context.isError();
+      });
   }
 
   renderContent() {

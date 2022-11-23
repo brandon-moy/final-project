@@ -12,6 +12,7 @@ export default class AuthForm extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.demoLogIn = this.demoLogIn.bind(this);
   }
 
   handleChange(event) {
@@ -21,6 +22,7 @@ export default class AuthForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    this.context.isLoading();
     const req = {
       method: 'POST',
       headers: {
@@ -45,8 +47,38 @@ export default class AuthForm extends React.Component {
         } else if (result.user && result.token) {
           this.props.handleSignIn(result);
         }
+        this.context.completeLoading();
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        this.context.isError();
+      });
+  }
+
+  demoLogIn() {
+    const demoUser = {
+      username: 'DemoUser',
+      password: 'imademouser123'
+    };
+    this.context.isLoading();
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(demoUser)
+    };
+    fetch('/api/auth/sign-in', req)
+      .then(res => res.json())
+      .then(result => {
+        this.props.handleDemoSignIn(result);
+        this.context.completeLoading();
+      })
+      .catch(err => {
+        console.error(err);
+        this.context.isError();
+      });
+
   }
 
   render() {
@@ -68,57 +100,63 @@ export default class AuthForm extends React.Component {
       ? 'username-error'
       : 'hidden';
     return (
-      <div className='clipboard'>
-        <div className='clip t-center' />
-        <div className='page t-center'>
-          <form
+      <>
+        <div className='trial-container flex wrap just-center'>
+          <h2 className='trial-header col-100'>Do you want to try before signing up?</h2>
+          <button className='trial-button' onClick={this.demoLogIn}>Try it here!</button>
+        </div>
+        <div className='clipboard'>
+          <div className='clip t-center' />
+          <div className='page t-center'>
+            <form
           className='auth flex-column wrap just-center'
           onSubmit={this.handleSubmit}>
-            <img
+              <img
             className='placeholder-image'
-            src='/greet.png' />
-            <div className='form-section'>
-              <p className={`${error}`}>
-                {this.state.errorMessage}
-              </p>
-              <label>Username
-                <input
+            src='/images/greet.webp' />
+              <div className='form-section'>
+                <p className={`${error}`}>
+                  {this.state.errorMessage}
+                </p>
+                <label>Username
+                  <input
                 type='text'
                 id='username'
                 name='username'
                 className='username'
                 value={this.state.username}
                 onChange={this.handleChange} />
-              </label>
+                </label>
 
-              <label>Password
-                <input
+                <label>Password
+                  <input
                 id='password'
                 name='password'
                 type='password'
                 className='password'
                 value={this.state.password}
                 onChange={this.handleChange} />
-              </label>
-              <section className='flex switch-container'>
-                <div className='col-2'>
-                  <p className='switch-auth'>
-                    {switchAuthMessage}
-                  </p>
-                  <a
+                </label>
+                <section className='flex switch-container'>
+                  <div className='col-2'>
+                    <p className='switch-auth'>
+                      {switchAuthMessage}
+                    </p>
+                    <a
                   className='auth-type'
                   href={switchAuthLocation}>
-                    {switchAuth}
-                  </a>
-                </div>
-                <button className='auth-button col-2'>
-                  {authButton}
-                </button>
-              </section>
-            </div>
-          </form>
+                      {switchAuth}
+                    </a>
+                  </div>
+                  <button className='auth-button col-2'>
+                    {authButton}
+                  </button>
+                </section>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }

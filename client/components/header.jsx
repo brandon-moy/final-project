@@ -9,7 +9,7 @@ export default class Header extends React.Component {
       : 'hidden';
     return (
       <header className='page-header'>
-        <img className={`idle-img ${show}`} src='sit.png' />
+        <img className={`idle-img ${show}`} src='/images/sit.webp' />
         <a href='#' className='page-title'>
           StudyBuddy
         </a>

@@ -68,6 +68,16 @@
   transform: translateX(-50%);
 }
 
+@media only screen and (min-width: 768px) {
+  .col-3 {
+    flex-basis: 50%;
+  }
+
+  .col-45 {
+    flex-basis: 45%;
+  }
+}
+
 @media only screen and (min-width: 1280px) {
   .col-45 {
     flex-basis: 45%;

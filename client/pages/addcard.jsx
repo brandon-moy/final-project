@@ -23,6 +23,7 @@ export default class AddCard extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    this.context.isLoading();
     const { token } = this.context;
     const deckId = this.props.deckId;
     const req = {
@@ -40,12 +41,17 @@ export default class AddCard extends React.Component {
           question: '',
           answer: ''
         });
+        this.context.completeLoading();
         location.href = `/#view-cards?deckId=${deckId}`;
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        this.context.isError();
+      });
   }
 
   componentDidMount() {
+    this.context.isLoading();
     const { token } = this.context;
     const req = {
       method: 'GET',
@@ -59,8 +65,12 @@ export default class AddCard extends React.Component {
       .then(data => {
         const { deckName } = data[0];
         this.setState({ deckName });
+        this.context.completeLoading();
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        this.context.isError();
+      });
   }
 
   render() {

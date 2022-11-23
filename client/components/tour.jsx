@@ -52,17 +52,20 @@ export default class Tour extends React.Component {
     const visible = this.state.page === 1 || this.state.page === 5
       ? 'hidden'
       : '';
+    const cursor = visible === ''
+      ? 'cursor'
+      : '';
     return (
       <>
         <h1 className={`new-deck-back ${z}`} >
           New Folder
         </h1>
-        <div className='tour-background'>
+        <div className={`tour-background ${cursor}`}>
           {this.renderPages()}
           <img
           className={`tour-stick stick-${this.state.page}`}
-          src='/stick.png' />
-          <img className='tour-image' src='/apollo.png' />
+          src='/images/stick.webp' />
+          <img className='tour-image' src='/images/apollo.webp' />
           <p className={`click-instruction ${visible}`}>
             *Click anywhere to continue
           </p>
