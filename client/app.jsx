@@ -24,11 +24,20 @@ export default class App extends React.Component {
     this.isLoading = this.isLoading.bind(this);
     this.isError = this.isError.bind(this);
     this.completeLoading = this.completeLoading.bind(this);
+    this.handleDemoSignIn = this.handleDemoSignIn.bind(this);
   }
 
   handleSignIn(result) {
     const { user, token } = result;
     const { newUser } = jwtDecode(token);
+    window.localStorage.setItem('user-token', token);
+    window.localStorage.setItem('newUser', newUser);
+    this.setState({ user, token, newUser });
+  }
+
+  handleDemoSignIn(result) {
+    const { user, token } = result;
+    const newUser = true;
     window.localStorage.setItem('user-token', token);
     window.localStorage.setItem('newUser', newUser);
     this.setState({ user, token, newUser });
@@ -84,7 +93,7 @@ export default class App extends React.Component {
     if (pages.includes(path)) {
       return <Home path={path} route={this.state.route} />;
     } else if (path === 'sign-in' || path === 'sign-up') {
-      return <AuthForm action={path} handleSignIn={this.handleSignIn} />;
+      return <AuthForm action={path} handleSignIn={this.handleSignIn} handleDemoSignIn={this.handleDemoSignIn} />;
     } else {
       return <NotFound />;
     }

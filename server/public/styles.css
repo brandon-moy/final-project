@@ -1049,6 +1049,28 @@ i {
   font-family: "Gloria Hallelujah", sans-serif;
 }
 
+.trial-container {
+  position: absolute;
+  bottom: 2rem;
+}
+
+.trial-header {
+  font-family: "Gloria Hallelujah", sans-serif;
+  color: white;
+  text-align: center;
+}
+
+.trial-button {
+  background-color: #2a0800;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1.5rem;
+  padding: 0.25rem 0.5rem;
+  margin: auto;
+  font-family: "Fuzzy Bubbles", sans-serif;
+}
+
 .lds-ripple {
   position: absolute;
   right: 0.5rem;
@@ -1297,6 +1319,11 @@ i {
   .stick-4 {
     transform: rotateZ(10deg) translateY(0.75rem) translateX(0.25rem);
   }
+
+  .trial-container {
+    left: 30%;
+    right: 30%;
+  }
 }
 
 @media only screen and (min-width: 1280px) {
@@ -1516,6 +1543,13 @@ i {
     width: 5%;
     max-width: 78px;
     margin-left: 2rem;
+  }
+
+  .trial-container {
+    left: 0;
+    right: 80%;
+    top: 6rem;
+    height: 10vh;
   }
 }
 
