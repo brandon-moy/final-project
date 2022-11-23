@@ -1,6 +1,5 @@
 body {
   height: 100vh;
-  width: 100%;
   background:
     linear-gradient(
       217deg,
@@ -226,7 +225,6 @@ i {
   height: 10rem;
   padding: 2rem 0;
   margin-bottom: 2rem;
-  width: 100%;
   max-width: 375px;
 }
 
@@ -312,7 +310,6 @@ i {
 }
 
 .deck-title {
-  width: 80%;
   text-align: center;
   padding-top: 0.75rem;
   font-size: 1.5rem;
@@ -896,7 +893,7 @@ i {
   font-family: "Gloria Hallelujah", sans-serif;
   color: white;
   position: absolute;
-  bottom: 1rem;
+  bottom: 0;
   left: 0.5rem;
 }
 
@@ -981,7 +978,6 @@ i {
 .main-box-text,
 .main-box-text-4,
 .main-box-text-5 {
-  width: 100%;
   font-size: 1.25rem;
   padding-left: 1.25rem;
 }
@@ -1056,7 +1052,7 @@ i {
 
 .trial-container {
   position: absolute;
-  bottom: 2rem;
+  bottom: -4rem;
 }
 
 .trial-header {
@@ -1072,7 +1068,6 @@ i {
   border-radius: 0.25rem;
   font-size: 1.5rem;
   padding: 0.25rem 0.5rem;
-  margin: auto;
   font-family: "Fuzzy Bubbles", sans-serif;
 }
 
@@ -1337,6 +1332,7 @@ i {
   .trial-container {
     left: 30%;
     right: 30%;
+    bottom: 2rem;
   }
 
   .new-card-error {
