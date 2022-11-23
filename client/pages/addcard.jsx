@@ -24,7 +24,7 @@ export default class AddCard extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    if (this.state.question === '' || this.state.answer === '') {
+    if (!this.state.question.length || !this.state.answer.length) {
       this.setState({ error: true });
     } else {
       this.context.isLoading();
