@@ -7,8 +7,8 @@ A full-stack web application for students to create and study flashcards.
 While attending LearningFuze's Accelerated Full Immersion Web Development Bootcamp I found myself using
 apps like Brainscapes and Quizlet to study the information I was learning. I wanted to create a flash card
 app for myself and future students to use and study with. I also wanted to create something that felt more
-immersive with a classroom/supplies theme and CSS animations. The buddy and instructor cats in the app if based on my
-two cat, Bacchus and Apollo!
+immersive with a classroom/supplies theme and CSS animations. The buddy and instructor cats in the app are based on my
+two cats, Bacchus and Apollo!
 
 ### 🔗 Live Demo
 
