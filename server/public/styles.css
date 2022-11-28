@@ -33,6 +33,8 @@ i {
   display: none !important;
 }
 
+/* Header */
+
 .page-header {
   background-color: #2a0800;
   padding: 1rem 0;
@@ -53,14 +55,27 @@ i {
   margin-top: 1rem;
 }
 
-.new-deck {
+/* Not Found Page */
+
+.not-found-text {
   color: white;
   font-family: "Gloria Hallelujah", sans-serif;
   font-size: 2rem;
+  text-align: center;
   padding-left: 1rem;
-  border: none;
-  background: transparent;
+  padding-right: 1rem;
+  margin: 1.75rem 0 0;
 }
+
+.return-home {
+  color: white;
+  font-family: "Gloria Hallelujah", sans-serif;
+  margin: auto;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+/* Backgrounds */
 
 .modal-background {
   position: fixed;
@@ -80,6 +95,8 @@ i {
   bottom: 0;
   background-color: rgba(0 0 0 / 50%);
 }
+
+/* Sticky Modal */
 
 .sticky-container {
   width: 300px;
@@ -186,18 +203,15 @@ i {
   padding-bottom: 1.5rem;
 }
 
-.new-deck-error,
-.new-card-error {
-  color: red;
-  font-family:
-    Delius,
-    sans-serif;
-  margin: 0;
-  font-size: 0.75rem;
-}
+/* Modal Form / Messages */
 
-.new-card-error {
-  padding-left: 1.5rem;
+.new-deck {
+  color: white;
+  font-family: "Gloria Hallelujah", sans-serif;
+  font-size: 2rem;
+  padding-left: 1rem;
+  border: none;
+  background: transparent;
 }
 
 .sticky-input {
@@ -218,6 +232,126 @@ i {
   font-size: 1.25rem;
   color: black;
 }
+
+.new-deck-error,
+.new-card-error {
+  color: red;
+  font-family:
+    Delius,
+    sans-serif;
+  margin: 0;
+  font-size: 0.75rem;
+}
+
+.new-card-error {
+  padding-left: 1.5rem;
+}
+
+.delete-show-modal {
+  background: transparent;
+  border: none;
+  color: #ff9292;
+  font-family: "Gloria Hallelujah", sans-serif;
+  font-size: 1.5rem;
+  padding-left: 2rem;
+}
+
+.delete-confirm,
+.reset-confirm,
+.view-card-question {
+  font-family: "Fuzzy Bubbles", sans-serif;
+}
+
+.delete-card-message {
+  text-align: center;
+  width: 90%;
+  padding-left: 1.5rem;
+  font-size: 1.25rem;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+.cancel-delete,
+.confirm-delete,
+.cancel-reset,
+.confirm-reset {
+  font-size: 1.25rem;
+  color: black;
+  background: transparent;
+  border: none;
+  font-family: "Fuzzy Bubbles", sans-serif;
+}
+
+.cancel-delete,
+.cancel-reset {
+  padding-left: 1.5rem;
+}
+
+.confirm-delete,
+.confirm-reset {
+  padding-right: 1.5rem;
+}
+
+.delete-deck-message,
+.reset-knowledge-message {
+  text-align: center;
+}
+
+.delete-deck-name,
+.reset-deck-name {
+  text-align: center;
+  font-size: 1.75rem;
+}
+
+.delete-warning,
+.reset-warning {
+  color: red;
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding-left: 1.25rem;
+  padding-bottom: 1rem;
+}
+
+.delete-deck-button,
+.reset-knowledge-button,
+.study-button {
+  font-family: "Fuzzy Bubbles", sans-serif;
+  font-size: 1rem;
+  padding-right: 0;
+  color: black;
+  background: transparent;
+  border: none;
+}
+
+.study-title {
+  text-align: center;
+  width: 90%;
+}
+
+.study-link-container {
+  padding-left: 1.5rem;
+}
+
+.study-option {
+  text-decoration: none;
+  color: black;
+  font-family: Delius, sans-serif;
+  padding-bottom: 1rem;
+}
+
+.study-option > i {
+  padding-left: 0.25rem;
+}
+
+.close-study {
+  padding-right: 1.25rem;
+  padding-top: 1rem;
+  background: transparent;
+  border: none;
+  color: black;
+}
+
+/* Folders */
 
 .scene {
   position: relative;
@@ -325,6 +459,14 @@ i {
   animation-fill-mode: forwards;
 }
 
+.confidence-meter {
+  margin-top: 0.75rem;
+  width: 70%;
+  height: 2.5vh;
+}
+
+/* Cards */
+
 .card-front {
   position: relative;
   background-color: #fffcde;
@@ -401,23 +543,7 @@ i {
   padding-right: 2rem;
 }
 
-.not-found-text {
-  color: white;
-  font-family: "Gloria Hallelujah", sans-serif;
-  font-size: 2rem;
-  text-align: center;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  margin: 1.75rem 0 0;
-}
-
-.return-home {
-  color: white;
-  font-family: "Gloria Hallelujah", sans-serif;
-  margin: auto;
-  font-size: 1.5rem;
-  text-align: center;
-}
+/* View Cards Page */
 
 .view-card-question,
 .view-card-answer {
@@ -456,6 +582,8 @@ i {
   font-size: 1.25rem;
 }
 
+/* Edit Card Page */
+
 .new-card-deck {
   padding-bottom: 1rem;
 }
@@ -470,86 +598,12 @@ i {
   padding-bottom: 2rem;
 }
 
-.delete-show-modal {
-  background: transparent;
-  border: none;
-  color: #ff9292;
-  font-family: "Gloria Hallelujah", sans-serif;
-  font-size: 1.5rem;
-  padding-left: 2rem;
-}
-
-.delete-confirm,
-.reset-confirm,
-.view-card-question {
-  font-family: "Fuzzy Bubbles", sans-serif;
-}
-
 .view-card-answer,
 .card-answer {
   font-family: Delius, sans-serif;
 }
 
-.delete-card-message {
-  text-align: center;
-  width: 90%;
-  padding-left: 1.5rem;
-  font-size: 1.25rem;
-  padding-top: 2rem;
-  padding-bottom: 4rem;
-}
-
-.cancel-delete,
-.confirm-delete,
-.cancel-reset,
-.confirm-reset {
-  font-size: 1.25rem;
-  color: black;
-  background: transparent;
-  border: none;
-  font-family: "Fuzzy Bubbles", sans-serif;
-}
-
-.cancel-delete,
-.cancel-reset {
-  padding-left: 1.5rem;
-}
-
-.confirm-delete,
-.confirm-reset {
-  padding-right: 1.5rem;
-}
-
-.delete-deck-message,
-.reset-knowledge-message {
-  text-align: center;
-}
-
-.delete-deck-name,
-.reset-deck-name {
-  text-align: center;
-  font-size: 1.75rem;
-}
-
-.delete-warning,
-.reset-warning {
-  color: red;
-  font-weight: 800;
-  font-size: 0.75rem;
-  padding-left: 1.25rem;
-  padding-bottom: 1rem;
-}
-
-.delete-deck-button,
-.reset-knowledge-button,
-.study-button {
-  font-family: "Fuzzy Bubbles", sans-serif;
-  font-size: 1rem;
-  padding-right: 0;
-  color: black;
-  background: transparent;
-  border: none;
-}
+/* Study Cards */
 
 .study-scene {
   transform: perspective(600px);
@@ -608,33 +662,6 @@ i {
   color: white;
   font-family: "Fuzzy Bubbles", sans-serif;
   padding-left: 1rem;
-}
-
-.no-cards-head {
-  padding-left: 1rem;
-  font-size: 2rem;
-  font-family: "Gloria Hallelujah", sans-serif;
-  color: white;
-}
-
-.no-cards-message {
-  font-family: "Fuzzy Bubbles", sans-serif;
-  color: white;
-  text-align: center;
-}
-
-.no-card-add {
-  font-family: "Gloria Hallelujah", sans-serif;
-  padding: 0.5rem 1rem;
-  text-align: center;
-  border: 1px yellow solid;
-  border-radius: 0.25rem;
-  background-color: #fffcde;
-  text-decoration: none;
-}
-
-.button-container {
-  padding-top: 4rem;
 }
 
 .confidence {
@@ -734,11 +761,36 @@ i {
     );
 }
 
-.confidence-meter {
-  margin-top: 0.75rem;
-  width: 70%;
-  height: 2.5vh;
+/* No cards to study redirect */
+
+.no-cards-head {
+  padding-left: 1rem;
+  font-size: 2rem;
+  font-family: "Gloria Hallelujah", sans-serif;
+  color: white;
 }
+
+.no-cards-message {
+  font-family: "Fuzzy Bubbles", sans-serif;
+  color: white;
+  text-align: center;
+}
+
+.no-card-add {
+  font-family: "Gloria Hallelujah", sans-serif;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  border: 1px yellow solid;
+  border-radius: 0.25rem;
+  background-color: #fffcde;
+  text-decoration: none;
+}
+
+.button-container {
+  padding-top: 4rem;
+}
+
+/* Authentication Page */
 
 .clipboard {
   position: relative;
@@ -839,34 +891,6 @@ i {
   font-family: "Fuzzy Bubbles", sans-serif;
 }
 
-.study-title {
-  text-align: center;
-  width: 90%;
-}
-
-.study-link-container {
-  padding-left: 1.5rem;
-}
-
-.study-option {
-  text-decoration: none;
-  color: black;
-  font-family: Delius, sans-serif;
-  padding-bottom: 1rem;
-}
-
-.study-option > i {
-  padding-left: 0.25rem;
-}
-
-.close-study {
-  padding-right: 1.25rem;
-  padding-top: 1rem;
-  background: transparent;
-  border: none;
-  color: black;
-}
-
 .not-found-img {
   width: 50%;
 }
@@ -877,6 +901,29 @@ i {
   left: 0;
   top: 0.75rem;
 }
+
+.trial-container {
+  position: absolute;
+  bottom: -4rem;
+}
+
+.trial-header {
+  font-family: "Gloria Hallelujah", sans-serif;
+  color: white;
+  text-align: center;
+}
+
+.trial-button {
+  background-color: #2a0800;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1.5rem;
+  padding: 0.25rem 0.5rem;
+  font-family: "Fuzzy Bubbles", sans-serif;
+}
+
+/* Tour Pages */
 
 .new-deck-back,
 .new-deck-back-2 {
@@ -1048,27 +1095,6 @@ i {
   font-family: "Gloria Hallelujah", sans-serif;
 }
 
-.trial-container {
-  position: absolute;
-  bottom: -4rem;
-}
-
-.trial-header {
-  font-family: "Gloria Hallelujah", sans-serif;
-  color: white;
-  text-align: center;
-}
-
-.trial-button {
-  background-color: #2a0800;
-  color: white;
-  border: none;
-  border-radius: 0.25rem;
-  font-size: 1.5rem;
-  padding: 0.25rem 0.5rem;
-  font-family: "Fuzzy Bubbles", sans-serif;
-}
-
 .lds-ripple {
   position: absolute;
   right: 0.5rem;
@@ -1119,6 +1145,8 @@ i {
   left: 56px;
   animation-delay: 0;
 }
+
+/* Animations */
 
 @keyframes show-paper {
   0% {
@@ -1256,8 +1284,15 @@ i {
 }
 
 @media only screen and (min-width: 768px) {
+  /* Auth Page */
   .clipboard {
     width: 40%;
+  }
+
+  .trial-container {
+    left: 30%;
+    right: 30%;
+    bottom: 2rem;
   }
 
   .idle-img {
@@ -1265,6 +1300,7 @@ i {
     max-width: 78px;
   }
 
+  /* Study Page */
   .study-card-set {
     height: 26vh;
   }
@@ -1275,6 +1311,7 @@ i {
     max-width: 507px;
   }
 
+  /* Tour Pages */
   .tour-image {
     max-width: 308px;
   }
@@ -1327,18 +1364,14 @@ i {
       translateX(0.25rem);
   }
 
-  .trial-container {
-    left: 30%;
-    right: 30%;
-    bottom: 2rem;
-  }
-
+  /* Error Message Placement */
   .new-card-error {
     padding-left: 1.5rem;
   }
 }
 
 @media only screen and (min-width: 1280px) {
+  /* Folders */
   .scene {
     max-width: 676px;
   }
@@ -1369,6 +1402,13 @@ i {
     transform: translateX(3.25rem) translateY(1.5rem);
   }
 
+  .confidence-meter {
+    margin-top: 0.5rem;
+    width: 75%;
+    height: 5vh;
+  }
+
+  /* Cards */
   .card-front,
   .card-back,
   .edit-card-front {
@@ -1421,6 +1461,7 @@ i {
       );
   }
 
+  /* View Card Page */
   .new-card-deck,
   .edit-new-card-deck,
   .view-study-button {
@@ -1467,12 +1508,7 @@ i {
     text-align: center;
   }
 
-  .confidence-meter {
-    margin-top: 0.5rem;
-    width: 75%;
-    height: 5vh;
-  }
-
+  /* Auth Page */
   .clipboard {
     margin-top: 2.5rem;
     width: 25%;
@@ -1483,6 +1519,7 @@ i {
     height: 30vh;
   }
 
+  /* Tour Pages */
   .main-box-text {
     width: 100%;
   }
@@ -1594,6 +1631,7 @@ i {
 }
 
 @media (prefers-reduced-motion) {
+  /* Simple flip in place animation if reduced motion setting is active */
   .study-card-set {
     transform-origin: center;
   }
