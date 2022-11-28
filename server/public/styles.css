@@ -1030,6 +1030,7 @@ i {
 .tour-folder {
   position: absolute;
   margin: 10rem auto 0;
+  width: 100%;
 }
 
 .get-started-button {
