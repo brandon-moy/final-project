@@ -34,7 +34,7 @@ Try the application live here: https://study-buddy.brandonmoy.com/
 - Dotenv
 
 ## :open_book: Features
-- Users can create a folder for flashcards b;/....................................................................................
+- Users can create a folder for flashcards
 - Users can add flashcards to the folder
 - Users can view flashcards in a folder
 - Users can edit a flashcard
