@@ -552,6 +552,7 @@ i {
   inline-size: 20rem;
   overflow: scroll;
   overflow-wrap: break-word;
+  margin: 0 auto;
 }
 
 .deck-view-name {
@@ -780,7 +781,8 @@ i {
   font-family: "Gloria Hallelujah", sans-serif;
   padding: 0.5rem 1rem;
   text-align: center;
-  border: 1px yellow solid;
+  border: 2px solid #ffde7038;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.39);
   border-radius: 0.25rem;
   background-color: #fffcde;
   text-decoration: none;
@@ -1417,24 +1419,18 @@ i {
     max-width: 676px;
   }
 
-  .study-scene {
-    width: 50%;
-  }
-
   .study-card-set {
     height: 15rem;
   }
 
   .button-container {
-    flex-basis: 60%;
-    margin: auto;
+    padding-top: 10vh;
   }
 
   .study-card-front,
   .study-card-back {
     height: 18rem;
-    width: 75%;
-    max-width: 676px;
+    max-width: 600px;
   }
 
   .half-a {
@@ -1611,6 +1607,125 @@ i {
 
   .new-card-error {
     padding-left: 2.75rem;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  /* Folders */
+  .scene {
+    max-width: 500px;
+  }
+
+  .folder-front,
+  .folder-back,
+  .option-paper {
+    width: 80%;
+  }
+
+  .option-paper {
+    background:
+      repeating-linear-gradient(
+        #fff,
+        #fff 12%,
+        #9198e5 12%,
+        #9198e5 12.5%
+      );
+  }
+
+  .confidence-meter {
+    margin-top: 0.5rem;
+    width: 75%;
+    height: 3.5vh;
+  }
+
+  /* Cards */
+  .button-container {
+    padding-top: 8.5vh;
+  }
+
+  .study-card-front,
+  .study-card-back {
+    height: 20rem;
+    max-width: 676px;
+  }
+
+  /* View Card Page */
+  .new-card-deck,
+  .deck-edit-card {
+    padding-right: 5rem;
+  }
+
+  .card-front,
+  .edit-card-front,
+  .card-back {
+    max-width: 800px;
+    height: 40vh;
+  }
+
+  .card-question,
+  .card-answer,
+  .view-card-question,
+  .view-card-answer {
+    font-size: 2.25rem;
+    inline-size: 35rem;
+    overflow: auto;
+  }
+
+  .card-answer {
+    height: 15rem;
+  }
+
+  .question-number {
+    padding-left: 3rem;
+  }
+
+  .delete-show-modal {
+    padding-left: 5rem;
+  }
+
+  .add-card-button,
+  .edit-new-card-deck {
+    padding-right: 5rem;
+  }
+
+  /* Auth Page */
+  .clipboard {
+    margin-top: 2.5rem;
+    width: 25%;
+    height: 70vh;
+  }
+
+  .placeholder-image {
+    height: 30vh;
+  }
+
+  /* Tour Pages */
+  .main-box-text {
+    width: 100%;
+  }
+
+  .text-box,
+  .text-box-2,
+  .text-box-3,
+  .text-box-4 {
+    height: 20vh;
+  }
+
+  .stick-2 {
+    transform: rotateZ(-50deg) translateY(-3rem) translateX(1.5rem);
+  }
+
+  .stick-3 {
+    transform: rotateZ(-35deg) translateY(-2em) translateX(0.75rem);
+  }
+
+  .stick-4 {
+    transform: rotateZ(-25deg) translateY(-1rem) translateX(0.75rem);
+  }
+
+  .new-card-error {
+    width: 100%;
+    padding-left: 5rem;
   }
 }
 
