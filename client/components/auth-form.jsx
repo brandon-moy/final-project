@@ -32,13 +32,19 @@ export default class AuthForm extends React.Component {
         body: JSON.stringify(this.state)
       };
       const response = await fetch(`/api/auth/${this.props.action}`, req);
-      if (response.ok) {
+      if (response.status === 401) {
+        this.context.completeLoading();
+        this.setState({
+          errorMessage: 'Invalid Login'
+        });
+      } else if (response.status === 409) {
+        this.context.completeLoading();
+        this.setState({
+          errorMessage: 'Username is already taken'
+        });
+      } else if (response.ok) {
         const result = await response.json();
-        if (result.error) {
-          this.setState({
-            errorMessage: result.error
-          });
-        } else if (this.props.action === 'sign-up') {
+        if (this.props.action === 'sign-up') {
           this.setState({
             username: '',
             password: '',
