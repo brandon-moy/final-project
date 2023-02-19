@@ -7,20 +7,23 @@ export default class DeleteDeck extends React.Component {
     this.deleteDeck = this.deleteDeck.bind(this);
   }
 
-  deleteDeck(event) {
-    const { token } = this.context;
-    const deckId = this.props.deck.deckId;
-    const req = {
-      method: 'DELETE',
-      headers: {
-        'X-Access-Token': token
-      }
-    };
-    fetch(`/api/deletedeck/${deckId}`, req)
-      .then(res => {
+  async deleteDeck(event) {
+    try {
+      const { token } = this.context;
+      const deckId = this.props.deck.deckId;
+      const req = {
+        method: 'DELETE',
+        headers: {
+          'X-Access-Token': token
+        }
+      };
+      const response = await fetch(`/api/deletedeck/${deckId}`, req);
+      if (response.ok) {
         this.props.confirmDelete();
-      })
-      .catch(err => console.error(err));
+      }
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   render() {
