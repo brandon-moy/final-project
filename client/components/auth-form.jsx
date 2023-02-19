@@ -20,19 +20,20 @@ export default class AuthForm extends React.Component {
     this.setState({ [name]: value });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
     this.context.isLoading();
-    const req = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(this.state)
-    };
-    fetch(`/api/auth/${this.props.action}`, req)
-      .then(res => res.json())
-      .then(result => {
+    try {
+      const req = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(this.state)
+      };
+      const response = await fetch(`/api/auth/${this.props.action}`, req);
+      if (response.ok) {
+        const result = await response.json();
         if (result.error) {
           this.setState({
             errorMessage: result.error
@@ -48,37 +49,37 @@ export default class AuthForm extends React.Component {
           this.props.handleSignIn(result);
         }
         this.context.completeLoading();
-      })
-      .catch(err => {
-        console.error(err);
-        this.context.isError();
-      });
+      }
+    } catch (err) {
+      console.error(err);
+      this.context.isError();
+    }
   }
 
-  demoLogIn() {
-    const demoUser = {
-      username: 'DemoUser',
-      password: 'imademouser123'
-    };
+  async demoLogIn() {
     this.context.isLoading();
-    const req = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(demoUser)
-    };
-    fetch('/api/auth/sign-in', req)
-      .then(res => res.json())
-      .then(result => {
+    try {
+      const demoUser = {
+        username: 'DemoUser',
+        password: 'imademouser123'
+      };
+      const req = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(demoUser)
+      };
+      const response = await fetch('/api/auth/sign-in', req);
+      if (response.ok) {
+        const result = await response.json();
         this.props.handleDemoSignIn(result);
         this.context.completeLoading();
-      })
-      .catch(err => {
-        console.error(err);
-        this.context.isError();
-      });
-
+      }
+    } catch (err) {
+      console.error(err);
+      this.contest.isError();
+    }
   }
 
   render() {
