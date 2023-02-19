@@ -26,30 +26,35 @@ export default class ViewCards extends React.Component {
     });
   }
 
-  componentDidMount() {
-    this.context.isLoading();
-    const { token } = this.context;
-    const req = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Access-Token': token
-      }
-    };
-    fetch(`/api/cards/${this.props.deckId}`, req)
-      .then(res => res.json())
-      .then(data => {
+  async loadDeckInfo() {
+    try {
+      this.context.isLoading();
+      const { token } = this.context;
+      const req = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Access-Token': token
+        }
+      };
+      const response = await fetch(`/api/cards/${this.props.deckId}`, req);
+      if (response.ok) {
+        const data = await response.json();
         const { deckName } = data[0];
         this.setState({
           cards: data,
           deckName
         });
         this.context.completeLoading();
-      })
-      .catch(err => {
-        console.error(err);
-        this.context.isError();
-      });
+      }
+    } catch (err) {
+      console.error(err);
+      this.context.isError();
+    }
+  }
+
+  componentDidMount() {
+    this.loadDeckInfo();
   }
 
   renderCards() {

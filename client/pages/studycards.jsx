@@ -66,7 +66,9 @@ export default class StudyCards extends React.Component {
         <h1 className='deck-view-name col-2'>
           {this.state.deckName}
         </h1>
-        { this.renderContent() };
+        <div className='study-container'>
+          { this.renderContent() };
+        </div>
       </>
     );
   }
