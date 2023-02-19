@@ -60,30 +60,31 @@ export default class Decks extends React.Component {
     });
   }
 
-  submitDeck() {
+  async submitDeck() {
     this.context.isLoading();
-    const { token } = this.context;
-    const req = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Access-Token': token
-      }
-    };
-    fetch('/api/decks', req)
-      .then(res => res.json())
-      .then(data => {
+    try {
+      const { token } = this.context;
+      const req = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Access-Token': token
+        }
+      };
+      const response = await fetch('/api/decks', req);
+      if (response.ok) {
+        const data = await response.json();
         this.setState({
           show: false,
           creatingDeck: false,
           decks: data
         });
         this.context.completeLoading();
-      })
-      .catch(err => {
-        console.error(err);
-        this.context.isError();
-      });
+      }
+    } catch (err) {
+      console.error(err);
+      this.context.isError();
+    }
   }
 
   deleteDeck(event) {
@@ -144,26 +145,31 @@ export default class Decks extends React.Component {
     });
   }
 
-  componentDidMount() {
+  async loadDecks() {
     this.context.isLoading();
-    const { token } = this.context;
-    const req = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Access-Token': token
-      }
-    };
-    fetch('/api/decks', req)
-      .then(res => res.json())
-      .then(data => {
+    try {
+      const { token } = this.context;
+      const req = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Access-Token': token
+        }
+      };
+      const response = await fetch('/api/decks', req);
+      if (response.ok) {
+        const data = await response.json();
         this.setState({ decks: data });
         this.context.completeLoading();
-      })
-      .catch(err => {
-        console.error(err);
-        this.context.isError();
-      });
+      }
+    } catch (err) {
+      console.error(err);
+      this.context.isError();
+    }
+  }
+
+  componentDidMount() {
+    this.loadDecks();
   }
 
   renderModalForm() {
