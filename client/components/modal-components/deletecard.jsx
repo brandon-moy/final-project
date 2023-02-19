@@ -7,21 +7,24 @@ export default class DeleteForm extends React.Component {
     this.confirmDelete = this.confirmDelete.bind(this);
   }
 
-  confirmDelete(event) {
-    const cardId = this.props.cardId;
-    const { token } = this.context;
-    const req = {
-      method: 'DELETE',
-      headers: {
-        'X-Access-Token': token
-      }
-    };
-    fetch(`/api/deletecard/${cardId}`, req)
-      .then(res => {
+  async confirmDelete(event) {
+    try {
+      const cardId = this.props.cardId;
+      const { token } = this.context;
+      const req = {
+        method: 'DELETE',
+        headers: {
+          'X-Access-Token': token
+        }
+      };
+      const response = await fetch(`/api/deletecard/${cardId}`, req);
+      if (response.ok) {
         this.props.closeModal();
         location.href = `/#view-cards?deckId=${this.props.deckId}`;
-      })
-      .catch(err => console.error(err));
+      }
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   render() {
