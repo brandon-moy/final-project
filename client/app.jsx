@@ -49,21 +49,24 @@ export default class App extends React.Component {
     this.setState({ user: null });
   }
 
-  endTour() {
-    this.isLoading();
-    const { token } = this.state;
-    const req = {
-      method: 'PATCH',
-      headers: {
-        'X-Access-Token': token
-      }
-    };
-    fetch('/update/newuser', req)
-      .then(res => {
+  async endTour() {
+    try {
+      this.isLoading();
+      const { token } = this.state;
+      const req = {
+        method: 'PATCH',
+        headers: {
+          'X-Access-Token': token
+        }
+      };
+      const response = await fetch('/update/newuser', req);
+      if (response.ok) {
         window.localStorage.setItem('newUser', false);
         this.setState({ newUser: false, loading: false });
-      })
-      .catch(err => console.error(err));
+      }
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   isLoading() {
