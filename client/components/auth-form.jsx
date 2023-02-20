@@ -28,44 +28,44 @@ export default class AuthForm extends React.Component {
       this.setState({
         errorMessage: 'Invalid Login'
       });
-      return;
-    }
-    try {
-      const req = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(this.state)
-      };
-      const response = await fetch(`/api/auth/${this.props.action}`, req);
-      if (response.status === 401) {
-        this.context.completeLoading();
-        this.setState({
-          errorMessage: 'Invalid Login'
-        });
-      } else if (response.status === 409) {
-        this.context.completeLoading();
-        this.setState({
-          errorMessage: 'Username is already taken'
-        });
-      } else if (response.ok) {
-        const result = await response.json();
-        if (this.props.action === 'sign-up') {
+    } else {
+      try {
+        const req = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(this.state)
+        };
+        const response = await fetch(`/api/auth/${this.props.action}`, req);
+        if (response.status === 401) {
+          this.context.completeLoading();
           this.setState({
-            username: '',
-            password: '',
-            errorMessage: ''
+            errorMessage: 'Invalid Login'
           });
-          window.location.hash = 'sign-in';
-        } else if (result.user && result.token) {
-          this.props.handleSignIn(result);
+        } else if (response.status === 409) {
+          this.context.completeLoading();
+          this.setState({
+            errorMessage: 'Username is already taken'
+          });
+        } else if (response.ok) {
+          const result = await response.json();
+          if (this.props.action === 'sign-up') {
+            this.setState({
+              username: '',
+              password: '',
+              errorMessage: ''
+            });
+            window.location.hash = 'sign-in';
+          } else if (result.user && result.token) {
+            this.props.handleSignIn(result);
+          }
+          this.context.completeLoading();
         }
-        this.context.completeLoading();
+      } catch (err) {
+        console.error(err);
+        this.context.isError();
       }
-    } catch (err) {
-      console.error(err);
-      this.context.isError();
     }
   }
 
