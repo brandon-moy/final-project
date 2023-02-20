@@ -23,6 +23,13 @@ export default class AuthForm extends React.Component {
   async handleSubmit(event) {
     event.preventDefault();
     this.context.isLoading();
+    if (this.state.username === '' || this.state.password === '') {
+      this.context.completeLoading();
+      this.setState({
+        errorMessage: 'Invalid Login'
+      });
+      return;
+    }
     try {
       const req = {
         method: 'POST',
