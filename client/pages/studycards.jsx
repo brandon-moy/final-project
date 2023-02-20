@@ -12,19 +12,19 @@ export default class StudyCards extends React.Component {
     });
   }
 
-  componentDidMount() {
-    this.context.isLoading();
-    const { token } = this.context;
-    const req = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Access-Token': token
-      }
-    };
-    fetch(`/api/cards/${this.props.deckId}?order=${this.props.order}`, req)
-      .then(res => res.json())
-      .then(data => {
+  async loadDeckInfo() {
+    try {
+      const { token } = this.context;
+      const req = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Access-Token': token
+        }
+      };
+      const response = await fetch(`/api/cards/${this.props.deckId}?order=${this.props.order}`, req);
+      if (response.ok) {
+        const data = await response.json();
         let deckName = '';
         if (data.length) {
           deckName = data[0].deckName;
@@ -34,11 +34,15 @@ export default class StudyCards extends React.Component {
           deckName
         });
         this.context.completeLoading();
-      })
-      .catch(err => {
-        console.error(err);
-        this.context.isError();
-      });
+      }
+    } catch (err) {
+      console.error(err);
+      this.context.isError();
+    }
+  }
+
+  componentDidMount() {
+    this.loadDeckInfo();
   }
 
   renderContent() {
@@ -62,7 +66,9 @@ export default class StudyCards extends React.Component {
         <h1 className='deck-view-name col-2'>
           {this.state.deckName}
         </h1>
-        { this.renderContent() };
+        <div className='study-container'>
+          { this.renderContent() };
+        </div>
       </>
     );
   }

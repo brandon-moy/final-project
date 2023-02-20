@@ -24,31 +24,32 @@ export default class EditCard extends React.Component {
     this.setState({ [name]: value });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
     if (!this.state.question.length || !this.state.answer.length) {
       this.setState({ error: true });
     } else {
-      this.context.isLoading();
-      const { token } = this.context;
-      const cardId = this.props.cardId;
-      const req = {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Access-Token': token
-        },
-        body: JSON.stringify(this.state)
-      };
-      fetch(`/api/card/${cardId}`, req)
-        .then(res => {
+      try {
+        this.context.isLoading();
+        const { token } = this.context;
+        const cardId = this.props.cardId;
+        const req = {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Access-Token': token
+          },
+          body: JSON.stringify(this.state)
+        };
+        const response = await fetch(`/api/card/${cardId}`, req);
+        if (response.ok) {
           this.context.completeLoading();
           location.href = `/#view-cards?deckId=${this.props.deckId}`;
-        })
-        .catch(err => {
-          console.error(err);
-          this.context.isError();
-        });
+        }
+      } catch (err) {
+        console.error(err);
+        this.context.isError();
+      }
     }
   }
 
@@ -61,19 +62,20 @@ export default class EditCard extends React.Component {
 
   }
 
-  componentDidMount() {
-    this.context.isLoading();
-    const { token } = this.context;
-    const req = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Access-Token': token
-      }
-    };
-    fetch(`/api/card/${this.props.cardId}`, req)
-      .then(res => res.json())
-      .then(data => {
+  async loadDeckInfo() {
+    try {
+      this.context.isLoading();
+      const { token } = this.context;
+      const req = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Access-Token': token
+        }
+      };
+      const response = await fetch(`/api/card/${this.props.cardId}`, req);
+      if (response.ok) {
+        const data = await response.json();
         this.setState(
           {
             question: data.question,
@@ -83,10 +85,14 @@ export default class EditCard extends React.Component {
         );
         this.context.completeLoading();
       }
-      ).catch(err => {
-        console.error(err);
-        this.context.isError();
-      });
+    } catch (err) {
+      console.error(err);
+      this.context.isError();
+    }
+  }
+
+  componentDidMount() {
+    this.loadDeckInfo();
   }
 
   render() {

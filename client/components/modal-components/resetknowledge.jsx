@@ -7,19 +7,22 @@ export default class ResetKnowledge extends React.Component {
     this.resetDeck = this.resetDeck.bind(this);
   }
 
-  resetDeck() {
-    const { token } = this.context;
-    const req = {
-      method: 'PATCH',
-      headers: {
-        'X-Access-Token': token
-      }
-    };
-    fetch(`/api/deck/confidence/${this.props.deck.deckId}`, req)
-      .then(res => {
+  async resetDeck() {
+    try {
+      const { token } = this.context;
+      const req = {
+        method: 'PATCH',
+        headers: {
+          'X-Access-Token': token
+        }
+      };
+      const response = await fetch(`/api/deck/confidence/${this.props.deck.deckId}`, req);
+      if (response.ok) {
         this.props.confirmReset();
-      })
-      .catch(err => console.error(err));
+      }
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   render() {

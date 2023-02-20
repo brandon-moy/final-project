@@ -37,23 +37,26 @@ export default class CardStudy extends React.Component {
     }
   }
 
-  updateConfidence(event) {
-    const { token } = this.context;
-    const confidence = { confidence: event.target.getAttribute('id') };
-    const { cardId } = this.state.cards[this.state.position];
-    const req = {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Access-Token': token
-      },
-      body: JSON.stringify(confidence)
-    };
-    fetch(`/api/card/confidence/${cardId}`, req)
-      .then(res => {
+  async updateConfidence(event) {
+    try {
+      const { token } = this.context;
+      const confidence = { confidence: event.target.getAttribute('id') };
+      const { cardId } = this.state.cards[this.state.position];
+      const req = {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Access-Token': token
+        },
+        body: JSON.stringify(confidence)
+      };
+      const response = await fetch(`/api/card/confidence/${cardId}`, req);
+      if (response.ok) {
         this.startFlip();
-      })
-      .catch(err => console.error(err));
+      }
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   render() {

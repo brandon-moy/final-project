@@ -22,60 +22,65 @@ export default class AddCard extends React.Component {
     }
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
     if (!this.state.question.length || !this.state.answer.length) {
       this.setState({ error: true });
     } else {
-      this.context.isLoading();
-      const { token } = this.context;
-      const deckId = this.props.deckId;
-      const req = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Access-Token': token
-        },
-        body: JSON.stringify(this.state)
-      };
-      fetch(`/api/add-card/${deckId}`, req)
-        .then(res => {
-          res.json();
+      try {
+        this.context.isLoading();
+        const { token } = this.context;
+        const deckId = this.props.deckId;
+        const req = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Access-Token': token
+          },
+          body: JSON.stringify(this.state)
+        };
+        const response = await fetch(`/api/add-card/${deckId}`, req);
+        if (response.ok) {
           this.setState({
             question: '',
             answer: ''
           });
           this.context.completeLoading();
           location.href = `/#view-cards?deckId=${deckId}`;
-        })
-        .catch(err => {
-          console.error(err);
-          this.context.isError();
-        });
+        }
+      } catch (err) {
+        console.error(err);
+        this.context.isError();
+      }
+    }
+  }
+
+  async loadDeckInfo() {
+    this.context.isLoading();
+    try {
+      const { token } = this.context;
+      const req = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Access-Token': token
+        }
+      };
+      const response = await fetch(`/api/cards/${this.props.deckId}`, req);
+      if (response.ok) {
+        const data = await response.json();
+        const { deckName } = data[0];
+        this.setState({ deckName });
+        this.context.completeLoading();
+      }
+    } catch (err) {
+      console.error(err);
+      this.context.isError();
     }
   }
 
   componentDidMount() {
-    this.context.isLoading();
-    const { token } = this.context;
-    const req = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Access-Token': token
-      }
-    };
-    fetch(`/api/cards/${this.props.deckId}`, req)
-      .then(res => res.json())
-      .then(data => {
-        const { deckName } = data[0];
-        this.setState({ deckName });
-        this.context.completeLoading();
-      })
-      .catch(err => {
-        console.error(err);
-        this.context.isError();
-      });
+    this.loadDeckInfo();
   }
 
   render() {

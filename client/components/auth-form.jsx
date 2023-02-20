@@ -20,24 +20,38 @@ export default class AuthForm extends React.Component {
     this.setState({ [name]: value });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
     this.context.isLoading();
-    const req = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(this.state)
-    };
-    fetch(`/api/auth/${this.props.action}`, req)
-      .then(res => res.json())
-      .then(result => {
-        if (result.error) {
-          this.setState({
-            errorMessage: result.error
-          });
-        } else if (this.props.action === 'sign-up') {
+    if (!this.state.username.length || !this.state.password.length) {
+      this.context.completeLoading();
+      this.setState({
+        errorMessage: 'Invalid Login'
+      });
+      return;
+    }
+    try {
+      const req = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(this.state)
+      };
+      const response = await fetch(`/api/auth/${this.props.action}`, req);
+      if (response.status === 401) {
+        this.context.completeLoading();
+        this.setState({
+          errorMessage: 'Invalid Login'
+        });
+      } else if (response.status === 409) {
+        this.context.completeLoading();
+        this.setState({
+          errorMessage: 'Username is already taken'
+        });
+      } else if (response.ok) {
+        const result = await response.json();
+        if (this.props.action === 'sign-up') {
           this.setState({
             username: '',
             password: '',
@@ -48,37 +62,37 @@ export default class AuthForm extends React.Component {
           this.props.handleSignIn(result);
         }
         this.context.completeLoading();
-      })
-      .catch(err => {
-        console.error(err);
-        this.context.isError();
-      });
+      }
+    } catch (err) {
+      console.error(err);
+      this.context.isError();
+    }
   }
 
-  demoLogIn() {
-    const demoUser = {
-      username: 'DemoUser',
-      password: 'imademouser123'
-    };
+  async demoLogIn() {
     this.context.isLoading();
-    const req = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(demoUser)
-    };
-    fetch('/api/auth/sign-in', req)
-      .then(res => res.json())
-      .then(result => {
+    try {
+      const demoUser = {
+        username: 'DemoUser',
+        password: 'imademouser123'
+      };
+      const req = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(demoUser)
+      };
+      const response = await fetch('/api/auth/sign-in', req);
+      if (response.ok) {
+        const result = await response.json();
         this.props.handleDemoSignIn(result);
         this.context.completeLoading();
-      })
-      .catch(err => {
-        console.error(err);
-        this.context.isError();
-      });
-
+      }
+    } catch (err) {
+      console.error(err);
+      this.contest.isError();
+    }
   }
 
   render() {

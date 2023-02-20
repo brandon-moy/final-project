@@ -17,7 +17,7 @@ export default class NewDeck extends React.Component {
     this.setState({ deckName: value });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
     const { token } = this.context;
     const deckName = this.state.deckName;
@@ -26,20 +26,22 @@ export default class NewDeck extends React.Component {
     } else if (deckName.length > 20) {
       this.setState({ error: 'Sorry, that deck name is too long!' });
     } else {
-      const req = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Access-Token': token
-        },
-        body: JSON.stringify(this.state)
-      };
-      fetch('/api/create-deck', req)
-        .then(res => {
-          res.json();
+      try {
+        const req = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Access-Token': token
+          },
+          body: JSON.stringify(this.state)
+        };
+        const response = await fetch('/api/create-deck', req);
+        if (response.ok) {
           this.props.submitDeck();
-        })
-        .catch(err => console.error(err));
+        }
+      } catch (err) {
+        console.error(err);
+      }
     }
   }
 
