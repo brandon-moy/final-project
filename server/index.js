@@ -20,16 +20,14 @@ const app = express();
 app.use(staticMiddleware);
 app.use(express.json());
 
-app.post('/api/auth/sign-up', (req, res, next) => {
+app.post('/api/auth/sign-up', async (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
     throw new ClientError(400, 'username and password are required fields');
   }
-
-  argon2
-    .hash(password)
-    .then(hashedPassword => {
-      const sql = `
+  try {
+    const hashedPassword = await argon2.hash(password);
+    const sql = `
       insert into "accounts" ("username", "hashedPassword")
       values ($1, $2)
       on conflict("username")
@@ -37,56 +35,53 @@ app.post('/api/auth/sign-up', (req, res, next) => {
       returning "userId", "username", "joinedAt"
       `;
 
-      const params = [username, hashedPassword];
+    const params = [username, hashedPassword];
 
-      return db.query(sql, params);
-    })
-    .then(result => {
-      const [user] = result.rows;
-      if (!user) {
-        throw new ClientError(409, 'username is already taken');
-      } else {
-        res.status(201).json(user);
-      }
-    })
-    .catch(err => next(err));
+    const result = await db.query(sql, params);
+    const [user] = result.rows;
+    if (!user) {
+      throw new ClientError(409, 'username is already taken');
+    } else {
+      res.status(201).json(user);
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.post('/api/auth/sign-in', (req, res, next) => {
+app.post('/api/auth/sign-in', async (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
     throw new ClientError(400, 'username and password are required fields');
   }
 
-  const sql = `
-  select "userId",
-         "hashedPassword",
-         "newUser"
-  from "accounts"
-    where "username" = $1
-  `;
+  try {
+    const sql = `
+    select "userId",
+           "hashedPassword",
+           "newUser"
+    from "accounts"
+      where "username" = $1
+    `;
 
-  const params = [username];
+    const params = [username];
 
-  db.query(sql, params)
-    .then(result => {
-      const [user] = result.rows;
-      if (!user) {
-        throw new ClientError(401, 'invalid login');
-      }
-      const { userId, hashedPassword, newUser } = user;
-      return argon2
-        .verify(hashedPassword, password)
-        .then(isMatching => {
-          if (!isMatching) {
-            throw new ClientError(401, 'invalid login');
-          }
-          const payload = { userId, username, newUser };
-          const token = jwt.sign(payload, process.env.TOKEN_SECRET);
-          res.json({ token, user: payload });
-        });
-    })
-    .catch(err => next(err));
+    const result = await db.query(sql, params);
+    const [user] = result.rows;
+    if (!user) {
+      throw new ClientError(401, 'invalid login');
+    }
+    const { userId, hashedPassword, newUser } = user;
+    const isMatching = await argon2.verify(hashedPassword, password);
+    if (!isMatching) {
+      throw new ClientError(401, 'invalid login');
+    }
+    const payload = { userId, username, newUser };
+    const token = jwt.sign(payload, process.env.TOKEN_SECRET);
+    res.json({ token, user: payload });
+  } catch (err) {
+    next(err);
+  }
 });
 
 app.use(authorizationMiddleware);
