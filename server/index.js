@@ -253,7 +253,7 @@ app.post('/api/add-card/:deckId', async (req, res, next) => {
   }
 });
 
-app.patch('/update/newuser', (req, res, next) => {
+app.patch('/update/newuser', async (req, res, next) => {
   const { userId } = req.user;
 
   const sql = `
@@ -265,19 +265,20 @@ app.patch('/update/newuser', (req, res, next) => {
 
   const params = [userId];
 
-  db.query(sql, params)
-    .then(result => {
-      const [user] = result.rows;
-      if (!user) {
-        throw new ClientError(404, `cannot find user with userId ${userId}`);
-      } else {
-        res.send();
-      }
-    })
-    .catch(err => next(err));
+  try {
+    const result = await db.query(sql, params);
+    const [user] = result.rows;
+    if (!user) {
+      throw new ClientError(404, `cannot find user with userId ${userId}`);
+    } else {
+      res.send();
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.patch('/api/card/:cardId', (req, res, next) => {
+app.patch('/api/card/:cardId', async (req, res, next) => {
   const { userId } = req.user;
   const cardId = Number(req.params.cardId);
   if (!cardId || cardId < 1) {
@@ -299,19 +300,20 @@ app.patch('/api/card/:cardId', (req, res, next) => {
 
   const params = [question, answer, cardId, userId];
 
-  db.query(sql, params)
-    .then(result => {
-      const [updatedCard] = result.rows;
-      if (!updatedCard) {
-        throw new ClientError(404, `cannot find card with cardId ${cardId}`);
-      } else {
-        res.json(updatedCard);
-      }
-    })
-    .catch(err => next(err));
+  try {
+    const result = await db.query(sql, params);
+    const [updatedCard] = result.rows;
+    if (!updatedCard) {
+      throw new ClientError(404, `cannot find card with cardId ${cardId}`);
+    } else {
+      res.json(updatedCard);
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.patch('/api/card/confidence/:cardId', (req, res, next) => {
+app.patch('/api/card/confidence/:cardId', async (req, res, next) => {
   const { userId } = req.user;
   const cardId = Number(req.params.cardId);
   const confidence = Number(req.body.confidence);
@@ -332,19 +334,20 @@ app.patch('/api/card/confidence/:cardId', (req, res, next) => {
 
   const params = [confidence, cardId, userId];
 
-  db.query(sql, params)
-    .then(result => {
-      const [updatedCard] = result.rows;
-      if (!updatedCard) {
-        throw new ClientError(404, `cannot find card with cardId ${cardId}`);
-      } else {
-        res.json(updatedCard);
-      }
-    })
-    .catch(err => next(err));
+  try {
+    const result = await db.query(sql, params);
+    const [updatedCard] = result.rows;
+    if (!updatedCard) {
+      throw new ClientError(404, `cannot find card with cardId ${cardId}`);
+    } else {
+      res.json(updatedCard);
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.patch('/api/deck/confidence/:deckId', (req, res, next) => {
+app.patch('/api/deck/confidence/:deckId', async (req, res, next) => {
   const { userId } = req.user;
   const deckId = Number(req.params.deckId);
   if (!deckId) {
@@ -361,16 +364,17 @@ app.patch('/api/deck/confidence/:deckId', (req, res, next) => {
 
   const params = [deckId, userId];
 
-  db.query(sql, params)
-    .then(result => {
-      const updatedCards = result.rows;
-      if (!updatedCards || !updatedCards.length) {
-        throw new ClientError(404, `cannot find cards with deckId ${deckId}`);
-      } else {
-        res.json(updatedCards);
-      }
-    })
-    .catch(err => next(err));
+  try {
+    const result = await db.query(sql, params);
+    const updatedCards = result.rows;
+    if (!updatedCards || !updatedCards.length) {
+      throw new ClientError(404, `cannot find cards with deckId ${deckId}`);
+    } else {
+      res.json(updatedCards);
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
 app.delete('/api/deletecard/:cardId', (req, res, next) => {
