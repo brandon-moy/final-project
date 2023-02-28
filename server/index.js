@@ -201,7 +201,7 @@ app.get('/api/card/:cardId', async (req, res, next) => {
   }
 });
 
-app.post('/api/create-deck', (req, res, next) => {
+app.post('/api/create-deck', async (req, res, next) => {
   const { userId } = req.user;
   const { deckName } = req.body;
   if (!deckName) {
@@ -216,15 +216,16 @@ app.post('/api/create-deck', (req, res, next) => {
 
   const params = [deckName, userId];
 
-  db.query(sql, params)
-    .then(result => {
-      const [deck] = result.rows;
-      res.status(201).json(deck);
-    })
-    .catch(err => next(err));
+  try {
+    const result = await db.query(sql, params);
+    const [deck] = result.rows;
+    res.status(201).json(deck);
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.post('/api/add-card/:deckId', (req, res, next) => {
+app.post('/api/add-card/:deckId', async (req, res, next) => {
   const { userId } = req.user;
   const deckId = Number(req.params.deckId);
   if (!deckId || deckId < 1) {
@@ -243,12 +244,13 @@ app.post('/api/add-card/:deckId', (req, res, next) => {
 
   const params = [question, answer, userId, deckId];
 
-  db.query(sql, params)
-    .then(result => {
-      const [cards] = result.rows;
-      res.status(201).json(cards);
-    })
-    .catch(err => next(err));
+  try {
+    const result = await db.query(sql, params);
+    const [cards] = result.rows;
+    res.status(201).json(cards);
+  } catch (err) {
+    next(err);
+  }
 });
 
 app.patch('/update/newuser', (req, res, next) => {
