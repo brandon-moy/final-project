@@ -377,7 +377,7 @@ app.patch('/api/deck/confidence/:deckId', async (req, res, next) => {
   }
 });
 
-app.delete('/api/deletecard/:cardId', (req, res, next) => {
+app.delete('/api/deletecard/:cardId', async (req, res, next) => {
   const { userId } = req.user;
   const cardId = Number(req.params.cardId);
   if (!cardId) {
@@ -393,19 +393,20 @@ app.delete('/api/deletecard/:cardId', (req, res, next) => {
 
   const params = [cardId, userId];
 
-  db.query(sql, params)
-    .then(result => {
-      const [deleted] = result.rows;
-      if (!deleted) {
-        throw new ClientError(404, `cannot find card with cardId ${cardId}`);
-      } else {
-        res.status(204).send();
-      }
-    })
-    .catch(err => next(err));
+  try {
+    const result = await db.query(sql, params);
+    const [deleted] = result.rows;
+    if (!deleted) {
+      throw new ClientError(404, `cannot find card with cardId ${cardId}`);
+    } else {
+      res.status(204).send();
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.delete('/api/deletedeck/:deckId', (req, res, next) => {
+app.delete('/api/deletedeck/:deckId', async (req, res, next) => {
   const { userId } = req.user;
   const deckId = Number(req.params.deckId);
   if (!deckId) {
@@ -424,16 +425,17 @@ app.delete('/api/deletedeck/:deckId', (req, res, next) => {
 
   const params = [deckId, userId];
 
-  db.query(sql, params)
-    .then(result => {
-      const deleted = result.rows;
-      if (!deleted || deleted === []) {
-        throw new ClientError(404, `cannot find deck with deckId ${deckId}`);
-      } else {
-        res.status(204).send();
-      }
-    })
-    .catch(err => next(err));
+  try {
+    const result = await db.query(sql, params);
+    const deleted = result.rows;
+    if (!deleted || deleted === []) {
+      throw new ClientError(404, `cannot find deck with deckId ${deckId}`);
+    } else {
+      res.status(204).send();
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
 app.use(errorMiddleware);
