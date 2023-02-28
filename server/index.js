@@ -20,16 +20,14 @@ const app = express();
 app.use(staticMiddleware);
 app.use(express.json());
 
-app.post('/api/auth/sign-up', (req, res, next) => {
+app.post('/api/auth/sign-up', async (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
     throw new ClientError(400, 'username and password are required fields');
   }
-
-  argon2
-    .hash(password)
-    .then(hashedPassword => {
-      const sql = `
+  try {
+    const hashedPassword = await argon2.hash(password);
+    const sql = `
       insert into "accounts" ("username", "hashedPassword")
       values ($1, $2)
       on conflict("username")
@@ -37,61 +35,58 @@ app.post('/api/auth/sign-up', (req, res, next) => {
       returning "userId", "username", "joinedAt"
       `;
 
-      const params = [username, hashedPassword];
+    const params = [username, hashedPassword];
 
-      return db.query(sql, params);
-    })
-    .then(result => {
-      const [user] = result.rows;
-      if (!user) {
-        throw new ClientError(409, 'username is already taken');
-      } else {
-        res.status(201).json(user);
-      }
-    })
-    .catch(err => next(err));
+    const result = await db.query(sql, params);
+    const [user] = result.rows;
+    if (!user) {
+      throw new ClientError(409, 'username is already taken');
+    } else {
+      res.status(201).json(user);
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.post('/api/auth/sign-in', (req, res, next) => {
+app.post('/api/auth/sign-in', async (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
     throw new ClientError(400, 'username and password are required fields');
   }
 
-  const sql = `
-  select "userId",
-         "hashedPassword",
-         "newUser"
-  from "accounts"
-    where "username" = $1
-  `;
+  try {
+    const sql = `
+    select "userId",
+           "hashedPassword",
+           "newUser"
+    from "accounts"
+      where "username" = $1
+    `;
 
-  const params = [username];
+    const params = [username];
 
-  db.query(sql, params)
-    .then(result => {
-      const [user] = result.rows;
-      if (!user) {
-        throw new ClientError(401, 'invalid login');
-      }
-      const { userId, hashedPassword, newUser } = user;
-      return argon2
-        .verify(hashedPassword, password)
-        .then(isMatching => {
-          if (!isMatching) {
-            throw new ClientError(401, 'invalid login');
-          }
-          const payload = { userId, username, newUser };
-          const token = jwt.sign(payload, process.env.TOKEN_SECRET);
-          res.json({ token, user: payload });
-        });
-    })
-    .catch(err => next(err));
+    const result = await db.query(sql, params);
+    const [user] = result.rows;
+    if (!user) {
+      throw new ClientError(401, 'invalid login');
+    }
+    const { userId, hashedPassword, newUser } = user;
+    const isMatching = await argon2.verify(hashedPassword, password);
+    if (!isMatching) {
+      throw new ClientError(401, 'invalid login');
+    }
+    const payload = { userId, username, newUser };
+    const token = jwt.sign(payload, process.env.TOKEN_SECRET);
+    res.json({ token, user: payload });
+  } catch (err) {
+    next(err);
+  }
 });
 
 app.use(authorizationMiddleware);
 
-app.get('/api/decks', (req, res, next) => {
+app.get('/api/decks', async (req, res, next) => {
   const { userId } = req.user;
   const sql = `
     select "decks".*,
@@ -105,15 +100,16 @@ app.get('/api/decks', (req, res, next) => {
 
   const params = [userId];
 
-  db.query(sql, params)
-    .then(result => {
-      const decks = result.rows;
-      res.status(200).json(decks);
-    })
-    .catch(err => next(err));
+  try {
+    const result = await db.query(sql, params);
+    const decks = result.rows;
+    res.status(200).json(decks);
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.get('/api/cards/:deckId', (req, res, next) => {
+app.get('/api/cards/:deckId', async (req, res, next) => {
   const { userId } = req.user;
   const deckId = Number(req.params.deckId);
   if (!deckId || deckId < 1) {
@@ -164,15 +160,16 @@ app.get('/api/cards/:deckId', (req, res, next) => {
 
   const params = [deckId, userId];
 
-  db.query(sql, params)
-    .then(result => {
-      const cards = result.rows;
-      res.status(200).json(cards);
-    })
-    .catch(err => next(err));
+  try {
+    const result = await db.query(sql, params);
+    const cards = result.rows;
+    res.status(200).json(cards);
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.get('/api/card/:cardId', (req, res, next) => {
+app.get('/api/card/:cardId', async (req, res, next) => {
   const { userId } = req.user;
   const cardId = Number(req.params.cardId);
   if (!cardId || cardId < 1) {
@@ -191,19 +188,20 @@ app.get('/api/card/:cardId', (req, res, next) => {
 
   const params = [cardId, userId];
 
-  db.query(sql, params)
-    .then(result => {
-      const [card] = result.rows;
-      if (!card) {
-        throw new ClientError(404, `cannot find card with cardId ${cardId}`);
-      } else {
-        res.json(card);
-      }
-    })
-    .catch(err => next(err));
+  try {
+    const result = await db.query(sql, params);
+    const [card] = result.rows;
+    if (!card) {
+      throw new ClientError(404, `cannot find card with cardId ${cardId}`);
+    } else {
+      res.json(card);
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.post('/api/create-deck', (req, res, next) => {
+app.post('/api/create-deck', async (req, res, next) => {
   const { userId } = req.user;
   const { deckName } = req.body;
   if (!deckName) {
@@ -218,15 +216,16 @@ app.post('/api/create-deck', (req, res, next) => {
 
   const params = [deckName, userId];
 
-  db.query(sql, params)
-    .then(result => {
-      const [deck] = result.rows;
-      res.status(201).json(deck);
-    })
-    .catch(err => next(err));
+  try {
+    const result = await db.query(sql, params);
+    const [deck] = result.rows;
+    res.status(201).json(deck);
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.post('/api/add-card/:deckId', (req, res, next) => {
+app.post('/api/add-card/:deckId', async (req, res, next) => {
   const { userId } = req.user;
   const deckId = Number(req.params.deckId);
   if (!deckId || deckId < 1) {
@@ -245,15 +244,16 @@ app.post('/api/add-card/:deckId', (req, res, next) => {
 
   const params = [question, answer, userId, deckId];
 
-  db.query(sql, params)
-    .then(result => {
-      const [cards] = result.rows;
-      res.status(201).json(cards);
-    })
-    .catch(err => next(err));
+  try {
+    const result = await db.query(sql, params);
+    const [cards] = result.rows;
+    res.status(201).json(cards);
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.patch('/update/newuser', (req, res, next) => {
+app.patch('/update/newuser', async (req, res, next) => {
   const { userId } = req.user;
 
   const sql = `
@@ -265,19 +265,20 @@ app.patch('/update/newuser', (req, res, next) => {
 
   const params = [userId];
 
-  db.query(sql, params)
-    .then(result => {
-      const [user] = result.rows;
-      if (!user) {
-        throw new ClientError(404, `cannot find user with userId ${userId}`);
-      } else {
-        res.send();
-      }
-    })
-    .catch(err => next(err));
+  try {
+    const result = await db.query(sql, params);
+    const [user] = result.rows;
+    if (!user) {
+      throw new ClientError(404, `cannot find user with userId ${userId}`);
+    } else {
+      res.send();
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.patch('/api/card/:cardId', (req, res, next) => {
+app.patch('/api/card/:cardId', async (req, res, next) => {
   const { userId } = req.user;
   const cardId = Number(req.params.cardId);
   if (!cardId || cardId < 1) {
@@ -299,19 +300,20 @@ app.patch('/api/card/:cardId', (req, res, next) => {
 
   const params = [question, answer, cardId, userId];
 
-  db.query(sql, params)
-    .then(result => {
-      const [updatedCard] = result.rows;
-      if (!updatedCard) {
-        throw new ClientError(404, `cannot find card with cardId ${cardId}`);
-      } else {
-        res.json(updatedCard);
-      }
-    })
-    .catch(err => next(err));
+  try {
+    const result = await db.query(sql, params);
+    const [updatedCard] = result.rows;
+    if (!updatedCard) {
+      throw new ClientError(404, `cannot find card with cardId ${cardId}`);
+    } else {
+      res.json(updatedCard);
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.patch('/api/card/confidence/:cardId', (req, res, next) => {
+app.patch('/api/card/confidence/:cardId', async (req, res, next) => {
   const { userId } = req.user;
   const cardId = Number(req.params.cardId);
   const confidence = Number(req.body.confidence);
@@ -332,19 +334,20 @@ app.patch('/api/card/confidence/:cardId', (req, res, next) => {
 
   const params = [confidence, cardId, userId];
 
-  db.query(sql, params)
-    .then(result => {
-      const [updatedCard] = result.rows;
-      if (!updatedCard) {
-        throw new ClientError(404, `cannot find card with cardId ${cardId}`);
-      } else {
-        res.json(updatedCard);
-      }
-    })
-    .catch(err => next(err));
+  try {
+    const result = await db.query(sql, params);
+    const [updatedCard] = result.rows;
+    if (!updatedCard) {
+      throw new ClientError(404, `cannot find card with cardId ${cardId}`);
+    } else {
+      res.json(updatedCard);
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.patch('/api/deck/confidence/:deckId', (req, res, next) => {
+app.patch('/api/deck/confidence/:deckId', async (req, res, next) => {
   const { userId } = req.user;
   const deckId = Number(req.params.deckId);
   if (!deckId) {
@@ -361,19 +364,20 @@ app.patch('/api/deck/confidence/:deckId', (req, res, next) => {
 
   const params = [deckId, userId];
 
-  db.query(sql, params)
-    .then(result => {
-      const updatedCards = result.rows;
-      if (!updatedCards || !updatedCards.length) {
-        throw new ClientError(404, `cannot find cards with deckId ${deckId}`);
-      } else {
-        res.json(updatedCards);
-      }
-    })
-    .catch(err => next(err));
+  try {
+    const result = await db.query(sql, params);
+    const updatedCards = result.rows;
+    if (!updatedCards || !updatedCards.length) {
+      throw new ClientError(404, `cannot find cards with deckId ${deckId}`);
+    } else {
+      res.json(updatedCards);
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.delete('/api/deletecard/:cardId', (req, res, next) => {
+app.delete('/api/deletecard/:cardId', async (req, res, next) => {
   const { userId } = req.user;
   const cardId = Number(req.params.cardId);
   if (!cardId) {
@@ -389,19 +393,20 @@ app.delete('/api/deletecard/:cardId', (req, res, next) => {
 
   const params = [cardId, userId];
 
-  db.query(sql, params)
-    .then(result => {
-      const [deleted] = result.rows;
-      if (!deleted) {
-        throw new ClientError(404, `cannot find card with cardId ${cardId}`);
-      } else {
-        res.status(204).send();
-      }
-    })
-    .catch(err => next(err));
+  try {
+    const result = await db.query(sql, params);
+    const [deleted] = result.rows;
+    if (!deleted) {
+      throw new ClientError(404, `cannot find card with cardId ${cardId}`);
+    } else {
+      res.status(204).send();
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.delete('/api/deletedeck/:deckId', (req, res, next) => {
+app.delete('/api/deletedeck/:deckId', async (req, res, next) => {
   const { userId } = req.user;
   const deckId = Number(req.params.deckId);
   if (!deckId) {
@@ -420,16 +425,17 @@ app.delete('/api/deletedeck/:deckId', (req, res, next) => {
 
   const params = [deckId, userId];
 
-  db.query(sql, params)
-    .then(result => {
-      const deleted = result.rows;
-      if (!deleted || deleted === []) {
-        throw new ClientError(404, `cannot find deck with deckId ${deckId}`);
-      } else {
-        res.status(204).send();
-      }
-    })
-    .catch(err => next(err));
+  try {
+    const result = await db.query(sql, params);
+    const deleted = result.rows;
+    if (!deleted || deleted === []) {
+      throw new ClientError(404, `cannot find deck with deckId ${deckId}`);
+    } else {
+      res.status(204).send();
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
 app.use(errorMiddleware);
