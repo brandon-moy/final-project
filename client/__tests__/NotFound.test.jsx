@@ -12,4 +12,9 @@ test('Should render not found page elements', () => {
   const notFoundImage = screen.getByAltText('Not Found Image');
   expect(notFoundImage).toBeInTheDocument();
   expect(notFoundImage.src).toContain('/images/shocked.webp');
+
+  const returnHomeLink = screen.getByTestId('not-found-return');
+  expect(returnHomeLink).toBeInTheDocument();
+  expect(returnHomeLink).toHaveTextContent('Return Home');
+  expect(returnHomeLink.href).toContain('#');
 });

@@ -9,7 +9,7 @@ export default function NotFound(props) {
       <div className='col-100 flex just-center'>
         <img alt='Not Found Image' className='not-found-img' src='/images/shocked.webp' />
       </div>
-      <a className='return-home col-100' href='#'>
+      <a data-testid='not-found-return' className='return-home col-100' href='#'>
         Return Home
       </a>
     </div>
