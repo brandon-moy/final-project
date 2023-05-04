@@ -158,6 +158,7 @@ export default class AuthForm extends React.Component {
                     </p>
                     <a
                   className='auth-type'
+                  data-testid='switch-auth'
                   href={switchAuthLocation}>
                       {switchAuth}
                     </a>
