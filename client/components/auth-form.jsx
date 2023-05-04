@@ -163,7 +163,7 @@ export default class AuthForm extends React.Component {
                       {switchAuth}
                     </a>
                   </div>
-                  <button className='auth-button col-2'>
+                  <button data-testid="submit" className='auth-button col-2'>
                     {authButton}
                   </button>
                 </section>
