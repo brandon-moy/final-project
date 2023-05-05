@@ -9,11 +9,11 @@ export default class Header extends React.Component {
       : 'hidden';
     return (
       <header className='page-header'>
-        <img className={`idle-img ${show}`} src='/images/sit.webp' />
-        <a href='#' className='page-title'>
+        <img data-testid='header-img' className={`idle-img ${show}`} src='/images/sit.webp' />
+        <a data-testid='header-link' href='#' className='page-title'>
           StudyBuddy
         </a>
-        <button className={`sign-out-button ${show}`} onClick={this.props.signOut}>
+        <button data-testid='sign-out-button' className={`sign-out-button ${show}`} onClick={this.props.signOut}>
           Sign Out
           <i className='fa-solid fa-right-from-bracket' />
         </button>
