@@ -37,6 +37,30 @@ describe('Tests for the header component', () => {
       expect(signOutButton).toBeInTheDocument();
       expect(signOutButton).toHaveTextContent('Sign Out');
     });
+  });
 
+  describe('Tests for when a user is NOT signed in', () => {
+    beforeEach(() => {
+      const addItem = jest.fn({ user: false });
+      render(
+        <AppContext.Provider value={{ addItem }}>
+          <Header />
+        </AppContext.Provider>
+      );
+    });
+
+    test('The Image should be hidden if a user is not signed in', () => {
+      const headerImg = screen.getByTestId('header-img');
+
+      expect(headerImg).toBeInTheDocument();
+      expect(headerImg).toHaveClass('hidden');
+    });
+
+    test('The SignOut button should be hidden if a user is not signed in', () => {
+      const signOutButton = screen.getByTestId('sign-out-button');
+
+      expect(signOutButton).toBeInTheDocument();
+      expect(signOutButton).toHaveClass('hidden');
+    });
   });
 });
