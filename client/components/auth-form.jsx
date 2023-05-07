@@ -145,6 +145,7 @@ export default class AuthForm extends React.Component {
                 <label>Password
                   <input
                 id='password'
+                data-testid='auth-password'
                 name='password'
                 type='password'
                 className='password'

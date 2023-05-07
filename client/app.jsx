@@ -125,7 +125,7 @@ export default class App extends React.Component {
           <Header signOut={this.handleSignOut} />
           { this.renderPage() }
           <div className={`modal-background flex align-center ${loading}`}>
-            <div className={spinner}>
+            <div className={spinner} data-testid='spinner'>
               <div className="lds-facebook"><div /><div /><div /></div>
             </div>
             <div className={error}>

@@ -2,17 +2,11 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import AuthForm from '../components/auth-form';
-import AppContext from '../lib/app-context';
 
 describe('Tests for the sign-in auth form', () => {
   describe('Testing the sign-up form', () => {
     beforeEach(() => {
-      const addItem = jest.fn();
-      render(
-        <AppContext.Provider value={{ addItem }}>
-          <AuthForm action='sign-up' />
-        </AppContext.Provider>
-      );
+      render(<AuthForm action='sign-up' />);
     });
 
     test('Renders the correct sign-up information', () => {
@@ -29,26 +23,11 @@ describe('Tests for the sign-in auth form', () => {
       expect(submitButton).toHaveTextContent('Sign Up');
     });
 
-    // test('Successfully submits form data', () => {
-    //   const username = screen.getByLabelText(/username/i);
-    //   const password = screen.getByLabelText(/password/i);
-    //   const submitButton = screen.getByTestId('submit');
-
-    //   fireEvent.change(username, { target: { value: 'bees@bees.com' } });
-    //   fireEvent.change(password, { target: { values: 'beepositive' } });
-    //   fireEvent.submit(submitButton);
-
-    // });
   });
 
   describe('Testing the sign-in form', () => {
     beforeEach(() => {
-      const addItem = jest.fn();
-      render(
-        <AppContext.Provider value={{ addItem }}>
-          <AuthForm action='sign-in' />
-        </AppContext.Provider>
-      );
+      render(<AuthForm action='sign-in' />);
     });
 
     test('Renders content for the sign-in form', () => {
