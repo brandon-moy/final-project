@@ -16,5 +16,19 @@ describe('Tests for a modal component', () => {
       expect(modalHeader).toBeInTheDocument();
       expect(modalHeader).toHaveTextContent('Create New Deck');
     });
+
+    test('The modal should have an input for a new deck name', () => {
+      const newDeckNameInput = screen.getByTestId('new-deck-input');
+
+      expect(newDeckNameInput).toBeInTheDocument();
+    });
+
+    test('The modal should have a button to cancel and a button to submit', () => {
+      const closeNewDeckModal = screen.getByTestId('close-new-deck-modal');
+      const submitNewDeck = screen.getByTestId('submit-new-deck');
+
+      expect(closeNewDeckModal).toBeInTheDocument();
+      expect(submitNewDeck).toBeInTheDocument();
+    });
   });
 });
