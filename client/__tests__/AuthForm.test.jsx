@@ -7,17 +7,16 @@ import AppContext from '../lib/app-context';
 describe('Tests for the sign-in auth form', () => {
   describe('Testing the sign-up form', () => {
     beforeEach(() => {
-      const user = jest.fn({ user: false });
+      const addItem = jest.fn();
       render(
-        <AppContext.Provider value={{ user }}>
+        <AppContext.Provider value={{ addItem }}>
           <AuthForm action='sign-up' />
         </AppContext.Provider>
       );
     });
-
     test('Renders the correct sign-up information', () => {
-      const username = screen.getByTestId('auth-username');
-      const password = screen.getByTestId('auth-password');
+      const username = screen.getByLabelText(/username/i);
+      const password = screen.getByLabelText(/password/i);
       const switchAuth = screen.getByTestId('switch-auth');
       const submitButton = screen.getByTestId('submit');
 
@@ -28,22 +27,20 @@ describe('Tests for the sign-in auth form', () => {
       expect(submitButton).toBeInTheDocument();
       expect(submitButton).toHaveTextContent('Sign Up');
     });
-
   });
 
   describe('Testing the sign-in form', () => {
     beforeEach(() => {
-      const user = jest.fn({ user: false });
+      const addItem = jest.fn();
       render(
-        <AppContext.Provider value={{ user }}>
-          <AuthForm action='sign-up' />
+        <AppContext.Provider value={{ addItem }}>
+          <AuthForm action='sign-in' />
         </AppContext.Provider>
       );
     });
-
-    test('Renders content for the sign-in form', () => {
-      const username = screen.getByTestId('auth-username');
-      const password = screen.getByTestId('auth-password');
+    test('Renders the correct sign-up information', () => {
+      const username = screen.getByLabelText(/username/i);
+      const password = screen.getByLabelText(/password/i);
       const switchAuth = screen.getByTestId('switch-auth');
       const submitButton = screen.getByTestId('submit');
 
