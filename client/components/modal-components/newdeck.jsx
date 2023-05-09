@@ -56,7 +56,7 @@ export default class NewDeck extends React.Component {
         onClick={this.props.closeModal}>
           <i className='fa-solid fa-xmark' />
         </button>
-        <h1 className='sticky-header'>
+        <h1 data-testid='new-deck-header' className='sticky-header'>
           Create New Deck
         </h1>
         <input

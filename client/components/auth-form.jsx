@@ -135,6 +135,7 @@ export default class AuthForm extends React.Component {
                 <label>Username
                   <input
                 type='text'
+                data-testid='auth-username'
                 id='username'
                 name='username'
                 className='username'
