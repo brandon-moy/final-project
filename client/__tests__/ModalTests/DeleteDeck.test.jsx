@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import DeleteDeck from '../components/modal-components/deletedeck';
+import DeleteDeck from '../../components/modal-components/deletedeck';
 
 describe('Tests for a modal component', () => {
   describe('Tests for the Delete Deck modal form component', () => {

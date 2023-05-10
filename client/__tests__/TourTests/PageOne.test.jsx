@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import PageOne from '../components/tour-components/page-one';
-import AppContext from '../lib/app-context';
+import PageOne from '../../components/tour-components/page-one';
+import AppContext from '../../lib/app-context';
 
 describe('Tests for the tour component', () => {
   describe('Tests for page one of the tour component', () => {

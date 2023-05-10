@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import PageTwo from '../components/tour-components/page-two';
+import PageTwo from '../../components/tour-components/page-two';
 
 describe('Tests for the tour component', () => {
   describe('Tests for page one of the tour component', () => {

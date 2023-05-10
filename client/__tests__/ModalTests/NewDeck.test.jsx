@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import NewDeck from '../components/modal-components/newdeck';
+import NewDeck from '../../components/modal-components/newdeck';
 
 describe('Tests for a modal component', () => {
   describe('Tests for the NewDeck modal component', () => {

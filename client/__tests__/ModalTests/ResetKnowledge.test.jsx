@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import ResetKnowledge from '../components/modal-components/resetknowledge';
+import ResetKnowledge from '../../components/modal-components/resetknowledge';
 
 describe('Tests for a modal component', () => {
   describe('Tests for the reset knowledge form component', () => {

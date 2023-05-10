@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import StudyOptions from '../components/modal-components/studyoptions';
+import StudyOptions from '../../components/modal-components/studyoptions';
 
 describe('Tests for ta modal component', () => {
   describe('Tests for the Study Options modal component', () => {
