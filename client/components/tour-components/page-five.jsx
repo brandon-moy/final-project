@@ -6,11 +6,12 @@ export default class PageFive extends React.Component {
     return (
       <section className='page-one-container'>
         <section className='text-box'>
-          <h3 className='main-box-text-5'>
+          <h3 data-testid='page-five-text' className='main-box-text-5'>
             Let&apos;s go and make our first deck!
           </h3>
           <div className='flex just-center'>
             <button
+            data-testid='get-started-button'
           type='button'
           className='get-started-button'
           onClick={this.context.endTour}>
