@@ -35,18 +35,20 @@ export default class DeleteDeck extends React.Component {
         <h1 className='delete-deck-name'>
           {this.props.deck.deckName}
         </h1>
-        <p className='delete-warning'>
+        <p data-testid='delete-warning' className='delete-warning'>
           Deleting this deck will delete all flashcards associated with this deck!
         </p>
         <div className='flex just-between'>
           <button
           type='button'
+          data-testid='cancel-delete'
           className='cancel-delete'
           onClick={this.props.closeModal}>
             Cancel
           </button>
           <button
           type='button'
+          data-testid='confirm-delete'
           className='confirm-delete'
           onClick={this.deleteDeck}>
             Confirm

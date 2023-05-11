@@ -28,24 +28,26 @@ export default class ResetKnowledge extends React.Component {
   render() {
     return (
       <section className='reset-confirm'>
-        <h3 className='reset-knowledge-message'>
+        <h3 data-testid='reset-header' className='reset-knowledge-message'>
           Are you sure you want to reset this deck?
         </h3>
         <h1 className='reset-deck-name'>
           {this.props.deck.deckName}
         </h1>
-        <p className='reset-warning'>
+        <p data-testid='reset-warning' className='reset-warning'>
           Resetting this deck will set the confidence for
           all flashcards associated with this deck to 0!
         </p>
         <div className='flex just-between'>
           <button
+          data-testid='cancel-button'
           type='button'
           className='cancel-reset'
           onClick={this.props.closeModal}>
             Cancel
           </button>
           <button
+          data-testid='confirm-button'
           type='button'
           className='confirm-reset'
           onClick={this.resetDeck}>

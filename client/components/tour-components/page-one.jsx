@@ -7,17 +7,19 @@ export default class PageOne extends React.Component {
       <section className='page-one-container'>
         <div className='flex just-f-end'>
           <section className='text-box'>
-            <h3 className='main-box-text'>
+            <h3 data-testid='welcome-header' className='main-box-text'>
               Welcome to StudyBuddy! You must be the new student. Would you like a tour?
             </h3>
             <div className='flex just-even'>
               <button
+              data-testid='take-tour'
             type='button'
             className='tour-button'
             onClick={this.props.startTour}>
                 Yes
               </button>
               <button
+              data-testid='skip-tour'
             type='button'
             className='tour-button'
             onClick={this.context.endTour}>

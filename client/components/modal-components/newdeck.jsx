@@ -51,15 +51,17 @@ export default class NewDeck extends React.Component {
     return (
       <form className='new-deck-form' onSubmit={this.handleSubmit}>
         <button
+        data-testid='close-new-deck-modal'
         type='button'
         className='xmark-close'
         onClick={this.props.closeModal}>
           <i className='fa-solid fa-xmark' />
         </button>
-        <h1 className='sticky-header'>
+        <h1 data-testid='new-deck-header' className='sticky-header'>
           Create New Deck
         </h1>
         <input
+        data-testid='new-deck-input'
         value={this.state.deckName}
         className='sticky-input'
         onChange={this.handleChange}
@@ -68,7 +70,7 @@ export default class NewDeck extends React.Component {
         <p className={errorClass}>
           {error}
         </p>
-        <button className='sticky-submit'>
+        <button data-testid='submit-new-deck' className='sticky-submit'>
           Continue
         </button>
       </form>

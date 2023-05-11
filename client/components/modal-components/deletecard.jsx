@@ -30,17 +30,19 @@ export default class DeleteForm extends React.Component {
   render() {
     return (
       <section className='delete-confirm'>
-        <h2 className='delete-card-message'>
+        <h2 data-testid='delete-card-header' className='delete-card-message'>
           Are you sure you want to delete this card?
         </h2>
         <div className='flex just-between'>
           <a
+          data-testid='cancel-delete'
           className='cancel-delete'
           onClick={this.props.closeModal}>
             Cancel
           </a>
           <button
           type='button'
+          data-testid='confirm-delete'
           className='confirm-delete'
           onClick={this.confirmDelete}>
             Continue

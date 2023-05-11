@@ -135,6 +135,7 @@ export default class AuthForm extends React.Component {
                 <label>Username
                   <input
                 type='text'
+                data-testid='auth-username'
                 id='username'
                 name='username'
                 className='username'
@@ -145,6 +146,7 @@ export default class AuthForm extends React.Component {
                 <label>Password
                   <input
                 id='password'
+                data-testid='auth-password'
                 name='password'
                 type='password'
                 className='password'
@@ -158,11 +160,12 @@ export default class AuthForm extends React.Component {
                     </p>
                     <a
                   className='auth-type'
+                  data-testid='switch-auth'
                   href={switchAuthLocation}>
                       {switchAuth}
                     </a>
                   </div>
-                  <button className='auth-button col-2'>
+                  <button data-testid="submit" className='auth-button col-2'>
                     {authButton}
                   </button>
                 </section>

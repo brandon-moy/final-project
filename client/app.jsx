@@ -125,11 +125,11 @@ export default class App extends React.Component {
           <Header signOut={this.handleSignOut} />
           { this.renderPage() }
           <div className={`modal-background flex align-center ${loading}`}>
-            <div className={spinner}>
+            <div className={spinner} data-testid='spinner'>
               <div className="lds-facebook"><div /><div /><div /></div>
             </div>
             <div className={error}>
-              <h1 className='error-message'>
+              <h1 data-testid='test-1' className='error-message'>
                 Sorry, an unexpected error occured. Please try again later!
               </h1>
             </div>
