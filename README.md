@@ -12,7 +12,9 @@ two cats, Bacchus and Apollo!
 
 ### 🔗 Live Demo
 
-Try the application live here: https://study-buddy.brandonmoy.com/
+~~Try the application live here: https://study-buddy.brandonmoy.com/~~
+
+Unfortunately the Live site is down. Currently I have no plans of redeploying this project in another way.
 
 ## 💻 Technologies Used
 
